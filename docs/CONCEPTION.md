@@ -228,9 +228,9 @@ Relecteur indépendant (sous-agent), 28/10/2026. Tous appliqués :
     contre-factuel de la censure formulé « si le groupe avait voté la
     censure ».
 
-**Reste à décider par Max** (choix politiques, CLAUDE.md) : dater la
-sortie de LR du socle (refus de participer au gouvernement Lecornu II,
-octobre 2025) ; la page Méthodologie l'affiche comme limite en attendant.
+**Décidé par Max (28/10/2026)** : LR reste dans le socle sur toute la
+XVIIe, ses votes le justifiant (`docs/METHODO.md`, socle) ; la limite
+affichée devient une précision.
 
 ## 8. Retours de Max (28/10/2026, première lecture)
 

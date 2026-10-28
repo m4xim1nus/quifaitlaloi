@@ -20,7 +20,8 @@ blocs:
 
 # Blocs dont l'accord définit la classe « socle » d'une coalition, par
 # législature (dates : début de législature AN). En XVIe, LR est dans
-# l'opposition ; en XVIIe, le « socle commun » réunit centre et droite.
+# l'opposition ; en XVIIe, le « socle commun » réunit centre et droite, sur toute
+# la législature, y compris après Lecornu II (décision de Max, 2026-10-28).
 socle:
   15: {debut: "2017-06-27", blocs: [centre]}   # majorité présidentielle : LREM, MoDem, Agir ensemble
   16: {debut: "2022-06-28", blocs: [centre]}

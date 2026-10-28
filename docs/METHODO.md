@@ -221,6 +221,19 @@ Le **socle** est le bloc gouvernemental de référence : centre seul sous la
 XVe et la XVIe (majorité présidentielle), centre + droite sous la XVIIe
 (socle commun).
 
+**LR reste dans le socle sur toute la XVIIe (décision de Max, 28/10/2026).**
+Après son refus de participer au gouvernement Lecornu II (octobre 2025), la
+Droite républicaine vote encore comme Ensemble pour la République aussi
+souvent que Horizons : sur les scrutins décisifs depuis le 14/10/2025 où les
+deux groupes s'expriment, 71 sur 81 pour DR, 76 sur 85 pour Horizons (LFI :
+31 sur 85). Une loi est rattachée au socle **à la date du vote** : une loi
+adoptée sous la XVIIe dont le dernier vote à l'Assemblée date de la XVIe se
+lit avec le socle de la XVIe.
+
+Le groupe décisif reste **individuel** (§10) : pas de « décisif à
+plusieurs », même quand une censure ne pouvait aboutir qu'en réunissant
+plusieurs groupes (décision de Max, 28/10/2026).
+
 **XVe (tranché sur délégation de Max)** : groupe allié de la majorité au
 centre, groupes charnières hors majorité en « autres » (comme LIOT ensuite). gauche = FI, GDR, Nouvelle
 Gauche puis Socialistes, Écologie Démocratie Solidarité (dissidents LREM,

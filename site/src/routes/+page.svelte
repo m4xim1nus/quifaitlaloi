@@ -84,8 +84,9 @@
       sur la fiche de chaque loi.
     </li>
     <li>
-      <strong>La sortie de LR du gouvernement.</strong> La Droite républicaine est comptée dans le socle
-      sur toute la législature, y compris après son refus de participer au gouvernement Lecornu II.
+      <strong>LR hors du gouvernement.</strong> La Droite républicaine est comptée dans le socle sur toute
+      la législature&#8239;: après son refus de participer au gouvernement Lecornu II, elle vote encore
+      avec le centre aussi souvent que Horizons.
     </li>
   </ul>
   <p class="colonne">

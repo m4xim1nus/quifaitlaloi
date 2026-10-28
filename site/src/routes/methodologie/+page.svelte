@@ -261,7 +261,8 @@
       <li>
         LR (Droite républicaine) forme un bloc à part&#8239;; sous la XVIIe, il est compté dans le
         socle sur toute la législature, y compris après son refus de participer au gouvernement
-        Lecornu II (octobre 2025). Dater cette sortie du socle est à l’étude.
+        Lecornu II (octobre 2025)&#8239;: depuis, elle vote encore avec Ensemble pour la République
+        aussi souvent que Horizons.
       </li>
       <li>UDR, puis le groupe qui lui succède (UDDPLR), sont rangés avec le RN.</li>
       <li>LIOT, le RDSE et les non-inscrits forment le bloc « autres ».</li>
@@ -349,8 +350,7 @@
     <p>
       Le calcul se fait groupe par groupe. Sur le budget 2025 (motion de censure de février
       2025&#8239;: 128 voix pour 289 requises), ni le RN ni le PS n’étaient décisifs seuls&#8239;:
-      il fallait plusieurs groupes en plus des censeurs (le RN, l’UDR et LIOT auraient suffi). Ce
-      cas de « décisif à plusieurs » n’est pas encore compté.
+      il fallait plusieurs groupes en plus des censeurs (le RN, l’UDR et LIOT auraient suffi).
     </p>
   </section>
 
