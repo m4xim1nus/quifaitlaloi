@@ -369,6 +369,14 @@
       La date des « accords » avec le PS est celle de l’annonce de la suspension de la réforme des
       retraites par le Premier ministre, le 14 octobre 2025.
     </p>
+    <p id="chronologie">
+      Chaque période commence à sa date&#8239;: une loi adoptée le 4 décembre 2024, jour du vote de
+      la censure, compte avant elle. La page <a href="/coalitions">Coalitions</a> range les lois par trimestre
+      d’adoption définitive. Le vote décisif à l’Assemblée peut être plus ancien (dernière lecture avant
+      une navette au Sénat), parfois sous la législature précédente&#8239;: un point blanc le signale.
+      Un groupe y est compté comme extérieur au socle selon le socle à la date de ce vote&#8239;; la Droite
+      républicaine, dans le socle commun depuis juillet 2024, n’est donc plus un groupe extérieur ensuite.
+    </p>
   </section>
 
   <section id="limites">
