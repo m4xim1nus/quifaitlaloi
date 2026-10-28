@@ -93,6 +93,8 @@ TEMOINS = [
     ("Dialogue social (2017-1340) : CMP adoptée au Sénat par scrutin public (SN2016-142, 225-109, compte rendu)",
      "select s.pour || '-' || s.contre from lectures l join scrutins s on s.id=l.scrutin_id "
      "where l.id='DLR5L15N35836-CMP-SN'", "225-109"),
+    ("Budget 2026 : désaccord en CMP daté de la réunion (19/12/2025), pas de l'acte saisi le 02/01/2026",
+     "select date from evenements where loi_id='2026-103' and type='cmp_desaccord'", "2025-12-19"),
     ("ESSOC (2018-727) : nouvelle lecture retrouvée sous le titre du dépôt (V995)",
      "select scrutin_id from lectures where id='DLR5L15N36159-ANNLEC'", "VTANR5L15V995"),
 ]

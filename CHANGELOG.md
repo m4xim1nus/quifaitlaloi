@@ -3,7 +3,7 @@
 Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Les tags `v*` du dépôt suivent ces versions.
 
-## [1.1.0] — à venir (recette de Max)
+## [1.1.0] — 2026-10-28
 
 Cycle **Baselines** : les XVe et XVIe législatures, avec les mêmes règles,
 et la comparaison des trois.
@@ -18,6 +18,9 @@ et la comparaison des trois.
 - Filtre « Législature » dans `/lois` ; législature sur chaque fiche.
 - Textes témoins XVe/XVIe (retraites 2023, PLF 2023, immigration…) et seconde
   vérification de la main levée sur les comptes rendus.
+- Récits (`recits/*.md`, page `/recits`) : retraites 2023, loi immigration, loi
+  Duplomb, budget 2026, insérés en « zooms » dans le fil de leur législature et
+  dans le parcours de leur fiche.
 
 ### Modifié
 
@@ -37,6 +40,8 @@ et la comparaison des trois.
   « conclusions de la CMP » et « vote unique » du Sénat. La XVIIe est
   inchangée, hormis la lecture de 2022 de la loi 2025-444, désormais
   renseignée.
+- Date des accords et désaccords en CMP : celle de la réunion de la
+  commission (l'acte de décision est parfois saisi des jours plus tard).
 
 ## [1.0.0] — 2026-10-28
 

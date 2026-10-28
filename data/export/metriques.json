@@ -336,7 +336,7 @@
    "art_49_3_lecture_finale": 1,
    "rejet_inverse": 0,
    "motion_rejet_non_qualifiee": 0,
-   "vote_bloque": 0,
+   "vote_bloque": 1,
    "delai_expire": 1,
    "part_contournement": 0.056
   },
@@ -602,7 +602,7 @@
    "art_49_3_lecture_finale": 6,
    "rejet_inverse": 0,
    "motion_rejet_non_qualifiee": 1,
-   "vote_bloque": 0,
+   "vote_bloque": 1,
    "delai_expire": 1,
    "part_contournement": 0.043
   },
@@ -910,7 +910,7 @@
    "art_49_3_lecture_finale": 1,
    "rejet_inverse": 0,
    "motion_rejet_non_qualifiee": 0,
-   "vote_bloque": 0,
+   "vote_bloque": 1,
    "delai_expire": 1,
    "part_contournement": 0.091
   },
@@ -1176,7 +1176,7 @@
    "art_49_3_lecture_finale": 6,
    "rejet_inverse": 0,
    "motion_rejet_non_qualifiee": 1,
-   "vote_bloque": 0,
+   "vote_bloque": 1,
    "delai_expire": 1,
    "part_contournement": 0.06
   }

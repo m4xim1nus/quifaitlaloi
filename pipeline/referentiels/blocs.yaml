@@ -1,6 +1,8 @@
 # Mapping groupes politiques → blocs.
 #
-# Choix politique sensible : validé par Max le 2026-10-28 (cas litigieux :
+# Choix politique sensible : validé par Max le 2026-10-28 pour les XVIe et XVIIe ;
+# XVe tranchée le même jour par Claude sur délégation explicite de Max (« au plus
+# logique et clair »), même logique que les législatures suivantes. (Cas litigieux :
 # DR/LR en bloc « droite » distinct, UDR/UDDPLR en « RN et alliés », LIOT,
 # RDSE et non-inscrits en « autres », UNT en « RN et alliés »). Toute
 # modification passe par Max. Ce fichier est affiché tel quel sur la page
@@ -20,14 +22,17 @@ blocs:
 # législature (dates : début de législature AN). En XVIe, LR est dans
 # l'opposition ; en XVIIe, le « socle commun » réunit centre et droite.
 socle:
-  15: {debut: "2017-06-27", blocs: [centre]}   # À VALIDER (Max) : majorité absolue LREM + MoDem (+ Agir)
+  15: {debut: "2017-06-27", blocs: [centre]}   # majorité présidentielle : LREM, MoDem, Agir ensemble
   16: {debut: "2022-06-28", blocs: [centre]}
   17: {debut: "2024-07-18", blocs: [centre, droite]}
 
 # Assemblée nationale : clé = organeRef (AMO), par législature.
 assemblee:
-  # XVe : PROPOSITION À VALIDER PAR MAX (cycle Baselines). Pas de groupe RN
-  # (8 députés RN siègent parmi les non-inscrits, bloc « autres »).
+  # XVe (tranché sur délégation, voir en tête) : le groupe allié de la majorité (Agir
+  # ensemble) est au centre ; les groupes charnières hors majorité (Constructifs puis
+  # UDI-Agir et successeurs, Libertés et Territoires) en « autres », comme LIOT ensuite ;
+  # les dissidents LREM d'EDS, passés dans l'opposition, à gauche. Pas de groupe RN
+  # (8 députés RN parmi les non-inscrits, bloc « autres »).
   15:
     PO730958: {sigle: FI, bloc: gauche}
     PO730940: {sigle: GDR, bloc: gauche}
@@ -77,7 +82,11 @@ assemblee:
 # Sénat : clé = code de groupe d'ODSEN_HISTOGROUPES. Plusieurs codes sont
 # obsolètes (UMP = LR, LREM = RDPI, CRC = CRCE-K, RTLI = Les Indépendants) :
 # le sigle d'affichage est maintenu ici. Avant le 05/10/2026, les sénateurs
-# RN siégeaient parmi les non-inscrits (bloc « autres »).
+# RN siégeaient parmi les non-inscrits (bloc « autres »). Un seul mapping pour
+# toutes les législatures (tranché sur délégation) : UC et Les Indépendants restent
+# au centre sous la XVe, bien qu'alors dans l'opposition sénatoriale. Les coalitions
+# du site sont celles de l'Assemblée ; au Sénat, seules les positions de groupe
+# s'affichent (fiches), et elles ne dépendent pas du bloc.
 senat:
   SOC: {sigle: SER, nom: "Socialiste, Écologiste et Républicain", bloc: gauche}
   CRC: {sigle: CRCE-K, nom: "Communiste Républicain Citoyen et Écologiste – Kanaky", bloc: gauche}
@@ -86,7 +95,7 @@ senat:
   UC: {sigle: UC, nom: "Union Centriste", bloc: centre}
   RTLI: {sigle: LIRT, nom: "Les Indépendants – République et Territoires", bloc: centre}
   UMP: {sigle: LR, nom: "Les Républicains", bloc: droite}
-  ECO: {sigle: ECO, nom: "Écologiste", bloc: gauche}   # jusqu'en 2017 ; À VALIDER (Max)
+  ECO: {sigle: ECO, nom: "Écologiste", bloc: gauche}   # jusqu'en 2017
   UNT: {sigle: UNT, nom: "Union Nationale pour les Territoires", bloc: rn}   # depuis le 05/10/2026
   RDSE: {sigle: RDSE, nom: "Rassemblement Démocratique et Social Européen", bloc: autres}
   NI: {sigle: NI, nom: "Non-inscrits", bloc: autres}

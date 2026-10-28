@@ -145,6 +145,9 @@ texte de CMP peut passer par scrutin, sans scrutin public ou au 49.3.
 
 Le **vote bloqué** (art. 44, al. 3) est un attribut (`vote_bloque`) posé à
 la main dans `flags.yaml` : aucun intitulé de scrutin AN ne le mentionne.
+Un cas retenu : le vote unique du Sénat sur la réforme des retraites
+(11/03/2023), validé sur délégation de Max ; la loi était déjà un
+contournement (49.3).
 
 **Sur un 49.3, la position des groupes se lit sur la motion de censure**
 (scrutin miroir) : la plus votée de la lecture. Sous la XVIe, les motions
@@ -204,7 +207,8 @@ chaque sénateur à la date du scrutin. Le résultat est identique à senat.fr
 
 Le mapping groupes → blocs (`pipeline/referentiels/blocs.yaml`) est un
 choix politique, validé par Max le 28/10/2026 pour les XVIe et XVIIe et
-affiché tel quel. **La XVe est une proposition à valider** (voir plus bas) :
+affiché tel quel ; la XVe est tranchée le même jour sur délégation de Max,
+avec la même logique (voir plus bas) :
 
 - **gauche** : LFI, SOC, écologistes, GDR ; au Sénat SER, CRCE-K, GEST ;
 - **centre (bloc présidentiel)** : EPR/RE, DEM, HOR ; au Sénat RDPI, UC, Les Indépendants ;
@@ -217,15 +221,17 @@ Le **socle** est le bloc gouvernemental de référence : centre seul sous la
 XVe et la XVIe (majorité présidentielle), centre + droite sous la XVIIe
 (socle commun).
 
-**XVe (proposition, à valider par Max)** : gauche = FI, GDR, Nouvelle
+**XVe (tranché sur délégation de Max)** : groupe allié de la majorité au
+centre, groupes charnières hors majorité en « autres » (comme LIOT ensuite). gauche = FI, GDR, Nouvelle
 Gauche puis Socialistes, Écologie Démocratie Solidarité (dissidents LREM,
 2020) ; centre = LREM, MoDem puis Démocrates, Agir ensemble (2020) ;
 droite = LR ; autres = Les Constructifs puis UDI-Agir et ses successeurs,
 Libertés et Territoires, non-inscrits (dont les 8 députés RN, sans groupe).
 Socle = centre. Au Sénat, le groupe Écologiste (`ECO`, jusqu'en 2017) est à
-gauche ; les autres codes sont ceux de la XVIIe (UC et Les Indépendants au
-centre, alors qu'ils étaient dans l'opposition sénatoriale sous la XVe : à
-trancher).
+gauche ; les autres codes sont ceux de la XVIIe. UC et Les Indépendants
+restent au centre sous la XVe, alors qu'ils étaient dans l'opposition
+sénatoriale : un seul mapping Sénat, plus clair, et sans effet sur ce que
+montre le site (les coalitions affichées sont celles de l'Assemblée).
 
 ## 9. Signature de coalition
 
@@ -238,7 +244,15 @@ rejetée, ce sont les groupes qui ne la votent pas. Classes, dans l'ordre :
 2. `hors_socle` : le socle, pris en bloc, n'est pas dans le camp gagnant ;
 3. sinon, selon les blocs hors socle qui ont au moins un groupe dans le camp
    gagnant : `transpartisan` (gauche et RN), `socle_rn`, `socle_gauche`,
-   `socle_droite` (XVIe seulement), `socle_seul`.
+   `socle_droite` (XVe et XVIe), `socle_seul`.
+
+**Sur un 49.3, ne pas censurer n'est pas soutenir** (tranché le 28/10/2026,
+délégation de Max : règle inchangée, lecture explicitée). Un groupe qui ne
+vote pas une motion peu soutenue (déposée par un autre, sans chance
+d'aboutir) entre dans le camp gagnant. Les budgets au 49.3 ressortent souvent
+`transpartisan` : ni la gauche ni le RN ne les font tomber, sans les voter.
+On garde la règle (la motion la plus votée de la dernière lecture), plus
+simple qu'un traitement à part, et on l'explique sur le site.
 
 La signature garde aussi la position de chaque bloc et la liste des
 groupes gagnants hors socle (`gagnants_hors_socle`). Le **scrutin décisif
@@ -325,8 +339,8 @@ suivante avec les baselines XVIe et XVe.
 - XVe : deux scrutins AN ont une ventilation par groupe incomplète dans la
   source (V2816 : groupe MoDem absent ; V3778 : une voix). Les totaux restent
   justes ; `qfl check` les signale sans échouer.
-- Le mapping des blocs de la XVe et le socle de la XVe sont des propositions
-  en attente de validation (§8). La cohésion (métrique 4) est calculée sur tous
+- Le mapping des blocs et le socle de la XVe ont été tranchés sur délégation
+  de Max (§8), sans validation groupe par groupe. La cohésion (métrique 4) est calculée sur tous
   les scrutins publics, mais exportée agrégée seulement.
 
 ## 14. Affichage sur le site
@@ -363,7 +377,7 @@ choix propres sont décrits dans `docs/CONCEPTION.md` :
 
 Mêmes règles, hors conventions. Le socle est la majorité présidentielle
 sous la XVe et la XVIe, le socle commun sous la XVIIe ; la XVe repose sur
-un mapping des blocs encore à valider (§8).
+un mapping des blocs tranché sur délégation de Max (§8).
 
 | | XVe (2017-2022) | XVIe (2022-2024) | XVIIe (depuis 2024) |
 |---|---|---|---|

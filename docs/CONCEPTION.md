@@ -422,7 +422,9 @@ comme des zooms qui s'insèrent au bon moment du fil.
 - **Source** : un fichier `recits/<loi>.md` par texte, écrit à la main,
   versionné. Frontmatter : `loi`, `titre`, `statut` (`brouillon` tant que
   Max n'a pas relu, affiché « en cours de relecture »), `section`
-  (chemins | coalitions | decisifs), `accroche`, `chapo` ; puis une section
+  (chemins | coalitions | decisifs), `accroche`, `chapo` ; les quatre
+  premiers sont passés `relu` après une vérification factuelle indépendante
+  contre la base (délégation de Max) ; puis une section
   `## AAAA-MM-JJ` par étape. Markdown minimal (gras, italique, liens),
   échappé avant mise en forme (`site/src/lib/markdown.ts`).
 - **Zoom** : sur la page de sa législature, le récit apparaît en encart

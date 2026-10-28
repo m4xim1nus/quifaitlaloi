@@ -33,7 +33,6 @@ File d'attente brute, non ordonnée. Une ligne par item :
 - [ ] Fiche : proposer un repli de l'hémicycle en barre sur petit écran si la recette le demande (claude, 2026-10-28)
 - [ ] Méthodo : compter le « décisif à deux » (RN + PS sur le budget 2025) une fois la définition tranchée, cf. item [creuser] ci-dessus (claude, 2026-10-28)
 - [→Textes en cours] Présomption de légitime défense des forces de l'ordre : adoptée à l'AN le 07/07/2026, en attente au Sénat ; question de Max à la lecture du site (user:moi, 2026-10-28)
-- [ ] À trancher par Max : UC et Les Indépendants au Sénat comptés au centre (socle) aussi sous la XVe, où ils étaient dans l'opposition sénatoriale ; un mapping Sénat par législature ? (claude, 2026-10-28)
 - [ ] Les messages en tête de section (`site/src/lib/legislatures.ts`) sont écrits d'après les données du 28/10/2026 : les relire à chaque mise à jour, ou les tester contre les chiffres (claude, 2026-10-28)
 - [ ] Classe de coalition : LR est masqué par la précédence (une loi « socle + RN » peut aussi avoir LR dans le camp gagnant sous la XVe/XVIe) ; afficher la présence de LR à part ? (claude, 2026-10-28)
-- [ ] Budget 2026 : la base date le désaccord en CMP au 02/01/2026 (acte CMP-DEC du dossier AN) ; un relecteur se souvient du 19/12/2025. Vérifier sur le dossier AN et Dosleg (claude, 2026-10-28)
+

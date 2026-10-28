@@ -14,8 +14,9 @@ vote_bloque:
   # Réforme des retraites 2023 : vote unique au Sénat (art. 44, al. 3), scrutin
   # SN2022-249 du 11/03/2023 « sur les articles 9 à 20 et sur l'ensemble du texte,
   # en ne retenant que les amendements proposés ou acceptés par le Gouvernement en
-  # application de l'article 44, alinéa 3 ». Repéré au cycle Baselines, à valider par Max.
-  DLR5L16N47066-SN1: {statut: a_valider, note: "vote bloqué au Sénat, 10/03/2023 (retraites)"}
+  # application de l'article 44, alinéa 3 ». Validé le 28/10/2026 (délégation de Max) :
+  # l'intitulé du scrutin le dit explicitement.
+  DLR5L16N47066-SN1: {statut: valide, note: "vote bloqué au Sénat, 11/03/2023 (retraites)"}
 
 # Absence de scrutin public confirmée au compte rendu (échantillon de
 # contrôle, BACKLOG). Clé : identifiant de lecture.

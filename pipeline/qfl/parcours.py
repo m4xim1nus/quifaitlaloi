@@ -152,7 +152,11 @@ def _evenements(code: str, sous: list[dict]) -> list[dict]:
             out.append({**e, "type": "cmp_convoquee"})
         elif c == "CMP-DEC":
             st = (a.get("statutConclusion") or {}).get("fam_code")
-            out.append({**e, "type": "cmp_" + referentiels.codes_actes()["cmp"].get(st, "inconnu")})
+            # La décision est parfois saisie après coup (budget 2026 : réunion le 19/12/2025,
+            # acte daté du 02/01/2026) : on la date de la réunion de la commission.
+            reunion = [_date(x) for x in sous if x["codeActe"] == "CMP-COM-NOMIN" and _date(x)]
+            date = min(reunion + [e["date"]]) if e["date"] else (min(reunion) if reunion else "")
+            out.append({**e, "date": date, "type": "cmp_" + referentiels.codes_actes()["cmp"].get(st, "inconnu")})
         elif c.startswith("CC-SAISIE"):
             out.append({**e, "type": "saisine_cc", "detail": (a.get("casSaisine") or {}).get("libelle")})
         elif c == "CC-CONCLUSION":

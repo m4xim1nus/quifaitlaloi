@@ -163,8 +163,10 @@
       </p>
     {/if}
     <p>
-      Le <strong>vote bloqué</strong> (article 44, alinéa 3, de la Constitution) n’apparaît dans aucun
-      intitulé de scrutin&#8239;: il ne peut être repéré qu’à la main. Aucun cas n’est retenu à ce jour.
+      Le <strong>vote bloqué</strong> (article 44, alinéa 3, de la Constitution) n’apparaît dans
+      aucun intitulé de scrutin de l’Assemblée&#8239;: il ne peut être repéré qu’à la main. Un cas
+      est retenu, le vote unique demandé au Sénat sur la
+      <a href="/lois/2023-270">réforme des retraites</a> (mars 2023), déjà passée au 49.3 à l’Assemblée.
     </p>
   </section>
 
@@ -303,6 +305,13 @@
     <p>
       Une coalition dit qui a voté avec le socle, pas qui pouvait faire tomber le texte&#8239;:
       c’est l’objet du groupe décisif.
+    </p>
+    <p>
+      <strong>Sur un 49.3, ne pas censurer n’est pas soutenir.</strong> Un groupe qui ne vote pas une
+      motion de censure est compté dans le camp gagnant, même quand la motion, déposée par un autre groupe,
+      n’avait aucune chance d’aboutir. Les budgets passés au 49.3 apparaissent ainsi souvent « socle +
+      gauche + RN »&#8239;: cela veut dire que ni la gauche ni le RN n’ont fait tomber le texte, pas qu’ils
+      l’ont voté.
     </p>
   </section>
 
