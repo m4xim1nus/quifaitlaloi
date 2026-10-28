@@ -9,7 +9,7 @@ QuiFaitLaLoi classe chaque loi adoptée selon son **mode d'adoption** et la
 le texte tombait), puis compare les législatures. Restitution en site web
 statique, méthodologie et données téléchargeables.
 
-**État** : site v1 construit, mise en ligne en cours, voir
+**État** : v1 en ligne sur [quifaitlaloi.technoperchoir.fr](https://quifaitlaloi.technoperchoir.fr) (XVIIe législature), voir
 [`ROADMAP.md`](ROADMAP.md). Méthodologie : [`docs/METHODO.md`](docs/METHODO.md) ;
 conception du site : [`docs/CONCEPTION.md`](docs/CONCEPTION.md).
 

@@ -26,37 +26,15 @@ scrutins décisifs avec positions de groupe, coalitions et pivots, dans
 sur 16 comptes rendus, textes témoins dans `qfl check`. Premier constat :
 5 lois sur 148 passent par un contournement.
 
-## Étape 3 : site v1 ← *en cours*
+## Étape 3 : site v1 ✅ (2026-10-28) — `v1.0.0`
 
-But : mise en ligne publique.
-
-- [x] **Passe de conception** (28/10/2026, `docs/CONCEPTION.md`) : étude
-  du prior art (leurs-votes.fr, datan.fr, La Fabrique de la loi, AN),
-  récit en trois questions, principe « un carré = une loi », direction
-  visuelle (Newsreader + Atkinson Hyperlegible Next, palettes non
-  partisanes validées). Arbitrages délégués par Max à un relecteur
-  indépendant, tous appliqués.
-- [x] **Site** SvelteKit adapter-static + d3, lu depuis `data/export/` au
-  prérendu : accueil (frise, chemins, coalitions par période, groupes
-  décisifs, limites), explorateur `/lois`, 148 fiches, méthodologie,
-  données. Clair et sombre, mobile, sans traceur ni ressource tierce.
-- [x] Pipeline : titre court par loi (titre officiel, `titres_courts.yaml`),
-  couleur officielle des groupes AN.
-- [x] `build.sh`, CI GitHub Actions (pytest, svelte-check, vitest,
-  prettier, build).
-- [x] **Relecture de Max en local** (28/10/2026), retours appliqués
-  (`docs/CONCEPTION.md` §8 à §14) : chemins réunis en « vote nominatif »,
-  bloc coalitions en rangées avec grille de présence, groupes décisifs en
-  rangées-filtres et tableau à points, thèmes du Sénat, barre de période
-  retirée, fiches allégées. Règle du groupe décisif changée par Max : le
-  basculement (`docs/METHODO.md` §10).
-- [x] **Mise en ligne** (28/10/2026) : `main` poussé sur `m4xim1nus/quifaitlaloi`,
-  projet Cloudflare Pages relié au dépôt (commande `bash build.sh`, sortie
-  `site/build`, `NODE_VERSION=22`), sur `quifaitlaloi.technoperchoir.fr`.
-  Attention : le dashboard propose d'abord un Worker, il faut passer par le
-  lien « Looking to deploy Pages? ».
-- [ ] **Recette de Max** sur téléphone, puis tag `v1.0.0` et
-  `CHANGELOG.md`.
+Site SvelteKit statique lu depuis `data/export/` : accueil (frise,
+chemins, coalitions, groupes décisifs, limites), explorateur `/lois`,
+148 fiches, méthodologie, données. Conception et retours de relecture dans
+`docs/CONCEPTION.md` ; règle du groupe décisif changée par Max (basculement,
+`docs/METHODO.md` §10). En ligne sur `quifaitlaloi.technoperchoir.fr`
+(Cloudflare Pages relié au dépôt, `bash build.sh` → `site/build`), recette
+sur téléphone faite.
 
 ## Après la v1
 
