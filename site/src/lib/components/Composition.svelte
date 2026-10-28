@@ -128,7 +128,8 @@
               {#each ls.slice(0, MAX) as l (l.id)}
                 <li>
                   <span
-                    ><a href="/lois/{l.id}">{l.titre_court}</a> <Themes themes={l.themes} /></span
+                    ><a class="borne" href="/lois/{l.id}" title={l.titre_court}>{l.titre_court}</a>
+                    <Themes themes={l.themes} /></span
                   >
                   <span class="date petit chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
                 </li>
@@ -324,5 +325,12 @@
     .detail {
       padding-left: 0;
     }
+  }
+  .borne {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
   }
 </style>

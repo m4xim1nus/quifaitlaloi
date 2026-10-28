@@ -78,9 +78,9 @@ def objet_scrutin(titre: str | None) -> str:
 
 
 # Titre court d'affichage (frise, explorateur) : le titre officiel de la loi sans « Loi
-# visant à », coupé de préférence à une virgule. On garde les mots du titre (aucune
-# paraphrase) ; les exceptions vivent dans referentiels/titres_courts.yaml (budgets, noms
-# d'usage).
+# visant à » ni « Loi autorisant l'approbation de », jamais coupé (le site passe à la ligne
+# selon l'écran). On garde les mots du titre (aucune paraphrase) ; les exceptions vivent dans
+# referentiels/titres_courts.yaml (budgets, noms d'usage).
 _PREFIXE = re.compile(
     r"^(?:loi|projet de loi|proposition de loi)( organique| constitutionnelle)?\s+"
     r"(visant à |tendant à |relati(?:f|ve) (?:à la |à l’|au |aux |à )|portant |pour |"
@@ -94,10 +94,9 @@ _PARTIES = re.compile(r"entre (?:le Gouvernement de )?la (?:République françai
                       r"(de la |du |de l’|des |de |la |le |l’)?")
 _ARTICLE = {"de la ": "la ", "du ": "le ", "de l’": "l’", "des ": "les ", "de ": ""}
 _RELATIF = {"à la ": "la ", "à l’": "l’", "au ": "le ", "aux ": "les "}
-LONGUEUR_TITRE_COURT = 100
 
 
-def titre_court(titre: str | None, n: int = LONGUEUR_TITRE_COURT) -> str | None:
+def titre_court(titre: str | None) -> str | None:
     if not titre:
         return titre
     t = nettoyer(titre).replace("'", "’")
@@ -112,9 +111,4 @@ def titre_court(titre: str | None, n: int = LONGUEUR_TITRE_COURT) -> str | None:
     if a := _APPROBATION.match(t):
         t = t[a.end():]
     t = _PARTIES.sub(lambda p: "avec " + _ARTICLE.get(p.group(1) or "", p.group(1) or ""), t, count=1)
-    t = t[:1].upper() + t[1:]
-    if len(t) > n:
-        coupe = t[:n]
-        virgule = max(coupe.rfind(", "), coupe.rfind(" : "))
-        t = (coupe[:virgule] if virgule >= n // 2 else coupe.rsplit(" ", 1)[0]).rstrip(" ,;:–-") + "…"
-    return t
+    return t[:1].upper() + t[1:]

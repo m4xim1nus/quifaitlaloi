@@ -301,7 +301,7 @@ choix propres sont décrits dans `docs/CONCEPTION.md` :
 - **Fin de navette** : lecture définitive s'il y en a une, sinon texte de
   CMP s'il y en a un, sinon vote conforme.
 - **Titre court** (`lois.titre_court`) : le titre officiel de la loi sans
-  « Loi visant à… », coupé de préférence à une virgule, sans paraphrase
+  « Loi visant à… », jamais coupé (le site passe à la ligne), sans paraphrase
   (`qfl/texte.py:titre_court`). Exceptions (budgets, nom d'usage en second,
   comme « (loi Duplomb) ») : `referentiels/titres_courts.yaml`.
 - **Couleur des groupes** (`groupes.couleur`) : celle publiée par l'AN

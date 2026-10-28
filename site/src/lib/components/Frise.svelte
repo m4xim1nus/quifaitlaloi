@@ -80,6 +80,12 @@
 
   const hauteur = $derived(base + 48 + Math.max(0, ...jalonsVus.map((j) => j.ligne)) * 15);
 
+  /** Coupe une étiquette à la place disponible (≈ 6,4 px par caractère à 12 px). */
+  function ajuster(texte: string, place: number): string {
+    const n = Math.floor(place / 6.4);
+    return texte.length <= n ? texte : `${texte.slice(0, Math.max(n - 1, 1)).trimEnd()}…`;
+  }
+
   function montrer(loi: LoiResume, x: number, y: number) {
     survol = { loi, x, y };
   }
@@ -218,10 +224,9 @@
             (x) => x.colonne === m.colonne && CONTOURNEMENTS.includes(x.loi.chemin)
           ).length}
           <text class="etiquette" x={p.x + pasV + 2} y={p.y + carreV - 3}
-            >{n > 1 ? `${n} contournements` : m.loi.titre_court.slice(0, 26)}{n === 1 &&
-            m.loi.titre_court.length > 26
-              ? '…'
-              : ''}</text
+            >{n > 1
+              ? `${n} contournements`
+              : ajuster(m.loi.titre_court, largeur - p.x - pasV - 4)}</text
           >
         {/if}
       {/each}

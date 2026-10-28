@@ -4,6 +4,7 @@ import { browser } from '$app/environment';
 import { replaceState } from '$app/navigation';
 import { page } from '$app/state';
 import { ecrirePlage, lirePlage, type Plage } from './plage';
+import { memeRequete } from './requete';
 
 export function lireReglages(complete: Plage): { conventions: boolean; plage: Plage } {
   if (!browser) return { conventions: false, plage: complete };
@@ -18,5 +19,5 @@ export function ecrireReglages(conventions: boolean, plage: Plage, complete: Pla
   if (conventions) url.searchParams.set('conventions', '1');
   else url.searchParams.delete('conventions');
   ecrirePlage(url.searchParams, plage, complete);
-  if (url.search !== page.url.search) replaceState(url, page.state);
+  if (!memeRequete(url.search, page.url.search)) replaceState(url, page.state);
 }

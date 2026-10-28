@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { afterNavigate } from '$app/navigation';
   import Frise from '$lib/components/Frise.svelte';
   import Reglages from '$lib/components/Reglages.svelte';
   import Composition from '$lib/components/Composition.svelte';
@@ -36,7 +36,9 @@
     au: data.lois.at(-1)!.date_adoption
   });
   let pret = $state(false);
-  onMount(() => {
+  // Le routeur n'est prêt qu'après la première navigation : avant, réécrire l'URL casse la page.
+  afterNavigate(() => {
+    if (pret) return;
     ({ conventions, plage } = lireReglages(complete));
     pret = true;
   });

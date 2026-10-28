@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { browser } from '$app/environment';
-  import { replaceState } from '$app/navigation';
+  import { afterNavigate, replaceState } from '$app/navigation';
+  import { memeRequete } from '$lib/requete';
   import { page } from '$app/state';
   import Interrupteur from '$lib/components/Interrupteur.svelte';
   import Comment from '$lib/components/Comment.svelte';
@@ -23,13 +23,15 @@
 
   let f = $state<Filtres>({ ...VIDES });
   let pret = false;
-  onMount(() => {
+  // Le routeur n'est prêt qu'après la première navigation : avant, réécrire l'URL casse la page.
+  afterNavigate(() => {
+    if (pret) return;
     f = lireFiltres(page.url.searchParams);
     pret = true;
   });
   $effect(() => {
     const q = ecrireFiltres(f);
-    if (browser && pret && q !== page.url.search) replaceState(`/lois${q}`, page.state);
+    if (browser && pret && !memeRequete(q, page.url.search)) replaceState(`/lois${q}`, page.state);
   });
 
   const visibles = $derived(appliquer(data.lois, f, data.periodes));

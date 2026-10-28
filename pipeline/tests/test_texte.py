@@ -46,8 +46,7 @@ def test_titre_court():
     assert titre_court("Loi créant l’homicide routier") == "Loi créant l’homicide routier"
     long = titre_court("Loi visant à harmoniser le mode de scrutin aux élections municipales afin de garantir "
                        "la vitalité démocratique, la cohésion municipale et la parité")
-    assert long == ("Harmoniser le mode de scrutin aux élections municipales afin de garantir la vitalité "
-                    "démocratique…")
+    assert long.endswith("la cohésion municipale et la parité") and "…" not in long
     assert titre_court("Loi autorisant l’approbation de l’accord entre le Gouvernement de la République "
                        "française et le Gouvernement de la République d’Indonésie relatif à la défense") == (
         "Accord avec la République d’Indonésie relatif à la défense")

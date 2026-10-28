@@ -114,7 +114,7 @@
                   {/if}
                 </span>
                 <span class="texte">
-                  <a href="/lois/{l.id}">{l.titre_court}</a>
+                  <a class="borne" href="/lois/{l.id}" title={l.titre_court}>{l.titre_court}</a>
                   <span class="meta petit">
                     <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
                     <span
@@ -371,5 +371,12 @@
     .lois {
       padding-left: 0;
     }
+  }
+  .borne {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
   }
 </style>
