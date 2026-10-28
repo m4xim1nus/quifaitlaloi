@@ -10,31 +10,22 @@ avant de passer à la suivante. Les idées non planifiées vont dans
 Brief rangé dans `docs/source/`, décisions de cadrage dans `CLAUDE.md`,
 squelette du dépôt.
 
-## Étape 1 : spike sources ← *en cours*
+## Étape 1 : spike sources ✅ (2026-10-28)
 
-But : savoir si l'open data permet de reconstruire les parcours. C'est le
-**go/no-go** du pipeline. Scripts jetables dans `pipeline/explo/`.
+Verdict **GO** : l'open data AN + Sénat suffit, sans PISTE. Trois cas
+témoins reconstruits (Duplomb, PLF 2026, casseurs-payeurs), liste des lois
+promulguées identique côté AN et côté Sénat (148 lois). Détail, trous et
+limites : `docs/SOURCES.md`.
 
-- Télécharger dans `data/raw/` : scrutins AN, dossiers législatifs AN,
-  acteurs/organes AN (XVIIe) ; dump Dosleg Sénat et scrutins Sénat.
-- Reconstruire à la main trois cas témoins :
-  1. **Duplomb** : motion de rejet « inversée » du 26/05/2025 → CMP →
-     adoption ;
-  2. **PLF 2026** : engagements 49.3 et motions de censure miroirs ;
-  3. **Casseurs-payeurs** : scrutin Sénat du 27/10/2026, ventilé par
-     groupe.
-- Vérifier que la liste des lois promulguées de la XVIIe sort des actes de
-  promulgation des dossiers AN. Sinon, vie-publique.fr, et PISTE en dernier
-  recours.
-- **Livrable** : `docs/SOURCES.md` (URLs, formats, volumes, codes d'actes
-  rencontrés, trous et limites) et un verdict go/no-go.
-
-## Étape 2 : pipeline XVIIe
+## Étape 2 : pipeline XVIIe ← *en cours*
 
 But : une base SQLite fiable sur la XVIIe et les premiers chiffres.
 
 - Package `qfl` : `download` → `build` → `check`, qui écrit
   `data/qfl.sqlite` et `data/export/` (JSON + CSV).
+- Sources : dumps XVIIe listés dans `docs/SOURCES.md`, **plus les scrutins
+  et dossiers AN de la XVIe**. Certaines lois promulguées depuis juillet
+  2024 ont eu une lecture AN avant la dissolution.
 - Modèle de données du brief (§6), taxonomie v0 (§5), métriques 1 à 5
   (§7).
 - Référentiels maintenus à la main : `pipeline/referentiels/codes_actes.yaml`
@@ -65,3 +56,6 @@ Un cycle à la fois, nommé au moment de l'ouvrir :
   RN / PS / LR, Sankey blocs → adoptions.
 - **Fiches** : une dizaine de textes emblématiques en récit chronologique
   (brief §7).
+- **Textes en cours** : afficher l'actualité chaude, c'est-à-dire les
+  textes pas encore définitivement adoptés (lectures déjà votées,
+  coalitions, prochaines étapes). Exemple : casseurs-payeurs.

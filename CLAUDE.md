@@ -42,7 +42,10 @@ d'écart, ce fichier prime.
 - **Conventions et traités internationaux** : ingérés dans une catégorie à
   part (`type = convention`). Toutes les vues existent avec et sans eux.
 - **Périmètre** : XVIIe pour la v1, puis XVIe et XVe comme baselines. Aller
-  plus loin (2007) reste ouvert, voir le backlog.
+  plus loin (2007) reste ouvert, voir le backlog. Les dumps AN de la XVIe
+  sont toutefois ingérés dès la v1, pour les lectures antérieures à la
+  dissolution des lois promulguées sous la XVIIe (21 décisions, cf.
+  `docs/SOURCES.md`).
 
 ## Règles dures
 
