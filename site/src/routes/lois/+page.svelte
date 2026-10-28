@@ -36,7 +36,13 @@
   });
 
   const visibles = $derived(appliquer(data.lois, f, data.periodes));
-  const base = $derived(data.lois.filter((l) => f.conventions || l.type !== 'convention'));
+  const base = $derived(
+    data.lois.filter(
+      (l) =>
+        (f.conventions || l.type !== 'convention') &&
+        (!f.legislature || String(l.legislature) === f.legislature)
+    )
+  );
   const groupesDecisifs = $derived(pivots(data.lois).map((p) => p.groupe));
   const THEMES = $derived(
     [...new Set(data.lois.flatMap((l) => l.themes))].sort((a, b) => a.localeCompare(b, 'fr'))
@@ -115,15 +121,17 @@
         {#each groupesDecisifs as g (g)}<option value={g}>{g}</option>{/each}
       </select>
     </label>
-    <label class="champ">
-      <span>Période</span>
-      <select bind:value={f.periode}>
-        <option value="">Toutes</option>
-        {#each data.periodes.filter((p) => NOM_PERIODE[p.code]) as p (p.code)}
-          <option value={p.code}>{NOM_PERIODE[p.code]}</option>
-        {/each}
-      </select>
-    </label>
+    {#if !f.legislature || f.legislature === '17'}
+      <label class="champ">
+        <span>Période (XVIIe)</span>
+        <select bind:value={f.periode}>
+          <option value="">Toutes</option>
+          {#each data.periodes.filter((p) => NOM_PERIODE[p.code]) as p (p.code)}
+            <option value={p.code}>{NOM_PERIODE[p.code]}</option>
+          {/each}
+        </select>
+      </label>
+    {/if}
     <label class="champ">
       <span>Thème (Sénat)</span>
       <select bind:value={f.theme}>
