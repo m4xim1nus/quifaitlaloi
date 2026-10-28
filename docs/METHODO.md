@@ -413,3 +413,74 @@ majorités stables, seulement des contournements ou des pivots alternés) :
   transpartisanes sur 100), mais n'y est décisif qu'une fois (loi
   immigration).
 
+
+## Cycle Coalitions : chronologie des coalitions et des groupes décisifs (28/10/2026)
+
+La page `/coalitions` reprend les règles des §9 et §10 sans les modifier. Elle
+les range dans le temps, de 2017 à aujourd'hui.
+
+- **Unité et date.** L'unité est la loi, avec son scrutin décisif à l'AN
+  (dernière lecture AN). Chaque loi est placée au **trimestre de son adoption
+  définitive**, comme dans le reste du site. Le vote décisif peut être plus
+  ancien : sur 367 lois votées nominativement (hors accords), 43 changent de
+  trimestre si on les date par ce vote, et 7 changent de législature. Ces dernières portent un point blanc.
+  La classe de coalition et le caractère « hors socle » d'un groupe se lisent
+  selon le socle **à la date du vote** (`socle_a_date`). Une loi adoptée en
+  2025, mais votée en dernier à l'AN sous la XVIe, peut donc être classée
+  « socle + LR ».
+- **Bornes des périodes.** Une période commence à sa date de début
+  (`periodes.yaml`). La loi adoptée le 04/12/2024, jour du vote de la censure
+  Barnier, appartient donc à la période précédente.
+- **Texte disputé** : loi votée nominativement à l'AN dont au moins un bloc
+  hors « autres » est majoritairement dans le camp opposé (toutes les classes
+  sauf `consensus`). Les lois sans vote nominatif n'entrent pas dans le
+  dénominateur.
+- **Fréquence d'un groupe décisif** : nombre de lois où le groupe, hors
+  socle, est décisif par son vote, rapporté aux lois votées nominativement de
+  la période (dénominateur unique pour tous les groupes). La part n'est
+  affichée qu'à partir de 20 lois. La Droite républicaine fait partie du
+  socle sous la XVIIe : elle n'est donc jamais un groupe extérieur. Sa sortie
+  éventuelle n'est pas datée (question réservée à Max, §7 de CONCEPTION).
+- **Contrôle.** Les comptes par période du site sont égaux à
+  `metriques.json` (coalitions et pivots, grain période), et les messages de
+  la page sont testés contre les données (`site/src/lib/coalitions.test.ts`).
+
+Chiffres au 28/10/2026, hors accords internationaux :
+
+| | XVe | XVIe | XVIIe, juil.-déc. 2024 | déc. 2024-oct. 2025 | depuis oct. 2025 |
+|---|---|---|---|---|---|
+| Lois / votées nominativement | 238 / 158 | 100 / 97 | 7 / 7 | 49 / 48 | 57 / 57 |
+| Textes disputés | 92 | 54 | 5 | 25 | 32 |
+| dont socle sans gauche ni RN | 46 | 5 | 0 | 1 | 1 |
+| dont RN dans le camp gagnant | — | 35 | 2 | 19 | 25 |
+| dont gauche dans le camp gagnant | 22 | 25 | 4 | 14 | 18 |
+| Lois avec un groupe hors socle décisif | 0 | 4 | 1 | 14 | 18 |
+| RN / SOC décisifs | — / 0 | 1 / 1 | 1 / 0 | 10 / 4 | 11 / 5 |
+
+Lecture : avant 2022, la majorité présidentielle gagne seule la moitié des
+textes disputés. Ensuite, presque jamais. Les appuis ne changent pas d'une
+période à l'autre : le RN est le plus souvent dans le camp gagnant, la gauche
+souvent aussi (le RN et la gauche se cumulent dans « socle + gauche + RN »).
+Depuis la censure, un groupe extérieur décide d'environ une loi sur trois
+(32 sur 105). C'est le RN deux fois sur trois, le PS dans moins d'un cas sur
+trois. L'annonce de la suspension des retraites ne déplace pas ces parts : la
+thèse des « pivots alternés » se vérifie texte par texte, pas d'une période à
+l'autre.
+
+**Pas de Sankey blocs → adoptions.** Un Sankey suppose un flux conservé. Or
+une loi est soutenue par plusieurs blocs à la fois : un flux bloc → loi la
+compterait plusieurs fois. La seule pondération qui se conserve est le nombre
+de voix « pour » de députés. Elle dépend surtout de la participation, et un
+non-spécialiste ne peut pas la lire. Le seul flux loi → classe redirait la
+chronologie. La classe de coalition décrit déjà la combinaison de blocs, et la
+grille de présence de l'accueil la montre loi par loi.
+
+**Positions de tous les scrutins : non stockées.** La base garde les positions
+des scrutins utiles (1 122 scrutins, 11 061 lignes de `positions_groupes`,
+0,9 Mo en CSV). Pour tous les scrutins, il faudrait environ 214 700 lignes
+(195 400 ventilations AN sur 17 677 scrutins des XVe à XVIIe, 19 300 au Sénat
+sur 2 213 scrutins), soit à peu près 18 Mo de CSV et 15 Mo de plus dans la
+base. Chaque mise à jour donnerait un diff illisible. Les vues du site ont
+pour unité la loi, et la proximité entre groupes sur tous les scrutins
+(amendements compris) est déjà publiée par datan.fr. La cohésion sur tous les
+scrutins reste calculée au build et exportée agrégée (métrique 4).

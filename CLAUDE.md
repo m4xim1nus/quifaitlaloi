@@ -90,9 +90,9 @@ build.sh             build Cloudflare Pages (site seulement, aucun téléchargem
 Site (`site/src/`) : `lib/server/` lit les CSV de `data/export/` au
 prérendu (rien n'est envoyé au navigateur hors ce que chaque `load`
 extrait) ; fonctions pures testées dans `lib/*.ts` (libellés et
-définitions, récit, agrégats, frise, hémicycle, majorité, filtres) ;
+définitions, récit, agrégats, frise, hémicycle, majorité, filtres, coalitions) ;
 composants dans `lib/components/`. Routes : `/` (XVIIe), `/legislature/[num]` (XVe, XVIe),
-`/comparer`, `/recits`, `/lois`, `/lois/[id]`, `/methodologie`, `/donnees`,
+`/comparer`, `/coalitions`, `/recits`, `/lois`, `/lois/[id]`, `/methodologie`, `/donnees`,
 toutes prérendues. Textes éditoriaux par législature : `lib/legislatures.ts`. `scripts/donnees.mjs`
 copie l'instantané dans `static/donnees/` pour le téléchargement.
 
