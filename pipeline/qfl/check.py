@@ -99,6 +99,34 @@ TEMOINS = [
      "select scrutin_id from lectures where id='DLR5L15N36159-ANNLEC'", "VTANR5L15V995"),
 ]
 
+# Textes en cours (instantané du 28/10/2026) : faits vérifiés dans les dossiers AN, Dosleg et datan.fr.
+TEMOINS_EN_COURS = [
+    ("Casseurs-payeurs : en cours, 1re lecture du Sénat (SN2026-41, 229-105) lue dans Dosleg, transmis à l'AN",
+     "select coalesce(e.motif_ecart, 'en_cours') || ' ' || l.scrutin_id || ' ' || s.pour || '-' || s.contre || ' ' "
+     "|| l.decision_dosleg || ' ' || e.attente || ' ' || e.attente_chambre from en_cours e "
+     "join en_cours_lectures l on l.texte_id = e.id join scrutins s on s.id = l.scrutin_id where e.id = 'DLR5L17N54925'",
+     "en_cours SN2026-41 229-105 1 transmis AN"),
+    ("Casseurs-payeurs : socle + RN au Sénat, UNT dans le camp gagnant mais pas décisif",
+     "select classe_sn || ' ' || gagnants_hors_socle_sn || ' [' || coalesce(pivots_hors_socle_sn, '') || ']' "
+     "from en_cours where id = 'DLR5L17N54925'", "socle_rn UNT []"),
+    ("Légitime défense des forces de l'ordre : adoptée à l'AN le 07/07/2026 (V7987, 313-199), en attente au Sénat",
+     "select l.date || ' ' || l.mode_adoption || ' ' || s.pour || '-' || s.contre || ' ' || e.attente || ' ' "
+     "|| e.attente_etape from en_cours e join en_cours_lectures l on l.texte_id = e.id "
+     "join scrutins s on s.id = l.scrutin_id where e.id = 'DLR5L17N51037' and e.motif_ecart is null",
+     "2026-07-07 SCRUTIN_SOLENNEL 313-199 lecture SN1"),
+    ("Légitime défense : socle + RN, RN décisif", "select classe_an || ' ' || pivots_hors_socle_an from en_cours "
+     "where id = 'DLR5L17N51037'", "socle_rn RN"),
+    ("PLFSS 2027 : 1re lecture AN rejetée (2e partie, V9097), transmis au Sénat (art. 47-1)",
+     "select l.issue || ' ' || l.scrutin_id || ' ' || e.attente || ' ' || e.attente_chambre from en_cours e "
+     "join en_cours_lectures l on l.texte_id = e.id where e.id = 'DLR5L17N54951' and e.motif_ecart is null",
+     "rejete VTANR5L17V9097 transmis SN"),
+    ("Corse : un seul texte en cours pour deux dossiers AN du même dossier Sénat",
+     "select group_concat(id) from en_cours where signet_senat = 'pjl24-869'", "DLR5L17N54218"),
+    ("Impôt plancher de 2 % : sans acte de procédure depuis le 12/06/2025, écarté (inactif)",
+     "select motif_ecart || ' ' || date_derniere_activite from en_cours where id = 'DLR5L17N51215'",
+     "inactif 2025-06-12"),
+]
+
 # Ventilations incomplètes dans le dump AN de la XVe (docs/SOURCES.md, anomalie 20).
 VENTILATIONS_INCOMPLETES = {
     "VTANR5L15V2816": "groupe MoDem absent de la ventilation (46 voix pour)",
@@ -155,6 +183,35 @@ def verifier(chemin: Path) -> tuple[bool, list[str]]:
     for nom, sql, attendu in TEMOINS:
         obtenu = _un(con, sql)
         controle(nom, obtenu == attendu, "" if obtenu == attendu else f"obtenu {obtenu!r}, attendu {attendu!r}")
+
+    out.append("\n== Textes en cours (votés sous la XVIIe, ni promulgués ni adoptés)")
+    communs = _q(con, "select e.id from en_cours e join lois l on l.dossier_an = e.dossier_an")
+    controle("aucun texte en cours n'est une loi", not communs, ", ".join(r[0] for r in communs))
+    sans_vote = _q(con, "select id from en_cours where id not in (select texte_id from en_cours_lectures "
+                        "where issue in ('adopte', 'rejete') and date >= '2024-07-18')")
+    controle("chaque texte en cours a une lecture votée sous la XVIIe", not sans_vote, ", ".join(r[0] for r in sans_vote))
+    partages = _q(con, "select scrutin_id from (select scrutin_id, mode_adoption from lectures union all "
+                       "select scrutin_id, mode_adoption from en_cours_lectures) where scrutin_id is not null "
+                       "and mode_adoption != 'ART_49_3' group by 1 having count(*) > 1")
+    controle("un scrutin décisif ne sert qu'une lecture (lois et textes en cours)", not partages, str(partages))
+    incoh = _q(con, "select l.id from en_cours_lectures l join scrutins s on s.id=l.scrutin_id "
+                    "where l.mode_adoption != 'ART_49_3' and ("
+                    "(l.issue='adopte' and (s.sort!='adopte' or s.objet not in ('ensemble','article_unique'))) or "
+                    "(l.issue='rejete' and not ((s.objet in ('motion_rejet','suppression_article_unique') and s.sort='adopte') "
+                    "or s.sort='rejete')))")
+    controle("textes en cours : issue de la lecture cohérente avec son scrutin décisif", not incoh,
+             ", ".join(r[0] for r in incoh))
+    for nom, sql, attendu in TEMOINS_EN_COURS:
+        obtenu = _un(con, sql)
+        controle(nom, obtenu == attendu, "" if obtenu == attendu else f"obtenu {obtenu!r}, attendu {attendu!r}")
+    for motif, n, conv in _q(con, "select coalesce(motif_ecart, 'en cours'), count(*), sum(type = 'convention') "
+                                  "from en_cours group by 1 order by 2 desc"):
+        out.append(f"  {motif} : {n} textes (dont {conv} conventions)")
+    for sid, texte, cmp_ in _q(con, "select l.scrutin_id, l.texte_id, e.attente from en_cours_lectures l "
+                                    "join en_cours e on e.id = l.texte_id where l.chambre = 'AN' "
+                                    "and l.mode_adoption = 'MOTION_REJET' and e.motif_ecart is null order by l.date"):
+        out.append(f"  motion de rejet adoptée {sid} ({texte}, attente : {cmp_}) : rejet inversé "
+                   "à qualifier au vote final du texte")
 
     out.append("\n== Motions de rejet adoptées à l'AN (règle du rejet inversé)")
     for sid, score, mode, loi in _q(con, "select scrutin_id, score_rejet_inverse, mode_adoption, loi_id from lectures "

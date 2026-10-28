@@ -11,6 +11,7 @@
     { href: '/coalitions', libelle: 'Coalitions' },
     { href: '/recits', libelle: 'Récits' },
     { href: '/lois', libelle: 'Les lois' },
+    { href: '/en-cours', libelle: 'Textes en cours' },
     { href: '/methodologie', libelle: 'Méthodologie' },
     { href: '/donnees', libelle: 'Données' }
   ];

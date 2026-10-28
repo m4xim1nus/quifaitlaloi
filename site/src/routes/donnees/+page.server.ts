@@ -20,6 +20,9 @@ export const load = () => {
         'signatures.csv',
         'groupes.csv',
         'evenements.csv',
+        'en_cours.csv',
+        'en_cours_lectures.csv',
+        'en_cours_evenements.csv',
         'metriques.json',
         'meta.json'
       ].map((f) => [f, taille(f)])

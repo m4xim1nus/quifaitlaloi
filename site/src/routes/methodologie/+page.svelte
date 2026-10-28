@@ -48,6 +48,7 @@
     <a href="#coalitions">Coalitions</a>
     <a href="#decisif">Groupe décisif</a>
     <a href="#periodes">Périodes</a>
+    <a href="#en-cours">Textes en cours</a>
     <a href="#limites">Limites</a>
   </nav>
 
@@ -376,6 +377,42 @@
       une navette au Sénat), parfois sous la législature précédente&#8239;: un point blanc le signale.
       Un groupe y est compté comme extérieur au socle selon le socle à la date de ce vote&#8239;; la Droite
       républicaine, dans le socle commun depuis juillet 2024, n’est donc plus un groupe extérieur ensuite.
+    </p>
+  </section>
+
+  <section id="en-cours">
+    <h2>Textes en cours</h2>
+    <p>
+      Un texte en cours a été voté au moins une fois en séance, par l’Assemblée ou le Sénat, depuis
+      le début de la XVIIe législature ({dateLongue(data.enCours.debut)}), sans avoir été adopté
+      définitivement ni promulgué. Ce n’est pas une loi&#8239;: il n’entre dans aucun chiffre du
+      site. Au {dateLongue(data.enCours.date_reference)}, {data.enCours.n} textes sont dans ce cas, dont
+      {data.enCours.accords} accords internationaux.
+    </p>
+    <p>
+      <strong>Textes écartés.</strong> Un texte peut être abandonné sans que rien ne l’annonce. La
+      règle est fixe&#8239;: sont écartés les textes retirés, rejetés (selon la base du Sénat, ou
+      rejetés en première lecture par la première assemblée saisie, qui ne les transmet pas, sauf
+      les textes budgétaires), caducs ou fusionnés dans un autre, et ceux qui n’ont connu aucun acte
+      de procédure (dépôt, commission, séance, vote, y compris une séance déjà inscrite à l’ordre du
+      jour) depuis {data.enCours.inactivite_mois} mois. Au {dateLongue(
+        data.enCours.date_reference
+      )},
+      {data.enCours.ecartes.inactif ?? 0} textes sont écartés faute d’activité et {data.enCours
+        .ecartes.rejete ?? 0} comme rejetés. Ils restent dans les données téléchargeables, avec leur motif.
+    </p>
+    <p>
+      <strong>Votes.</strong> Chaque lecture déjà votée suit les mêmes règles qu’une loi&#8239;: vote
+      décisif, position des groupes, coalition, groupe décisif. Quand le Sénat a voté mais que le dossier
+      de l’Assemblée ne l’enregistre pas encore, la décision est lue dans la base du Sénat. La règle du
+      rejet par ses partisans porte sur le vote final du texte&#8239;: d’ici là, une motion de rejet adoptée
+      reste une motion de rejet. Sur la liste, la coalition n’est indiquée que pour un dernier vote qui
+      adopte le texte par un vote nominatif, à l’Assemblée comme au Sénat.
+    </p>
+    <p>
+      <strong>Prochaine étape.</strong> Seulement ce que les dossiers enregistrent&#8239;: l’étape ouverte
+      (texte transmis à une chambre), la commission mixte paritaire convoquée ou réunie, une séance déjà
+      inscrite à l’ordre du jour. Sans séance inscrite, aucune date n’est avancée.
     </p>
   </section>
 

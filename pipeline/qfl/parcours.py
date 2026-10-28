@@ -392,8 +392,13 @@ def legislature(date: str) -> int:
     return max(l for l, d in DEBUTS.items() if date >= d)
 
 
-def lois(dossiers: dict[str, dict], titres_textes: dict[str, set[str]], idx: Index, dosleg_lois: dict) -> tuple[list[dict], list[dict], list[dict]]:
-    """Lois du périmètre (promulguées, ou adoptées en attente de promulgation)."""
+def lois(dossiers: dict[str, dict], titres_textes: dict[str, set[str]], idx: Index, dosleg_lois: dict,
+         autres: list[dict] | None = None) -> tuple[list[dict], list[dict], list[dict]]:
+    """Lois du périmètre (promulguées, ou adoptées en attente de promulgation).
+
+    Les autres dossiers (ni promulgués ni adoptés définitivement) sont versés dans `autres`,
+    avec leurs lectures non qualifiées : candidats au périmètre des textes en cours
+    (`encours.textes`)."""
     par_signet, par_date = dosleg_lois["par_signet"], dosleg_lois["par_date"]
     rows_lois, rows_lect, rows_evt = [], [], []
     toutes: list[dict] = []
@@ -422,9 +427,12 @@ def lois(dossiers: dict[str, dict], titres_textes: dict[str, set[str]], idx: Ind
         else:
             # adopté non promulgué : seulement pour la législature en cours (un texte
             # ancien sans promulgation a été censuré en entier ou abandonné)
-            if not lectures or (lectures[-1]["date"] or "") < DEBUTS[max(DEBUTS)]:
-                continue
-            if not (adoption_definitive(lectures, evts) or (sn and sn["loicod"] in dosleg_lois["definitifs"])):
+            if (not lectures or (lectures[-1]["date"] or "") < DEBUTS[max(DEBUTS)]
+                    or not (adoption_definitive(lectures, evts) or (sn and sn["loicod"] in dosleg_lois["definitifs"]))):
+                if autres is not None and lectures:
+                    autres.append({"uid": uid, "dossier": d, "lectures": lectures, "evts": evts, "sn": sn,
+                                   "signet": signet, "titres": [d["titreDossier"]["titre"], sn["titre"] if sn else None,
+                                                                *sorted(titres_textes.get(uid, ()))]})
                 continue
             statut, loi_id, titre = "adoptee", f"adoptee-{uid}", d["titreDossier"]["titre"]
         typ, sous_type = type_loi(d, titre, sn["typloicod"] if sn else None)

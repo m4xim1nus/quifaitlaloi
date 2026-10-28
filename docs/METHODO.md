@@ -427,8 +427,7 @@ majorités stables, seulement des contournements ou des pivots alternés) :
   transpartisanes sur 100), mais n'y est décisif qu'une fois (loi
   immigration).
 
-
-## Cycle Coalitions : chronologie des coalitions et des groupes décisifs (28/10/2026)
+## 16. Cycle Coalitions : chronologie des coalitions et des groupes décisifs (28/10/2026)
 
 La page `/coalitions` reprend les règles des §9 et §10 sans les modifier. Elle
 les range dans le temps, de 2017 à aujourd'hui.
@@ -498,3 +497,108 @@ base. Chaque mise à jour donnerait un diff illisible. Les vues du site ont
 pour unité la loi, et la proximité entre groupes sur tous les scrutins
 (amendements compris) est déjà publiée par datan.fr. La cohésion sur tous les
 scrutins reste calculée au build et exportée agrégée (métrique 4).
+
+## 17. Cycle Textes en cours (28/10/2026)
+
+Code : `pipeline/qfl/encours.py`. Exports à part : `en_cours.csv`,
+`en_cours_lectures.csv`, `en_cours_evenements.csv` ; les scrutins de ces
+textes rejoignent `scrutins.csv`, `positions_groupes.csv` et
+`signatures.csv` (clés par scrutin, sans effet sur les agrégats). Vérifié au
+build : `lois.csv`, `lectures.csv`, `evenements.csv` et `metriques.json`
+sont identiques à l'octet avec et sans ce cycle.
+
+**Ce ne sont pas des lois.** Un texte en cours n'entre dans aucun chiffre
+des lois, ni dans `metriques.json`, ni sur les pages de législature.
+
+**Périmètre (règle fixe).** Un dossier législatif de l'AN (ossature, comme
+pour les lois), ni promulgué ni adopté définitivement (ceux-là restent dans
+`lois`, statut `adoptee`), dont au moins une lecture a été conclue en
+séance, à l'AN ou au Sénat, depuis le début de la XVIIe (18/07/2024).
+Il est **écarté** (`motif_ecart`), dans l'ordre :
+
+1. `retire` : retrait dans le dossier AN (`…-RTRINI`) ou état Dosleg
+   « retiré » ;
+2. `rejete`, `caduc`, `fusionne` : état Dosleg (`loi.etaloicod`) ;
+3. `rejete` : première lecture rejetée par la première assemblée saisie
+   (le texte n'est pas transmis), sauf loi de finances ou de financement
+   (transmise malgré le rejet, art. 47 et 47-1) et sauf si le dossier
+   montre une lecture suivante (comptes de la Sécurité sociale 2025,
+   rejetés à l'AN puis examinés au Sénat) ;
+4. `inactif` : aucun acte de procédure connu depuis **12 mois** avant la
+   date de l'instantané (dépôt, commission, séance, vote, dans le dossier AN
+   ou dans Dosleg, y compris une séance déjà inscrite à l'ordre du jour).
+   **[à valider par Max]** : le seuil décide quels textes « vivants »
+   s'affichent. Repère : sous la XVIIe, 15 des 113 lois promulguées hors
+   conventions ont connu plus de 12 mois entre deux lectures (6 plus de
+   18 mois) ; un texte écarté revient de lui-même dès qu'un acte est
+   enregistré. Exemple écarté : l'impôt plancher de 2 % sur le patrimoine
+   (adopté à l'AN le 20/02/2025, rejeté au Sénat le 12/06/2025, rien
+   depuis).
+
+Les écartés restent dans `en_cours.csv`, avec leur motif, pour l'audit. La
+**date de l'instantané** (`meta.json`, `en_cours.date_reference`) est celle
+du téléchargement du dump des dossiers AN : elle sert d'« aujourd'hui »
+(inactivité, séances à venir) et rend le build reproductible.
+
+Au 28/10/2026 : **126 textes en cours** (dont 9 conventions, 117 sans
+elles), 48 écartés faute d'activité, 30 comme rejetés ; 204 dossiers votés
+sous la XVIIe sans être adoptés.
+
+**Décisions du Sénat absentes du dossier AN.** Le dossier AN enregistre les
+décisions du Sénat avec retard. Pour une lecture du Sénat sans décision dans
+le dossier AN, on lit Dosleg : le texte adopté ou rejeté en séance (table
+`oritxt` : adopté, modifié, sans modification, définitivement ; rejeté,
+question préalable, exception d'irrecevabilité, conclusions négatives), à
+défaut le scrutin public de la même lecture (vote sur l'ensemble, ou
+question préalable adoptée). La lecture est marquée `decision_dosleg`.
+Cas témoin : casseurs-payeurs, voté le 27/10/2026 (SN2026-41, 229-105),
+absent du dossier AN le 28/10. Quand deux dossiers AN pointent vers le même
+dossier du Sénat (Corse, `pjl24-869` : dossier du dépôt au Sénat, puis
+dossier du texte examiné), seul le plus avancé est complété.
+
+**Lectures votées : mêmes règles que les lois.** Scrutin décisif (§4),
+mode (§5), position des groupes (§7), signature de coalition (§9), groupe
+décisif (§10), 49.3 lu sur la motion de censure, `MAIN_LEVEE` jamais lu
+comme un consensus. Une lecture d'un texte en cours ne peut pas reprendre un
+scrutin déjà décisif pour une loi (les lois gardent leur rattachement,
+contrôlé par les textes témoins). **Rejet inversé** : la règle (§5) se lit
+sur le vote final à l'AN ; tant qu'il n'a pas eu lieu, une motion de rejet
+adoptée reste `MOTION_REJET`. Quatre cas au 28/10/2026, listés par
+`qfl check` : 1er mai (V6133), Nouvelle-Calédonie (V6022), comptes de
+l'État et de la Sécurité sociale 2025 (V7350, V7351).
+
+**Coalition affichée.** Sur la liste, la coalition et les groupes décisifs
+du **dernier vote** ne s'affichent que s'il adopte le texte par un vote
+nominatif : la classe dit qui fait passer un texte, elle n'a pas de sens
+pour un rejet. Le dernier vote peut être celui du **Sénat** (casseurs-
+payeurs : socle + RN, UNT dans le camp gagnant mais pas décisif) ; c'est la
+première fois que le site affiche une coalition du Sénat, avec le mapping
+Sénat de la XVIIe validé par Max (§8). **[à valider par Max]**.
+
+**Prochaine étape (`attente`).** Seulement ce que les dossiers enregistrent,
+sans calendrier supposé :
+
+- `lecture` : une étape est ouverte dans le dossier AN (texte déposé ou
+  transmis, pas encore voté) ;
+- `cmp` : CMP convoquée, sans issue enregistrée ; `cmp_conclusions` :
+  accord en CMP, conclusions pas encore votées dans les deux chambres ;
+- `transmis` : dernier vote favorable, étape suivante pas encore ouverte
+  dans le dossier (le texte va à l'autre chambre, art. 45) ; de même pour
+  un texte financier rejeté en première lecture par l'AN (PLFSS 2027) ;
+- `navette` : dernier vote défavorable ou désaccord en CMP, sans suite
+  enregistrée (Corse, rejeté au Sénat le 26/10/2026).
+
+`seance_prevue` : première séance à venir pour l'étape attendue, datée
+dans le dossier AN (`…-DEBATS-SEANCE`) ou dans Dosleg (`date_seance`). Sept
+textes en ont une au 28/10/2026.
+
+**Limites.**
+
+- Un texte voté au Sénat sans dossier AN ne serait pas vu : aucun cas au
+  28/10/2026 (l'AN ouvre un dossier dès le dépôt d'un texte au Sénat).
+- `transmis` se déduit de la Constitution, pas d'un acte : le dossier ne
+  dit pas encore si la suite sera une lecture ou une CMP.
+- Un texte adopté conforme par la seconde chambre est repéré comme
+  « adopté, pas encore promulgué » (statut `adoptee` des lois) par les
+  indices de §13 ; si ces indices manquent quelques jours, il apparaît en
+  cours entre-temps.

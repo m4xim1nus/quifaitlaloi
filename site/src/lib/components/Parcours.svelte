@@ -103,6 +103,7 @@
               <a href={lienScrutin(l.scrutin.id)} rel="external">{numeroScrutin(l.scrutin.id)}</a>
             {/if}
             {#if l.decision_deduite}(décision déduite de la date de séance){/if}
+            {#if l.decision_dosleg}(décision lue dans la base du Sénat){/if}
           </span>
         </span>
       </li>
