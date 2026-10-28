@@ -250,3 +250,36 @@ L'inventaire complet se régénère avec `explo/an_codes_actes.py`.
    11/07/2025). La détection restera partielle, avec un flag manuel.
 9. Hors période utile, `scr` (Sénat) remonte à 2006 : de quoi faire des
    baselines côté Sénat.
+
+## Anomalies relevées à l'étape 2
+
+Traitées dans le pipeline (`pipeline/qfl/`), détail dans `docs/METHODO.md` §3
+et §7.
+
+10. **`PO0` dans les ventilations AN** : 146 ventilations de groupe du dump
+    XVIIe n'ont pas d'organe (12 scrutins du 02/12/2024, entièrement ; le RN
+    seul dans `V1302` et `V6256`). Le groupe se retrouve par les mandats AMO
+    des votants.
+11. **`nonVotantsVolontaires`** recopie toujours les abstentions (XVIe et
+    XVIIe, 21 550 ventilations) : à ignorer.
+12. **Statut des décisions du Sénat dans le dossier AN** : 25 lois
+    promulguées ont pour dernière décision « SN… modifié ». L'indice fiable
+    d'adoption définitive côté Sénat est Dosleg : un texte d'origine
+    `oritxt.oritxtado = 'D'` (« adopté définitivement »), présent pour les 148
+    lois.
+13. **Lectures de CMP** : décision sans chambre (`CMP-DEBATS-DEC`), étiquetée
+    « SN » mais portant un scrutin AN, ou absente pour une chambre (2 cas,
+    déduits) ; décision rangée sous une CMP en désaccord (loi
+    Paris-Lyon-Marseille).
+14. **Étapes dédoublées par la dissolution** : 12 dossiers ont deux étapes
+    `AN1` ou `AN2`, la première (XVIe) sans décision.
+15. **`loi.loinumjo` (Dosleg)** est le numéro du JO, pas celui de la loi.
+    Sans signet, le rapprochement AN ↔ Sénat se fait par date de
+    promulgation et titre.
+16. **Intitulés de scrutins AN** : « le projet de loi autorisant… » (sans
+    « l'ensemble ») vaut vote sur l'ensemble d'un texte à article unique.
+17. **Dossiers XVIe** : sur les 193 dossiers présents dans les deux dumps,
+    celui de la XVIIe est au moins aussi complet (souvent plus : `voteRefs`,
+    `PROM-PUB`). Le dump XVIe ne sert qu'aux baselines.
+18. **Scrutin du Congrès** (`VTCGR5L16V1`, 04/03/2024) dans le dump XVIe :
+    groupes du Sénat, exclu.

@@ -1,0 +1,300 @@
+{
+ "genere_le": "2026-10-28T09:32:49+00:00",
+ "sources": {
+  "an_scrutins_17": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip",
+   "last_modified": "Wed, 28 Oct 2026 05:25:54 GMT",
+   "taille": 28398654,
+   "sha256": "3046afac9f2579cb22c8fb589388ceceb7a66439da903e30c0486ee2d2faf201",
+   "telecharge_le": "2026-10-28T08:55:17+00:00"
+  },
+  "an_dossiers_17": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip",
+   "last_modified": "Wed, 28 Oct 2026 01:16:27 GMT",
+   "taille": 11074324,
+   "sha256": "5508c0748f2116eb55e7af320b11729b45c8dafaf7b7d3a2dc66cae22ff568e9",
+   "telecharge_le": "2026-10-28T08:55:19+00:00"
+  },
+  "an_scrutins_16": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/16/loi/scrutins/Scrutins.json.zip",
+   "last_modified": "Fri, 28 Jun 2024 10:22:27 GMT",
+   "taille": 10107912,
+   "sha256": "adc5e57d3ad5904fd11e176b531b3d525d4ecfdf78db9587f93a14452601126b",
+   "telecharge_le": "2026-10-28T08:55:23+00:00"
+  },
+  "an_dossiers_16": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/16/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip",
+   "last_modified": "Fri, 28 Jun 2024 10:16:19 GMT",
+   "taille": 9085119,
+   "sha256": "6a2369c01a44711362b7c9a79ed13c001400cbb00dc6bade7b05499d2e6d478e",
+   "telecharge_le": "2026-10-28T08:55:26+00:00"
+  },
+  "an_amo": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip",
+   "last_modified": "Wed, 28 Oct 2026 01:34:40 GMT",
+   "taille": 13717578,
+   "sha256": "6f2873e341bca789f1bd143511d518d3a2f883cb5a556c79f5e80c7dd48ed6aa",
+   "telecharge_le": "2026-10-28T08:55:41+00:00"
+  },
+  "senat_dosleg": {
+   "url": "https://data.senat.fr/data/dosleg/dosleg.zip",
+   "last_modified": "Wed, 28 Oct 2026 02:15:15 GMT",
+   "taille": 16107723,
+   "sha256": "a203b82fd9c8642b8f20698a6e5a917ff647fd5b65277187b505e4cf05a5f429",
+   "telecharge_le": "2026-10-28T08:55:45+00:00"
+  },
+  "senat_senateurs": {
+   "url": "https://data.senat.fr/data/senateurs/ODSEN_HISTOGROUPES.csv",
+   "last_modified": "Wed, 28 Oct 2026 02:35:56 GMT",
+   "taille": 567288,
+   "sha256": "b9ad31b18979fe4265c1ff1585a6ec532288bc0f842d62148d79a428352dab18",
+   "telecharge_le": "2026-10-28T08:55:45+00:00"
+  }
+ },
+ "comptes": {
+  "lois": 148,
+  "lectures": 431,
+  "scrutins": 298,
+  "positions_groupes": 3245,
+  "signatures": 298,
+  "groupes": 36,
+  "evenements": 494
+ },
+ "referentiels": {
+  "blocs": {
+   "blocs": {
+    "gauche": {
+     "libelle": "Gauche",
+     "ordre": 1
+    },
+    "centre": {
+     "libelle": "Centre (bloc présidentiel)",
+     "ordre": 2
+    },
+    "droite": {
+     "libelle": "Droite (LR)",
+     "ordre": 3
+    },
+    "rn": {
+     "libelle": "RN et alliés",
+     "ordre": 4
+    },
+    "autres": {
+     "libelle": "Autres et non-inscrits",
+     "ordre": 5
+    }
+   },
+   "socle": {
+    "16": {
+     "debut": "2022-06-28",
+     "blocs": [
+      "centre"
+     ]
+    },
+    "17": {
+     "debut": "2024-07-18",
+     "blocs": [
+      "centre",
+      "droite"
+     ]
+    }
+   },
+   "assemblee": {
+    "16": {
+     "PO800490": {
+      "sigle": "LFI-NUPES",
+      "bloc": "gauche"
+     },
+     "PO800496": {
+      "sigle": "SOC",
+      "bloc": "gauche"
+     },
+     "PO830170": {
+      "sigle": "SOC",
+      "bloc": "gauche"
+     },
+     "PO800526": {
+      "sigle": "ECOLO",
+      "bloc": "gauche"
+     },
+     "PO800502": {
+      "sigle": "GDR-NUPES",
+      "bloc": "gauche"
+     },
+     "PO800538": {
+      "sigle": "RE",
+      "bloc": "centre"
+     },
+     "PO800484": {
+      "sigle": "DEM",
+      "bloc": "centre"
+     },
+     "PO800514": {
+      "sigle": "HOR",
+      "bloc": "centre"
+     },
+     "PO800508": {
+      "sigle": "LR",
+      "bloc": "droite"
+     },
+     "PO800520": {
+      "sigle": "RN",
+      "bloc": "rn"
+     },
+     "PO800532": {
+      "sigle": "LIOT",
+      "bloc": "autres"
+     },
+     "PO793087": {
+      "sigle": "NI",
+      "bloc": "autres"
+     }
+    },
+    "17": {
+     "PO845413": {
+      "sigle": "LFI-NFP",
+      "bloc": "gauche"
+     },
+     "PO845419": {
+      "sigle": "SOC",
+      "bloc": "gauche"
+     },
+     "PO845439": {
+      "sigle": "ECOS",
+      "bloc": "gauche"
+     },
+     "PO845514": {
+      "sigle": "GDR",
+      "bloc": "gauche"
+     },
+     "PO845407": {
+      "sigle": "EPR",
+      "bloc": "centre"
+     },
+     "PO845454": {
+      "sigle": "DEM",
+      "bloc": "centre"
+     },
+     "PO845470": {
+      "sigle": "HOR",
+      "bloc": "centre"
+     },
+     "PO845425": {
+      "sigle": "DR",
+      "bloc": "droite"
+     },
+     "PO845401": {
+      "sigle": "RN",
+      "bloc": "rn"
+     },
+     "PO847173": {
+      "sigle": "UDR",
+      "bloc": "rn"
+     },
+     "PO872880": {
+      "sigle": "UDDPLR",
+      "bloc": "rn"
+     },
+     "PO845485": {
+      "sigle": "LIOT",
+      "bloc": "autres"
+     },
+     "PO840056": {
+      "sigle": "NI",
+      "bloc": "autres"
+     }
+    }
+   },
+   "senat": {
+    "SOC": {
+     "sigle": "SER",
+     "nom": "Socialiste, Écologiste et Républicain",
+     "bloc": "gauche"
+    },
+    "CRC": {
+     "sigle": "CRCE-K",
+     "nom": "Communiste Républicain Citoyen et Écologiste – Kanaky",
+     "bloc": "gauche"
+    },
+    "GEST": {
+     "sigle": "GEST",
+     "nom": "Écologiste – Solidarité et Territoires",
+     "bloc": "gauche"
+    },
+    "LREM": {
+     "sigle": "RDPI",
+     "nom": "Rassemblement des démocrates, progressistes et indépendants",
+     "bloc": "centre"
+    },
+    "UC": {
+     "sigle": "UC",
+     "nom": "Union Centriste",
+     "bloc": "centre"
+    },
+    "RTLI": {
+     "sigle": "LIRT",
+     "nom": "Les Indépendants – République et Territoires",
+     "bloc": "centre"
+    },
+    "UMP": {
+     "sigle": "LR",
+     "nom": "Les Républicains",
+     "bloc": "droite"
+    },
+    "UNT": {
+     "sigle": "UNT",
+     "nom": "Union Nationale pour les Territoires",
+     "bloc": "rn"
+    },
+    "RDSE": {
+     "sigle": "RDSE",
+     "nom": "Rassemblement Démocratique et Social Européen",
+     "bloc": "autres"
+    },
+    "NI": {
+     "sigle": "NI",
+     "nom": "Non-inscrits",
+     "bloc": "autres"
+    },
+    "AUCUN": {
+     "sigle": "NI",
+     "nom": "Non-inscrits",
+     "bloc": "autres"
+    }
+   }
+  },
+  "flags": {
+   "vote_bloque": {},
+   "main_levee_confirmee": {}
+  },
+  "periodes": {
+   "periodes": [
+    {
+     "code": "xvi",
+     "debut": "2022-06-28",
+     "libelle": "XVIe législature (majorité relative)"
+    },
+    {
+     "code": "dissolution",
+     "debut": "2024-06-09",
+     "libelle": "Dissolution, élections"
+    },
+    {
+     "code": "avant_censure",
+     "debut": "2024-07-18",
+     "libelle": "XVIIe, jusqu'à la censure Barnier"
+    },
+    {
+     "code": "apres_censure",
+     "debut": "2024-12-05",
+     "libelle": "Après la censure Barnier"
+    },
+    {
+     "code": "accords_ps",
+     "debut": "2025-10-14",
+     "libelle": "Après l'annonce de la suspension de la réforme des retraites (Lecornu)"
+    }
+   ]
+  }
+ }
+}

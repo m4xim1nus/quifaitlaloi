@@ -17,23 +17,24 @@ témoins reconstruits (Duplomb, PLF 2026, casseurs-payeurs), liste des lois
 promulguées identique côté AN et côté Sénat (148 lois). Détail, trous et
 limites : `docs/SOURCES.md`.
 
-## Étape 2 : pipeline XVIIe ← *en cours*
+## Étape 2 : pipeline XVIIe ← *en cours, livrable en relecture*
 
 But : une base SQLite fiable sur la XVIIe et les premiers chiffres.
 
-- Package `qfl` : `download` → `build` → `check`, qui écrit
-  `data/qfl.sqlite` et `data/export/` (JSON + CSV).
-- Sources : dumps XVIIe listés dans `docs/SOURCES.md`, **plus les scrutins
-  et dossiers AN de la XVIe**. Certaines lois promulguées depuis juillet
-  2024 ont eu une lecture AN avant la dissolution.
-- Modèle de données du brief (§6), taxonomie v0 (§5), métriques 1 à 5
-  (§7).
-- Référentiels maintenus à la main : `pipeline/referentiels/codes_actes.yaml`
-  et `blocs.yaml`. **Max valide le mapping groupes → blocs.**
-- Tests sur 6 à 8 textes au parcours connu, confrontés aux faits établis et
-  à datan.fr. Chaque écart est soit un bug, soit une note de méthode.
-- **Livrable** : graphiques bruts des métriques, relus avec Max, et
-  `docs/METHODO.md` v0.
+- [x] Package `qfl` : `download` → `build` → `check`, qui écrit
+  `data/qfl.sqlite` et `data/export/` (CSV, `metriques.json`, `meta.json`).
+- [x] Sources : dumps XVIIe, plus les scrutins AN de la XVIe (les dossiers
+  XVIe n'apportent rien de plus, `docs/SOURCES.md` §17).
+- [x] Modèle de données du brief (§6), taxonomie v0 affinée (type de lecture
+  × mode, `docs/METHODO.md` §5), métriques 1 à 5 (§7).
+- [x] Référentiels : `codes_actes.yaml`, `blocs.yaml` (validé par Max),
+  `flags.yaml`, `periodes.yaml`.
+- [x] Textes témoins dans `qfl check` et `pytest` (Duplomb, PLF 2026,
+  PLFSS 2025, LFSS 2026, Paris-Lyon-Marseille, meublés de tourisme,
+  casseurs-payeurs au Sénat), contrôle croisé datan.fr sur V2957 et V4758.
+- [x] Relecture avec Max (28/10/2026) : graphiques bruts, `docs/METHODO.md`
+  v0 validé, règle fixe du rejet inversé, date des « accords PS ».
+- [ ] Échantillon de comptes rendus pour confirmer `MAIN_LEVEE` (BACKLOG).
 
 ## Étape 3 : site v1
 

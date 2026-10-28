@@ -1,0 +1,14 @@
+# Dates charnières (brief §2, Q3). Chaque période commence à sa date et
+# court jusqu'à la suivante. Les métriques sont agrégées par période et
+# par trimestre.
+#
+# Date des « accords PS » validée par Max le 2026-10-28.
+
+periodes:
+  - {code: xvi, debut: "2022-06-28", libelle: "XVIe législature (majorité relative)"}
+  - {code: dissolution, debut: "2024-06-09", libelle: "Dissolution, élections"}
+  - {code: avant_censure, debut: "2024-07-18", libelle: "XVIIe, jusqu'à la censure Barnier"}
+  - {code: apres_censure, debut: "2024-12-05", libelle: "Après la censure Barnier"}
+  - code: accords_ps
+    debut: "2025-10-14"
+    libelle: "Après l'annonce de la suspension de la réforme des retraites (Lecornu)"

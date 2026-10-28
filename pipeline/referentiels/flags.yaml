@@ -1,0 +1,17 @@
+# Flags manuels, validés par Max (CLAUDE.md, règles dures). Affichés sur la
+# page méthodologie.
+#
+# statut : a_valider (repéré, pas encore appliqué), valide (appliqué),
+# refuse (examiné, écarté ; on garde la trace). Seuls les flags `valide`
+# sont appliqués.
+
+# Le rejet inversé n'est plus un flag : il découle d'une règle fixe, validée
+# par Max le 2026-10-28 (docs/METHODO.md §5, qfl/build.py:_rejet_inverse).
+
+# Vote bloqué (art. 44, al. 3). Aucune trace dans les titres de scrutins AN :
+# repérage partiel. Clé : identifiant de lecture (`lectures.id`) ou de scrutin.
+vote_bloque: {}
+
+# Absence de scrutin public confirmée au compte rendu (échantillon de
+# contrôle, BACKLOG). Clé : identifiant de lecture.
+main_levee_confirmee: {}

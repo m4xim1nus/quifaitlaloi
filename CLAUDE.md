@@ -53,9 +53,11 @@ d'écart, ce fichier prime.
   Légifrance ou vie-publique). datan.fr, La Fabrique de la loi et
   NosDéputés servent au **contrôle croisé**, jamais de source primaire.
 - **Choix politiques sensibles** : le mapping groupes → blocs
-  (`blocs.yaml`) et les flags manuels (`REJET_INVERSE`, `VOTE_BLOQUE`)
-  sont **validés par Max**. On ne les tranche jamais seul, et ils sont
-  affichés sur la page méthodo.
+  (`blocs.yaml`), les règles de qualification (`REJET_INVERSE` : règle
+  fixe, `docs/METHODO.md` §5) et les flags manuels (`VOTE_BLOQUE`) sont
+  **validés par Max**. On ne les tranche jamais seul, et ils sont affichés
+  sur la page méthodo. Préférer une règle fixe à un jugement au cas par
+  cas.
 - La position d'un groupe est sa position **majoritaire parmi les
   exprimés**, toujours affichée avec sa cohésion.
 - `MAIN_LEVEE` signifie qu'il n'y a pas d'information nominative, pas que
@@ -74,7 +76,7 @@ data/qfl.sqlite      base de sortie (versionnée)        ← étape 2
 data/export/         JSON + CSV pour le site et le téléchargement ← étape 2
 docs/source/         brief initial (non versionné)
 docs/SOURCES.md      fiche des sources                  ← étape 1
-docs/METHODO.md      méthodologie, base de la page méthodo ← étape 2
+docs/METHODO.md      méthodologie v0, base de la page méthodo
 pipeline/qfl/        package Python (CLI download / build / check)
 pipeline/explo/      scripts jetables du spike           ← étape 1
 pipeline/referentiels/  YAML maintenus à la main (codes_actes, blocs)
@@ -94,6 +96,10 @@ site/                SvelteKit                           ← étape 3
 ## Commandes
 
 ```bash
-cd pipeline && uv sync          # environnement Python
-cd pipeline && uv run pytest    # tests
+cd pipeline && uv sync              # environnement Python
+cd pipeline && uv run qfl download  # dumps AN + Sénat → data/raw/ (+ manifeste.json)
+cd pipeline && uv run qfl build     # → data/qfl.sqlite + data/export/ (≈ 10 s)
+cd pipeline && uv run qfl check     # invariants, textes témoins, flags à arbitrer
+cd pipeline && uv run pytest        # tests (les tests `donnees` exigent la base et les dumps)
+cd pipeline && uv run python explo/graphiques.py   # graphiques bruts de relecture
 ```

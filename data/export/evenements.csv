@@ -1,0 +1,495 @@
+loi_id,date,etape,scrutin_id,detail,type
+2025-444,2025-04-15,CC,,Soixante députés au moins,saisine_cc
+2025-444,2025-04-15,CC,,Premier Ministre,saisine_cc
+2025-444,2025-05-02,CC,,Soixante sénateurs au moins,saisine_cc
+2025-444,2025-05-15,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025883DC.htm,decision_cc
+2025-444,2025-05-21,PROM,,2025-444,promulgation
+2025-273,2025-03-25,PROM,,2025-273,promulgation
+2025-74,2025-01-29,PROM,,2025-74,promulgation
+2025-175,2023-11-16,AN1,,,procedure_acceleree
+2025-175,2024-03-13,CMP,,,cmp_convoquee
+2025-175,2025-02-04,CMP,,,cmp_accord
+2025-175,2024-12-02,CMP,,,cmp_convoquee
+2025-175,2025-02-04,CMP,,,cmp_accord
+2025-175,2025-02-24,PROM,,2025-175,promulgation
+2025-596,2025-06-30,PROM,,2025-596,promulgation
+2024-1039,2023-11-09,AN1,,,procedure_acceleree
+2024-1039,2024-05-22,CMP,,,cmp_convoquee
+2024-1039,2024-10-29,CMP,,,cmp_accord
+2024-1039,2024-10-17,CMP,,,cmp_convoquee
+2024-1039,2024-10-29,CMP,,,cmp_accord
+2024-1039,2024-11-19,PROM,,2024-1039,promulgation
+2024-1028,2024-11-15,PROM,,2024-1028,promulgation
+2025-115,2025-02-07,PROM,,2025-115,promulgation
+2025-622,2025-07-09,PROM,,2025-622,promulgation
+2026-532,2026-06-24,PROM,,2026-532,promulgation
+2025-580,2025-06-27,PROM,,2025-580,promulgation
+2024-1027,2024-01-17,AN1,,,procedure_acceleree
+2024-1027,2024-11-15,PROM,,2024-1027,promulgation
+2025-541,2024-03-01,AN1,,,procedure_acceleree
+2025-541,2024-05-23,CMP,,,cmp_convoquee
+2025-541,2025-05-21,CMP,,,cmp_accord
+2025-541,2025-05-20,CMP,,,cmp_convoquee
+2025-541,2025-05-21,CMP,,,cmp_accord
+2025-541,2025-06-16,PROM,,2025-541,promulgation
+2026-122,2026-01-23,CC,,Soixante députés au moins,saisine_cc
+2026-122,2026-02-18,CC,,Conforme avec réserve | http://www.conseil-constitutionnel.fr/decision/2026/2026900DC.htm,decision_cc
+2026-122,2026-02-23,PROM,,2026-122,promulgation
+2025-379,2024-02-13,SN1,,,procedure_acceleree
+2025-379,2025-02-19,CMP,,,cmp_convoquee
+2025-379,2025-03-06,CMP,,,cmp_accord
+2025-379,2025-03-24,CC,,Soixante députés au moins,saisine_cc
+2025-379,2025-03-27,CC,,Soixante députés au moins,saisine_cc
+2025-379,2025-04-24,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025878DC.htm,decision_cc
+2025-379,2025-04-28,PROM,,2025-379,promulgation
+2025-415,2025-05-13,PROM,,2025-415,promulgation
+2026-491,2026-06-12,PROM,,2026-491,promulgation
+2025-139,2024-01-17,SN1,,,procedure_acceleree
+2025-139,2025-02-17,PROM,,2025-139,promulgation
+2025-1249,2025-12-22,PROM,,2025-1249,promulgation
+2025-623,2024-03-08,AN1,,,procedure_acceleree
+2025-623,2025-05-14,CMP,,,cmp_convoquee
+2025-623,2025-05-20,CMP,,,cmp_accord
+2025-623,2025-07-09,PROM,,2025-623,promulgation
+2026-602,2024-03-08,AN1,,,procedure_acceleree
+2026-602,2026-06-12,CMP,,,cmp_convoquee
+2026-602,2026-06-18,CMP,,,cmp_accord
+2026-602,2026-07-08,PROM,,2026-602,promulgation
+2024-850,2024-03-20,AN1,,,procedure_acceleree
+2024-850,2024-05-23,CMP,,,cmp_convoquee
+2024-850,2024-05-30,CMP,,,cmp_accord
+2024-850,2024-07-12,CC,,Soixante députés au moins,saisine_cc
+2024-850,2024-07-25,PROM,,2024-850,promulgation
+2024-1017,2024-02-07,AN1,,,procedure_acceleree
+2024-1017,2024-11-13,PROM,,2024-1017,promulgation
+2025-188,2025-02-27,PROM,,2025-188,promulgation
+2025-237,2025-03-14,PROM,,2025-237,promulgation
+2025-140,2024-03-13,SN1,,,procedure_acceleree
+2025-140,2025-02-17,PROM,,2025-140,promulgation
+2025-268,2024-04-03,AN1,,,procedure_acceleree
+2025-268,2025-02-18,CMP,,,cmp_convoquee
+2025-268,2025-02-19,CMP,,,cmp_accord
+2025-268,2025-03-24,PROM,,2025-268,promulgation
+2025-268,2025-02-24,CC,,Soixante députés au moins,saisine_cc
+2025-268,2025-03-20,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025876DC.htm,decision_cc
+2025-138,2025-02-17,PROM,,2025-138,promulgation
+2025-106,2025-02-05,PROM,,2025-106,promulgation
+2025-274,2024-04-17,SN1,,,procedure_acceleree
+2025-274,2025-03-25,PROM,,2025-274,promulgation
+2025-272,2024-04-17,SN1,,,procedure_acceleree
+2025-272,2025-03-25,PROM,,2025-272,promulgation
+2025-128,2024-05-27,SN1,,,procedure_acceleree
+2025-128,2025-02-14,PROM,,2025-128,promulgation
+2026-403,2024-04-24,SN1,,,procedure_acceleree
+2026-403,2025-06-18,CMP,,,cmp_convoquee
+2026-403,2026-04-07,CMP,,,cmp_accord
+2026-403,2026-04-21,CC,,Soixante députés au moins,saisine_cc
+2026-403,2026-04-28,CC,,Soixante députés au moins,saisine_cc
+2026-403,2026-05-21,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026903DC.htm,decision_cc
+2026-403,2026-05-26,PROM,,2026-403,promulgation
+2025-327,2024-10-09,SN1,,,procedure_acceleree
+2025-327,2025-04-11,PROM,,2025-327,promulgation
+2024-1018,2024-05-16,AN1,,,procedure_acceleree
+2024-1018,2024-11-13,PROM,,2024-1018,promulgation
+2024-1061,2024-06-06,SN1,,,procedure_acceleree
+2024-1061,2024-11-26,PROM,,2024-1061,promulgation
+2025-983,2024-06-12,SN1,,,procedure_acceleree
+2025-983,2025-10-22,PROM,,2025-983,promulgation
+2024-1177,2024-10-02,SN1,,,procedure_acceleree
+2024-1177,2024-11-21,CC,,De droit (article 61 alinéa 1 de la Constitution),saisine_cc
+2024-1177,2024-12-12,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2024/2024873DC.htm,decision_cc
+2024-1177,2024-12-13,PROM,,2024-1177,promulgation
+2025-532,2024-11-14,SN1,,,procedure_acceleree
+2025-532,2025-04-01,CMP,,,cmp_convoquee
+2025-532,2025-04-10,CMP,,,cmp_accord
+2025-532,2025-05-12,CC,,Soixante députés au moins,saisine_cc
+2025-532,2025-05-13,CC,,Soixante députés au moins,saisine_cc
+2025-532,2025-06-12,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025885DC.htm,decision_cc
+2025-532,2025-06-13,PROM,,2025-532,promulgation
+2025-127,2025-01-23,CMP,,,cmp_convoquee
+2025-127,2025-02-03,CMP,,,cmp_accord
+2025-127,2025-02-03,CMP,,,engagement_49_3
+2025-127,2025-02-05,CMP,VTANR5L17V693,rejetee,motion_censure
+2025-127,2025-02-06,CC,,Soixante députés au moins,saisine_cc
+2025-127,2025-02-13,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025874DC.htm,decision_cc
+2025-127,2025-02-14,PROM,,2025-127,promulgation
+2026-492,2026-06-12,PROM,,2026-492,promulgation
+2024-1026,2024-10-02,SN1,,,procedure_acceleree
+2024-1026,2024-11-07,CC,,De droit (article 61 alinéa 1 de la Constitution),saisine_cc
+2024-1026,2024-11-14,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2024/2024872DC.htm,decision_cc
+2024-1026,2024-11-15,PROM,,2024-1026,promulgation
+2026-542,2026-04-15,SN1,,,procedure_acceleree
+2026-542,2026-06-26,PROM,,2026-542,promulgation
+2025-443,2025-03-05,SN1,,,procedure_acceleree
+2025-443,2025-04-15,CC,,De droit (article 61 alinéa 1 de la Constitution),saisine_cc
+2025-443,2025-05-15,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025882DC.htm,decision_cc
+2025-443,2025-05-21,PROM,,2025-443,promulgation
+2025-199,2024-11-26,CMP,,,cmp_convoquee
+2025-199,2024-11-28,CMP,,,cmp_accord
+2025-199,2024-12-02,CMP,,,engagement_49_3
+2025-199,2024-12-04,CMP,VTANR5L17V519,adoptee,motion_censure
+2025-199,2025-02-03,ANNLEC,,,engagement_49_3
+2025-199,2025-02-05,ANNLEC,VTANR5L17V694,rejetee,motion_censure
+2025-199,2025-02-05,ANNLEC,,,engagement_49_3
+2025-199,2025-02-10,ANNLEC,VTANR5L17V739,rejetee,motion_censure
+2025-199,2025-02-10,ANNLEC,,,engagement_49_3
+2025-199,2025-02-12,ANNLEC,VTANR5L17V791,rejetee,motion_censure
+2025-199,2025-02-20,CC,,Soixante députés au moins,saisine_cc
+2025-199,2025-02-28,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025875DC.htm,decision_cc
+2025-199,2025-02-28,PROM,,2025-199,promulgation
+2025-365,2025-04-23,PROM,,2025-365,promulgation
+2025-595,2025-06-30,PROM,,2025-595,promulgation
+2025-568,2025-01-20,AN1,,,procedure_acceleree
+2025-568,2025-04-02,CMP,,,cmp_convoquee
+2025-568,2025-05-06,CMP,,,cmp_accord
+2025-568,2025-05-20,CC,,Soixante députés au moins,saisine_cc
+2025-568,2025-05-22,CC,,Soixante députés au moins,saisine_cc
+2025-568,2025-05-27,CC,,Soixante sénateurs au moins,saisine_cc
+2025-568,2025-06-19,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025886DC.htm,decision_cc
+2025-568,2025-06-23,PROM,,2025-568,promulgation
+2025-795,2025-02-18,AN1,,,procedure_acceleree
+2025-795,2025-06-04,CMP,,,cmp_convoquee
+2025-795,2025-06-26,CMP,,,cmp_desaccord
+2025-795,2025-07-15,CC,,Soixante députés au moins,saisine_cc
+2025-795,2025-07-16,CC,,Soixante sénateurs au moins,saisine_cc
+2025-795,2025-07-18,CC,,Soixante sénateurs au moins,saisine_cc
+2025-795,2025-08-07,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025892DC.htm,decision_cc
+2025-795,2025-08-11,PROM,,2025-795,promulgation
+2025-594,2024-11-28,AN1,,,procedure_acceleree
+2025-594,2025-04-03,CMP,,,cmp_convoquee
+2025-594,2025-05-09,CMP,,,cmp_accord
+2025-594,2025-05-26,CC,,Soixante députés au moins,saisine_cc
+2025-594,2025-06-26,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025887DC.htm,decision_cc
+2025-594,2025-06-30,PROM,,2025-594,promulgation
+2025-732,2025-02-17,SN1,,,procedure_acceleree
+2025-732,2025-05-09,CMP,,,cmp_convoquee
+2025-732,2025-05-28,CMP,,,cmp_accord
+2025-732,2025-07-07,CC,,Soixante députés au moins,saisine_cc
+2025-732,2025-07-29,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025890DC.htm,decision_cc
+2025-732,2025-07-31,PROM,,2025-732,promulgation
+2026-34,2024-10-31,SN1,,,procedure_acceleree
+2026-34,2026-01-29,PROM,,2026-34,promulgation
+2025-391,2024-10-31,AN1,,,procedure_acceleree
+2025-391,2025-03-11,CMP,,,cmp_convoquee
+2025-391,2025-04-01,CMP,,,cmp_accord
+2025-391,2025-04-08,CC,,Soixante députés au moins,saisine_cc
+2025-391,2025-04-29,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025879DC.htm,decision_cc
+2025-391,2025-04-30,PROM,,2025-391,promulgation
+2025-794,2025-01-27,SN1,,,procedure_acceleree
+2025-794,2025-05-28,CMP,,,cmp_convoquee
+2025-794,2025-07-01,CMP,,,cmp_accord
+2025-794,2025-07-11,CC,,Soixante députés au moins,saisine_cc
+2025-794,2025-07-15,CC,,Soixante députés au moins,saisine_cc
+2025-794,2025-07-18,CC,,Soixante sénateurs au moins,saisine_cc
+2025-794,2025-08-07,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025891DC.htm,decision_cc
+2025-794,2025-08-11,PROM,,2025-794,promulgation
+2025-56,2024-11-05,AN1,,,procedure_acceleree
+2025-56,2025-01-21,PROM,,2025-56,promulgation
+2024-1167,2024-11-06,AN1,,,procedure_acceleree
+2024-1167,2024-11-26,CMP,,,cmp_convoquee
+2024-1167,2024-12-03,CMP,,,cmp_accord
+2024-1167,2024-12-06,PROM,,2024-1167,promulgation
+2025-644,2025-03-25,SN1,,,procedure_acceleree
+2025-644,2025-07-16,PROM,,2025-644,promulgation
+2025-136,2024-11-20,AN1,,,procedure_acceleree
+2025-136,2025-02-06,CMP,,,cmp_convoquee
+2025-136,2025-02-10,CMP,,,cmp_accord
+2025-136,2025-02-14,PROM,,2025-136,promulgation
+2025-250,2024-11-22,AN1,,,procedure_acceleree
+2025-250,2025-03-20,PROM,,2025-250,promulgation
+2025-474,2025-05-30,PROM,,2025-474,promulgation
+2025-581,2025-03-10,AN1,,,procedure_acceleree
+2025-581,2025-05-06,CMP,,,cmp_convoquee
+2025-581,2025-06-10,CMP,,,cmp_accord
+2025-581,2025-06-27,PROM,,2025-581,promulgation
+2025-412,2025-02-03,AN1,,,procedure_acceleree
+2025-412,2025-03-26,CMP,,,cmp_convoquee
+2025-412,2025-04-01,CMP,,,cmp_accord
+2025-412,2025-04-10,CC,,Soixante députés au moins,saisine_cc
+2025-412,2025-04-14,CC,,Soixante députés au moins,saisine_cc
+2025-412,2025-05-07,CC,,Conforme avec réserve | http://www.conseil-constitutionnel.fr/decision/2025/2025881DC.htm,decision_cc
+2025-412,2025-05-12,PROM,,2025-412,promulgation
+2025-658,2025-06-18,CC,,Soixante députés au moins,saisine_cc
+2025-658,2025-07-17,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025889DC.htm,decision_cc
+2025-658,2025-07-18,PROM,,2025-658,promulgation
+2025-531,2025-01-17,SN1,,,procedure_acceleree
+2025-531,2025-04-01,CMP,,,cmp_convoquee
+2025-531,2025-04-10,CMP,,,cmp_accord
+2025-531,2025-05-06,CC,,De droit (article 61 alinéa 1 de la Constitution),saisine_cc
+2025-531,2025-06-05,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025884DC.htm,decision_cc
+2025-531,2025-06-13,PROM,,2025-531,promulgation
+2024-1188,2024-12-20,PROM,,2024-1188,promulgation
+2025-534,2025-06-13,PROM,,2025-534,promulgation
+2025-269,2025-01-20,AN1,,,procedure_acceleree
+2025-269,2025-03-24,PROM,,2025-269,promulgation
+2026-6,2025-12-12,CC,,Premier Ministre,saisine_cc
+2026-6,2025-12-30,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025898DC.htm,decision_cc
+2026-6,2026-01-07,PROM,,2026-6,promulgation
+2026-381,2025-02-28,SN1,,,procedure_acceleree
+2026-381,2026-05-19,PROM,,2026-381,promulgation
+2025-176,2025-01-08,AN1,,,procedure_acceleree
+2025-176,2025-02-05,CMP,,,cmp_convoquee
+2025-176,2025-02-10,CMP,,,cmp_accord
+2025-176,2025-02-24,PROM,,2025-176,promulgation
+2025-339,2025-02-28,SN1,,,procedure_acceleree
+2025-339,2025-04-15,PROM,,2025-339,promulgation
+2025-533,2025-02-28,AN1,,,procedure_acceleree
+2025-533,2025-06-13,PROM,,2025-533,promulgation
+2026-248,2026-04-07,PROM,,2026-248,promulgation
+2026-247,2026-04-07,PROM,,2026-247,promulgation
+2025-1057,2025-03-28,AN1,,,procedure_acceleree
+2025-1057,2025-06-19,CMP,,,cmp_convoquee
+2025-1057,2025-10-21,CMP,,,cmp_accord
+2025-1057,2025-11-06,PROM,,2025-1057,promulgation
+2025-1374,2025-12-29,PROM,,2025-1374,promulgation
+2025-1225,2025-06-24,AN1,,,procedure_acceleree
+2025-1225,2025-12-16,PROM,,2025-1225,promulgation
+2025-566,2024-07-03,SN1,,,procedure_acceleree
+2025-566,2025-04-10,CMP,,,cmp_convoquee
+2025-566,2025-05-15,CMP,,,cmp_accord
+2025-566,2025-06-23,PROM,,2025-566,promulgation
+2025-796,2025-07-18,CC,,Soixante députés au moins,saisine_cc
+2025-796,2025-08-07,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025895DC.htm,decision_cc
+2025-796,2025-08-11,PROM,,2025-796,promulgation
+2025-1058,2025-11-06,PROM,,2025-1058,promulgation
+2025-1251,2025-12-22,PROM,,2025-1251,promulgation
+2025-336,2025-02-12,SN1,,,procedure_acceleree
+2025-336,2025-04-14,PROM,,2025-336,promulgation
+2025-337,2025-02-14,AN1,,,procedure_acceleree
+2025-337,2025-04-02,CMP,,,cmp_convoquee
+2025-337,2025-04-09,CMP,,,cmp_accord
+2025-337,2025-04-14,PROM,,2025-337,promulgation
+2025-1317,2025-05-20,SN1,,,procedure_acceleree
+2025-1317,2025-12-26,PROM,,2025-1317,promulgation
+2025-1250,2025-05-14,SN1,,,procedure_acceleree
+2025-1250,2025-12-22,PROM,,2025-1250,promulgation
+2025-677,2025-03-05,AN1,,,procedure_acceleree
+2025-677,2025-07-21,PROM,,2025-677,promulgation
+2026-794,2026-05-19,CMP,,,cmp_convoquee
+2026-794,2026-06-03,CMP,,,cmp_desaccord
+2026-794,2026-07-16,CC,,Président du Sénat,saisine_cc
+2026-794,2026-07-17,CC,,Soixante sénateurs au moins,saisine_cc
+2026-794,2026-07-17,CC,,Premier Ministre,saisine_cc
+2026-794,2026-07-20,CC,,Soixante députés au moins,saisine_cc
+2026-794,2026-07-20,CC,,Soixante députés au moins,saisine_cc
+2026-794,2026-08-14,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026910DC.htm,decision_cc
+2026-794,2026-08-18,PROM,,2026-794,promulgation
+2026-404,2026-05-26,PROM,,2026-404,promulgation
+2025-449,2025-03-19,AN1,,,procedure_acceleree
+2025-449,2025-05-23,PROM,,2025-449,promulgation
+2026-725,2025-06-10,SN1,,,procedure_acceleree
+2026-725,2026-07-02,CMP,,,cmp_convoquee
+2026-725,2026-07-17,CMP,,,cmp_accord
+2026-725,2026-08-03,PROM,,2026-725,promulgation
+2025-567,2024-06-26,SN1,,,procedure_acceleree
+2025-567,2025-06-23,PROM,,2025-567,promulgation
+2025-579,2025-03-26,SN1,,,procedure_acceleree
+2025-579,2025-06-27,PROM,,2025-579,promulgation
+2026-441,2025-06-11,SN1,,,procedure_acceleree
+2026-441,2026-06-04,PROM,,2026-441,promulgation
+2026-555,2026-06-29,PROM,,2026-555,promulgation
+2025-1129,2025-04-28,AN1,,,procedure_acceleree
+2025-1129,2025-06-18,CMP,,,cmp_convoquee
+2025-1129,2025-07-07,CMP,,,cmp_accord
+2025-1129,2025-10-21,CC,,Soixante députés au moins,saisine_cc
+2025-1129,2025-11-20,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025896DC.htm,decision_cc
+2025-1129,2025-11-26,PROM,,2025-1129,promulgation
+2026-553,2025-05-30,AN1,,,procedure_acceleree
+2026-553,2026-04-02,CMP,,,cmp_convoquee
+2026-553,2026-04-29,CMP,,,cmp_accord
+2026-553,2026-06-29,PROM,,2026-553,promulgation
+2025-1044,2025-11-03,PROM,,2025-1044,promulgation
+2025-793,2025-04-22,SN1,,,procedure_acceleree
+2025-793,2025-07-01,CMP,,,cmp_convoquee
+2025-793,2025-07-08,CMP,,,cmp_accord
+2025-793,2025-07-16,CC,,Premier Ministre,saisine_cc
+2025-793,2025-08-07,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025893DC.htm,decision_cc
+2025-793,2025-08-11,PROM,,2025-793,promulgation
+2025-797,2025-04-22,SN1,,,procedure_acceleree
+2025-797,2025-07-01,CMP,,,cmp_convoquee
+2025-797,2025-07-08,CMP,,,cmp_accord
+2025-797,2025-07-16,CC,,Premier Ministre,saisine_cc
+2025-797,2025-07-16,CC,,Soixante députés au moins,saisine_cc
+2025-797,2025-07-18,CC,,Soixante députés au moins,saisine_cc
+2025-797,2025-08-07,CC,,Conforme avec réserve | http://www.conseil-constitutionnel.fr/decision/2025/2025894DC.htm,decision_cc
+2025-797,2025-08-11,PROM,,2025-797,promulgation
+2025-486,2025-04-22,SN1,,,procedure_acceleree
+2025-486,2025-06-02,PROM,,2025-486,promulgation
+2026-586,2025-04-28,SN1,,,procedure_acceleree
+2026-586,2026-07-01,PROM,,2026-586,promulgation
+2025-640,2025-04-28,SN1,,,procedure_acceleree
+2025-640,2025-07-15,PROM,,2025-640,promulgation
+2025-1079,2025-05-13,AN1,,,procedure_acceleree
+2025-1079,2025-11-17,PROM,,2025-1079,promulgation
+2025-989,2025-05-07,SN1,,,procedure_acceleree
+2025-989,2025-07-04,CMP,,,cmp_convoquee
+2025-989,2025-07-09,CMP,,,cmp_accord
+2025-989,2025-10-24,PROM,,2025-989,promulgation
+2026-145,2025-05-15,AN1,,,procedure_acceleree
+2026-145,2026-03-02,PROM,,2026-145,promulgation
+2026-201,2025-05-15,SN1,,,procedure_acceleree
+2026-201,2026-01-15,CMP,,,cmp_convoquee
+2026-201,2026-01-28,CMP,,,cmp_accord
+2026-201,2026-02-19,CC,,Soixante députés au moins,saisine_cc
+2026-201,2026-03-20,CC,,Conforme avec réserve | http://www.conseil-constitutionnel.fr/decision/2026/2026902DC.htm,decision_cc
+2026-201,2026-03-20,PROM,,2026-201,promulgation
+2026-148,2025-05-15,SN1,,,procedure_acceleree
+2026-148,2026-03-03,PROM,,2026-148,promulgation
+2026-410,2026-05-11,SN1,,,procedure_acceleree
+2026-410,2026-05-21,CC,,De droit (article 61 alinéa 1 de la Constitution),saisine_cc
+2026-410,2026-05-28,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026905DC.htm,decision_cc
+2026-410,2026-05-28,PROM,,2026-410,promulgation
+2025-1056,2025-06-04,AN1,,,procedure_acceleree
+2025-1056,2025-11-06,PROM,,2025-1056,promulgation
+2026-350,2026-01-26,SN1,,,procedure_acceleree
+2026-350,2026-03-30,CMP,,,cmp_convoquee
+2026-350,2026-04-14,CMP,,,cmp_accord
+2026-350,2026-05-09,PROM,,2026-350,promulgation
+2026-28,2025-06-19,SN1,,,procedure_acceleree
+2026-28,2026-01-28,PROM,,2026-28,promulgation
+2026-103,2025-12-15,CMP,,,cmp_convoquee
+2026-103,2026-01-02,CMP,,,cmp_desaccord
+2026-103,2026-01-20,ANNLEC,,,engagement_49_3
+2026-103,2026-01-23,ANNLEC,VTANR5L17V5154,rejetee,motion_censure
+2026-103,2026-01-23,ANNLEC,VTANR5L17V5155,rejetee,motion_censure
+2026-103,2026-01-23,ANNLEC,,,engagement_49_3
+2026-103,2026-01-27,ANNLEC,VTANR5L17V5193,rejetee,motion_censure
+2026-103,2026-01-27,ANNLEC,VTANR5L17V5194,rejetee,motion_censure
+2026-103,2026-01-30,ANLDEF,,,engagement_49_3
+2026-103,2026-02-02,ANLDEF,VTANR5L17V5284,rejetee,motion_censure
+2026-103,2026-02-02,ANLDEF,VTANR5L17V5285,rejetee,motion_censure
+2026-103,2026-02-04,CC,,Soixante députés au moins,saisine_cc
+2026-103,2026-02-04,CC,,Premier Ministre,saisine_cc
+2026-103,2026-02-05,CC,,Soixante députés au moins,saisine_cc
+2026-103,2026-02-06,CC,,Soixante députés au moins,saisine_cc
+2026-103,2026-02-19,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026901DC.htm,decision_cc
+2026-103,2026-02-19,PROM,,2026-103,promulgation
+2026-246,2025-07-02,AN1,,,procedure_acceleree
+2026-246,2026-04-07,PROM,,2026-246,promulgation
+2026-510,2025-07-11,SN1,,,procedure_acceleree
+2026-510,2026-06-15,PROM,,2026-510,promulgation
+2026-167,2025-07-16,SN1,,,procedure_acceleree
+2026-167,2026-03-06,PROM,,2026-167,promulgation
+2026-351,2025-07-30,SN1,,,procedure_acceleree
+2026-351,2026-04-14,CMP,,,cmp_convoquee
+2026-351,2026-04-30,CMP,,,cmp_accord
+2026-351,2026-05-09,PROM,,2026-351,promulgation
+2025-1055,2025-08-13,SN1,,,procedure_acceleree
+2025-1055,2025-10-22,CMP,,,cmp_convoquee
+2025-1055,2025-10-28,CMP,,,cmp_accord
+2025-1055,2025-10-30,CC,,Premier Ministre,saisine_cc
+2025-1055,2025-11-06,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025897DC.htm,decision_cc
+2025-1055,2025-11-06,PROM,,2025-1055,promulgation
+2026-795,2026-01-23,AN1,,,procedure_acceleree
+2026-795,2026-06-25,CMP,,,cmp_convoquee
+2026-795,2026-07-03,CMP,,,cmp_accord
+2026-795,2026-07-23,CC,,Soixante députés au moins,saisine_cc
+2026-795,2026-08-14,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026913DC.htm,decision_cc
+2026-795,2026-08-18,PROM,,2026-795,promulgation
+2026-630,2026-07-13,PROM,,2026-630,promulgation
+2025-1403,2025-11-26,CMP,,,cmp_convoquee
+2025-1403,2025-11-26,CMP,,,cmp_desaccord
+2025-1403,2025-12-18,CC,,Soixante députés au moins,saisine_cc
+2025-1403,2025-12-30,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2025/2025899DC.htm,decision_cc
+2025-1403,2025-12-30,PROM,,2025-1403,promulgation
+2026-534,2025-10-14,SN1,,,procedure_acceleree
+2026-534,2026-04-08,CMP,,,cmp_convoquee
+2026-534,2026-04-29,CMP,,,cmp_accord
+2026-534,2026-05-18,CC,,Soixante députés au moins,saisine_cc
+2026-534,2026-05-18,CC,,Soixante députés au moins,saisine_cc
+2026-534,2026-05-19,CC,,Soixante sénateurs au moins,saisine_cc
+2026-534,2026-06-18,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026904DC.htm,decision_cc
+2026-534,2026-06-25,PROM,,2026-534,promulgation
+2026-962,2026-10-19,PROM,,2026-962,promulgation
+2025-1173,2025-11-10,AN1,,,procedure_acceleree
+2025-1173,2025-11-26,CMP,,,cmp_convoquee
+2025-1173,2025-11-27,CMP,,,cmp_accord
+2025-1173,2025-12-08,PROM,,2025-1173,promulgation
+2026-813,2026-01-23,AN1,,,procedure_acceleree
+2026-813,2026-07-09,CMP,,,cmp_convoquee
+2026-813,2026-07-21,CMP,,,cmp_accord
+2026-813,2026-07-23,CC,,Soixante députés au moins,saisine_cc
+2026-813,2026-07-24,CC,,Soixante députés au moins,saisine_cc
+2026-813,2026-08-14,CC,,Non conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026911DC.htm,decision_cc
+2026-813,2026-08-24,PROM,,2026-813,promulgation
+2026-373,2026-01-09,AN1,,,procedure_acceleree
+2026-373,2026-05-15,PROM,,2026-373,promulgation
+2026-325,2025-11-26,AN1,,,procedure_acceleree
+2026-325,2026-04-29,PROM,,2026-325,promulgation
+2026-300,2025-12-02,AN1,,,procedure_acceleree
+2026-300,2026-04-21,PROM,,2026-300,promulgation
+2026-667,2026-03-23,AN1,,,procedure_acceleree
+2026-667,2026-05-29,CMP,,,cmp_convoquee
+2026-667,2026-06-04,CMP,,,cmp_accord
+2026-667,2026-06-23,CC,,Soixante députés au moins,saisine_cc
+2026-667,2026-06-23,CC,,Soixante députés au moins,saisine_cc
+2026-667,2026-07-23,CC,,Conforme avec réserve | http://www.conseil-constitutionnel.fr/decision/2026/2026906DC.htm,decision_cc
+2026-667,2026-07-27,PROM,,2026-667,promulgation
+2026-307,2026-01-12,SN1,,,procedure_acceleree
+2026-307,2026-04-23,PROM,,2026-307,promulgation
+2026-442,2026-06-04,PROM,,2026-442,promulgation
+2025-1316,2025-12-26,PROM,,2025-1316,promulgation
+2026-668,2026-04-07,AN1,,,procedure_acceleree
+2026-668,2026-06-24,CMP,,,cmp_convoquee
+2026-668,2026-07-01,CMP,,,cmp_accord
+2026-668,2026-07-27,PROM,,2026-668,promulgation
+2026-554,2026-01-15,AN1,,,procedure_acceleree
+2026-554,2026-04-17,CMP,,,cmp_convoquee
+2026-554,2026-06-02,CMP,,,cmp_accord
+2026-554,2026-06-29,PROM,,2026-554,promulgation
+2026-574,2026-01-19,SN1,,,procedure_acceleree
+2026-574,2026-06-30,PROM,,2026-574,promulgation
+2026-249,2026-02-02,SN1,,,procedure_acceleree
+2026-249,2026-04-07,PROM,,2026-249,promulgation
+2026-257,2026-02-04,SN1,,,procedure_acceleree
+2026-257,2026-04-09,PROM,,2026-257,promulgation
+2026-587,2026-02-25,SN1,,,procedure_acceleree
+2026-587,2026-07-01,PROM,,2026-587,promulgation
+2026-645,2026-02-25,SN1,,,procedure_acceleree
+2026-645,2026-07-22,PROM,,2026-645,promulgation
+2026-975,2026-05-27,SN1,,,procedure_acceleree
+2026-975,2026-10-21,PROM,,2026-975,promulgation
+2026-651,2026-03-18,SN1,,,procedure_acceleree
+2026-651,2026-07-07,CMP,,,cmp_convoquee
+2026-651,2026-07-08,CMP,,,cmp_accord
+2026-651,2026-07-13,CC,,Soixante députés au moins,saisine_cc
+2026-651,2026-07-13,CC,,Soixante députés au moins,saisine_cc
+2026-651,2026-07-23,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026909DC.htm,decision_cc
+2026-651,2026-07-23,PROM,,2026-651,promulgation
+2026-650,2026-03-18,SN1,,,procedure_acceleree
+2026-650,2026-07-07,CMP,,,cmp_convoquee
+2026-650,2026-07-08,CMP,,,cmp_accord
+2026-650,2026-07-10,CC,,De droit (article 61 alinéa 1 de la Constitution),saisine_cc
+2026-650,2026-07-23,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026908DC.htm,decision_cc
+2026-650,2026-07-23,PROM,,2026-650,promulgation
+2026-798,2026-03-25,SN1,,,procedure_acceleree
+2026-798,2026-07-17,CMP,,,cmp_convoquee
+2026-798,2026-07-21,CMP,,,cmp_accord
+2026-798,2026-07-24,CC,,Soixante députés au moins,saisine_cc
+2026-798,2026-07-24,CC,,Soixante députés au moins,saisine_cc
+2026-798,2026-08-14,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026915DC.htm,decision_cc
+2026-798,2026-08-18,PROM,,2026-798,promulgation
+2026-470,2026-03-25,SN1,,,procedure_acceleree
+2026-470,2026-06-11,PROM,,2026-470,promulgation
+2026-797,2026-05-12,AN1,,,procedure_acceleree
+2026-797,2026-07-09,CMP,,,cmp_convoquee
+2026-797,2026-07-17,CMP,,,cmp_accord
+2026-797,2026-07-23,CC,,Soixante députés au moins,saisine_cc
+2026-797,2026-08-14,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026912DC.htm,decision_cc
+2026-797,2026-08-18,PROM,,2026-797,promulgation
+2026-791,2026-04-08,AN1,,,procedure_acceleree
+2026-791,2026-06-11,CMP,,,cmp_convoquee
+2026-791,2026-06-24,CMP,,,cmp_accord
+2026-791,2026-07-06,CC,,Soixante députés au moins,saisine_cc
+2026-791,2026-08-06,CC,,Conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026907DC.htm,decision_cc
+2026-791,2026-08-16,PROM,,2026-791,promulgation
+2026-796,2026-04-08,AN1,,,procedure_acceleree
+2026-796,2026-07-06,CMP,,,cmp_convoquee
+2026-796,2026-07-17,CMP,,,cmp_accord
+2026-796,2026-07-24,CC,,Soixante députés au moins,saisine_cc
+2026-796,2026-07-24,CC,,Soixante députés au moins,saisine_cc
+2026-796,2026-08-14,CC,,Partiellement conforme | http://www.conseil-constitutionnel.fr/decision/2026/2026914DC.htm,decision_cc
+2026-796,2026-08-18,PROM,,2026-796,promulgation
+2026-992,2026-10-26,PROM,,2026-992,promulgation
+2026-963,2026-05-27,SN1,,,procedure_acceleree
+2026-963,2026-10-19,PROM,,2026-963,promulgation

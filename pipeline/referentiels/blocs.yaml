@@ -1,0 +1,71 @@
+# Mapping groupes politiques → blocs.
+#
+# Choix politique sensible : validé par Max le 2026-10-28 (cas litigieux :
+# DR/LR en bloc « droite » distinct, UDR/UDDPLR en « RN et alliés », LIOT,
+# RDSE et non-inscrits en « autres », UNT en « RN et alliés »). Toute
+# modification passe par Max. Ce fichier est affiché tel quel sur la page
+# méthodologie du site.
+#
+# Le bloc sert aux classes de coalition (docs/METHODO.md). Le groupe pivot,
+# lui, se calcule groupe par groupe : RN et UDR restent distincts.
+
+blocs:
+  gauche: {libelle: "Gauche", ordre: 1}
+  centre: {libelle: "Centre (bloc présidentiel)", ordre: 2}
+  droite: {libelle: "Droite (LR)", ordre: 3}
+  rn: {libelle: "RN et alliés", ordre: 4}
+  autres: {libelle: "Autres et non-inscrits", ordre: 5}
+
+# Blocs dont l'accord définit la classe « socle » d'une coalition, par
+# législature (dates : début de législature AN). En XVIe, LR est dans
+# l'opposition ; en XVIIe, le « socle commun » réunit centre et droite.
+socle:
+  16: {debut: "2022-06-28", blocs: [centre]}
+  17: {debut: "2024-07-18", blocs: [centre, droite]}
+
+# Assemblée nationale : clé = organeRef (AMO), par législature.
+assemblee:
+  16:
+    PO800490: {sigle: LFI-NUPES, bloc: gauche}
+    PO800496: {sigle: SOC, bloc: gauche}       # jusqu'au 18/10/2023
+    PO830170: {sigle: SOC, bloc: gauche}       # « SOC-A » à partir du 19/10/2023
+    PO800526: {sigle: ECOLO, bloc: gauche}
+    PO800502: {sigle: GDR-NUPES, bloc: gauche}
+    PO800538: {sigle: RE, bloc: centre}
+    PO800484: {sigle: DEM, bloc: centre}
+    PO800514: {sigle: HOR, bloc: centre}
+    PO800508: {sigle: LR, bloc: droite}
+    PO800520: {sigle: RN, bloc: rn}
+    PO800532: {sigle: LIOT, bloc: autres}
+    PO793087: {sigle: NI, bloc: autres}
+  17:
+    PO845413: {sigle: LFI-NFP, bloc: gauche}
+    PO845419: {sigle: SOC, bloc: gauche}
+    PO845439: {sigle: ECOS, bloc: gauche}
+    PO845514: {sigle: GDR, bloc: gauche}
+    PO845407: {sigle: EPR, bloc: centre}
+    PO845454: {sigle: DEM, bloc: centre}
+    PO845470: {sigle: HOR, bloc: centre}
+    PO845425: {sigle: DR, bloc: droite}
+    PO845401: {sigle: RN, bloc: rn}
+    PO847173: {sigle: UDR, bloc: rn}           # 12/09/2024 → 04/09/2025
+    PO872880: {sigle: UDDPLR, bloc: rn}        # successeur d'UDR, depuis le 05/09/2025
+    PO845485: {sigle: LIOT, bloc: autres}
+    PO840056: {sigle: NI, bloc: autres}
+
+# Sénat : clé = code de groupe d'ODSEN_HISTOGROUPES. Plusieurs codes sont
+# obsolètes (UMP = LR, LREM = RDPI, CRC = CRCE-K, RTLI = Les Indépendants) :
+# le sigle d'affichage est maintenu ici. Avant le 05/10/2026, les sénateurs
+# RN siégeaient parmi les non-inscrits (bloc « autres »).
+senat:
+  SOC: {sigle: SER, nom: "Socialiste, Écologiste et Républicain", bloc: gauche}
+  CRC: {sigle: CRCE-K, nom: "Communiste Républicain Citoyen et Écologiste – Kanaky", bloc: gauche}
+  GEST: {sigle: GEST, nom: "Écologiste – Solidarité et Territoires", bloc: gauche}
+  LREM: {sigle: RDPI, nom: "Rassemblement des démocrates, progressistes et indépendants", bloc: centre}
+  UC: {sigle: UC, nom: "Union Centriste", bloc: centre}
+  RTLI: {sigle: LIRT, nom: "Les Indépendants – République et Territoires", bloc: centre}
+  UMP: {sigle: LR, nom: "Les Républicains", bloc: droite}
+  UNT: {sigle: UNT, nom: "Union Nationale pour les Territoires", bloc: rn}   # depuis le 05/10/2026
+  RDSE: {sigle: RDSE, nom: "Rassemblement Démocratique et Social Européen", bloc: autres}
+  NI: {sigle: NI, nom: "Non-inscrits", bloc: autres}
+  AUCUN: {sigle: NI, nom: "Non-inscrits", bloc: autres}

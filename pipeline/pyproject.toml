@@ -10,9 +10,13 @@ dependencies = [
     "pyyaml>=6.0",
 ]
 
+[project.scripts]
+qfl = "qfl.cli:main"
+
 [dependency-groups]
 dev = [
     "pytest>=8.0",
+    "matplotlib>=3.9",
 ]
 
 [build-system]
@@ -24,4 +28,7 @@ packages = ["qfl"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "donnees: tests sur la base produite (data/qfl.sqlite), sautés si elle est absente",
+]
 addopts = "-ra"

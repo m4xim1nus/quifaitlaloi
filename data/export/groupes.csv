@@ -1,0 +1,37 @@
+id,chambre,legislature,sigle,nom,bloc,date_debut,date_fin
+PO800490,AN,16,LFI-NUPES,La France insoumise - Nouvelle Union Populaire écologique et sociale,gauche,2022-06-28,2024-06-09
+PO800496,AN,16,SOC,Socialistes et apparentés (membre de l’intergroupe NUPES),gauche,2022-06-28,2023-10-18
+PO830170,AN,16,SOC,Socialistes et apparentés,gauche,2023-10-19,2024-06-09
+PO800526,AN,16,ECOLO,Écologiste - NUPES,gauche,2022-06-28,2024-06-09
+PO800502,AN,16,GDR-NUPES,Gauche démocrate et républicaine - NUPES,gauche,2022-06-28,2024-06-09
+PO800538,AN,16,RE,Renaissance,centre,2022-06-28,2024-06-09
+PO800484,AN,16,DEM,Démocrate (MoDem et Indépendants),centre,2022-06-28,2024-06-09
+PO800514,AN,16,HOR,Horizons et apparentés,centre,2022-06-28,2024-06-09
+PO800508,AN,16,LR,Les Républicains,droite,2022-06-28,2024-06-09
+PO800520,AN,16,RN,Rassemblement National,rn,2022-06-28,2024-06-09
+PO800532,AN,16,LIOT,"Libertés, Indépendants, Outre-mer et Territoires",autres,2022-06-28,2024-06-09
+PO793087,AN,16,NI,Non inscrit,autres,2022-06-22,2024-06-09
+PO845413,AN,17,LFI-NFP,La France insoumise - Nouveau Front Populaire,gauche,2024-07-18,
+PO845419,AN,17,SOC,Socialistes et apparentés,gauche,2024-07-18,
+PO845439,AN,17,ECOS,Écologiste et Social,gauche,2024-07-18,
+PO845514,AN,17,GDR,Gauche Démocrate et Républicaine,gauche,2024-07-18,
+PO845407,AN,17,EPR,Ensemble pour la République,centre,2024-07-18,
+PO845454,AN,17,DEM,Les Démocrates,centre,2024-07-18,
+PO845470,AN,17,HOR,Horizons & Indépendants,centre,2024-07-18,
+PO845425,AN,17,DR,Droite Républicaine,droite,2024-07-18,
+PO845401,AN,17,RN,Rassemblement National,rn,2024-07-18,
+PO847173,AN,17,UDR,UDR,rn,2024-09-12,2025-09-04
+PO872880,AN,17,UDDPLR,Union des droites pour la République,rn,2025-09-05,
+PO845485,AN,17,LIOT,"Libertés, Indépendants, Outre-mer et Territoires",autres,2024-07-18,
+PO840056,AN,17,NI,Non inscrit,autres,2024-07-01,
+SN-SOC,SN,,SER,"Socialiste, Écologiste et Républicain",gauche,,
+SN-CRC,SN,,CRCE-K,Communiste Républicain Citoyen et Écologiste – Kanaky,gauche,,
+SN-GEST,SN,,GEST,Écologiste – Solidarité et Territoires,gauche,,
+SN-LREM,SN,,RDPI,"Rassemblement des démocrates, progressistes et indépendants",centre,,
+SN-UC,SN,,UC,Union Centriste,centre,,
+SN-RTLI,SN,,LIRT,Les Indépendants – République et Territoires,centre,,
+SN-UMP,SN,,LR,Les Républicains,droite,,
+SN-UNT,SN,,UNT,Union Nationale pour les Territoires,rn,,
+SN-RDSE,SN,,RDSE,Rassemblement Démocratique et Social Européen,autres,,
+SN-NI,SN,,NI,Non-inscrits,autres,,
+SN-AUCUN,SN,,NI,Non-inscrits,autres,,
