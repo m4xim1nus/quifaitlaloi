@@ -527,7 +527,7 @@ Il est **écarté** (`motif_ecart`), dans l'ordre :
 4. `inactif` : aucun acte de procédure connu depuis **12 mois** avant la
    date de l'instantané (dépôt, commission, séance, vote, dans le dossier AN
    ou dans Dosleg, y compris une séance déjà inscrite à l'ordre du jour).
-   **[à valider par Max]** : le seuil décide quels textes « vivants »
+   **Validé par Max (28/10/2026)** : le seuil décide quels textes « vivants »
    s'affichent. Repère : sous la XVIIe, 15 des 113 lois promulguées hors
    conventions ont connu plus de 12 mois entre deux lectures (6 plus de
    18 mois) ; un texte écarté revient de lui-même dès qu'un acte est
@@ -573,7 +573,7 @@ nominatif : la classe dit qui fait passer un texte, elle n'a pas de sens
 pour un rejet. Le dernier vote peut être celui du **Sénat** (casseurs-
 payeurs : socle + RN, UNT dans le camp gagnant mais pas décisif) ; c'est la
 première fois que le site affiche une coalition du Sénat, avec le mapping
-Sénat de la XVIIe validé par Max (§8). **[à valider par Max]**.
+Sénat de la XVIIe validé par Max (§8) ; affichage validé par Max (28/10/2026), comme la règle du rejet par la première assemblée et le titre court « casseurs-payeurs ».
 
 **Prochaine étape (`attente`).** Seulement ce que les dossiers enregistrent,
 sans calendrier supposé :
