@@ -19,23 +19,12 @@ limites : `docs/SOURCES.md`.
 
 ## Étape 2 : pipeline XVIIe ✅ (2026-10-28)
 
-But : une base SQLite fiable sur la XVIIe et les premiers chiffres.
-
-- [x] Package `qfl` : `download` → `build` → `check`, qui écrit
-  `data/qfl.sqlite` et `data/export/` (CSV, `metriques.json`, `meta.json`).
-- [x] Sources : dumps XVIIe, plus les scrutins AN de la XVIe (les dossiers
-  XVIe n'apportent rien de plus, `docs/SOURCES.md` §17).
-- [x] Modèle de données du brief (§6), taxonomie v0 affinée (type de lecture
-  × mode, `docs/METHODO.md` §5), métriques 1 à 5 (§7).
-- [x] Référentiels : `codes_actes.yaml`, `blocs.yaml` (validé par Max),
-  `flags.yaml`, `periodes.yaml`.
-- [x] Textes témoins dans `qfl check` et `pytest` (Duplomb, PLF 2026,
-  PLFSS 2025, LFSS 2026, Paris-Lyon-Marseille, meublés de tourisme,
-  casseurs-payeurs au Sénat), contrôle croisé datan.fr sur V2957 et V4758.
-- [x] Relecture avec Max (28/10/2026) : graphiques bruts, `docs/METHODO.md`
-  v0 validé, règle fixe du rejet inversé, date des « accords PS ».
-- [x] Échantillon de comptes rendus : `MAIN_LEVEE` confirmé sur 14 lectures sur 16,
-  les 2 écarts corrigés (`docs/METHODO.md` §4).
+Package `qfl` (`download` → `build` → `check`) : 148 lois, 431 lectures,
+scrutins décisifs avec positions de groupe, coalitions et pivots, dans
+`data/qfl.sqlite` et `data/export/`. Méthodologie v0 validée
+(`docs/METHODO.md`), dont la règle fixe du rejet inversé. Main levée vérifiée
+sur 16 comptes rendus, textes témoins dans `qfl check`. Premier constat :
+5 lois sur 148 passent par un contournement.
 
 ## Étape 3 : site v1 ← *prochaine*
 
