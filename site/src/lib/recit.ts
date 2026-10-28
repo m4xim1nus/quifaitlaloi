@@ -40,11 +40,6 @@ export function phrasesScrutin(s: ScrutinDetaille): string[] {
     out.push(
       `La motion a recueilli ${s.pour} voix, il en fallait ${s.requis} : ${s.sort === 'rejete' ? 'elle est rejetée et le texte est considéré comme adopté' : 'elle est adoptée et le gouvernement tombe'}.`
     );
-    const ph = sig?.pivots_hors_socle ?? [];
-    if (ph.length)
-      out.push(
-        `Si ${groupes(ph)} ${ph.length > 1 ? 'avaient' : 'avait'} voté la censure en bloc, elle était adoptée.`
-      );
     return out;
   }
   const morceaux: string[] = [];
@@ -66,20 +61,7 @@ export function phrasesScrutin(s: ScrutinDetaille): string[] {
     out.push(
       `${s.pour} voix pour, ${s.contre} contre${s.abstention ? `, ${s.abstention} abstentions` : ''} : ${s.sort === 'adopte' ? 'adopté' : 'rejeté'}.`
     );
-  const objet = s.objet === 'motion_rejet' ? 'la motion' : 'le texte';
-  if (sig) {
-    if (sig.classe === 'consensus') out.push('Aucun groupe n’a voté contre.');
-    const ph = sig.pivots_hors_socle;
-    if (ph.length && s.sort === 'adopte')
-      out.push(
-        `Si ${groupes(ph)} ${ph.length > 1 ? 'avaient' : 'avait'} voté contre, ${objet} ${objet === 'la motion' ? 'était rejetée' : 'était rejeté'}.`
-      );
-    const pa = sig.pivots_abstention;
-    if (pa.length && s.sort === 'adopte')
-      out.push(
-        `Si ${groupes(pa)} ${pa.length > 1 ? 'avaient' : 'avait'} voté contre au lieu de s’abstenir, ${objet} tombait.`
-      );
-  }
+  if (sig?.classe === 'consensus') out.push('Aucun groupe n’a voté contre.');
   return out;
 }
 

@@ -188,9 +188,7 @@ sous 3:1 (vote nominatif, socle + RN) sont toujours étiquetées ; les carrés
   chevauchement (`lib/frise.ts`), légende-filtre cliquable.
 - `Coalitions`, `Pivots`, `Carre` : graphiques d'unités.
 - `Parcours` : lectures et événements entremêlés.
-- `Majorite` : barre de majorité. Le contre-factuel compare « pour » et
-  « contre » (retirer les « pour » d'un groupe change les exprimés, donc le
-  seuil) : `lib/majorite.ts`.
+- `Majorite` : barre de majorité, groupes décisifs cerclés (§12).
 - `Hemicycle` : sièges colorés selon le décompte du groupe (`lib/hemicycle.ts`),
   groupes de la gauche à la droite, arc de couleur AN. La place d'un siège
   dans son groupe n'est pas celle d'un député, et c'est écrit.
@@ -334,3 +332,12 @@ l'issue).
   `lois.themes`, du plus spécifique au plus général (fréquence croissante,
   « Société », fourre-tout, en dernier). Affichés en étiquettes dans les
   listes (deux au plus), sur la fiche (tous) et en filtre de l'explorateur.
+
+## 12. Fiche : moins de texte sur le vote décisif (quatrième retour de Max)
+
+Les phrases contre-factuelles (« Si le groupe RN avait voté contre, le
+texte était rejeté », et leur version chiffrée sous la barre) sont
+retirées : la barre de majorité cercle **tous** les groupes décisifs, socle
+compris, et le tableau des groupes garde l'étiquette « décisif ». Sur une
+censure, les membres d'un groupe décisif hors socle qui ne l'ont pas votée
+restent figurés en pointillé au bout de la barre.

@@ -67,7 +67,7 @@ describe('récit', () => {
     });
     expect(p[0]).toBe('Pour : EPR et RN ; contre : LFI-NFP.');
     expect(p[1]).toBe('316 voix pour, 223 contre, 25 abstentions : adopté.');
-    expect(p[2]).toBe('Si le groupe RN avait voté contre, le texte était rejeté.');
+    expect(p).toHaveLength(2);
   });
 
   it('raconte une motion de censure rejetée', () => {
@@ -98,7 +98,7 @@ describe('récit', () => {
     });
     expect(p[0]).toBe('LFI-NFP et RN ont voté la censure ; SOC ne l’a pas votée.');
     expect(p[1]).toMatch(/260 voix, il en fallait 289 : elle est rejetée/);
-    expect(p[2]).toBe('Si le groupe SOC avait voté la censure en bloc, elle était adoptée.');
+    expect(p).toHaveLength(2);
   });
 });
 
