@@ -77,6 +77,8 @@ export interface Lecture {
   scrutin_id: string | null;
   vote_bloque: boolean;
   score_rejet_inverse: number | null;
+  /** Textes en cours : décision du Sénat lue dans Dosleg, pas encore dans le dossier AN. */
+  decision_dosleg?: boolean;
 }
 
 export interface Scrutin {
@@ -150,4 +152,52 @@ export interface Source {
   taille: number;
   sha256: string;
   telecharge_le: string;
+}
+
+/** Où en est un texte en cours (en_cours.csv, colonne `attente`). */
+export type Attente = 'lecture' | 'cmp' | 'cmp_conclusions' | 'transmis' | 'navette';
+
+/**
+ * Un texte en cours (en_cours.csv) : voté au moins une fois sous la XVIIe, ni promulgué ni adopté
+ * définitivement. Ce n'est pas une loi : il n'entre dans aucun agrégat. Les colonnes `*_an`,
+ * `*_sn` décrivent la dernière lecture votée dans chaque chambre ; `chambre_finale` et `mode_final`
+ * la dernière lecture votée tout court.
+ */
+export interface TexteEnCours {
+  id: string;
+  /** null : dans le périmètre ; sinon le motif de l'écart (retire, rejete, caduc, fusionne, inactif). */
+  motif_ecart: string | null;
+  titre: string;
+  titre_court: string;
+  type: TypeLoi;
+  sous_type: string | null;
+  initiative: Loi['initiative'];
+  date_depot: string | null;
+  date_derniere_lecture: string;
+  issue_derniere_lecture: 'adopte' | 'rejete';
+  date_derniere_activite: string | null;
+  attente: Attente;
+  attente_etape: string | null;
+  attente_chambre: Chambre | 'CMP' | null;
+  attente_type_lecture: TypeLecture | null;
+  /** Première séance à venir inscrite pour l'étape attendue. */
+  seance_prevue: string | null;
+  legislature: number;
+  url_an: string | null;
+  url_senat: string | null;
+  procedure_acceleree: boolean;
+  n_lectures: number;
+  chambre_finale: Chambre | null;
+  mode_final: ModeAdoption | null;
+  mode_an: ModeAdoption | null;
+  scrutin_an: string | null;
+  classe_an: Classe | null;
+  pivots_hors_socle_an: string[];
+  mode_sn: ModeAdoption | null;
+  scrutin_sn: string | null;
+  classe_sn: Classe | null;
+  pivots_hors_socle_sn: string[];
+  a_49_3: boolean;
+  contournement: boolean;
+  themes: string[];
 }

@@ -12,7 +12,8 @@ import type {
   Scrutin,
   ScrutinDetaille,
   Signature,
-  Source
+  Source,
+  TexteEnCours
 } from '$lib/types';
 
 /** Dossier des exports versionnés, relatif à site/ (cwd de vite). */
@@ -65,7 +66,7 @@ function loi(r: Ligne): Loi {
 function lecture(r: Ligne): Lecture {
   return {
     id: r.id!,
-    loi_id: r.loi_id!,
+    loi_id: (r.loi_id ?? r.texte_id)!,
     etape: r.etape!,
     chambre: r.chambre as Lecture['chambre'],
     type_lecture: r.type_lecture as Lecture['type_lecture'],
@@ -76,7 +77,48 @@ function lecture(r: Ligne): Lecture {
     mode_adoption: r.mode_adoption as Lecture['mode_adoption'],
     scrutin_id: txt(r.scrutin_id),
     vote_bloque: bool(r.vote_bloque),
-    score_rejet_inverse: num(r.score_rejet_inverse)
+    score_rejet_inverse: num(r.score_rejet_inverse),
+    ...(r.decision_dosleg !== undefined ? { decision_dosleg: bool(r.decision_dosleg) } : {})
+  };
+}
+
+/** Texte en cours (en_cours.csv) ; ses lectures et événements portent `texte_id`. */
+function texteEnCours(r: Ligne): TexteEnCours {
+  return {
+    id: r.id!,
+    motif_ecart: txt(r.motif_ecart),
+    titre: r.titre!,
+    titre_court: r.titre_court!,
+    type: r.type as TexteEnCours['type'],
+    sous_type: txt(r.sous_type),
+    initiative: r.initiative as TexteEnCours['initiative'],
+    date_depot: txt(r.date_depot),
+    date_derniere_lecture: r.date_derniere_lecture!,
+    issue_derniere_lecture: r.issue_derniere_lecture as TexteEnCours['issue_derniere_lecture'],
+    date_derniere_activite: txt(r.date_derniere_activite),
+    attente: r.attente as TexteEnCours['attente'],
+    attente_etape: txt(r.attente_etape),
+    attente_chambre: txt(r.attente_chambre) as TexteEnCours['attente_chambre'],
+    attente_type_lecture: txt(r.attente_type_lecture) as TexteEnCours['attente_type_lecture'],
+    seance_prevue: txt(r.seance_prevue),
+    legislature: Number(r.legislature),
+    url_an: txt(r.url_an),
+    url_senat: txt(r.url_senat),
+    procedure_acceleree: bool(r.procedure_acceleree),
+    n_lectures: Number(r.n_lectures),
+    chambre_finale: txt(r.chambre_finale) as TexteEnCours['chambre_finale'],
+    mode_final: txt(r.mode_final) as TexteEnCours['mode_final'],
+    mode_an: txt(r.mode_an) as TexteEnCours['mode_an'],
+    scrutin_an: txt(r.scrutin_an),
+    classe_an: txt(r.classe_an) as TexteEnCours['classe_an'],
+    pivots_hors_socle_an: liste(r.pivots_hors_socle_an),
+    mode_sn: txt(r.mode_sn) as TexteEnCours['mode_sn'],
+    scrutin_sn: txt(r.scrutin_sn),
+    classe_sn: txt(r.classe_sn) as TexteEnCours['classe_sn'],
+    pivots_hors_socle_sn: liste(r.pivots_hors_socle_sn),
+    a_49_3: bool(r.a_49_3),
+    contournement: bool(r.contournement),
+    themes: r.themes ? r.themes.split(';') : []
   };
 }
 
@@ -142,6 +184,8 @@ export interface Meta {
     flags: Record<string, Record<string, unknown>>;
     periodes: { periodes: { code: string; debut: string; libelle: string }[] };
   };
+  /** Textes en cours : date de l'instantané, seuil d'inactivité, début de la législature. */
+  en_cours: { date_reference: string; inactivite_mois: number; debut: string };
 }
 
 export interface Base {
@@ -152,8 +196,21 @@ export interface Base {
   signatures: Map<string, Signature>;
   groupes: Map<string, Groupe>;
   evenements: Evenement[];
+  /** Textes en cours (écartés compris, avec leur motif) : jamais mêlés aux lois. */
+  enCours: TexteEnCours[];
+  lecturesEnCours: Lecture[];
+  evenementsEnCours: Evenement[];
   meta: Meta;
 }
+
+const evenement = (r: Ligne): Evenement => ({
+  loi_id: (r.loi_id ?? r.texte_id)!,
+  date: r.date!,
+  etape: r.etape!,
+  scrutin_id: txt(r.scrutin_id),
+  detail: txt(r.detail),
+  type: r.type!
+});
 
 let cache: Base | null = null;
 
@@ -203,14 +260,10 @@ export function base(): Base {
     positions,
     signatures: new Map(lire('signatures.csv').map((r) => [r.scrutin_id!, signature(r)])),
     groupes,
-    evenements: lire('evenements.csv').map((r) => ({
-      loi_id: r.loi_id!,
-      date: r.date!,
-      etape: r.etape!,
-      scrutin_id: txt(r.scrutin_id),
-      detail: txt(r.detail),
-      type: r.type!
-    })),
+    evenements: lire('evenements.csv').map(evenement),
+    enCours: lire('en_cours.csv').map(texteEnCours),
+    lecturesEnCours: lire('en_cours_lectures.csv').map(lecture),
+    evenementsEnCours: lire('en_cours_evenements.csv').map(evenement),
     meta: JSON.parse(readFileSync(resolve(EXPORT, 'meta.json'), 'utf8')) as Meta
   };
   return cache;

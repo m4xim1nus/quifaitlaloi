@@ -1,5 +1,6 @@
 import { base } from '$lib/server/donnees';
 import { dateDonnees } from '$lib/server/vues';
+import { ecartes, regleEnCours, textesEnCours } from '$lib/server/encours';
 
 export const load = () => {
   const b = base();
@@ -18,7 +19,14 @@ export const load = () => {
   );
   const lois = b.lois;
   const lectures = b.lectures;
+  const enCours = textesEnCours();
   return {
+    enCours: {
+      ...regleEnCours(),
+      n: enCours.length,
+      accords: enCours.filter((t) => t.type === 'convention').length,
+      ecartes: ecartes()
+    },
     date: dateDonnees(),
     blocs: ref.blocs,
     socle: ref.socle,

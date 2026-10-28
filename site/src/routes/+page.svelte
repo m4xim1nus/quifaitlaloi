@@ -42,6 +42,12 @@
     et du Sénat, et la compare aux deux législatures précédentes.
   </p>
   <ChoixLegislature courant={17} />
+  {#if data.enCours}
+    <p class="actu">
+      <a href="/en-cours">{data.enCours} textes en cours</a>&#8239;: déjà votés par l’Assemblée ou
+      le Sénat, pas encore des lois.
+    </p>
+  {/if}
   <div class="reglage">
     <Interrupteur bind:valeur={conventions}>
       Inclure les {nConventions} accords internationaux
@@ -77,7 +83,8 @@
       un carré.
     </li>
     <li>
-      <strong>Les textes rejetés, abandonnés ou en cours.</strong> Seules les lois adoptées sont comptées.
+      <strong>Les textes rejetés, abandonnés ou en cours.</strong> Seules les lois adoptées sont
+      comptées&#8239;; les textes en cours sont <a href="/en-cours">suivis à part</a>.
     </li>
     <li>
       <strong>Le Sénat.</strong> Les coalitions sont celles de l’Assemblée&#8239;; le vote du Sénat est
@@ -102,6 +109,14 @@
   }
   .ouverture {
     padding-top: 48px;
+  }
+  .actu {
+    margin: 0;
+    padding-left: 12px;
+    border-left: 3px solid var(--encre);
+  }
+  .actu a {
+    font-weight: 700;
   }
   .reglage {
     display: flex;

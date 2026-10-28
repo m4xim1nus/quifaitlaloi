@@ -58,7 +58,8 @@ export const FICHIERS: Fichier[] = [
   },
   {
     nom: 'scrutins.csv',
-    description: 'Les scrutins utiles : décisifs, motions de rejet et de censure du parcours.',
+    description:
+      'Les scrutins utiles : décisifs, motions de rejet et de censure du parcours (lois et textes en cours).',
     lignes: 'scrutins',
     colonnes: [
       ['type_vote', 'SPS solennel, SPO ordinaire (AN) ; SCR (Sénat) ; MOC motion de censure'],
@@ -106,5 +107,50 @@ export const FICHIERS: Fichier[] = [
       'Événements de procédure : CMP, engagements de responsabilité, motions de censure, Conseil constitutionnel, promulgation.',
     lignes: 'evenements',
     colonnes: [['type, date, detail', 'nature, date et précision de l’événement']]
+  },
+  {
+    nom: 'en_cours.csv',
+    description:
+      'Textes en cours : votés au moins une fois depuis juillet 2024, ni promulgués ni adoptés définitivement. Ce ne sont pas des lois : ils n’entrent dans aucun chiffre du site. Les textes écartés (retirés, rejetés, sans activité depuis un an) y figurent avec leur motif.',
+    lignes: 'en_cours',
+    colonnes: [
+      ['id', 'identifiant du dossier à l’Assemblée'],
+      [
+        'motif_ecart',
+        'vide si le texte est en cours ; sinon retire, rejete, caduc, fusionne, inactif'
+      ],
+      ['date_derniere_lecture, issue_derniere_lecture', 'date et issue du dernier vote'],
+      [
+        'date_derniere_activite',
+        'dernier acte de procédure connu (dépôt, commission, séance, vote)'
+      ],
+      [
+        'attente, attente_chambre, attente_etape',
+        'où en est le texte : lecture, transmis, cmp, cmp_conclusions, navette'
+      ],
+      ['seance_prevue', 'première séance inscrite à l’ordre du jour pour l’étape attendue'],
+      [
+        'mode_an, classe_an, pivots_hors_socle_an (et _sn)',
+        'dernière lecture votée dans chaque chambre : mode, coalition, groupes décisifs'
+      ]
+    ]
+  },
+  {
+    nom: 'en_cours_lectures.csv',
+    description: 'Les lectures déjà votées des textes en cours (mêmes colonnes que lectures.csv).',
+    lignes: 'en_cours_lectures',
+    colonnes: [
+      ['texte_id', 'identifiant du texte dans en_cours.csv'],
+      [
+        'decision_dosleg',
+        'décision du Sénat lue dans sa base Dosleg, pas encore enregistrée par l’Assemblée'
+      ]
+    ]
+  },
+  {
+    nom: 'en_cours_evenements.csv',
+    description: 'Événements de procédure des textes en cours (mêmes colonnes que evenements.csv).',
+    lignes: 'en_cours_evenements',
+    colonnes: [['texte_id', 'identifiant du texte dans en_cours.csv']]
   }
 ];

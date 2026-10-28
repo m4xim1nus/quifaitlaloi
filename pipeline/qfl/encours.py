@@ -182,6 +182,7 @@ def textes(autres: list[dict], idx: parcours.Index, dosleg: dict, exclus: set[st
         titre = typographie(d["titreDossier"]["titre"])
         complet = next((typographie(t) for t in c["titres"][1:] if t and t.lower().startswith(("projet", "proposition"))),
                        None) if not titre.lower().startswith(("projet", "proposition")) else titre
+        complet = complet[:1].upper() + complet[1:] if complet else None  # titres de documents en minuscule
         typ, sous_type = parcours.type_loi(d, complet or titre, sn["typloicod"] if sn else None)
         for l in lectures:
             l["ctx"] = (loicod, c["titres"], typ)
