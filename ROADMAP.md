@@ -45,14 +45,23 @@ législature, amorce des récits (zooms). Chiffres comparés :
 Arbitrages (blocs et socle de la XVe, Sénat, vote bloqué, récits) tranchés
 sur délégation de Max.
 
+## Cycles Coalitions, Fiches, Textes en cours (2026-10-28) — menés en parallèle
+
+- **Coalitions** : page `/coalitions`, chronologie trimestrielle des
+  coalitions et des groupes décisifs depuis 2017 (METHODO §16). Pas de
+  Sankey : une loi est soutenue par plusieurs blocs, aucun flux ne se
+  conserve. LR reste dans le socle sous toute la XVIIe, pas de « décisif à
+  plusieurs » (décisions de Max).
+- **Fiches** : 10 récits relus (budget 2025, narcotrafic, aide à mourir,
+  Nouvelle-Calédonie, pouvoir d'achat 2022, passe vaccinal en plus).
+- **Textes en cours** : page `/en-cours` et 126 fiches, textes votés au
+  moins une fois sans être promulgués, règle de périmètre fixe (METHODO §17).
+
+Reste : relecture de Max, réponses aux questions de périmètre des textes
+en cours, puis tag `v1.2.0`.
+
 ## Ensuite
 
-Un cycle à la fois, nommé au moment de l'ouvrir :
-
-- **Coalitions** : séries temporelles des signatures, fréquence pivot
-  RN / PS / LR, Sankey blocs → adoptions.
-- **Fiches** (amorcé) : compléter jusqu'à une dizaine de récits (budget 2025,
-  aide à mourir, narcotrafic, Nouvelle-Calédonie, simplification…).
-- **Textes en cours** : afficher l'actualité chaude, c'est-à-dire les
-  textes pas encore définitivement adoptés (lectures déjà votées,
-  coalitions, prochaines étapes). Exemple : casseurs-payeurs.
+Un cycle à la fois, nommé au moment de l'ouvrir. Pistes : suite des récits,
+vue Sénat des coalitions, mise à jour régulière des données (textes en
+cours).
