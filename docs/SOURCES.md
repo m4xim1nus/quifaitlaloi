@@ -326,3 +326,34 @@ et §7.
     « constitutionnelle » absents (une vingtaine de lois, surtout XVe), mots
     collés (« accompagnerles », « Protégerle »), titre resté celui du dépôt.
     Le titre retenu est celui du JO publié par le Sénat (`loi.loititjo`).
+
+## Cycle Textes en cours
+
+Sources inchangées ; colonnes et tables Dosleg ajoutées
+(`pipeline/qfl/senat.py`) :
+
+- `loi.etaloicod` → table `etaloi` : 01 en cours de discussion, 02 fusionné,
+  03 rejeté, 04 promulgué ou adopté, 05 caduc, 06 retiré ;
+- `texte.txtoritxtdat` et `oritxt` : décision du Sénat en séance (codes 2,
+  6, 7, 9, 11 adoptés ; 8, 21, 27, 31, 40, 42, 43 rejetés ; les textes de
+  commission, 23, 29, 33, n'en sont pas) ;
+- `date_seance` : séances du Sénat par lecture, y compris celles déjà
+  inscrites à l'ordre du jour (dates à venir).
+
+Côté AN, un acte `…-DEBATS-SEANCE` daté après l'instantané est une séance
+inscrite à l'ordre du jour.
+
+Anomalies relevées :
+
+29. **Retard du dossier AN sur le Sénat** : casseurs-payeurs (`pjl25-952`,
+    dossier `DLR5L17N54925`), voté le 27/10/2026, n'a le 28/10 que son dépôt
+    dans le dossier AN, et pas encore de texte adopté dans Dosleg ; seul le
+    scrutin SN2026-41 l'atteste. Vingt-quatre propositions de loi rejetées
+    en première lecture au Sénat n'ont leur décision que dans Dosleg.
+30. **Deux dossiers AN pour un dossier du Sénat** : le projet de loi
+    constitutionnelle sur la Corse (`pjl24-869`) a un dossier AN du dépôt au
+    Sénat (`DLR5L17N52599`, sans décision) et le dossier du texte examiné
+    (`DLR5L17N54218`).
+31. **Titres de dossiers AN** : « Projet de loi Projet de loi-cadre… »
+    (redoublé) ; titres de documents en minuscule (« proposition de loi
+    visant à… »).

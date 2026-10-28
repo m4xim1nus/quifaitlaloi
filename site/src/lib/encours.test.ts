@@ -41,7 +41,7 @@ describe('état d’un texte en cours', () => {
       libelleAttente(
         texte({ attente: 'transmis', attente_chambre: 'AN', attente_type_lecture: null })
       )
-    ).toBe('Transmis à l’Assemblée');
+    ).toBe('Transmis à l’Assemblée, examen pas encore engagé');
     expect(libelleAttente(texte({ attente: 'cmp', attente_chambre: 'CMP' }))).toBe(
       'Commission mixte paritaire convoquée'
     );
@@ -54,7 +54,7 @@ describe('état d’un texte en cours', () => {
           chambre_finale: 'SN'
         })
       )
-    ).toBe('Rejeté par le Sénat, suite de la navette pas encore enregistrée');
+    ).toBe('Rejeté par le Sénat\u202f; la suite n’est pas encore connue');
   });
 
   it('annonce une séance seulement si elle est inscrite', () => {
@@ -112,9 +112,11 @@ describe('état d’un texte en cours', () => {
 
   it('génère le chapô depuis les données', () => {
     expect(chapoEnCours(2, '2026-10-28', dateLongue)).toMatch(
-      /^Au 28 octobre 2026, 2 textes déjà votés .* attendent .* Ce ne sont pas des lois/
+      /^Au 28 octobre 2026, 2 textes déjà votés .* poursuivent leur parcours .* ce ne sont pas des lois/
     );
-    expect(chapoEnCours(1, '2026-10-28', dateLongue)).toMatch(/1 texte déjà voté .* attend la/);
+    expect(chapoEnCours(1, '2026-10-28', dateLongue)).toMatch(
+      /1 texte déjà voté .* poursuit son parcours/
+    );
   });
 });
 

@@ -29,7 +29,9 @@ export function libelleAttente(t: Etat): string {
     case 'lecture':
       return `En attente de ${LECTURE[t.attente_type_lecture ?? 'premiere']}${ch ? ` ${A_LA[ch]}` : ''}`;
     case 'transmis':
-      return ch ? `Transmis ${A_LA[ch]}` : 'Transmis à l’autre chambre';
+      return ch
+        ? `Transmis ${A_LA[ch]}, examen pas encore engagé`
+        : 'Transmis à l’autre chambre, examen pas encore engagé';
     case 'cmp':
       return 'Commission mixte paritaire convoquée';
     case 'cmp_conclusions':
@@ -38,8 +40,8 @@ export function libelleAttente(t: Etat): string {
         : 'Accord en commission mixte paritaire, conclusions à voter';
     case 'navette':
       return t.issue_derniere_lecture === 'rejete' && t.chambre_finale
-        ? `Rejeté ${PAR_LA[t.chambre_finale]}, suite de la navette pas encore enregistrée`
-        : 'Suite de la navette pas encore enregistrée';
+        ? `Rejeté ${PAR_LA[t.chambre_finale]}\u202f; la suite n’est pas encore connue`
+        : 'La suite n’est pas encore connue';
   }
 }
 
@@ -55,11 +57,11 @@ export function libelleSeance(
 export type Section = 'seance' | 'AN' | 'SN' | 'CMP' | 'navette';
 export const SECTIONS: Section[] = ['seance', 'AN', 'SN', 'CMP', 'navette'];
 export const TITRE_SECTION: Record<Section, string> = {
-  seance: 'Inscrits à l’ordre du jour',
+  seance: 'Séance déjà fixée',
   AN: 'En attente à l’Assemblée',
   SN: 'En attente au Sénat',
   CMP: 'En commission mixte paritaire',
-  navette: 'Navette en suspens'
+  navette: 'Suite pas encore connue'
 };
 
 export function section(t: Etat): Section {
@@ -147,6 +149,6 @@ export function natureTexte(t: Pick<TexteEnCours, 'initiative' | 'type' | 'sous_
 /** Chapô de la page, généré : le nombre de textes et ce qu'ils ne sont pas. */
 export function chapoEnCours(n: number, date: string, dateLongue: (d: string) => string): string {
   return n === 0
-    ? `Au ${dateLongue(date)}, aucun texte voté depuis juillet 2024 n’attend la suite de la navette.`
-    : `Au ${dateLongue(date)}, ${n} texte${n > 1 ? 's' : ''} déjà voté${n > 1 ? 's' : ''} par l’Assemblée ou le Sénat depuis juillet 2024 ${n > 1 ? 'attendent' : 'attend'} la suite de la navette. Ce ne sont pas des lois\u202f: tant qu’ils ne sont pas adoptés définitivement, ils ne comptent dans aucun chiffre du site.`;
+    ? `Au ${dateLongue(date)}, aucun texte voté depuis juillet 2024 n’attend la suite de son parcours.`
+    : `Au ${dateLongue(date)}, ${n} texte${n > 1 ? 's' : ''} déjà voté${n > 1 ? 's' : ''} par l’Assemblée ou le Sénat ${n > 1 ? 'poursuivent leur' : 'poursuit son'} parcours au Parlement. ${n > 1 ? 'Tant qu’ils ne sont pas adoptés définitivement, ce ne sont pas des lois.' : 'Tant qu’il n’est pas adopté définitivement, ce n’est pas une loi.'}`;
 }

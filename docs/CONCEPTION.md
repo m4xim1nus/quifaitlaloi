@@ -435,3 +435,51 @@ comme des zooms qui s'insèrent au bon moment du fil.
   « Récits » dans la navigation.
 - Les faits des récits viennent des données (votes, dates) ou du contexte
   public bien établi ; chaque chiffre se vérifie dans la base.
+
+## Cycle Textes en cours
+
+L'actualité chaude : les textes votés au moins une fois depuis juillet 2024
+qui ne sont pas encore des lois (règle et exports : `docs/METHODO.md`,
+section « Cycle Textes en cours »).
+
+- **Séparés des lois, partout.** Route à part (`/en-cours`, fiches
+  `/en-cours/[id]`), fichiers d'export à part, aucun agrégat. La fiche porte
+  un badge « En cours · pas encore une loi » ; la nature du texte est
+  toujours « Proposition / Projet de loi… », jamais « Loi ordinaire »
+  (`lib/encours.ts:natureTexte`).
+- **Liste rangée par ce que le texte attend** : séance déjà fixée (dates
+  inscrites dans les dossiers), en attente à l'Assemblée, au Sénat, en
+  commission mixte paritaire, suite pas encore connue. Colonnes : date,
+  texte, dernier vote (chambre, issue, mode), coalition, suite. La
+  coalition et le groupe décisif ne figurent que pour un dernier vote qui
+  adopte le texte par un vote nominatif ; « , au Sénat » quand c'est le
+  Sénat. Accords internationaux retirés par défaut, interrupteur partagé
+  avec l'accueil (`?conventions=1`).
+- **Fiche** : état (étape attendue, séance si elle est fixée), faits,
+  parcours (composant `Parcours`, la décision lue dans Dosleg y est
+  signalée), puis chaque vote nominatif déjà tenu, présenté comme le vote
+  décisif d'une loi (`components/VoteDetaille.svelte`, copie de la section
+  de `lois/[id]` pour ne pas toucher à la fiche des lois pendant le cycle
+  Fiches ; à factoriser après fusion).
+- **Textes générés** : chapô et états viennent des données
+  (`chapoEnCours`, `libelleAttente`), aucune phrase figée à relire.
+- **Accueil** : un encart sous les réglages (« N textes en cours : déjà
+  votés…, pas encore des lois », hors accords) et un lien dans « Ce que ces
+  chiffres ne disent pas ». Navigation : « Textes en cours » après « Les
+  lois ». Méthodologie : section `#en-cours`. Données : les trois fichiers.
+
+**Arbitrage** (relecteur indépendant, sous-agent, 28/10/2026), tous
+appliqués : navigation « Textes en cours » après « Les lois » (plutôt
+qu'« En cours » en tête) ; surtitre en capitales retiré (§5) ; chapô sans
+méthode ni jargon (« poursuivent leur parcours au Parlement ») ; encart de
+l'accueil sous l'interrupteur des accords ; sections « Séance déjà fixée »
+et « Suite pas encore connue » ; colonnes « Date » et « Dernier vote » ;
+états « Transmis à l'Assemblée, examen pas encore engagé » et « Rejeté par
+le Sénat ; la suite n'est pas encore connue » ; « , au Sénat » après une
+coalition du Sénat ; « Pour les lois, les coalitions sont celles de
+l'Assemblée » sur l'accueil ; type de lecture retiré du sous-titre d'un
+vote quand le titre le donne. Non retenu : titres courts commençant par
+« Proposition de loi … » (même règle que « Loi créant… » pour les lois).
+
+**Reste à décider par Max** : seuil d'inactivité (12 mois) ; affichage des
+coalitions du Sénat ; nom d'usage « casseurs-payeurs » dans le titre court.

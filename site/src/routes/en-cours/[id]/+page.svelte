@@ -5,18 +5,12 @@
   import VoteDetaille from '$lib/components/VoteDetaille.svelte';
   import Comment from '$lib/components/Comment.svelte';
   import { dateLongue } from '$lib/format';
+  import { LIBELLE_LECTURE } from '$lib/libelles';
   import { libelleAttente, libelleDernierVote, libelleSeance, natureTexte } from '$lib/encours';
 
   let { data } = $props();
   const t = $derived(data.texte);
 
-  const LECTURE: Record<string, string> = {
-    premiere: '1re lecture',
-    deuxieme: '2e lecture',
-    nouvelle: 'nouvelle lecture',
-    definitive: 'lecture définitive',
-    cmp: 'texte de la CMP'
-  };
   const CHAMBRE = { AN: 'de l’Assemblée', SN: 'du Sénat' } as const;
   const seance = $derived(libelleSeance(t, dateLongue));
   const etat = $derived(`${libelleAttente(t)}${seance ? ` · ${seance}` : ''}.`);
@@ -80,10 +74,10 @@
 
   {#each data.votes as v (v.s.id)}
     <VoteDetaille
-      titre="Le vote {CHAMBRE[v.s.chambre]}, {LECTURE[v.lecture.type_lecture] ??
-        v.lecture.type_lecture}"
+      titre="Le vote {CHAMBRE[v.s.chambre]}, {LIBELLE_LECTURE[
+        v.lecture.type_lecture
+      ].toLowerCase()}"
       s={v.s}
-      typeLecture={v.lecture.type_lecture}
       couleurs={data.couleurs}
     />
   {/each}

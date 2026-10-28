@@ -47,7 +47,6 @@
 </svelte:head>
 
 <section class="ouverture">
-  <p class="surtitre petit">Pas encore des lois</p>
   <h1>Textes en cours</h1>
   <p class="chapo colonne">
     {chapoEnCours(visibles.length, data.date, dateLongue)}
@@ -74,9 +73,9 @@
       <table>
         <thead>
           <tr>
-            <th scope="col">Dernier vote</th>
+            <th scope="col">Date</th>
             <th scope="col">Texte</th>
-            <th scope="col">Résultat</th>
+            <th scope="col">Dernier vote</th>
             <th scope="col">Coalition <Comment ancre="coalitions" texte="" /></th>
             <th scope="col">Suite</th>
           </tr>
@@ -99,7 +98,7 @@
                 {#if t.classe}
                   <span title={DEFINITION_CLASSE[t.classe]}
                     ><span class="pastille" style:background="var(--co-{t.classe})"></span>
-                    {LIBELLE_CLASSE[t.classe]}</span
+                    {LIBELLE_CLASSE[t.classe]}{t.chambre_finale === 'SN' ? ', au Sénat' : ''}</span
                   >
                   {#if t.pivots.length}
                     <span class="petit secondaire bloc"
@@ -134,13 +133,6 @@
   }
   .ouverture {
     gap: 20px;
-  }
-  .surtitre {
-    margin: 0 0 -12px;
-    color: var(--ardoise);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
   }
   .chapo {
     font-size: 1.1875rem;
