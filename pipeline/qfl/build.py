@@ -9,7 +9,7 @@ from pathlib import Path
 
 import polars as pl
 
-from . import an, metriques, parcours, referentiels, senat, votes
+from . import an, encours, metriques, parcours, referentiels, senat, votes
 from .sources import extraits, lire_manifeste
 
 LEGISLATURES_AN = (15, 16, 17)
@@ -17,6 +17,12 @@ LEGISLATURES_AN = (15, 16, 17)
 
 def _log(msg: str) -> None:
     print(msg, file=sys.stderr)
+
+
+def date_reference(raw: Path) -> str:
+    """Date de l'instantané : téléchargement du dump des dossiers AN de la législature en cours. Elle
+    fixe l'« aujourd'hui » des textes en cours (inactivité, séances à venir), pour un build reproductible."""
+    return lire_manifeste(raw)[f"an_dossiers_{max(LEGISLATURES_AN)}"]["telecharge_le"][:10]
 
 
 # --- Groupes -------------------------------------------------------------------
@@ -108,7 +114,8 @@ def _rejet_inverse(lects: list[dict], pos: dict[str, list[dict]]) -> None:
 # --- SQLite ----------------------------------------------------------------------
 
 TYPES = {pl.Int64: "INTEGER", pl.Int32: "INTEGER", pl.UInt32: "INTEGER", pl.Float64: "REAL", pl.Boolean: "INTEGER"}
-CLES = {"lois": "id", "lectures": "id", "scrutins": "id", "groupes": "id", "signatures": "scrutin_id"}
+CLES = {"lois": "id", "lectures": "id", "scrutins": "id", "groupes": "id", "signatures": "scrutin_id",
+        "en_cours": "id", "en_cours_lectures": "id"}
 
 
 def _ecrire_sqlite(chemin: Path, tables: dict[str, pl.DataFrame]) -> None:
@@ -125,7 +132,8 @@ def _ecrire_sqlite(chemin: Path, tables: dict[str, pl.DataFrame]) -> None:
         con.execute(f"CREATE TABLE {nom} ({', '.join(cols)})")
         lignes = [tuple(int(v) if isinstance(v, bool) else v for v in r) for r in df.iter_rows()]
         con.executemany(f"INSERT INTO {nom} VALUES ({', '.join('?' * df.width)})", lignes)
-    for idx in ("lectures(loi_id)", "positions_groupes(scrutin_id)", "evenements(loi_id)", "scrutins(loi_id)"):
+    for idx in ("lectures(loi_id)", "positions_groupes(scrutin_id)", "evenements(loi_id)", "scrutins(loi_id)",
+                "en_cours_lectures(texte_id)", "en_cours_evenements(texte_id)"):
         con.execute(f"CREATE INDEX IF NOT EXISTS i_{idx.replace('(', '_').rstrip(')')} ON {idx}")
     con.commit()
     con.execute("VACUUM")
@@ -186,35 +194,52 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     for leg in LEGISLATURES_AN:
         for uid, ts in an.titres_textes(raw, leg).items():
             titres_textes.setdefault(uid, set()).update(ts)
+    autres: list[dict] = []
     rows_lois, rows_lect, rows_evt = parcours.lois(dossiers, titres_textes, idx,
                                                    {"par_signet": par_signet, "par_date": par_date,
-                                                    "definitifs": senat.adoptes_definitivement(tables)})
+                                                    "definitifs": senat.adoptes_definitivement(tables)}, autres)
+    themes = senat.themes(tables)
+
+    _log("== Textes en cours")
+    date_ref = date_reference(raw)
+    etats = {r["loicod"]: senat.ETATS.get(r["etaloicod"]) for r in tables["loi"].select("loicod", "etaloicod").to_dicts()}
+    rows_ec, lect_ec, evt_ec = encours.textes(
+        autres, idx, {"decisions": senat.decisions_seance(tables), "activite": senat.activite(tables),
+                      "seances": senat.seances(tables), "etats": etats, "themes": themes},
+        {l["scrutin_id"] for l in rows_lect if l["scrutin_id"] and not l["art_49_3"]}, date_ref)
+
     par_loi: dict[str, list[dict]] = {}
-    for l in rows_lect:
+    for l in rows_lect + lect_ec:
         l["vote_bloque"] = parcours._flag("vote_bloque", l["id"]) or bool(
             l["scrutin_id"] and parcours._flag("vote_bloque", l["scrutin_id"]))
         l["candidat_rejet_inverse"] = False
-        par_loi.setdefault(l["loi_id"], []).append(l)
+        par_loi.setdefault(l.get("loi_id") or l["texte_id"], []).append(l)
     for lects in par_loi.values():
         _rejet_inverse(lects, pos)
 
     # scrutins utiles : décisifs des lectures, motions de censure et motions de rejet du parcours
-    utiles = {l["scrutin_id"] for l in rows_lect if l["scrutin_id"]}
-    utiles |= {e["scrutin_id"] for e in rows_evt if e["scrutin_id"]}
+    # (lois et textes en cours)
+    utiles = {l["scrutin_id"] for l in rows_lect + lect_ec if l["scrutin_id"]}
+    utiles |= {e["scrutin_id"] for e in rows_evt + evt_ec if e["scrutin_id"]}
     utiles &= set(tous)
     sig = {sid: votes.signature(tous[sid], pos[sid], sigle_de) for sid in sorted(utiles) if sid in pos}
     lois_res = [_resume_loi(loi, par_loi.get(loi["id"], []), sig) for loi in rows_lois]
-    themes = senat.themes(tables)
     for loi in lois_res:
         loi["themes"] = ";".join(themes.get((loi["loicod_senat"] or "").strip(), []))
+    en_cours = [_resume_loi(t, par_loi.get(t["id"], []), sig) for t in rows_ec]
     _log(f"   {len(lois_res)} lois ({sum(l['statut'] == 'adoptee' for l in lois_res)} en attente de promulgation), "
          f"{len(rows_lect)} lectures, {len(utiles)} scrutins utiles")
+    _log(f"   {sum(t['motif_ecart'] is None for t in en_cours)} textes en cours au {date_ref} "
+         f"({len(en_cours)} votés sous la XVIIe sans être adoptés), {len(lect_ec)} lectures")
 
     lien = {}
     for l in rows_lect:
         if l["scrutin_id"]:
             lien[l["scrutin_id"]] = (l["id"], l["loi_id"])
-    for e in rows_evt:
+    for l in lect_ec:
+        if l["scrutin_id"] and l["scrutin_id"] not in lien:
+            lien[l["scrutin_id"]] = (l["id"], l["texte_id"])
+    for e in rows_evt + [{**e, "loi_id": e["texte_id"]} for e in evt_ec]:
         if e["scrutin_id"] and e["scrutin_id"] not in lien:
             lien[e["scrutin_id"]] = (None, e["loi_id"])
     cols_scr = ["id", "chambre", "legislature", "numero", "date", "type_vote", "titre", "objet", "sort", "pour",
@@ -234,6 +259,10 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
         "signatures": _df(list(sig.values())),
         "groupes": _df(grp),
         "evenements": _df(rows_evt),
+        # textes en cours : à part, jamais agrégés avec les lois (qfl/encours.py)
+        "en_cours": _df(en_cours),
+        "en_cours_lectures": _df(lect_ec),
+        "en_cours_evenements": _df(evt_ec),
     }
 
     _log("== Métriques")
@@ -253,6 +282,8 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
         "sources": lire_manifeste(raw),
         "comptes": {k: v.height for k, v in dfs.items()},
         "referentiels": {n: referentiels.charger(n) for n in ("blocs", "flags", "periodes")},
+        "en_cours": {"date_reference": date_ref, "inactivite_mois": encours.INACTIVITE_MOIS,
+                     "debut": encours.DEBUT},
     }
     (export / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1, default=str) + "\n")
     _log(f"   {sqlite} ({sqlite.stat().st_size / 1e6:.1f} Mo), {export}/")

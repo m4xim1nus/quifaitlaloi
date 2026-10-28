@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-28T14:11:34+00:00",
+ "genere_le": "2026-10-28T14:29:56+00:00",
  "sources": {
   "an_scrutins_17": {
    "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip",
@@ -68,11 +68,14 @@
  "comptes": {
   "lois": 606,
   "lectures": 1921,
-  "scrutins": 1122,
-  "positions_groupes": 11061,
-  "signatures": 1122,
+  "scrutins": 1281,
+  "positions_groupes": 12764,
+  "signatures": 1281,
   "groupes": 54,
-  "evenements": 1999
+  "evenements": 1999,
+  "en_cours": 204,
+  "en_cours_lectures": 247,
+  "en_cours_evenements": 72
  },
  "referentiels": {
   "blocs": {
@@ -401,5 +404,10 @@
     }
    ]
   }
+ },
+ "en_cours": {
+  "date_reference": "2026-10-28",
+  "inactivite_mois": 12,
+  "debut": "2024-07-18"
  }
 }

@@ -14,8 +14,8 @@ TABLES = {
     "date_seance": ["code", "lecidt", "date_s"],
     "lecass": ["lecassidt", "lecidt", "codass"],
     "lecture": ["lecidt", "loicod", "typleccod"],
-    "loi": ["loicod", "typloicod", "signet", "date_loi", "loinumjo", "loititjo", "url_an"],
-    "texte": ["texcod", "oritxtcod", "lecassidt"],
+    "loi": ["loicod", "typloicod", "etaloicod", "signet", "date_loi", "loinumjo", "loititjo", "url_an"],
+    "texte": ["texcod", "oritxtcod", "lecassidt", "txtoritxtdat"],
     "oritxt": ["oritxtcod", "oritxtlib", "oritxtado"],
     "the": ["thecle", "thelib"],
     "loithe": ["loicod", "thecle"],
@@ -82,6 +82,58 @@ def adoptes_definitivement(tables: dict[str, pl.DataFrame]) -> set[str]:
          .join(tables["lecass"].select("lecassidt", "lecidt"), on="lecassidt")
          .join(tables["lecture"], on="lecidt"))
     return set(d["loicod"].drop_nulls())
+
+
+# Textes « adoptés » ou « rejetés » par le Sénat en séance (table oritxt), pour les décisions que le
+# dossier AN n'a pas encore enregistrées. Les textes de commission (29, 23, 33…) n'en sont pas.
+ORITXT_SEANCE = {"2": "adopte", "6": "adopte", "7": "adopte", "9": "adopte", "11": "adopte",
+                 "8": "rejete", "21": "rejete", "27": "rejete", "31": "rejete", "40": "rejete",
+                 "42": "rejete", "43": "rejete"}
+# État d'une loi dans Dosleg (table etaloi) : 01 en cours, 02 fusionné, 03 rejeté, 04 promulgué
+# (ou adopté), 05 caduc, 06 retiré.
+ETATS = {"01": "en_cours", "02": "fusionne", "03": "rejete", "04": "promulgue", "05": "caduc", "06": "retire"}
+
+
+def _lectures_senat(tables: dict[str, pl.DataFrame]) -> pl.DataFrame:
+    """lecassidt → (loicod, typleccod) des lectures du Sénat."""
+    return (tables["lecass"].filter(pl.col("codass") == "S").select("lecassidt", "lecidt")
+            .join(tables["lecture"], on="lecidt"))
+
+
+def decisions_seance(tables: dict[str, pl.DataFrame]) -> dict[tuple[str, str], tuple[str, str]]:
+    """(loicod, typleccod) → (date, issue) de la décision du Sénat en séance, d'après le texte
+    adopté ou rejeté. Le dossier AN enregistre ces décisions avec retard (casseurs-payeurs :
+    voté le 27/10/2026, absent du dossier AN le 28/10)."""
+    d = (tables["texte"].filter(pl.col("oritxtcod").is_in(list(ORITXT_SEANCE)))
+         .join(_lectures_senat(tables), on="lecassidt")
+         .with_columns(pl.col("txtoritxtdat").str.slice(0, 10).alias("date"))
+         .sort("date"))
+    return {(r["loicod"], r["typleccod"]): (r["date"], ORITXT_SEANCE[r["oritxtcod"]])
+            for r in d.to_dicts() if r["date"]}
+
+
+def activite(tables: dict[str, pl.DataFrame]) -> dict[str, list[str]]:
+    """loicod → dates connues côté Sénat : textes (dépôt, commission, séance) et séances, y compris
+    les séances déjà inscrites à l'ordre du jour (date à venir)."""
+    t = (tables["texte"].join(tables["lecass"].select("lecassidt", "lecidt"), on="lecassidt")
+         .join(tables["lecture"], on="lecidt").select("loicod", pl.col("txtoritxtdat").alias("d")))
+    s = (tables["date_seance"].select(pl.col("lecidt").alias("lecassidt"), pl.col("date_s").alias("d"))
+         .join(tables["lecass"].select("lecassidt", "lecidt"), on="lecassidt")
+         .join(tables["lecture"], on="lecidt").select("loicod", "d"))
+    out: dict[str, list[str]] = {}
+    for r in pl.concat([t, s]).drop_nulls().to_dicts():
+        out.setdefault(r["loicod"], []).append(r["d"][:10])
+    return out
+
+
+def seances(tables: dict[str, pl.DataFrame]) -> dict[str, list[str]]:
+    """loicod → dates des séances du Sénat consacrées au texte (table date_seance)."""
+    s = (tables["date_seance"].select(pl.col("lecidt").alias("lecassidt"), pl.col("date_s").alias("d"))
+         .join(_lectures_senat(tables), on="lecassidt").select("loicod", "d").drop_nulls())
+    out: dict[str, list[str]] = {}
+    for r in s.to_dicts():
+        out.setdefault(r["loicod"], []).append(r["d"][:10])
+    return out
 
 
 def scrutins(tables: dict[str, pl.DataFrame]) -> pl.DataFrame:
