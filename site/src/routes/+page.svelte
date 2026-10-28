@@ -198,7 +198,7 @@
   {/if}
   <p class="petit secondaire colonne">
     « {LIBELLE_CLASSE.socle_rn} » veut dire qu’au moins un groupe du bloc RN a voté avec le socle, pas
-    que ses voix étaient nécessaires&#8239;: c’est la question suivante.
+    qu’il pouvait faire tomber le texte&#8239;: c’est la question suivante.
   </p>
 </section>
 
@@ -206,8 +206,8 @@
   <h2>Quels groupes ont été décisifs&#8239;?</h2>
   <p class="reponse colonne">
     <span class="nombre">{loisAvecPivot}</span>
-    {pluriel(loisAvecPivot, 'loi')} sur {n}&#8239;: un groupe extérieur au socle a été décisif. Sans
-    ses voix, le texte tombait, ou, sur un 49.3, la censure passait s’il l’avait votée.
+    {pluriel(loisAvecPivot, 'loi')} sur {n}&#8239;: un groupe extérieur au socle a été décisif. S’il
+    avait voté contre, le texte tombait ; sur un 49.3, la censure passait s’il l’avait votée.
     {#if abstSeules}Pour {abstSeules} autre{abstSeules > 1 ? 's' : ''}, c’est l’abstention d’un
       groupe qui a permis l’adoption.{/if}
     {#if lignesPivots.length}{enumeration(

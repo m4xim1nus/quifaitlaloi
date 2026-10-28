@@ -43,9 +43,12 @@ def position(g: dict, censure: bool) -> tuple[str, float | None, float | None]:
 def pivot(s: dict, g: dict) -> tuple[bool, bool]:
     """(pivot, pivot par abstention) du groupe `g` sur le scrutin `s`.
 
-    - texte ou motion ordinaire adopté : retirer les « pour » du groupe
-      (reportés en abstention) le ferait tomber ;
-    - rejeté : retirer ses « contre » le ferait passer ;
+    Règle du basculement (validée par Max le 2026-10-28, docs/METHODO.md §10) :
+    le groupe est décisif si, en votant à l'inverse, il renversait l'issue.
+
+    - texte ou motion ordinaire adopté : si ses « pour » avaient voté contre,
+      le texte tombait ;
+    - rejeté : si ses « contre » avaient voté pour, il passait ;
     - motion de censure rejetée : si tous ses membres l'avaient votée, elle
       passait (« pivot de non-censure ») ; adoptée : sans ses voix, elle tombait ;
     - pivot par abstention (adopté, hors censure) : si ses abstentionnistes
@@ -56,10 +59,11 @@ def pivot(s: dict, g: dict) -> tuple[bool, bool]:
             return s["pour"] - g["pour"] < s["requis"], False
         return s["pour"] + (g["membres"] - g["pour"]) >= s["requis"], False
     if s["sort"] == "adopte":
-        p = s["pour"] - g["pour"] < requis(s["exprimes"] - g["pour"])
+        # les exprimés ne changent pas : les « pour » du groupe deviennent des « contre »
+        p = s["pour"] - g["pour"] < requis(s["exprimes"])
         a = s["pour"] < requis(s["exprimes"] + g["abstention"])
         return p, a
-    return s["pour"] >= requis(s["exprimes"] - g["contre"]), False
+    return s["pour"] + g["contre"] >= requis(s["exprimes"]), False
 
 
 def positions(s: dict, groupes: list[dict], blocs_par_groupe: dict[str, str]) -> list[dict]:

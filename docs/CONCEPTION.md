@@ -40,8 +40,9 @@ Socle factuel du récit, recalculé à chaque build depuis `data/export/` :
 - Vote décisif à l'Assemblée, hors accords : 50 sans bloc contre, 24 socle
   + gauche + RN, 23 socle + RN, 13 socle + gauche, 2 socle sans gauche ni
   RN, 1 centre + LR (lecture sous la XVIe), 1 sans vote nominatif.
-- **Groupes décisifs hors socle** : 11 lois sur 114 (SOC 6, RN 4,
-  LFI-NFP 3, LIOT 2, NI 1 ; une loi peut en compter plusieurs).
+- **Groupes décisifs hors socle** : 33 lois sur 114 avec la règle du
+  basculement (RN 22, SOC 9, LFI-NFP 3, ECOS 3, LIOT 2… ; §10). Avec
+  l'ancienne règle de l'abstention : 11.
 - 87 lois sur 114 sont des propositions de loi.
 
 Conséquence pour le récit : la thèse « que des contournements » ne tient
@@ -301,3 +302,18 @@ designer, recommandation retenue avec deux corrections :
   aurait affirmé un vote pour ; le libellé reste « Socle, sans gauche ni
   RN » (« Socle seul » est faux quand LIOT ou des non-inscrits l'appuient,
   §7).
+
+## 10. Groupe décisif : règle du basculement (décision de Max)
+
+Question de Max : pourquoi 36 lois « socle + gauche » ou « socle + RN »,
+mais si peu de groupes décisifs ? Réponse : le socle commun (≈ 211 sièges)
+bat seul la gauche (≈ 193) ou le RN (≈ 140) ; l'ancienne règle (« pour »
+reportés en abstention) mesurait la *nécessité* des voix et ne retenait
+que 11 lois. Max a proposé de mesurer la *capacité d'action* du groupe :
+décisif si, en votant contre au lieu de pour, il faisait tomber le texte
+(définition du pivot de Banzhaf). Trois règles chiffrées (abstention 10,
+basculement 31, tout le groupe contre, absents compris, 76 lois adoptées
+par scrutin) ; Max a retenu le basculement seul. Effet : 33 lois, RN 22,
+SOC 9. Sur une censure, la règle (tous les membres votent la censure)
+reste inchangée ; elle va dans le même sens (le groupe pouvait renverser
+l'issue).

@@ -27,7 +27,10 @@ export const FICHIERS: Fichier[] = [
         'scrutin décisif de cette lecture (sur un 49.3 : la motion de censure)'
       ],
       ['classe_an, classe_sn', 'signature de coalition du scrutin décisif'],
-      ['pivots_hors_socle_an', 'groupes hors socle sans lesquels le résultat s’inversait'],
+      [
+        'pivots_hors_socle_an',
+        'groupes hors socle qui, en votant à l’inverse, renversaient le résultat'
+      ],
       ['a_49_3, a_rejet_inverse, a_vote_bloque', 'composantes du contournement'],
       ['contournement', 'vrai si l’une des trois composantes est vraie'],
       ['a_delai_expire', 'lecture close à l’expiration des délais budgétaires (hors contournement)']

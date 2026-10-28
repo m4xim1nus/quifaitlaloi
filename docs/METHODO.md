@@ -207,17 +207,29 @@ au Sénat pour la vue Sénat.
 
 ## 10. Groupe pivot
 
-Un groupe est **pivot** si son vote a décidé du résultat :
+Un groupe est **pivot** (« groupe décisif » sur le site) si, en votant à
+l'inverse, il renversait le résultat. **Règle du basculement [validé]**
+(Max, 28/10/2026, à la lecture du site ; elle remplace la règle du brief,
+où les « pour » du groupe étaient reportés en abstention) :
 
-- texte adopté : sans ses « pour », reportés en abstention, le texte
-  tombait ;
-- texte rejeté : sans ses « contre », il passait ;
+- texte adopté : si ses « pour » avaient voté contre, le texte tombait.
+  Les exprimés ne changent pas : le groupe est pivot si ses « pour »
+  atteignent la moitié de la marge (pour − contre) ;
+- texte rejeté : si ses « contre » avaient voté pour, il passait ;
 - censure rejetée : si tous ses membres l'avaient votée, elle passait
   (« pivot de non-censure »). Mécaniquement, les groupes du socle le sont
   aussi : on lit donc `pivots_hors_socle` ;
 - **pivot par abstention** (texte adopté) : si ses abstentionnistes avaient
   voté contre, le texte tombait. C'est l'abstention qui laisse passer un
   texte (exemple : ECOS sur la LFSS 2026).
+
+Seuls les députés qui ont pris part au vote basculent : faire voter les
+absents surestimerait le poids des groupes sur les scrutins ordinaires peu
+suivis. L'ancienne règle (abstention) mesurait la *nécessité* des voix ;
+celle-ci mesure le *pouvoir* du groupe sur l'issue. Effet au 28/10/2026,
+hors conventions : 33 lois avec un pivot hors socle au lieu de 11 ; le RN
+est pivot sur 20 des 23 lois « socle + RN », le PS sur 6 des 13 « socle +
+gauche ».
 
 Le pivot est individuel. Sur le budget 2025 (49.3, février 2025, motion
 V693 : 128 voix pour 289 requises), ni le RN (124 membres) ni le PS (60
@@ -245,8 +257,11 @@ définitive.
   114 hors conventions.
 - **Coalitions** (scrutin décisif AN, hors conventions) : 50 consensus, 24
   transpartisan, 23 socle + RN, 13 socle + gauche, 2 socle seul.
-- **Pivots** (même base) : EPR 8, SOC 6, DEM 5, RN 4, DR 4. Peu de votes
-  décisifs se jouent à un groupe près.
+- **Pivots hors socle** (même base, règle du basculement) : 33 lois ;
+  RN 22, SOC 9, LFI-NFP 3, ECOS 3, LIOT 2. Avec l'ancienne règle
+  (abstention), 11 lois seulement : les appoints confortent souvent un
+  texte que le socle gagnait déjà, mais ils pouvaient presque toujours le
+  faire tomber.
 
 Ces chiffres ne valident pas la thèse « que des contournements » au niveau
 des lois. Ils la nuancent : le contournement se concentre sur les budgets,

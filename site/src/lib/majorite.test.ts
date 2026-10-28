@@ -1,12 +1,10 @@
 import { expect, it } from 'vitest';
-import { censureAvec, sansLesVoix } from './majorite';
+import { censureAvec, siContre } from './majorite';
 
-it('retire les voix d’un groupe et compare pour et contre', () => {
-  expect(
-    sansLesVoix({ pour: 316, contre: 223, requis: 270, sort: 'adopte' }, { pour: 120 })
-  ).toEqual({
+it('fait voter contre les « pour » d’un groupe', () => {
+  expect(siContre({ pour: 316, contre: 223, requis: 270, sort: 'adopte' }, { pour: 120 })).toEqual({
     pour: 196,
-    contre: 223,
+    contre: 343,
     adopte: false
   });
 });

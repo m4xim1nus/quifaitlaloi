@@ -2176,7 +2176,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -2330,7 +2330,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -2396,7 +2396,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 6,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -2561,7 +2561,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 17,
-   "pivot": 0,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -2572,7 +2572,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 17,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -2627,7 +2627,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 8,
-   "pivot": 3,
+   "pivot": 5,
    "pivot_abstention": 0
   },
   {
@@ -2693,7 +2693,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 24,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -2726,7 +2726,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 23,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -2737,7 +2737,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 23,
-   "pivot": 3,
+   "pivot": 8,
    "pivot_abstention": 0
   },
   {
@@ -2770,7 +2770,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 24,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -2847,7 +2847,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 24,
-   "pivot": 1,
+   "pivot": 5,
    "pivot_abstention": 1
   },
   {
@@ -2858,7 +2858,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 24,
-   "pivot": 2,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -2902,7 +2902,7 @@
    "groupe": "LIRT",
    "bloc": "centre",
    "scrutins": 11,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -2913,7 +2913,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 11,
-   "pivot": 3,
+   "pivot": 7,
    "pivot_abstention": 0
   },
   {
@@ -2957,7 +2957,7 @@
    "groupe": "SER",
    "bloc": "gauche",
    "scrutins": 11,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -2968,7 +2968,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 11,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -2990,7 +2990,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3012,7 +3012,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3078,7 +3078,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 9,
-   "pivot": 1,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -3144,7 +3144,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 5,
-   "pivot": 1,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -3243,7 +3243,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 16,
-   "pivot": 3,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -3265,7 +3265,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 16,
-   "pivot": 2,
+   "pivot": 4,
    "pivot_abstention": 1
   },
   {
@@ -3309,7 +3309,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 16,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 1
   },
   {
@@ -3320,7 +3320,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 16,
-   "pivot": 2,
+   "pivot": 3,
    "pivot_abstention": 1
   },
   {
@@ -3386,7 +3386,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 10,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -3441,7 +3441,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 10,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3573,7 +3573,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 1,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3672,7 +3672,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 2,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -3727,7 +3727,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 2,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3738,7 +3738,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 23,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -3749,7 +3749,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 22,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3782,7 +3782,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 22,
-   "pivot": 0,
+   "pivot": 5,
    "pivot_abstention": 0
   },
   {
@@ -3815,7 +3815,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 23,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -3892,7 +3892,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 23,
-   "pivot": 1,
+   "pivot": 5,
    "pivot_abstention": 0
   },
   {
@@ -3958,7 +3958,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 14,
-   "pivot": 1,
+   "pivot": 6,
    "pivot_abstention": 0
   },
   {
@@ -4035,7 +4035,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 12,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -4046,7 +4046,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 12,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -4057,7 +4057,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 12,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -4123,7 +4123,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 12,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -4189,7 +4189,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 9,
-   "pivot": 2,
+   "pivot": 6,
    "pivot_abstention": 0
   },
   {
@@ -4211,7 +4211,7 @@
    "groupe": "RDPI",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -4244,7 +4244,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -4486,7 +4486,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 61,
-   "pivot": 5,
+   "pivot": 7,
    "pivot_abstention": 0
   },
   {
@@ -4497,7 +4497,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 59,
-   "pivot": 4,
+   "pivot": 6,
    "pivot_abstention": 1
   },
   {
@@ -4519,7 +4519,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 59,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 2
   },
   {
@@ -4530,7 +4530,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 59,
-   "pivot": 5,
+   "pivot": 14,
    "pivot_abstention": 0
   },
   {
@@ -4563,7 +4563,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 61,
-   "pivot": 3,
+   "pivot": 6,
    "pivot_abstention": 1
   },
   {
@@ -4607,7 +4607,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 2,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -4640,7 +4640,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 61,
-   "pivot": 2,
+   "pivot": 11,
    "pivot_abstention": 1
   },
   {
@@ -4651,7 +4651,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 61,
-   "pivot": 4,
+   "pivot": 5,
    "pivot_abstention": 1
   },
   {
@@ -4717,7 +4717,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 36,
-   "pivot": 5,
+   "pivot": 16,
    "pivot_abstention": 0
   },
   {
@@ -4739,7 +4739,7 @@
    "groupe": "RDPI",
    "bloc": "centre",
    "scrutins": 36,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -4772,7 +4772,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 36,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -4783,7 +4783,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 51,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -4794,7 +4794,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 50,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -4816,7 +4816,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 50,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -4827,7 +4827,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 50,
-   "pivot": 3,
+   "pivot": 9,
    "pivot_abstention": 0
   },
   {
@@ -4860,7 +4860,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 51,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -4937,7 +4937,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 51,
-   "pivot": 2,
+   "pivot": 11,
    "pivot_abstention": 1
   },
   {
@@ -4948,7 +4948,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 51,
-   "pivot": 2,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -4992,7 +4992,7 @@
    "groupe": "LIRT",
    "bloc": "centre",
    "scrutins": 25,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -5003,1165 +5003,1165 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 25,
+   "pivot": 15,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "apres_censure",
+   "chambre": "SN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 25,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "apres_censure",
+   "chambre": "SN",
+   "groupe": "RDPI",
+   "bloc": "centre",
+   "scrutins": 25,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "apres_censure",
+   "chambre": "SN",
+   "groupe": "RDSE",
+   "bloc": "autres",
+   "scrutins": 25,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "apres_censure",
+   "chambre": "SN",
+   "groupe": "SER",
+   "bloc": "gauche",
+   "scrutins": 25,
+   "pivot": 2,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "apres_censure",
+   "chambre": "SN",
+   "groupe": "UC",
+   "bloc": "centre",
+   "scrutins": 25,
+   "pivot": 2,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "DEM",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "DR",
+   "bloc": "droite",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "ECOLO",
+   "bloc": "gauche",
+   "scrutins": 3,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "ECOS",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "EPR",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "GDR",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "GDR-NUPES",
+   "bloc": "gauche",
+   "scrutins": 3,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "HOR",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "LFI-NFP",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "LFI-NUPES",
+   "bloc": "gauche",
+   "scrutins": 3,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "LIOT",
+   "bloc": "autres",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 3,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "RE",
+   "bloc": "centre",
+   "scrutins": 3,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "RN",
+   "bloc": "rn",
+   "scrutins": 8,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "SOC",
+   "bloc": "gauche",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "AN",
+   "groupe": "UDR",
+   "bloc": "rn",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "CRCE-K",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "GEST",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "LIRT",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 5,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "RDPI",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "RDSE",
+   "bloc": "autres",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "SER",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "avant_censure",
+   "chambre": "SN",
+   "groupe": "UC",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "DEM",
+   "bloc": "centre",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "ECOLO",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "GDR-NUPES",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "HOR",
+   "bloc": "centre",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "LFI-NUPES",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "LIOT",
+   "bloc": "autres",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "RE",
+   "bloc": "centre",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "RN",
+   "bloc": "rn",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "toutes",
+   "grain": "periode",
+   "cle": "xvi",
+   "chambre": "AN",
+   "groupe": "SOC",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "DEM",
+   "bloc": "centre",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "ECOLO",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "GDR-NUPES",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "HOR",
+   "bloc": "centre",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "LFI-NUPES",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "LIOT",
+   "bloc": "autres",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "RE",
+   "bloc": "centre",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "RN",
+   "bloc": "rn",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T2",
+   "chambre": "AN",
+   "groupe": "SOC",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "DEM",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "DR",
+   "bloc": "droite",
+   "scrutins": 6,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "ECOLO",
+   "bloc": "gauche",
+   "scrutins": 2,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "ECOS",
+   "bloc": "gauche",
+   "scrutins": 6,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "EPR",
+   "bloc": "centre",
+   "scrutins": 6,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "GDR",
+   "bloc": "gauche",
+   "scrutins": 6,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "GDR-NUPES",
+   "bloc": "gauche",
+   "scrutins": 2,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "HOR",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "LFI-NFP",
+   "bloc": "gauche",
+   "scrutins": 6,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "LFI-NUPES",
+   "bloc": "gauche",
+   "scrutins": 2,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "LIOT",
+   "bloc": "autres",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 2,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "RE",
+   "bloc": "centre",
+   "scrutins": 2,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "RN",
+   "bloc": "rn",
+   "scrutins": 8,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "SOC",
+   "bloc": "gauche",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "AN",
+   "groupe": "UDR",
+   "bloc": "rn",
+   "scrutins": 6,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "CRCE-K",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "GEST",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "LIRT",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 5,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "RDPI",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "RDSE",
+   "bloc": "autres",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "SER",
+   "bloc": "gauche",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2024-T4",
+   "chambre": "SN",
+   "groupe": "UC",
+   "bloc": "centre",
+   "scrutins": 5,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "DEM",
+   "bloc": "centre",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "DR",
+   "bloc": "droite",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "ECOS",
+   "bloc": "gauche",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "EPR",
+   "bloc": "centre",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "GDR",
+   "bloc": "gauche",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "HOR",
+   "bloc": "centre",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "LFI-NFP",
+   "bloc": "gauche",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "LIOT",
+   "bloc": "autres",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "RN",
+   "bloc": "rn",
+   "scrutins": 16,
+   "pivot": 3,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "SOC",
+   "bloc": "gauche",
+   "scrutins": 16,
+   "pivot": 1,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "AN",
+   "groupe": "UDR",
+   "bloc": "rn",
+   "scrutins": 16,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "CRCE-K",
+   "bloc": "gauche",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "GEST",
+   "bloc": "gauche",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "LIRT",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "LR",
+   "bloc": "droite",
+   "scrutins": 8,
+   "pivot": 5,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "NI",
+   "bloc": "autres",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "RDPI",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "RDSE",
+   "bloc": "autres",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "SER",
+   "bloc": "gauche",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T1",
+   "chambre": "SN",
+   "groupe": "UC",
+   "bloc": "centre",
+   "scrutins": 8,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T2",
+   "chambre": "AN",
+   "groupe": "DEM",
+   "bloc": "centre",
+   "scrutins": 22,
+   "pivot": 2,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T2",
+   "chambre": "AN",
+   "groupe": "DR",
+   "bloc": "droite",
+   "scrutins": 21,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T2",
+   "chambre": "AN",
+   "groupe": "ECOLO",
+   "bloc": "gauche",
+   "scrutins": 1,
+   "pivot": 0,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T2",
+   "chambre": "AN",
+   "groupe": "ECOS",
+   "bloc": "gauche",
+   "scrutins": 21,
+   "pivot": 2,
+   "pivot_abstention": 0
+  },
+  {
+   "vue": "hors_conventions",
+   "grain": "trimestre",
+   "cle": "2025-T2",
+   "chambre": "AN",
+   "groupe": "EPR",
+   "bloc": "centre",
+   "scrutins": 21,
    "pivot": 7,
    "pivot_abstention": 0
   },
   {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "apres_censure",
-   "chambre": "SN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 25,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "apres_censure",
-   "chambre": "SN",
-   "groupe": "RDPI",
-   "bloc": "centre",
-   "scrutins": 25,
-   "pivot": 1,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "apres_censure",
-   "chambre": "SN",
-   "groupe": "RDSE",
-   "bloc": "autres",
-   "scrutins": 25,
-   "pivot": 1,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "apres_censure",
-   "chambre": "SN",
-   "groupe": "SER",
-   "bloc": "gauche",
-   "scrutins": 25,
-   "pivot": 1,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "apres_censure",
-   "chambre": "SN",
-   "groupe": "UC",
-   "bloc": "centre",
-   "scrutins": 25,
-   "pivot": 1,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "DEM",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "DR",
-   "bloc": "droite",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "ECOLO",
-   "bloc": "gauche",
-   "scrutins": 3,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "ECOS",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "EPR",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "GDR",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "GDR-NUPES",
-   "bloc": "gauche",
-   "scrutins": 3,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "HOR",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "LFI-NFP",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "LFI-NUPES",
-   "bloc": "gauche",
-   "scrutins": 3,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "LIOT",
-   "bloc": "autres",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 3,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "RE",
-   "bloc": "centre",
-   "scrutins": 3,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "RN",
-   "bloc": "rn",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "SOC",
-   "bloc": "gauche",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "AN",
-   "groupe": "UDR",
-   "bloc": "rn",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "CRCE-K",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "GEST",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "LIRT",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "RDPI",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "RDSE",
-   "bloc": "autres",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "SER",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "avant_censure",
-   "chambre": "SN",
-   "groupe": "UC",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "DEM",
-   "bloc": "centre",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "ECOLO",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "GDR-NUPES",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "HOR",
-   "bloc": "centre",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "LFI-NUPES",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "LIOT",
-   "bloc": "autres",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "RE",
-   "bloc": "centre",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "RN",
-   "bloc": "rn",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "toutes",
-   "grain": "periode",
-   "cle": "xvi",
-   "chambre": "AN",
-   "groupe": "SOC",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "DEM",
-   "bloc": "centre",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "ECOLO",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "GDR-NUPES",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "HOR",
-   "bloc": "centre",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "LFI-NUPES",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "LIOT",
-   "bloc": "autres",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "RE",
-   "bloc": "centre",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "RN",
-   "bloc": "rn",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T2",
-   "chambre": "AN",
-   "groupe": "SOC",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "DEM",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "DR",
-   "bloc": "droite",
-   "scrutins": 6,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "ECOLO",
-   "bloc": "gauche",
-   "scrutins": 2,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "ECOS",
-   "bloc": "gauche",
-   "scrutins": 6,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "EPR",
-   "bloc": "centre",
-   "scrutins": 6,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "GDR",
-   "bloc": "gauche",
-   "scrutins": 6,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "GDR-NUPES",
-   "bloc": "gauche",
-   "scrutins": 2,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "HOR",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "LFI-NFP",
-   "bloc": "gauche",
-   "scrutins": 6,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "LFI-NUPES",
-   "bloc": "gauche",
-   "scrutins": 2,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "LIOT",
-   "bloc": "autres",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 2,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "RE",
-   "bloc": "centre",
-   "scrutins": 2,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "RN",
-   "bloc": "rn",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "SOC",
-   "bloc": "gauche",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "AN",
-   "groupe": "UDR",
-   "bloc": "rn",
-   "scrutins": 6,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "CRCE-K",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "GEST",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "LIRT",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "RDPI",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "RDSE",
-   "bloc": "autres",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "SER",
-   "bloc": "gauche",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2024-T4",
-   "chambre": "SN",
-   "groupe": "UC",
-   "bloc": "centre",
-   "scrutins": 5,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "DEM",
-   "bloc": "centre",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "DR",
-   "bloc": "droite",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "ECOS",
-   "bloc": "gauche",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "EPR",
-   "bloc": "centre",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "GDR",
-   "bloc": "gauche",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "HOR",
-   "bloc": "centre",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "LFI-NFP",
-   "bloc": "gauche",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "LIOT",
-   "bloc": "autres",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "RN",
-   "bloc": "rn",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "SOC",
-   "bloc": "gauche",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "AN",
-   "groupe": "UDR",
-   "bloc": "rn",
-   "scrutins": 16,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "CRCE-K",
-   "bloc": "gauche",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "GEST",
-   "bloc": "gauche",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "LIRT",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "LR",
-   "bloc": "droite",
-   "scrutins": 8,
-   "pivot": 3,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "NI",
-   "bloc": "autres",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "RDPI",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "RDSE",
-   "bloc": "autres",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "SER",
-   "bloc": "gauche",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T1",
-   "chambre": "SN",
-   "groupe": "UC",
-   "bloc": "centre",
-   "scrutins": 8,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T2",
-   "chambre": "AN",
-   "groupe": "DEM",
-   "bloc": "centre",
-   "scrutins": 22,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T2",
-   "chambre": "AN",
-   "groupe": "DR",
-   "bloc": "droite",
-   "scrutins": 21,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T2",
-   "chambre": "AN",
-   "groupe": "ECOLO",
-   "bloc": "gauche",
-   "scrutins": 1,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T2",
-   "chambre": "AN",
-   "groupe": "ECOS",
-   "bloc": "gauche",
-   "scrutins": 21,
-   "pivot": 0,
-   "pivot_abstention": 0
-  },
-  {
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2025-T2",
-   "chambre": "AN",
-   "groupe": "EPR",
-   "bloc": "centre",
-   "scrutins": 21,
-   "pivot": 3,
-   "pivot_abstention": 0
-  },
-  {
    "vue": "hors_conventions",
    "grain": "trimestre",
    "cle": "2025-T2",
@@ -6191,7 +6191,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 22,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -6268,7 +6268,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 22,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 1
   },
   {
@@ -6279,7 +6279,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 22,
-   "pivot": 2,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -6323,7 +6323,7 @@
    "groupe": "LIRT",
    "bloc": "centre",
    "scrutins": 11,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -6334,7 +6334,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 11,
-   "pivot": 3,
+   "pivot": 7,
    "pivot_abstention": 0
   },
   {
@@ -6378,7 +6378,7 @@
    "groupe": "SER",
    "bloc": "gauche",
    "scrutins": 11,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -6389,7 +6389,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 11,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -6411,7 +6411,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -6433,7 +6433,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -6499,7 +6499,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 9,
-   "pivot": 1,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -6565,7 +6565,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 5,
-   "pivot": 1,
+   "pivot": 3,
    "pivot_abstention": 0
   },
   {
@@ -6664,7 +6664,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 15,
-   "pivot": 3,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -6686,7 +6686,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 15,
-   "pivot": 2,
+   "pivot": 4,
    "pivot_abstention": 1
   },
   {
@@ -6730,7 +6730,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 15,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 1
   },
   {
@@ -6741,7 +6741,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 15,
-   "pivot": 2,
+   "pivot": 3,
    "pivot_abstention": 1
   },
   {
@@ -6807,7 +6807,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 10,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -6862,7 +6862,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 10,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -6994,7 +6994,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 1,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7093,7 +7093,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 2,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -7148,7 +7148,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 2,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7159,7 +7159,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 22,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -7170,7 +7170,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 21,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7203,7 +7203,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 21,
-   "pivot": 0,
+   "pivot": 5,
    "pivot_abstention": 0
   },
   {
@@ -7236,7 +7236,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 22,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7313,7 +7313,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 22,
-   "pivot": 1,
+   "pivot": 5,
    "pivot_abstention": 0
   },
   {
@@ -7379,7 +7379,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 14,
-   "pivot": 1,
+   "pivot": 6,
    "pivot_abstention": 0
   },
   {
@@ -7456,7 +7456,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 12,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7467,7 +7467,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 12,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7478,7 +7478,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 12,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -7544,7 +7544,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 12,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -7610,7 +7610,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 9,
-   "pivot": 2,
+   "pivot": 6,
    "pivot_abstention": 0
   },
   {
@@ -7632,7 +7632,7 @@
    "groupe": "RDPI",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -7665,7 +7665,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 9,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -7907,7 +7907,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 57,
-   "pivot": 5,
+   "pivot": 7,
    "pivot_abstention": 0
   },
   {
@@ -7918,7 +7918,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 55,
-   "pivot": 4,
+   "pivot": 6,
    "pivot_abstention": 1
   },
   {
@@ -7940,7 +7940,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 55,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 2
   },
   {
@@ -7951,7 +7951,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 55,
-   "pivot": 5,
+   "pivot": 14,
    "pivot_abstention": 0
   },
   {
@@ -7984,7 +7984,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 57,
-   "pivot": 3,
+   "pivot": 6,
    "pivot_abstention": 1
   },
   {
@@ -8028,7 +8028,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 2,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -8061,7 +8061,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 57,
-   "pivot": 2,
+   "pivot": 11,
    "pivot_abstention": 1
   },
   {
@@ -8072,7 +8072,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 57,
-   "pivot": 4,
+   "pivot": 5,
    "pivot_abstention": 1
   },
   {
@@ -8138,7 +8138,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 36,
-   "pivot": 5,
+   "pivot": 16,
    "pivot_abstention": 0
   },
   {
@@ -8160,7 +8160,7 @@
    "groupe": "RDPI",
    "bloc": "centre",
    "scrutins": 36,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -8193,7 +8193,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 36,
-   "pivot": 1,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -8204,7 +8204,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 48,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -8215,7 +8215,7 @@
    "groupe": "DR",
    "bloc": "droite",
    "scrutins": 47,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -8237,7 +8237,7 @@
    "groupe": "ECOS",
    "bloc": "gauche",
    "scrutins": 47,
-   "pivot": 0,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -8248,7 +8248,7 @@
    "groupe": "EPR",
    "bloc": "centre",
    "scrutins": 47,
-   "pivot": 3,
+   "pivot": 8,
    "pivot_abstention": 0
   },
   {
@@ -8281,7 +8281,7 @@
    "groupe": "HOR",
    "bloc": "centre",
    "scrutins": 48,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -8358,7 +8358,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 48,
-   "pivot": 2,
+   "pivot": 10,
    "pivot_abstention": 1
   },
   {
@@ -8369,7 +8369,7 @@
    "groupe": "SOC",
    "bloc": "gauche",
    "scrutins": 48,
-   "pivot": 2,
+   "pivot": 4,
    "pivot_abstention": 0
   },
   {
@@ -8413,7 +8413,7 @@
    "groupe": "LIRT",
    "bloc": "centre",
    "scrutins": 25,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -8424,7 +8424,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 25,
-   "pivot": 7,
+   "pivot": 15,
    "pivot_abstention": 0
   },
   {
@@ -8468,7 +8468,7 @@
    "groupe": "SER",
    "bloc": "gauche",
    "scrutins": 25,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -8479,7 +8479,7 @@
    "groupe": "UC",
    "bloc": "centre",
    "scrutins": 25,
-   "pivot": 1,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -8490,7 +8490,7 @@
    "groupe": "DEM",
    "bloc": "centre",
    "scrutins": 7,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -8644,7 +8644,7 @@
    "groupe": "RN",
    "bloc": "rn",
    "scrutins": 7,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -8710,7 +8710,7 @@
    "groupe": "LR",
    "bloc": "droite",
    "scrutins": 4,
-   "pivot": 0,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {

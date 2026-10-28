@@ -72,7 +72,7 @@ export function phrasesScrutin(s: ScrutinDetaille): string[] {
     const ph = sig.pivots_hors_socle;
     if (ph.length && s.sort === 'adopte')
       out.push(
-        `Sans les voix ${ph.length > 1 ? 'des groupes' : 'du groupe'} ${enumeration(ph)}, ${objet} n’aurait pas été ${objet === 'la motion' ? 'adoptée' : 'adopté'}.`
+        `Si ${groupes(ph)} ${ph.length > 1 ? 'avaient' : 'avait'} voté contre, ${objet} ${objet === 'la motion' ? 'était rejetée' : 'était rejeté'}.`
       );
     const pa = sig.pivots_abstention;
     if (pa.length && s.sort === 'adopte')

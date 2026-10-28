@@ -44,7 +44,7 @@
               <span class="secondaire">{`à ${pourcent(p.cohesion)}`}</span>
             {/if}
             {#if p.pivot || p.pivot_abstention}
-              <span class="decisif" title="Sans ce groupe, le résultat s’inversait"
+              <span class="decisif" title="En votant à l’inverse, ce groupe renversait le résultat"
                 >décisif{p.pivot_abstention && !p.pivot ? ' par son abstention' : ''}</span
               >
             {/if}

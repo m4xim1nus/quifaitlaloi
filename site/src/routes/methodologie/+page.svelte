@@ -275,20 +275,26 @@
       {/each}
     </dl>
     <p>
-      Une coalition dit qui a voté avec le socle, pas qui était nécessaire&#8239;: c’est l’objet du
-      groupe décisif.
+      Une coalition dit qui a voté avec le socle, pas qui pouvait faire tomber le texte&#8239;:
+      c’est l’objet du groupe décisif.
     </p>
   </section>
 
   <section id="decisif">
     <h2>Groupe décisif</h2>
-    <p>Un groupe est décisif si son vote a fait le résultat&#8239;:</p>
+    <p>
+      Un groupe est décisif si, en votant à l’inverse, il renversait le résultat (règle du
+      basculement)&#8239;:
+    </p>
     <ul>
       <li>
-        <strong>texte adopté</strong>&#8239;: si ses « pour » étaient devenus des abstentions, les «
-        pour » restants ne dépassaient plus les « contre », et le texte tombait&#8239;;
+        <strong>texte adopté</strong>&#8239;: si ses députés qui ont voté pour avaient voté contre,
+        les « contre » l’emportaient et le texte tombait&#8239;;
       </li>
-      <li><strong>texte rejeté</strong>&#8239;: sans ses « contre », il passait&#8239;;</li>
+      <li>
+        <strong>texte rejeté</strong>&#8239;: si ses députés qui ont voté contre avaient voté pour,
+        il passait&#8239;;
+      </li>
       <li>
         <strong>censure rejetée</strong>&#8239;: si tous ses membres l’avaient votée, elle obtenait
         la majorité des membres de l’Assemblée. Les groupes du socle le sont mécaniquement&#8239;;
@@ -299,6 +305,12 @@
         texte tombait.
       </li>
     </ul>
+    <p>
+      On ne compte que les députés qui ont pris part au vote&#8239;: faire voter les absents
+      surestimerait le poids des groupes sur les scrutins peu suivis. Une règle plus stricte (le
+      texte avait-il <em>besoin</em> de ses voix, ses « pour » devenant des abstentions) retient environ
+      trois fois moins de lois ; elle mesure la nécessité, pas le pouvoir du groupe.
+    </p>
     <p>
       Le calcul se fait groupe par groupe. Sur le budget 2025 (motion de censure de février
       2025&#8239;: 128 voix pour 289 requises), ni le RN ni le PS n’étaient décisifs seuls&#8239;:

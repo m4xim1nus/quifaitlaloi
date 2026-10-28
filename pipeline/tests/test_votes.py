@@ -19,8 +19,22 @@ def test_position_censure():
 
 def test_pivot_adopte():
     s = {"type_vote": "SPS", "sort": "adopte", "pour": 316, "contre": 223, "exprimes": 539, "requis": 270}
-    assert votes.pivot(s, g("RN", 123, 119, 0, 2)) == (True, False)    # 197 pour < 223 contre
-    assert votes.pivot(s, g("EPR", 91, 64, 14, 10)) == (False, False)  # 252 > 223
+    # règle du basculement : les « pour » du groupe votent contre
+    assert votes.pivot(s, g("RN", 123, 119, 0, 2)) == (True, False)    # 197 pour < 342 contre
+    assert votes.pivot(s, g("EPR", 91, 64, 14, 10)) == (True, False)   # 252 pour < 287 contre
+    assert votes.pivot(s, g("LIOT", 22, 20, 0, 1)) == (False, False)   # 296 pour > 243 contre
+
+
+def test_pivot_basculement_pas_abstention():
+    # marge de 34 : 20 voix ne suffisent pas en abstention, mais suffisent en basculant
+    s = {"type_vote": "SPO", "sort": "adopte", "pour": 64, "contre": 30, "exprimes": 94, "requis": 48}
+    assert votes.pivot(s, g("RN", 122, 20, 0, 0))[0] is True        # 44 pour < 50 contre
+
+
+def test_pivot_rejete():
+    s = {"type_vote": "SPO", "sort": "rejete", "pour": 40, "contre": 60, "exprimes": 100, "requis": 51}
+    assert votes.pivot(s, g("X", 30, 0, 11, 0))[0] is True          # 51 pour, 49 contre
+    assert votes.pivot(s, g("Y", 30, 0, 9, 0))[0] is False          # 49 pour, 51 contre
 
 
 def test_pivot_abstention():

@@ -67,7 +67,7 @@ describe('récit', () => {
     });
     expect(p[0]).toBe('Pour : EPR et RN ; contre : LFI-NFP.');
     expect(p[1]).toBe('316 voix pour, 223 contre, 25 abstentions : adopté.');
-    expect(p[2]).toBe('Sans les voix du groupe RN, le texte n’aurait pas été adopté.');
+    expect(p[2]).toBe('Si le groupe RN avait voté contre, le texte était rejeté.');
   });
 
   it('raconte une motion de censure rejetée', () => {

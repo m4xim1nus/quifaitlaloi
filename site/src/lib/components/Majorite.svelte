@@ -1,7 +1,7 @@
 <script lang="ts">
   // Barre de majorité : les voix de chaque groupe, empilées, face à la majorité requise. Le
   // groupe décisif hors socle est souligné, et son contre-factuel écrit en clair.
-  import { censureAvec, sansLesVoix } from '$lib/majorite';
+  import { censureAvec, siContre } from '$lib/majorite';
   import { groupes } from '$lib/recit';
   import { entier } from '$lib/format';
   import type { PositionGroupe, ScrutinDetaille } from '$lib/types';
@@ -99,11 +99,11 @@
             {c.adoptee ? 'tombait' : 'restait en place'}.
           </li>
         {:else}
-          {@const c = sansLesVoix(s, d)}
+          {@const c = siContre(s, d)}
           <li>
-            Sans les {d.pour} voix {groupes([d.sigle]).replace('le groupe', 'du groupe')}&#8239;: {entier(
-              c.pour
-            )} pour, {entier(c.contre)} contre. {s.objet === 'motion_rejet'
+            Si les {d.pour} députés {groupes([d.sigle]).replace('le groupe', 'du groupe')} qui ont voté
+            pour avaient voté contre&#8239;: {entier(c.pour)} pour, {entier(c.contre)} contre. {s.objet ===
+            'motion_rejet'
               ? `La motion ${c.adopte ? 'passait quand même' : 'était rejetée'}.`
               : `Le texte ${c.adopte ? 'passait quand même' : 'était rejeté'}.`}
           </li>
