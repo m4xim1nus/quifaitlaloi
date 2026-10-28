@@ -12,6 +12,8 @@
     an_scrutins_16: 'Scrutins de l’Assemblée, XVIe législature',
     an_dossiers_17: 'Dossiers législatifs de l’Assemblée, XVIIe législature',
     an_dossiers_16: 'Dossiers législatifs de l’Assemblée, XVIe législature',
+    an_scrutins_15: 'Scrutins de l’Assemblée, XVe législature',
+    an_dossiers_15: 'Dossiers législatifs de l’Assemblée, XVe législature',
     an_amo: 'Députés, groupes et organes de l’Assemblée (AMO)',
     senat_dosleg: 'Base des dossiers législatifs du Sénat (Dosleg)',
     senat_senateurs: 'Sénateurs et historique des groupes'

@@ -372,3 +372,23 @@ groupes décisifs, avec un « avec … » peu lisible. Elle est remplacée par :
   groupe choisi, pas de liste** (une liste chronologique de 35 lois était
   illisible) : une invitation à choisir un groupe, ou à afficher toutes
   les lois. Sur téléphone, une liste par loi avec les groupes en pastilles.
+
+## 15. Baselines : une page par législature, une page « Comparer » (cycle Baselines)
+
+- **Gabarit commun** : le composant `Legislature` porte les trois questions
+  (chemins, coalitions, groupes décisifs) pour une législature. L'accueil
+  reste la XVIIe (l'actualité) ; la XVe et la XVIe ont `/legislature/15` et
+  `/legislature/16`. Un sélecteur en pastilles (XVe · XVIe · XVIIe ·
+  Comparer) sous le chapô relie les quatre pages ; « Comparer » entre dans
+  la navigation principale.
+- **Le socle se nomme par législature** (`site/src/lib/legislatures.ts`) :
+  « majorité présidentielle » sous les XVe et XVIe, « socle commun » sous la
+  XVIIe. Les libellés de coalition disent « socle », développé en tête de
+  page. « Centre + LR (XVIe) » devient « Socle + LR ».
+- **Comparer** (`/comparer`) : petits multiples en gaufres, un carré = une
+  loi, à la même taille dans les trois colonnes (on compare des parts, la
+  surface dit le volume). Trois gaufres par législature (chemin, coalition,
+  groupe décisif), rangées par catégorie, chacune suivie d'un tableau de
+  comptes et de parts (la version accessible). Pas de filtre de dates.
+- **`/lois`** gagne un filtre « Législature » ; les liens des pages de
+  législature le pré-remplissent.

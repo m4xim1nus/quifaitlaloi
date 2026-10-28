@@ -27,6 +27,9 @@ export const load = () => {
     periodes: b.meta.referentiels.periodes.periodes,
     comptes: {
       lois: lois.length,
+      parLegislature: Object.fromEntries(
+        [15, 16, 17].map((n) => [n, lois.filter((l) => l.legislature === n).length])
+      ) as Record<15 | 16 | 17, number>,
       accords: lois.filter((l) => l.type === 'convention').length,
       lectures: lectures.length,
       lecturesAN: lectures.filter((l) => l.chambre === 'AN').length,
@@ -36,6 +39,12 @@ export const load = () => {
       sansVoteSN: lectures.filter((l) => l.chambre === 'SN' && l.mode_adoption === 'MAIN_LEVEE')
         .length,
       scrutins: b.scrutins.size,
+      motionsNonQualifiees: lectures
+        .filter((l) => l.mode_adoption === 'MOTION_REJET' && l.chambre === 'AN')
+        .map((l) => ({
+          loi: lois.find((x) => x.id === l.loi_id)!,
+          score: l.score_rejet_inverse
+        })),
       rejetsInverses: lectures
         .filter((l) => l.mode_adoption === 'REJET_INVERSE')
         .map((l) => ({

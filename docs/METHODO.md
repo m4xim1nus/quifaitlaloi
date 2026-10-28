@@ -1,33 +1,37 @@
-# Méthodologie (v0)
+# Méthodologie (v1.1)
 
-Version de travail de l'étape 2, base de la future page « Méthodologie » du
-site. Chiffres : instantané du 28/10/2026 (`data/export/meta.json` date les
+Base de la page « Méthodologie » du site (`site/src/routes/methodologie`).
+Chiffres : instantané du 28/10/2026 (`data/export/meta.json` date les
 sources). Les choix marqués **[validé]** ont été arbitrés par Max le 28/10/2026.
 
 ## 1. Ce qu'on mesure
 
-Pour chaque loi adoptée sous la XVIIe législature, on reconstitue son
-parcours au Parlement, lecture par lecture. On note comment chaque lecture
+Pour chaque loi adoptée sous les XVe, XVIe et XVIIe législatures (depuis
+juin 2017), on reconstitue son parcours au Parlement, lecture par lecture. On note comment chaque lecture
 s'est conclue : vote nominatif, vote sans scrutin public, 49.3, motion de
 rejet. Pour chaque vote décisif, on note quels groupes l'ont fait passer.
 
-**Périmètre.** Les lois promulguées depuis le 18/07/2024 (148 au
-28/10/2026), plus les textes adoptés définitivement mais pas encore
-promulgués (aucun à cette date). Les conventions internationales (34) sont
-gardées, dans une catégorie à part : chaque chiffre existe avec et sans
-elles. Les lectures tenues sous la XVIe législature (avant la dissolution)
-sont incluses pour les textes concernés.
+**Périmètre.** Les lois promulguées depuis le 27/06/2017 (606 au
+28/10/2026 : 318 sous la XVe, 141 sous la XVIe, 147 sous la XVIIe), plus
+les textes adoptés définitivement mais pas encore promulgués (aucun à cette
+date ; détection limitée à la législature en cours). Chaque loi est
+rattachée à la législature de son **adoption définitive**. Les conventions
+internationales (155) sont gardées, dans une catégorie à part : chaque
+chiffre existe avec et sans elles. Les lectures tenues sous une législature
+précédente sont incluses pour les textes concernés.
 
 Une loi, la 2024-850 (ingérences étrangères), a été adoptée le 05/06/2024
-et promulguée le 25/07/2024 : elle est dans le périmètre (promulguée sous la
-XVIIe), mais rattachée à la XVIe (`legislature = 16`) **[validé]**.
+et promulguée le 25/07/2024 : elle est rattachée à la XVIe
+(`legislature = 16`) **[validé]**. Le site v1 la comptait parmi les 148 lois
+« promulguées depuis juillet 2024 » ; la page de la XVIIe en compte 147.
 
 ## 2. Sources
 
 Uniquement l'open data officiel de l'Assemblée nationale et du Sénat
 (détail, volumes et anomalies : `docs/SOURCES.md`) :
 
-- dossiers législatifs et scrutins publics de l'AN (XVIe et XVIIe) ;
+- dossiers législatifs et scrutins publics de l'AN (XVe, XVIe et XVIIe ;
+  un dossier présent dans plusieurs dumps est pris dans le plus récent) ;
 - base Dosleg du Sénat (textes, lectures, scrutins, votes nominatifs) et
   historique d'appartenance des sénateurs aux groupes.
 
@@ -63,22 +67,38 @@ Le dossier AN contient des erreurs qu'on corrige par des règles explicites
 C'est le vote qui conclut la lecture : vote sur l'ensemble du texte (ou sur
 son article unique), ou motion de rejet adoptée si le texte est rejeté.
 
-- **AN** : le scrutin référencé par le dossier (`voteRefs`). À défaut, un
-  scrutin de la même séance, sur l'ensemble, dont l'intitulé correspond au
-  titre du texte. On compare le début du titre, ou au moins 60 % des mots
-  significatifs, le titre changeant parfois en cours de navette. Dernier
-  recours, dans la seule séance de la décision : 40 % des mots, et le même
-  type de lecture dans l'intitulé (« première lecture », etc.).
+- **AN** : le scrutin référencé par le dossier (`voteRefs`), s'il porte
+  sur l'ensemble (les `voteRefs` ne citent parfois qu'une motion rejetée).
+  À défaut, un scrutin de la même séance, sur l'ensemble, dont l'intitulé
+  correspond au titre du texte. On compare le début du titre, ou au moins
+  60 % des mots significatifs, aux titres du texte : titre du dossier, de la
+  loi, du Sénat, et de chaque texte déposé ou adopté (le titre change en
+  navette : la loi ESSOC est votée en nouvelle lecture sous son titre de
+  dépôt). Dernier recours, dans la séance de la décision puis dans son jour :
+  40 % des mots, et le même type de lecture dans l'intitulé (« première
+  lecture », etc.).
+- **Mots significatifs** : hors mots-outils, mots de procédure et formule
+  des conventions (« autorisant l'approbation de l'accord entre le
+  Gouvernement de la République française et le Gouvernement de… ») : sans
+  cela, deux accords du même jour se confondent. Une **loi organique** et la
+  loi ordinaire qui l'accompagne ont le même titre : l'intitulé du scrutin
+  (« projet de loi organique ») les départage.
+- **Un scrutin, une lecture** : si deux lectures se disputent un même
+  scrutin trouvé par la séance, il revient à celle qui le référence
+  (`voteRefs`), sinon au titre le plus proche ; l'autre est requalifiée sans
+  lui.
 - **Sénat** : les scrutins de la même loi et du même type de lecture dans
-  Dosleg.
+  Dosleg (intitulés « sur l'ensemble… », ou, jusqu'en 2019, « sur les
+  conclusions de la CMP… »).
 - **Rejet par suppression de l'article unique** : quand l'AN adopte les
   amendements de suppression de l'article unique, le texte est rejeté sans
   vote sur l'ensemble. Ce scrutin est alors le scrutin décisif (loi
   2026-470). Si la décision n'a pas de séance renseignée, on cherche parmi
   les scrutins du jour de la décision.
-- **Lecture AN sous la XVe** (avant le 28/06/2022) : ses scrutins ne sont
-  pas ingérés, le mode est `NON_RENSEIGNE` (1 cas, loi 2025-444). Ces
-  scrutins viendront avec le cycle Baselines.
+- **Lecture antérieure à la XVe** (avant le 27/06/2017) : ses scrutins ne
+  sont pas ingérés, le mode serait `NON_RENSEIGNE`. Aucun cas depuis
+  l'ingestion de la XVe (la loi 2025-444, seul cas de la v1, a retrouvé son
+  scrutin de 2022).
 - **Sans scrutin trouvé** : la lecture est classée `MAIN_LEVEE`.
 
 > `MAIN_LEVEE` veut dire qu'**aucun scrutin public n'a eu lieu** : on ne
@@ -95,9 +115,12 @@ Une lecture sans scrutin sur l'ensemble peut compter des scrutins sur des
 amendements, d'où l'exigence d'un scrutin portant sur l'ensemble. Au Sénat,
 « adopté à l'unanimité des présents » reste un vote à main levée.
 
-Rattachements actuels : 152 lectures AN par `voteRefs`, 32 par séance ou
-par date, 29 sans scrutin public, 1 non renseignée ; 104 lectures Sénat par
-Dosleg, 106 sans scrutin public.
+**Seconde vérification** (28/10/2026, cycle Baselines, 16 lectures tirées
+parmi les `MAIN_LEVEE` de la XVe et de la XVIe : 12 AN, 4 Sénat). 15 sont
+confirmées (dont 2 en procédure d'examen simplifiée, art. 106 du Règlement,
+et 2 constats d'unanimité au Sénat). L'infirmée (Sénat, 02/08/2017) a conduit
+à reconnaître les intitulés « sur les conclusions de la CMP » (4 lectures
+corrigées).
 
 ## 5. Modes d'adoption
 
@@ -118,13 +141,18 @@ texte de CMP peut passer par scrutin, sans scrutin public ou au 49.3.
 | `REJET_INVERSE` | motion de rejet votée par les partisans du texte pour aller en CMP sur la version du Sénat | motion de rejet AN adoptée + règle ci-dessous |
 | `DELAI_EXPIRE` | lecture close sans décision : loi de finances ou de financement transmise à l'expiration des délais (art. 47 et 47-1) | aucune décision dans l'étape (1re lecture AN des PLFSS 2025 et 2026) |
 | `SANS_DECISION` | idem, hors texte financier | — (aucun cas) |
-| `NON_RENSEIGNE` | lecture AN tenue sous la XVe, scrutins non ingérés | date < 28/06/2022 |
+| `NON_RENSEIGNE` | lecture tenue avant la XVe, scrutins non ingérés | date < 27/06/2017 (aucun cas) |
 
 Le **vote bloqué** (art. 44, al. 3) est un attribut (`vote_bloque`) posé à
 la main dans `flags.yaml` : aucun intitulé de scrutin AN ne le mentionne.
 
 **Sur un 49.3, la position des groupes se lit sur la motion de censure**
-(scrutin miroir) : la plus votée de la lecture.
+(scrutin miroir) : la plus votée de la lecture. Sous la XVIe, les motions
+du dossier n'ont pas de `voteRefs` : on passe par le dossier « Engagement de
+la responsabilité » de chaque 49.3 (même date, même projet), dont les
+motions sont appariées aux scrutins de censure dans l'ordre (34 motions, 34
+scrutins ; l'ordre est vérifié en XVIIe, où les `voteRefs` existent).
+Exemple : réforme des retraites, motion LIOT du 20/03/2023, 278 voix.
 
 **Règle du rejet inversé [validé].** Une motion de rejet préalable adoptée
 à l'AN est un rejet inversé si (1) le texte part ensuite en CMP et (2) plus
@@ -175,7 +203,8 @@ chaque sénateur à la date du scrutin. Le résultat est identique à senat.fr
 ## 8. Blocs et socle
 
 Le mapping groupes → blocs (`pipeline/referentiels/blocs.yaml`) est un
-choix politique, validé par Max le 28/10/2026 et affiché tel quel :
+choix politique, validé par Max le 28/10/2026 pour les XVIe et XVIIe et
+affiché tel quel. **La XVe est une proposition à valider** (voir plus bas) :
 
 - **gauche** : LFI, SOC, écologistes, GDR ; au Sénat SER, CRCE-K, GEST ;
 - **centre (bloc présidentiel)** : EPR/RE, DEM, HOR ; au Sénat RDPI, UC, Les Indépendants ;
@@ -185,7 +214,18 @@ choix politique, validé par Max le 28/10/2026 et affiché tel quel :
   RN siégeaient parmi les non-inscrits et sont donc comptés en « autres ».
 
 Le **socle** est le bloc gouvernemental de référence : centre seul sous la
-XVIe, centre + droite sous la XVIIe.
+XVe et la XVIe (majorité présidentielle), centre + droite sous la XVIIe
+(socle commun).
+
+**XVe (proposition, à valider par Max)** : gauche = FI, GDR, Nouvelle
+Gauche puis Socialistes, Écologie Démocratie Solidarité (dissidents LREM,
+2020) ; centre = LREM, MoDem puis Démocrates, Agir ensemble (2020) ;
+droite = LR ; autres = Les Constructifs puis UDI-Agir et ses successeurs,
+Libertés et Territoires, non-inscrits (dont les 8 députés RN, sans groupe).
+Socle = centre. Au Sénat, le groupe Écologiste (`ECO`, jusqu'en 2017) est à
+gauche ; les autres codes sont ceux de la XVIIe (UC et Les Indépendants au
+centre, alors qu'ils étaient dans l'opposition sénatoriale sous la XVe : à
+trancher).
 
 ## 9. Signature de coalition
 
@@ -272,7 +312,7 @@ suivante avec les baselines XVIe et XVe.
 ## 13. Limites connues
 
 - Le solennel n'est pas distingué de l'ordinaire au Sénat.
-- `MAIN_LEVEE` n'est confirmé que sur un échantillon de 16 lectures (§4).
+- `MAIN_LEVEE` n'est confirmé que sur deux échantillons de 16 lectures (§4).
   Les conventions passent en procédure d'examen simplifiée, sans vote
   nominatif : ce sous-type n'est pas encore distingué.
 - Vote bloqué : repérage manuel seulement.
@@ -281,7 +321,12 @@ suivante avec les baselines XVIe et XVe.
   définitivement » dans Dosleg. Elle est fiable mais n'a pas encore été
   éprouvée sur un cas réel (aucun au 28/10/2026).
 - Positions stockées seulement pour les scrutins utiles (décisifs, motions
-  de censure) : 298 scrutins. La cohésion (métrique 4) est calculée sur tous
+  de censure) : 1 121 scrutins.
+- XVe : deux scrutins AN ont une ventilation par groupe incomplète dans la
+  source (V2816 : groupe MoDem absent ; V3778 : une voix). Les totaux restent
+  justes ; `qfl check` les signale sans échouer.
+- Le mapping des blocs de la XVe et le socle de la XVe sont des propositions
+  en attente de validation (§8). La cohésion (métrique 4) est calculée sur tous
   les scrutins publics, mais exportée agrégée seulement.
 
 ## 14. Affichage sur le site
@@ -309,3 +354,44 @@ choix propres sont décrits dans `docs/CONCEPTION.md` :
 - **Thèmes** (`lois.themes`) : classement du Sénat (Dosleg, tables `the` et
   `loithe`), 1 à 4 par loi ; rangés du plus spécifique au plus général
   (fréquence croissante dans Dosleg, « Société » en dernier).
+
+## 15. Baselines : les trois législatures comparées (28/10/2026)
+
+Mêmes règles, hors conventions. Le socle est la majorité présidentielle
+sous la XVe et la XVIe, le socle commun sous la XVIIe ; la XVe repose sur
+un mapping des blocs encore à valider (§8).
+
+| | XVe (2017-2022) | XVIe (2022-2024) | XVIIe (depuis 2024) |
+|---|---|---|---|
+| Lois (par an) | 238 (48) | 100 (49) | 113 (50) |
+| 49.3 / rejet par ses partisans | 0 / 0 | 6 / 0 | 3 / 2 |
+| Sans vote nominatif (dernière lecture AN) | 80 (34 %) | 3 (3 %) | 1 (1 %) |
+| Aucun bloc contre | 66 | 43 | 50 |
+| Socle + RN / + gauche + RN | — (pas de groupe RN) | 17 / 18 | 23 / 23 |
+| Socle + gauche | 22 | 7 | 13 |
+| Socle + LR | 24 | 7 | 1 (lecture de la XVIe) |
+| Socle seul | 46 | 5 | 2 |
+| Lois avec un groupe hors socle décisif | 0 | 4 (LR 2, RN, SOC) | 33 (RN 22, SOC 9…) |
+
+Lecture, au regard de l'hypothèse de travail (le régime ne produit plus de
+majorités stables, seulement des contournements ou des pivots alternés) :
+
+- **Le contournement date de 2022, pas de 2024.** Sous la XVIe, six lois
+  passent au 49.3 : les quatre budgets annuels, la programmation des
+  finances publiques et la réforme des retraites. Il reste concentré sur les
+  textes financiers sous les deux législatures ; la nouveauté de la XVIIe
+  est le rejet par ses partisans (Duplomb, Nouvelle-Calédonie). La motion de
+  rejet adoptée sur la loi immigration (décembre 2023) ne remplit pas la
+  règle (47,8 % des voix de la motion viennent des soutiens du texte final).
+- **Les pivots, eux, datent de 2024.** Sous la XVIe, la majorité relative
+  gagne presque toujours seule au décompte des votants : un groupe extérieur
+  n'est décisif que sur 4 lois (LR sur les retraites, au sens de la
+  non-censure ; le RN sur la loi immigration). Sous la XVIIe, 33 lois.
+- **Le vote nominatif devient la règle avec la majorité relative.** Sous la
+  XVe, un tiers des lois passe sans scrutin public à leur dernière lecture
+  AN ; depuis 2022, presque aucune. C'est un effet de la demande de scrutin
+  (§4), pas une mesure du consensus.
+- **Le RN vote déjà avec la majorité sous la XVIe** (35 lois socle + RN ou
+  transpartisanes sur 100), mais n'y est décisif qu'une fois (loi
+  immigration).
+

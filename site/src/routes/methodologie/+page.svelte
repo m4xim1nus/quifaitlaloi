@@ -54,10 +54,13 @@
   <section id="perimetre">
     <h2>Périmètre</h2>
     <p>
-      Les lois promulguées depuis le début de la XVIIe législature (18 juillet 2024)&#8239;: {c.lois}
-      au {dateLongue(data.date)}. S’y ajouteraient les textes adoptés définitivement mais pas encore
-      promulgués&#8239;; il n’y en a aucun à cette date. Pour chaque loi, toutes ses lectures sont
-      prises en compte, y compris celles tenues avant la dissolution de juin 2024.
+      Les lois promulguées depuis le début de la XVe législature (27 juin 2017)&#8239;: {c.lois}
+      au {dateLongue(data.date)}, dont {c.parLegislature[15]} sous la XVe, {c.parLegislature[16]}
+      sous la XVIe et {c.parLegislature[17]} sous la XVIIe. Une loi compte dans la législature de son
+      adoption définitive (la loi sur les ingérences étrangères, adoptée le 5 juin 2024 et promulguée
+      après la dissolution, compte dans la XVIe). S’y ajouteraient les textes adoptés définitivement mais
+      pas encore promulgués&#8239;; il n’y en a aucun à cette date. Pour chaque loi, toutes ses lectures
+      sont prises en compte, y compris celles tenues sous une législature précédente.
     </p>
     <p id="accords">
       <strong>Accords internationaux.</strong>
@@ -131,8 +134,8 @@
     <p class="encadre">
       <strong>« Sans vote nominatif » ne veut pas dire consensus.</strong> Il n’y a simplement pas d’information
       sur le vote de chaque groupe. Cette catégorie n’est jamais regroupée avec les lois adoptées largement.
-      Un échantillon de 16 lectures a été vérifié sur les comptes rendus des séances&#8239;: 14 confirmées,
-      2 erreurs corrigées par de nouvelles règles.
+      Deux échantillons de 16 lectures, l’un sous la XVIIe, l’autre sous les XVe et XVIe, ont été vérifiés
+      sur les comptes rendus des séances&#8239;: 29 confirmées, 3 erreurs corrigées par de nouvelles règles.
     </p>
     <p id="rejet-inverse">
       <strong>Règle du rejet par ses partisans</strong> (dit « rejet inversé »). Une motion de rejet préalable
@@ -150,6 +153,15 @@
         </li>
       {/each}
     </ul>
+    {#if c.motionsNonQualifiees.length}
+      <p>
+        Motions de rejet adoptées sans remplir la seconde condition (elles restent des motions de
+        rejet)&#8239;:
+        {#each c.motionsNonQualifiees as r, i (r.loi.id)}{i ? ', ' : ''}<a href="/lois/{r.loi.id}"
+            >{r.loi.titre_court}</a
+          >{r.score === null ? '' : ` (${pourcent(r.score)} des voix de la motion)`}{/each}.
+      </p>
+    {/if}
     <p>
       Le <strong>vote bloqué</strong> (article 44, alinéa 3, de la Constitution) n’apparaît dans aucun
       intitulé de scrutin&#8239;: il ne peut être repéré qu’à la main. Aucun cas n’est retenu à ce jour.
@@ -204,8 +216,9 @@
       Pour décrire une coalition, les groupes sont rangés en cinq blocs. C’est un choix&#8239;: il
       est affiché ici en entier, et versionné dans le <a href={REFERENTIELS} rel="external"
         >référentiel <code>blocs.yaml</code></a
-      >. Le <strong>socle commun</strong> est le bloc gouvernemental de référence&#8239;: le centre seul
-      sous la XVIe législature, le centre et la droite sous la XVIIe.
+      >. Le <strong>socle</strong> est le bloc gouvernemental de référence&#8239;: le centre seul (majorité
+      présidentielle) sous les XVe et XVIe législatures, le centre et la droite (socle commun) sous la
+      XVIIe.
     </p>
     <div class="defile">
       <table class="blocs">
@@ -214,6 +227,7 @@
             <th scope="col">Bloc</th>
             <th scope="col">Assemblée, XVIIe</th>
             <th scope="col">Assemblée, XVIe</th>
+            <th scope="col">Assemblée, XVe</th>
             <th scope="col">Sénat</th>
           </tr>
         </thead>
@@ -221,7 +235,7 @@
           {#each BLOCS as b (b)}
             <tr>
               <th scope="row">{data.blocs[b]?.libelle ?? LIBELLE_BLOC[b]}</th>
-              {#each [17, 16] as leg (leg)}
+              {#each [17, 16, 15] as leg (leg)}
                 <td>
                   {#each data.groupesAN.filter((g) => g.leg === leg && g.bloc === b) as g, i (g.sigle + i)}
                     <span class="groupe" title={g.nom}
@@ -249,6 +263,13 @@
       </li>
       <li>UDR, puis le groupe qui lui succède (UDDPLR), sont rangés avec le RN.</li>
       <li>LIOT, le RDSE et les non-inscrits forment le bloc « autres ».</li>
+      <li>
+        Sous la XVe, le RN n’a pas de groupe&#8239;: ses députés, non inscrits, sont dans « autres
+        ». Les groupes issus des Constructifs (UDI, Agir et Indépendants, puis UDI et Indépendants)
+        et Libertés et Territoires y sont aussi&#8239;; Agir ensemble, allié de la majorité, est au
+        centre&#8239;; Écologie Démocratie Solidarité (dissidents de La République en marche, 2020)
+        est à gauche.
+      </li>
       <li>
         Au Sénat, les sénateurs RN siégeaient parmi les non-inscrits jusqu’à la création du groupe
         UNT (5 octobre 2026)&#8239;: avant cette date, ils sont comptés dans « autres ».
@@ -346,14 +367,20 @@
     <ul>
       <li>Au Sénat, le scrutin solennel n’est pas distingué du scrutin ordinaire.</li>
       <li>
-        L’absence de vote nominatif n’a été vérifiée que sur un échantillon de 16 lectures. Pour les
-        accords internationaux, la procédure d’examen simplifiée n’est pas encore distinguée du vote
-        à main levée ordinaire.
+        L’absence de vote nominatif n’a été vérifiée que sur deux échantillons de 16 lectures. Pour
+        les accords internationaux, la procédure d’examen simplifiée n’est pas encore distinguée du
+        vote à main levée ordinaire.
       </li>
       <li>Le vote bloqué n’est repéré qu’à la main.</li>
       <li>
-        Une lecture de l’Assemblée tenue sous la XVe législature (avant juin 2022) n’a pas son
-        scrutin&#8239;: les votes de cette législature ne sont pas encore intégrés.
+        Une lecture tenue avant la XVe législature (avant juin 2017) n’aurait pas son
+        scrutin&#8239;: les votes antérieurs ne sont pas intégrés. Aucune loi du périmètre n’est
+        dans ce cas.
+      </li>
+      <li>
+        Dans les données de l’Assemblée pour la XVe, deux scrutins ont une ventilation par groupe
+        incomplète (le groupe MoDem manque au vote du 23 juillet 2020 sur la loi organique relative
+        à la dette sociale)&#8239;: les totaux restent justes, la position du groupe manque.
       </li>
       <li>
         Le site ne compte que les lois adoptées&#8239;: les textes rejetés ou retirés n’y figurent

@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-28T13:14:28+00:00",
+ "genere_le": "2026-10-28T13:24:58+00:00",
  "sources": {
   "an_scrutins_17": {
    "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip",
@@ -359,7 +359,12 @@
    }
   },
   "flags": {
-   "vote_bloque": {},
+   "vote_bloque": {
+    "DLR5L16N47066-SN1": {
+     "statut": "a_valider",
+     "note": "vote bloqué au Sénat, 10/03/2023 (retraites)"
+    }
+   },
    "main_levee_confirmee": {}
   },
   "periodes": {

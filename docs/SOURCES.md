@@ -25,6 +25,8 @@ Aucune n'est bloquante.
 |---|---|---|---|---|
 | Scrutins AN XVIIe | `data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip` | JSON, 1 fichier par scrutin | 28 Mo → 195 Mo, 9 155 scrutins (08/10/2024 → 27/10/2026) | votes nominatifs, ventilés par groupe |
 | Dossiers législatifs AN XVIIe | `…/17/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip` | JSON : 3 374 dossiers + 7 542 documents | 11 Mo → 59 Mo | chaîne des actes, 49.3, motions, CMP, promulgation |
+| Scrutins AN XVIe / XVe | `…/16/loi/scrutins/Scrutins.json.zip`, `…/15/loi/scrutins/Scrutins_XV.json.zip` | JSON | XVe : 9 Mo, 4 417 scrutins (figé le 09/06/2022) | baselines |
+| Dossiers AN XVIe / XVe | `…/16/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip`, `…/15/loi/dossiers_legislatifs/Dossiers_Legislatifs_XV.json.zip` | JSON | XVe : 15 Mo (figé le 09/06/2022) | baselines |
 | Acteurs et organes AN (historique) | `…/17/amo/tous_acteurs_mandats_organes_xi_legislature/AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip` | JSON : 3 175 acteurs, 10 819 organes | 14 Mo → 133 Mo | sigles et dates des groupes (`organeRef`) |
 | Dosleg Sénat | `data.senat.fr/data/dosleg/dosleg.zip` | dump PostgreSQL (53 tables) | 16 Mo → 127 Mo | lois, lectures, **scrutins Sénat** (`scr`) et votes nominatifs (`votsen`, 1,67 M lignes) |
 | Groupes des sénateurs | `data.senat.fr/data/senateurs/ODSEN_HISTOGROUPES.csv` | CSV latin-1, en-tête `%` | 0,6 Mo | appartenance sénateur → groupe, datée |
@@ -287,3 +289,31 @@ et §7.
     décisif se cherche parmi les scrutins du jour de la décision. Ici, il
     s'agit des amendements de suppression de l'article unique, adoptés : le
     texte est rejeté sans vote sur l'ensemble.
+
+## Anomalies relevées au cycle Baselines (XVe, XVIe)
+
+20. **Ventilations incomplètes (XVe)** : `V2816` (23/07/2020, loi organique
+    dette sociale) n'a pas de ventilation pour le groupe MoDem (46 voix
+    pour) ; `V3778` perd une voix pour. Rien à reconstruire (pas de liste
+    nominative pour le groupe manquant) : listés dans `qfl check`.
+21. **Titres de promulgation (XVe)** : 31 `titreLoi` commencent par « LOI
+    n° … du … » ou finissent par le renvoi « (1) » du JO ; nettoyés.
+22. **Motions de censure sans `voteRefs` (XVIe)** : ni le dossier du texte ni
+    le dossier « Engagement de la responsabilité » (`AN21`) ne les relient à
+    leur scrutin. Motions et scrutins `MOC` sont appariés dans l'ordre (34 et
+    34). En XVIIe, une motion déposée et non votée décale le compte : on y
+    garde les `voteRefs`.
+23. **Intitulés de scrutins de CMP au Sénat (2017-2019)** : « sur les
+    conclusions de la commission mixte paritaire… », « sur le texte élaboré
+    par la CMP… » (4 scrutins) ; reconnus comme votes sur l'ensemble.
+24. **Intitulés AN** : coquilles (« lecture défintive », « texte de la
+    commission paritaire », « 1ère lecture ») ; `voteRefs` qui ne citent
+    qu'une motion de rejet rejetée (SERM, saisie des avoirs criminels) ;
+    séance du dossier différente de celle du scrutin, le même jour.
+25. **Titres voisins** : deux conventions du même jour (« services aériens »
+    avec l'Éthiopie… et avec le Tchad…) ou une loi organique et sa loi
+    ordinaire (« manipulation de l'information ») ont des intitulés presque
+    identiques. Le rapprochement neutralise la formule des conventions et
+    distingue « loi organique » (`docs/METHODO.md` §4).
+26. **Congrès** : la révision constitutionnelle de 2024 (IVG) a une étape
+    `CG22` (vote du Congrès), ignorée comme lecture. Type `constitutionnelle`.
