@@ -12,7 +12,7 @@ import polars as pl
 from . import an, metriques, parcours, referentiels, senat, votes
 from .sources import extraits, lire_manifeste
 
-LEGISLATURES_AN = (16, 17)
+LEGISLATURES_AN = (15, 16, 17)
 
 
 def _log(msg: str) -> None:
@@ -179,8 +179,14 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     pos = {sid: votes.positions(tous[sid], gs, bloc_de) for sid, gs in ventil.items()}
 
     _log("== Parcours des lois")
-    idx = parcours.Index(scr_an, scr_sn)
-    rows_lois, rows_lect, rows_evt = parcours.lois(an.dossiers(raw, 17), idx,
+    # un dossier présent dans plusieurs dumps : la version la plus récente est au moins aussi complète
+    dossiers = {uid: d for leg in LEGISLATURES_AN for uid, d in an.dossiers(raw, leg).items()}
+    idx = parcours.Index(scr_an, scr_sn, an.motions_censure(dossiers, scr_an))
+    titres_textes: dict[str, set[str]] = {}
+    for leg in LEGISLATURES_AN:
+        for uid, ts in an.titres_textes(raw, leg).items():
+            titres_textes.setdefault(uid, set()).update(ts)
+    rows_lois, rows_lect, rows_evt = parcours.lois(dossiers, titres_textes, idx,
                                                    {"par_signet": par_signet, "par_date": par_date,
                                                     "definitifs": senat.adoptes_definitivement(tables)})
     par_loi: dict[str, list[dict]] = {}

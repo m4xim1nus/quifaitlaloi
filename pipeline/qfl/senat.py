@@ -22,7 +22,7 @@ TABLES = {
 }
 ESC = {"t": "\t", "n": "\n", "r": "\r", "\\": "\\"}
 POSITIONS = {"1": "pour", "2": "contre", "3": "abstention", "4": "non_votant"}
-DEBUT = "2022-06-01"  # début de la période utile (XVIe législature)
+DEBUT = "2017-06-27"  # début de la période utile (XVe législature, parcours.DEBUT)
 
 
 def _champ(v: str):

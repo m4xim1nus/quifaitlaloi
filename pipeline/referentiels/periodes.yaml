@@ -5,6 +5,7 @@
 # Date des « accords PS » validée par Max le 2026-10-28.
 
 periodes:
+  - {code: xv, debut: "2017-06-27", libelle: "XVe législature (majorité absolue)"}
   - {code: xvi, debut: "2022-06-28", libelle: "XVIe législature (majorité relative)"}
   - {code: dissolution, debut: "2024-06-09", libelle: "Dissolution, élections"}
   - {code: avant_censure, debut: "2024-07-18", libelle: "XVIIe, jusqu'à la censure Barnier"}

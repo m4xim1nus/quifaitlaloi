@@ -61,6 +61,7 @@ export const LIBELLE_MODE: Record<ModeAdoption, string> = {
 export const LIBELLE_TYPE: Record<TypeLoi, string> = {
   ordinaire: 'Loi ordinaire',
   organique: 'Loi organique',
+  constitutionnelle: 'Loi constitutionnelle',
   finances: 'Loi de finances',
   financement_ss: 'Loi de financement de la Sécurité sociale',
   convention: 'Accord international'

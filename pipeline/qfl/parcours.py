@@ -11,11 +11,15 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 from . import an, referentiels
-from .texte import cle_titre, norm, similarite, titre_court
+from .texte import cle_titre, mots_ordonnes, norm, similarite, titre_court
 
-DEBUT = "2024-07-18"  # début de la XVIIe législature
+# Début de chaque législature (première séance de l'AN). Périmètre : les lois
+# adoptées définitivement depuis le début de la XVe ; chacune est rattachée à la
+# législature de son adoption définitive.
+DEBUTS = {15: "2017-06-27", 16: "2022-06-28", 17: "2024-07-18"}
+DEBUT = DEBUTS[15]
 DECISIFS = {"ensemble", "article_unique", "partie", "motion_rejet", "suppression_article_unique"}
-DEBUT_SCRUTINS_AN = "2022-06-28"  # scrutins AN ingérés : XVIe et XVIIe
+DEBUT_SCRUTINS = DEBUT  # scrutins ingérés (AN et Sénat) : depuis la XVe
 URL_AN = "https://www.assemblee-nationale.fr/dyn/{leg}/dossiers/{chemin}"
 URL_SENAT = "https://www.senat.fr/dossier-legislatif/{signet}.html"
 
@@ -181,23 +185,31 @@ def _choisir(cands: list[dict], issue: str, titres: list[str]) -> dict | None:
 
 SEUIL_SIMILARITE = 0.6
 SEUIL_MEME_SEANCE = 0.4
-# Suffixe des intitulés de scrutins AN selon le type de lecture
-SUFFIXES = {"premiere": "premiere lecture", "deuxieme": "deuxieme lecture", "troisieme": "troisieme lecture",
-            "nouvelle": "nouvelle lecture", "definitive": "lecture definitive", "cmp": "commission mixte paritaire"}
+# Suffixe des intitulés de scrutins AN selon le type de lecture (coquilles vues dans les
+# intitulés : « 1ère lecture », « lecture défintive », « commission paritaire »)
+SUFFIXES = {"premiere": r"(premiere|1ere) lecture", "deuxieme": r"(deuxieme|2e|2eme) lecture",
+            "troisieme": r"(troisieme|3e|3eme) lecture", "nouvelle": r"nouvelle lecture",
+            "definitive": r"lecture def", "cmp": r"commission (mixte )?paritaire"}
 
 
-def _meme_texte(s: dict, cles: list[str], titres: list[str], seuil: float = SEUIL_SIMILARITE) -> bool:
+def _meme_texte(s: dict, cles: list[str], titres: list[str], seuil: float = SEUIL_SIMILARITE,
+                organique: bool | None = None) -> bool:
     """Le scrutin porte-t-il sur ce texte ? Début de titre identique, ou au moins 60 %
-    des mots significatifs d'un des titres du texte (le titre change parfois en navette)."""
-    t = norm(s["titre"])
+    des mots significatifs d'un des titres du texte (le titre change parfois en navette).
+    Une loi organique et la loi ordinaire qui l'accompagne ont le même titre : l'intitulé
+    du scrutin dit laquelle (« projet de loi organique »)."""
+    if organique is not None and ("loi organique" in norm(s["titre"])) != organique:
+        return False
+    t = " ".join(mots_ordonnes(s["titre"]))
     return any(k and k in t for k in cles) or any(similarite(s["titre"], x) >= seuil for x in titres if x)
 
 
 class Index:
     """Scrutins indexés pour le rattachement."""
 
-    def __init__(self, scr_an: list[dict], scr_sn: list[dict]):
+    def __init__(self, scr_an: list[dict], scr_sn: list[dict], miroirs: dict[tuple[str, str], list[str]]):
         self.an = {s["id"]: s for s in scr_an}
+        self.miroirs = miroirs  # an.motions_censure
         self.par_seance: dict[str, list[dict]] = defaultdict(list)
         self.par_date: dict[str, list[dict]] = defaultdict(list)
         for s in scr_an:
@@ -210,24 +222,30 @@ class Index:
                 self.sn[(s["loicod"], s["typleccod"])].append(s)
 
 
-def _scrutin_an(l: dict, idx: Index, titres: list[str], issue: str) -> tuple[dict | None, str]:
+def _scrutin_an(l: dict, idx: Index, titres: list[str], issue: str, organique: bool) -> tuple[dict | None, str]:
     refs = [idx.an[r] for r in an.vote_refs(l["dec"]) if r in idx.an]
-    if refs:
-        return _choisir(refs, issue, titres), "voteRefs"
+    if refs and (s := _choisir(refs, issue, titres)):
+        return s, "voteRefs"
+    # sinon (les voteRefs ne citent parfois qu'une motion rejetée) : par la séance
     seances = {l["dec"].get("reunionRef")} | l["seances"]
     cles = [cle_titre(t) for t in titres if t]
-    cands = [s for se in seances if se for s in idx.par_seance.get(se, []) if _meme_texte(s, cles, titres)]
+    exclus = l.get("exclus", set())
+    cands = [s for se in seances if se for s in idx.par_seance.get(se, [])
+             if s["id"] not in exclus and _meme_texte(s, cles, titres, organique=organique)]
     if not any(seances):
         # décision sans séance renseignée (vu sur DLR5L17N53981) : scrutins du jour de la décision
-        cands = [s for s in idx.par_date.get(l["date"], []) if _meme_texte(s, cles, titres)]
+        cands = [s for s in idx.par_date.get(l["date"], [])
+                 if s["id"] not in exclus and _meme_texte(s, cles, titres, organique=organique)]
     s = _choisir(cands, issue, titres)
-    if s is None and l["dec"].get("reunionRef"):
-        # Second passage, limité à la séance de la décision : seuil plus bas, mais
-        # le type de lecture de l'intitulé doit concorder (« (première lecture) »…).
-        suffixe = SUFFIXES.get(l["type_lecture"], "")
-        cands = [x for x in idx.par_seance.get(l["dec"]["reunionRef"], [])
-                 if suffixe in norm(x["titre"]) and _meme_texte(x, cles, titres, SEUIL_MEME_SEANCE)]
-        s = _choisir(cands, issue, titres)
+    # Second passage, limité à la séance de la décision, puis à son jour (la séance
+    # du dossier n'est pas toujours celle du scrutin) : seuil plus bas, mais le type
+    # de lecture de l'intitulé doit concorder (« (première lecture) »…).
+    suffixe = re.compile(SUFFIXES.get(l["type_lecture"], ""))
+    for pool in (idx.par_seance.get(l["dec"].get("reunionRef"), []), idx.par_date.get(l["date"], [])):
+        if s is None:
+            cands = [x for x in pool if x["id"] not in exclus and suffixe.search(norm(x["titre"]))
+                     and _meme_texte(x, cles, titres, SEUIL_MEME_SEANCE, organique)]
+            s = _choisir(cands, issue, titres)
     return s, ("seance" if s else "aucun")
 
 
@@ -262,14 +280,19 @@ def qualifier(l: dict, idx: Index, loicod: str | None, titres: list[str], type_l
     if art493:
         # scrutin miroir : la motion de censure la plus votée de la lecture
         refs = [idx.an[r] for m in l["motions"] for r in an.vote_refs(m) if r in idx.an]
+        if not refs:
+            # dossiers de la XVIe : motions sans voteRefs. On passe par le dossier
+            # « Engagement de la responsabilité » de chaque 49.3 de la lecture.
+            refs = [idx.an[r] for a in l["dgvt"]
+                    for r in idx.miroirs.get((_date(a), an._projet(a.get("texteAssocie"))), []) if r in idx.an]
         miroir = max(refs, key=lambda s: s["pour"], default=None)
         return {**out, "scrutin_id": miroir["id"] if miroir else None,
                 "rattachement": "motion_censure" if miroir else "aucun", "mode_adoption": "ART_49_3"}
-    if l["chambre"] == "AN" and l["date"] < DEBUT_SCRUTINS_AN:
-        # lecture tenue sous la XVe : ses scrutins ne sont pas ingérés (cycle Baselines)
+    if l["date"] < DEBUT_SCRUTINS:
+        # lecture tenue avant la XVe : ses scrutins ne sont pas ingérés
         return {**out, "scrutin_id": None, "rattachement": "scrutins_non_ingeres", "mode_adoption": "NON_RENSEIGNE"}
     if l["chambre"] == "AN":
-        s, how = _scrutin_an(l, idx, titres, st["issue"])
+        s, how = _scrutin_an(l, idx, titres, st["issue"], type_loi == "organique")
     else:
         s, how = _scrutin_sn(l, idx, loicod, st["issue"], titres)
     if s is None:
@@ -298,10 +321,12 @@ def type_loi(d: dict, titre: str, typ_dosleg: str | None) -> tuple[str, str | No
         return "finances", "LFI"
     if "resultats de la gestion" in t or "reglement du budget" in t:
         return "finances", "reglement"
-    if "financement de la securite sociale" in proc or "financement de la securite sociale" in t:
-        return "financement_ss", "LFRSS" if "rectificative" in t else "LFSS"
-    if "organique" in proc:
+    if "organique" in proc:  # avant le titre : lois organiques relatives aux LFSS (2022-354)
         return "organique", None
+    if "financement de la securite sociale" in proc or re.match(r"loi de financement (rectificative )?de la securite", t):
+        return "financement_ss", "LFRSS" if "rectificative" in t else "LFSS"
+    if "constitutionnelle" in proc:
+        return "constitutionnelle", None
     if ("ratification des traites" in proc or typ_dosleg == "cvn"
             or re.search(r"autorisant (l approbation|la ratification|l adhesion)", t)):
         return "convention", None
@@ -343,10 +368,31 @@ def adoption_definitive(lectures: list[dict], evts: list[dict]) -> bool:
     return False
 
 
-def lois(dossiers: dict[str, dict], idx: Index, dosleg_lois: dict) -> tuple[list[dict], list[dict], list[dict]]:
-    """Lois de la XVIIe (promulguées, ou adoptées en attente de promulgation)."""
+def titre_court_budget(titre: str, sous_type: str | None) -> str | None:
+    """Loi de finances et de financement de la Sécurité sociale de l'année : « Budget de … pour N »."""
+    m = re.search(r"pour (\d{4})$", titre)
+    if not m or sous_type not in ("LFI", "LFSS"):
+        return None
+    return f"Budget {'de l’État' if sous_type == 'LFI' else 'de la Sécurité sociale'} pour {m.group(1)}"
+
+
+def titre_loi(t: str) -> str:
+    """Titre de l'acte de promulgation, sans ce que les dumps de la XVe y ajoutent parfois :
+    « LOI n° 2021-85 du 29 janvier 2021 », « Loi » redoublé, renvoi « (1) » du JO."""
+    t = re.sub(r"^loi (organique )?n°\s*[\d-]+ du \d{1,2}(?:er)? \w+ \d{4}\s+", r"\1", t.strip(), flags=re.I)
+    t = re.sub(r"^loi\s+", "", t, flags=re.I)
+    return re.sub(r"\s*\(1\)$", "", t)
+
+
+def legislature(date: str) -> int:
+    return max(l for l, d in DEBUTS.items() if date >= d)
+
+
+def lois(dossiers: dict[str, dict], titres_textes: dict[str, set[str]], idx: Index, dosleg_lois: dict) -> tuple[list[dict], list[dict], list[dict]]:
+    """Lois du périmètre (promulguées, ou adoptées en attente de promulgation)."""
     par_signet, par_date = dosleg_lois["par_signet"], dosleg_lois["par_date"]
     rows_lois, rows_lect, rows_evt = [], [], []
+    toutes: list[dict] = []
     for uid, d in sorted(dossiers.items()):
         actes = [a for e in an.enfants(d) for a in an.parcourir(e)]
         proms = [a for a in actes if a["codeActe"] == "PROM-PUB"]
@@ -365,17 +411,21 @@ def lois(dossiers: dict[str, dict], idx: Index, dosleg_lois: dict) -> tuple[list
             if _date(prom) < DEBUT:
                 continue
             statut, loi_id = "promulguee", prom["codeLoi"]
-            titre = "Loi " + (prom.get("titreLoi") or d["titreDossier"]["titre"])
+            titre = "Loi " + titre_loi(prom.get("titreLoi") or d["titreDossier"]["titre"])
         else:
-            if not lectures or (lectures[-1]["date"] or "") < DEBUT:
+            # adopté non promulgué : seulement pour la législature en cours (un texte
+            # ancien sans promulgation a été censuré en entier ou abandonné)
+            if not lectures or (lectures[-1]["date"] or "") < DEBUTS[max(DEBUTS)]:
                 continue
             if not (adoption_definitive(lectures, evts) or (sn and sn["loicod"] in dosleg_lois["definitifs"])):
                 continue
             statut, loi_id, titre = "adoptee", f"adoptee-{uid}", d["titreDossier"]["titre"]
         typ, sous_type = type_loi(d, titre, sn["typloicod"] if sn else None)
-        titres = [d["titreDossier"]["titre"], prom.get("titreLoi") if prom else None, sn["titre"] if sn else None]
+        titres = [d["titreDossier"]["titre"], prom.get("titreLoi") if prom else None, sn["titre"] if sn else None,
+                  *sorted(titres_textes.get(uid, ()))]
         for l in lectures:
-            l.update(qualifier(l, idx, sn["loicod"] if sn else None, titres, typ))
+            l["ctx"] = (sn["loicod"] if sn else None, titres, typ)
+            l.update(qualifier(l, idx, *l["ctx"]))
             l["loi_id"] = loi_id
         info_jo = (prom or {}).get("infoJO") or {}
         adoption = max((l["date"] for l in lectures if l["dec"] is not None), default=None)
@@ -384,7 +434,8 @@ def lois(dossiers: dict[str, dict], idx: Index, dosleg_lois: dict) -> tuple[list
             "statut": statut,
             "titre": titre,
             "titre_dossier": d["titreDossier"]["titre"],
-            "titre_court": referentiels.charger("titres_courts").get(loi_id) or titre_court(titre),
+            "titre_court": referentiels.charger("titres_courts").get(loi_id) or titre_court_budget(titre, sous_type)
+            or titre_court(titre),
             "type": typ,
             "sous_type": sous_type,
             "initiative": _initiative(d),
@@ -393,7 +444,7 @@ def lois(dossiers: dict[str, dict], idx: Index, dosleg_lois: dict) -> tuple[list
             "date_promulgation": _date(prom) if prom else None,
             # législature de l'adoption définitive (une loi adoptée avant la dissolution
             # peut être promulguée sous la XVIIe : 2024-850)
-            "legislature": 17 if adoption and adoption >= DEBUT else 16,
+            "legislature": legislature(adoption or _date(prom)),
             "dossier_an": uid,
             "signet_senat": sn["signet"] if sn else signet,
             "loicod_senat": sn["loicod"] if sn else None,
@@ -403,10 +454,33 @@ def lois(dossiers: dict[str, dict], idx: Index, dosleg_lois: dict) -> tuple[list
             "nor": info_jo.get("referenceNOR"),
             "procedure_acceleree": any(e["type"] == "procedure_acceleree" for e in evts),
         })
-        for l in lectures:
-            rows_lect.append({k: l[k] for k in (
-                "id", "loi_id", "dossier", "etape", "chambre", "type_lecture", "date", "statut_code", "statut",
-                "issue", "decision_deduite", "art_49_3", "mode_adoption", "scrutin_id", "rattachement")})
+        toutes += lectures
         for e in evts:
             rows_evt.append({"loi_id": loi_id, **e})
+    _departager(toutes, idx)
+    rows_lect = [{k: l[k] for k in (
+        "id", "loi_id", "dossier", "etape", "chambre", "type_lecture", "date", "statut_code", "statut",
+        "issue", "decision_deduite", "art_49_3", "mode_adoption", "scrutin_id", "rattachement")} for l in toutes]
     return rows_lois, rows_lect, rows_evt
+
+
+def _departager(lectures: list[dict], idx: Index) -> None:
+    """Un scrutin décisif ne sert qu'une lecture. Deux textes voisins (conventions au
+    titre presque identique) peuvent se disputer un scrutin trouvé par la séance : il
+    revient à la lecture qui le référence (`voteRefs`), sinon au titre le plus proche ;
+    l'autre est requalifiée sans lui (le plus souvent : aucun scrutin public)."""
+    for _ in range(5):
+        par_scrutin: dict[str, list[dict]] = defaultdict(list)
+        for l in lectures:
+            if l.get("scrutin_id") and not l["art_49_3"]:
+                par_scrutin[l["scrutin_id"]].append(l)
+        conflits = {sid: ls for sid, ls in par_scrutin.items() if len(ls) > 1}
+        if not conflits:
+            return
+        for sid, ls in conflits.items():
+            titre = idx.an[sid]["titre"] if sid in idx.an else ""
+            ls.sort(key=lambda l: (l["rattachement"] != "voteRefs",
+                                   -max(similarite(titre, t) for t in l["ctx"][1] if t)))
+            for l in ls[1:]:
+                l.setdefault("exclus", set()).add(sid)
+                l.update(qualifier(l, idx, *l["ctx"]))

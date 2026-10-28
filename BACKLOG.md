@@ -35,3 +35,6 @@ File d'attente brute, non ordonnée. Une ligne par item :
 - [ ] Méthodo : compter le « décisif à deux » (RN + PS sur le budget 2025) une fois la définition tranchée, cf. item [creuser] ci-dessus (claude, 2026-10-28)
 - [→Textes en cours] Présomption de légitime défense des forces de l'ordre : adoptée à l'AN le 07/07/2026, en attente au Sénat ; question de Max à la lecture du site (user:moi, 2026-10-28)
 - [→Baselines] Une page par législature (gabarit de l'accueil) et une page « Comparer » en petits multiples ; la barre de période globale a été retirée (user:moi, 2026-10-28)
+- [→Baselines] Polish fin de cycle — mobile : la frise affiche ses pointillés mais les dates clés tombent en bas du graphe, incompréhensible (user:moi, 2026-10-28)
+- [→Baselines] Polish fin de cycle — navigation : trop long d'arriver à « Quels groupes ont été décisifs ? » (mobile et web) ; ordre des chapitres OK, accès à repenser (sommaire à ancres en haut ou autre), à trancher (user:moi, 2026-10-28)
+- [→Baselines] Polish fin de cycle — textes d'intro trop énumératifs et centrés sur la donnée : ils doivent porter le message (peu ou pas de chiffres), la donnée se lit en dessous (user:moi, 2026-10-28)

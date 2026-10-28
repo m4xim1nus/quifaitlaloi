@@ -19,7 +19,9 @@ lectures:
   CMP: {chambre: CMP, type: cmp, typlec: "4"}
 
 # Étapes sans lecture : ignorées pour les lectures, lues pour les événements.
-hors_lecture: [CC, PROM, AN20, AN21, ANLUNI, AN-APPLI]
+# CG22 : vote du Congrès (révision constitutionnelle, IVG 2024) ; son scrutin
+# réunit les deux chambres et n'est pas ingéré.
+hors_lecture: [CC, PROM, AN20, AN21, ANLUNI, AN-APPLI, CG22]
 
 # statutConclusion.fam_code des décisions de séance (…-DEBATS-DEC) → issue.
 # Le libellé varie en genre ; on se fie au code. Attention : pour les

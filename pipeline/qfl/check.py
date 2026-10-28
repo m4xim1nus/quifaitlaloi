@@ -42,8 +42,9 @@ TEMOINS = [
     ("Assurance chômage (2026-470) : 1re lecture AN rejetée par suppression de l'article unique (V6283)",
      "select issue || ' ' || mode_adoption || ' ' || scrutin_id from lectures where id='DLR5L17N53981-AN1'",
      "rejete SCRUTIN_ORDINAIRE VTANR5L17V6283"),
-    ("Parité municipale (2025-444) : 1re lecture AN sous la XVe, scrutins non ingérés",
-     "select mode_adoption from lectures where id='DLR5L15N43846-AN1'", "NON_RENSEIGNE"),
+    ("Parité municipale (2025-444) : 1re lecture AN sous la XVe, scrutin ordinaire V4360",
+     "select mode_adoption || ' ' || scrutin_id from lectures where id='DLR5L15N43846-AN1'",
+     "SCRUTIN_ORDINAIRE VTANR5L15V4360"),
     ("PLF 2026 : 1re lecture AN rejetée (V4241)",
      "select issue || ' ' || scrutin_id from lectures where id='DLR5L17N52428-AN1'", "rejete VTANR5L17V4241"),
     ("PLF 2026 : 49.3 en nouvelle lecture et en lecture définitive",
@@ -64,7 +65,38 @@ TEMOINS = [
      "select scrutin_id from lectures where id='DLR5L17N50692-ANNLEC'", "VTANR5L17V2954"),
     ("Meublés de tourisme : lecture Sénat des conclusions de CMP déduite",
      "select decision_deduite from lectures where id='DLR5L16N47722-CMP-SN'", 1),
+    # Baselines (XVe, XVIe)
+    ("Retraites 2023 (2023-270) : 1re lecture AN close par l'expiration des délais (art. 47-1)",
+     "select mode_adoption from lectures where id='DLR5L16N47066-AN1'", "DELAI_EXPIRE"),
+    ("Retraites 2023 : 49.3 sur le texte CMP, motion LIOT miroir (V1240, 278 voix)",
+     "select l.mode_adoption || ' ' || s.id || ' ' || s.pour from lectures l join scrutins s on s.id=l.scrutin_id "
+     "where l.id='DLR5L16N47066-CMP-AN'", "ART_49_3 VTANR5L16V1240 278"),
+    ("Retraites 2023 : LR pivot de non-censure (19 censeurs sur 61)",
+     "select pivots_hors_socle_an from lois where id='2023-270'", "LR"),
+    ("PLF 2023 : 1re partie au 49.3, motion NUPES miroir (V358, 239 voix)",
+     "select scrutin_id from lectures where id='DLR5L16N45988-AN1'", "VTANR5L16V358"),
+    ("Immigration (2024-42) : motion de rejet adoptée (V3203, 270-265), non requalifiée (48 %)",
+     "select l.mode_adoption || ' ' || s.pour || '-' || s.contre || ' ' || l.score_rejet_inverse from lectures l "
+     "join scrutins s on s.id=l.scrutin_id where l.id='DLR5L16N47118-AN1'", "MOTION_REJET 270-265 0.478"),
+    ("Immigration : texte CMP adopté par scrutin solennel V3213 (349-186), RN pivot",
+     "select l.scrutin_an || ' ' || s.pour || '-' || s.contre || ' ' || l.pivots_hors_socle_an from lois l "
+     "join scrutins s on s.id=l.scrutin_an where l.id='2024-42'", "VTANR5L16V3213 349-186 RN"),
+    ("Bioéthique (2021-1017) : lecture définitive 326-115-42 (V3855)",
+     "select s.pour || '-' || s.contre || '-' || s.abstention from lois l join scrutins s on s.id=l.scrutin_an "
+     "where l.id='2021-1017'", "326-115-42"),
+    ("Manipulation de l'information : loi organique et loi ordinaire ont chacune leur scrutin",
+     "select count(distinct scrutin_id) from lectures where id in ('DLR5L15N36468-AN1','DLR5L15N36488-AN1')", 2),
+    ("Services aériens Tchad-Angola (2020-86) : pas de scrutin public (celui du jour porte sur l'Éthiopie)",
+     "select mode_adoption from lectures where id='DLR5L15N37132-AN1'", "MAIN_LEVEE"),
+    ("ESSOC (2018-727) : nouvelle lecture retrouvée sous le titre du dépôt (V995)",
+     "select scrutin_id from lectures where id='DLR5L15N36159-ANNLEC'", "VTANR5L15V995"),
 ]
+
+# Ventilations incomplètes dans le dump AN de la XVe (docs/SOURCES.md, anomalie 20).
+VENTILATIONS_INCOMPLETES = {
+    "VTANR5L15V2816": "groupe MoDem absent de la ventilation (46 voix pour)",
+    "VTANR5L15V3778": "une voix pour non ventilée",
+}
 
 
 def verifier(chemin: Path) -> tuple[bool, list[str]]:
@@ -79,8 +111,9 @@ def verifier(chemin: Path) -> tuple[bool, list[str]]:
         out.append(f"{'OK ' if reussi else 'ÉCHEC'} {nom}" + (f" : {detail}" if detail else ""))
 
     out.append("== Invariants")
-    n = _un(con, "select count(*) from lois where statut='promulguee'")
-    controle("lois promulguées depuis le 18/07/2024", n >= 148, f"{n} (148 au 28/10/2026)")
+    for leg, attendu in ((15, 318), (16, 141), (17, 147)):
+        n = _un(con, "select count(*) from lois where statut='promulguee' and legislature=?", leg)
+        controle(f"lois promulguées, législature {leg}", n >= attendu, f"{n} ({attendu} au 28/10/2026)")
     controle("chaque loi a au moins une lecture close",
              not _un(con, "select count(*) from lois where n_lectures = 0"))
     sans = _q(con, "select id from lois where id not in (select loi_id from lectures where chambre='AN' "
@@ -98,7 +131,11 @@ def verifier(chemin: Path) -> tuple[bool, list[str]]:
     controle("issue de la lecture cohérente avec son scrutin décisif", not incoh, ", ".join(r[0] for r in incoh))
     ecarts = _q(con, "select s.id, s.pour, sum(p.pour) from scrutins s join positions_groupes p on p.scrutin_id=s.id "
                      "where s.chambre='AN' group by s.id having s.pour != sum(p.pour)")
+    connus = [e for e in ecarts if e[0] in VENTILATIONS_INCOMPLETES]
+    ecarts = [e for e in ecarts if e[0] not in VENTILATIONS_INCOMPLETES]
     controle("AN : la ventilation par groupe redonne le total des pour", not ecarts, str(ecarts[:5]))
+    for sid, *_ in connus:
+        out.append(f"info {sid} : ventilation incomplète dans la source ({VENTILATIONS_INCOMPLETES[sid]})")
     ecarts_sn = _q(con, "select s.id, s.pour, sum(p.pour) from scrutins s join positions_groupes p "
                         "on p.scrutin_id=s.id where s.chambre='SN' group by s.id having s.pour != sum(p.pour)")
     out.append(f"info Sénat : {len(ecarts_sn)} scrutins dont la ventilation nominative diffère du total proclamé "

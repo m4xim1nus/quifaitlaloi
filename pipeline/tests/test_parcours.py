@@ -25,3 +25,14 @@ def test_type_loi():
     assert parcours.type_loi(d, "Loi spéciale prévue par l'article 45", None) == ("finances", "loi_speciale")
     d = {"procedureParlementaire": {"libelle": "Projet de loi de finances de l'année"}}
     assert parcours.type_loi(d, "Loi de finances pour 2026", None) == ("finances", "LFI")
+
+
+def test_titre_loi_xve():
+    from qfl.parcours import titre_loi
+    assert titre_loi("LOI n° 2021-1017 du 2 août 2021 relative à la bioéthique") == "relative à la bioéthique"
+    assert titre_loi("LOI organique n° 2021-27 du 15 janvier 2021 relative au Conseil économique, social et "
+                     "environnemental") == "organique relative au Conseil économique, social et environnemental"
+    assert titre_loi("Loi d’accélération et de simplification de l’action publique") == (
+        "d’accélération et de simplification de l’action publique")
+    assert titre_loi("ratifiant l’ordonnance n° 2019-950 (1)") == "ratifiant l’ordonnance n° 2019-950"
+    assert titre_loi("de finances pour 2026") == "de finances pour 2026"

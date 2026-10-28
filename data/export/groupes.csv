@@ -1,4 +1,21 @@
 id,chambre,legislature,sigle,nom,bloc,date_debut,date_fin,couleur
+PO730958,AN,15,FI,La France insoumise,gauche,2017-06-27,2022-06-21,#ED302C
+PO730940,AN,15,GDR,Gauche démocrate et républicaine,gauche,2017-06-27,2022-06-21,#A41914
+PO730946,AN,15,NG,Nouvelle Gauche,gauche,2017-06-27,2018-09-11,
+PO758835,AN,15,SOC,Socialistes et apparentés,gauche,2018-09-12,2022-06-21,#D46CA9
+PO771789,AN,15,EDS,Écologie Démocratie Solidarité,gauche,2020-05-20,2020-10-16,#3A673E
+PO730964,AN,15,LREM,La République en Marche,centre,2017-06-27,2022-06-21,#702A82
+PO730970,AN,15,MODEM,Mouvement Démocrate et apparentés,centre,2017-06-27,2020-09-23,#F26D22
+PO774834,AN,15,DEM,Mouvement Démocrate (MoDem) et Démocrates apparentés,centre,2020-09-24,2022-06-21,#F26D22
+PO771923,AN,15,AGIR-E,Agir ensemble,centre,2020-05-27,2022-06-21,#C7C034
+PO730934,AN,15,LR,Les Républicains,droite,2017-06-27,2022-06-21,#1C2EFA
+PO730952,AN,15,LC,"Les Constructifs : républicains, UDI, indépendants",autres,2017-06-27,2017-11-28,
+PO744425,AN,15,UAI,"UDI, Agir et Indépendants",autres,2017-11-29,2019-06-10,
+PO765636,AN,15,UDI-I,UDI et Indépendants,autres,2019-06-11,2019-09-27,
+PO767217,AN,15,UDI-AI,"UDI, Agir et Indépendants",autres,2019-09-28,2020-05-25,#94B7E1
+PO771889,AN,15,UDI-I,UDI et Indépendants,autres,2020-05-26,2022-06-21,#94B7E1
+PO759900,AN,15,LT,Libertés et Territoires,autres,2018-10-18,2022-06-21,#66BF74
+PO723569,AN,15,NI,Non inscrit,autres,2017-06-21,2022-06-21,#8D949A
 PO800490,AN,16,LFI-NUPES,La France insoumise - Nouvelle Union Populaire écologique et sociale,gauche,2022-06-28,2024-06-09,#E42313
 PO800496,AN,16,SOC,Socialistes et apparentés (membre de l’intergroupe NUPES),gauche,2022-06-28,2023-10-18,#DF84B5
 PO830170,AN,16,SOC,Socialistes et apparentés,gauche,2023-10-19,2024-06-09,#DF84B5
@@ -31,6 +48,7 @@ SN-LREM,SN,,RDPI,"Rassemblement des démocrates, progressistes et indépendants"
 SN-UC,SN,,UC,Union Centriste,centre,,,
 SN-RTLI,SN,,LIRT,Les Indépendants – République et Territoires,centre,,,
 SN-UMP,SN,,LR,Les Républicains,droite,,,
+SN-ECO,SN,,ECO,Écologiste,gauche,,,
 SN-UNT,SN,,UNT,Union Nationale pour les Territoires,rn,,,
 SN-RDSE,SN,,RDSE,Rassemblement Démocratique et Social Européen,autres,,,
 SN-NI,SN,,NI,Non-inscrits,autres,,,

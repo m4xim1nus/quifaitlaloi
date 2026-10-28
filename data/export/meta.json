@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-28T12:00:10+00:00",
+ "genere_le": "2026-10-28T13:11:33+00:00",
  "sources": {
   "an_scrutins_17": {
    "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip",
@@ -49,16 +49,30 @@
    "taille": 567288,
    "sha256": "b9ad31b18979fe4265c1ff1585a6ec532288bc0f842d62148d79a428352dab18",
    "telecharge_le": "2026-10-28T08:55:45+00:00"
+  },
+  "an_scrutins_15": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/15/loi/scrutins/Scrutins_XV.json.zip",
+   "last_modified": "Thu, 09 Jun 2022 10:22:14 GMT",
+   "taille": 9202661,
+   "sha256": "ca00f314b6957c9b0f32951a79d393f35a6cfd9f09626a11730984c94985084b",
+   "telecharge_le": "2026-10-28T12:57:30+00:00"
+  },
+  "an_dossiers_15": {
+   "url": "https://data.assemblee-nationale.fr/static/openData/repository/15/loi/dossiers_legislatifs/Dossiers_Legislatifs_XV.json.zip",
+   "last_modified": "Thu, 09 Jun 2022 13:16:57 GMT",
+   "taille": 15220496,
+   "sha256": "e27391e756be58fa43cc133d6eb28be4c2464986caa9b6f84d069d8781917858",
+   "telecharge_le": "2026-10-28T12:57:41+00:00"
   }
  },
  "comptes": {
-  "lois": 148,
-  "lectures": 431,
-  "scrutins": 299,
-  "positions_groupes": 3257,
-  "signatures": 299,
-  "groupes": 36,
-  "evenements": 494
+  "lois": 606,
+  "lectures": 1921,
+  "scrutins": 1117,
+  "positions_groupes": 11021,
+  "signatures": 1117,
+  "groupes": 54,
+  "evenements": 1999
  },
  "referentiels": {
   "blocs": {
@@ -85,6 +99,12 @@
     }
    },
    "socle": {
+    "15": {
+     "debut": "2017-06-27",
+     "blocs": [
+      "centre"
+     ]
+    },
     "16": {
      "debut": "2022-06-28",
      "blocs": [
@@ -100,6 +120,76 @@
     }
    },
    "assemblee": {
+    "15": {
+     "PO730958": {
+      "sigle": "FI",
+      "bloc": "gauche"
+     },
+     "PO730940": {
+      "sigle": "GDR",
+      "bloc": "gauche"
+     },
+     "PO730946": {
+      "sigle": "NG",
+      "bloc": "gauche"
+     },
+     "PO758835": {
+      "sigle": "SOC",
+      "bloc": "gauche"
+     },
+     "PO771789": {
+      "sigle": "EDS",
+      "bloc": "gauche"
+     },
+     "PO730964": {
+      "sigle": "LREM",
+      "bloc": "centre"
+     },
+     "PO730970": {
+      "sigle": "MODEM",
+      "bloc": "centre"
+     },
+     "PO774834": {
+      "sigle": "DEM",
+      "bloc": "centre"
+     },
+     "PO771923": {
+      "sigle": "AGIR-E",
+      "bloc": "centre"
+     },
+     "PO730934": {
+      "sigle": "LR",
+      "bloc": "droite"
+     },
+     "PO730952": {
+      "sigle": "LC",
+      "bloc": "autres"
+     },
+     "PO744425": {
+      "sigle": "UAI",
+      "bloc": "autres"
+     },
+     "PO765636": {
+      "sigle": "UDI-I",
+      "bloc": "autres"
+     },
+     "PO767217": {
+      "sigle": "UDI-AI",
+      "bloc": "autres"
+     },
+     "PO771889": {
+      "sigle": "UDI-I",
+      "bloc": "autres"
+     },
+     "PO759900": {
+      "sigle": "LT",
+      "bloc": "autres"
+     },
+     "PO723569": {
+      "sigle": "NI",
+      "bloc": "autres"
+     }
+    },
     "16": {
      "PO800490": {
       "sigle": "LFI-NUPES",
@@ -241,6 +331,11 @@
      "nom": "Les Républicains",
      "bloc": "droite"
     },
+    "ECO": {
+     "sigle": "ECO",
+     "nom": "Écologiste",
+     "bloc": "gauche"
+    },
     "UNT": {
      "sigle": "UNT",
      "nom": "Union Nationale pour les Territoires",
@@ -269,6 +364,11 @@
   },
   "periodes": {
    "periodes": [
+    {
+     "code": "xv",
+     "debut": "2017-06-27",
+     "libelle": "XVe législature (majorité absolue)"
+    },
     {
      "code": "xvi",
      "debut": "2022-06-28",

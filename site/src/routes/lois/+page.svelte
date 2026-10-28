@@ -40,7 +40,7 @@
   const THEMES = $derived(
     [...new Set(data.lois.flatMap((l) => l.themes))].sort((a, b) => a.localeCompare(b, 'fr'))
   );
-  const TYPES: TypeLoi[] = ['ordinaire', 'organique', 'finances', 'financement_ss', 'convention'];
+  const TYPES: TypeLoi[] = ['ordinaire', 'organique', 'constitutionnelle', 'finances', 'financement_ss', 'convention'];
   const actifs = $derived(
     !!(f.texte || f.chemin || f.coalition || f.periode || f.type || f.decisif || f.theme)
   );

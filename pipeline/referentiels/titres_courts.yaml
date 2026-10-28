@@ -1,12 +1,10 @@
 # Titres courts d'affichage qui remplacent la règle automatique (qfl/texte.py:titre_court,
-# appliquée au titre officiel de la loi) : budgets, et noms d'usage courants, toujours après la
+# appliquée au titre officiel de la loi ; « Budget de l’État / de la Sécurité sociale pour N »
+# pour les LFI et LFSS, qfl/parcours.py:titre_court_budget) : lois de fin de gestion, lois
+# spéciales, et noms d'usage courants, toujours après la
 # description tirée du titre officiel. Le titre officiel reste affiché sur la fiche de chaque
 # loi. Clé : identifiant de loi.
 
-"2025-127": "Budget de l’État pour 2025"
-"2026-103": "Budget de l’État pour 2026"
-"2025-199": "Budget de la Sécurité sociale pour 2025"
-"2025-1403": "Budget de la Sécurité sociale pour 2026"
 "2024-1167": "Loi de finances de fin de gestion pour 2024"
 "2025-1173": "Loi de finances de fin de gestion pour 2025"
 "2024-1188": "Loi spéciale de décembre 2024 (budget de l’État)"

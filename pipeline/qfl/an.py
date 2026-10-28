@@ -1,6 +1,7 @@
 """Lecture des dumps de l'Assemblée nationale : scrutins, dossiers, mandats de groupe."""
 
 import json
+import re
 import sys
 from collections import Counter
 from functools import cache
@@ -118,6 +119,74 @@ def dossiers(raw: Path, legislature: int) -> dict[str, dict]:
     """uid → dossierParlementaire."""
     d = extraits(raw, f"an_dossiers_{legislature}") / "json/dossierParlementaire"
     return {p.stem: json.loads(p.read_text())["dossierParlementaire"] for p in d.glob("*.json")}
+
+
+def titres_textes(raw: Path, legislature: int) -> dict[str, set[str]]:
+    """dossierRef → titres des projets et propositions de loi déposés ou adoptés (hors textes de
+    commission, aux titres tronqués). Le titre d'un texte change en navette : l'intitulé d'un
+    scrutin reprend parfois le titre du dépôt (« renforçant l'efficacité de l'administration… »
+    pour la loi ESSOC)."""
+    out: dict[str, set[str]] = {}
+    d = extraits(raw, f"an_dossiers_{legislature}") / "json/document"
+    for p in [*d.glob("PRJL*.json"), *d.glob("PION*.json")]:
+        if "BTC" in p.stem:
+            continue
+        doc = json.loads(p.read_text())["document"]
+        if doc.get("dossierRef"):
+            out.setdefault(doc["dossierRef"], set()).add(doc["titres"]["titrePrincipal"])
+    return out
+
+
+def _projet(texte: str | None) -> str | None:
+    """Numéro du projet visé par une déclaration ou une motion (« DECLANR5L16B0274-N0 » → « 16B0274 »)."""
+    m = re.search(r"L(\d+)(B\d+)", texte or "")
+    return m.group(1) + m.group(2) if m else None
+
+
+def motions_censure(dossiers: dict[str, dict], scrutins: list[dict]) -> dict[tuple[str, str], list[str]]:
+    """(date de l'engagement, projet) → scrutins des motions de censure déposées en réponse (art. 49, al. 3).
+
+    Lus dans les dossiers « Engagement de la responsabilité » (actes AN21). Sous la XVIe,
+    leurs motions n'ont pas de `voteRefs` : on apparie motions et scrutins de censure dans
+    l'ordre (dépôt, numéro de motion ↔ numéro de scrutin), seulement si une législature en
+    compte autant des deux côtés et que les rares `voteRefs` présents confirment l'ordre.
+    L'ordre est conservé en XVIIe, où les `voteRefs` existent (une motion non votée y décale
+    le compte : pas d'appariement par rang).
+    """
+    par_leg: dict[int, list[tuple]] = {}
+    engagements: list[tuple[str, str, list]] = []
+    for uid, d in dossiers.items():
+        actes = [a for e in enfants(d) for a in parcourir(e)]
+        dgvt = [a for a in actes if a["codeActe"] == "AN21-DGVT"]
+        motions = [a for a in actes if a["codeActe"] == "AN21-MOTION"]
+        votes = [a for a in actes if a["codeActe"] == "AN21-MOTION-VOTE"]
+        if not motions:
+            continue
+        leg = int(re.match(r"DLR5L(\d+)", uid).group(1))
+        refs = [r for v in votes for r in vote_refs(v)]
+        lignes = []
+        for i, m in enumerate(motions):
+            n = re.search(r"-N(\d+)$", m.get("texteAssocie") or "")
+            lignes.append(((m.get("dateActe") or "")[:10], int(n.group(1)) if n else 0, refs[i] if i < len(refs) else None))
+        par_leg.setdefault(leg, []).extend(lignes)
+        if dgvt:
+            engagements.append(((dgvt[0].get("dateActe") or "")[:10], _projet(dgvt[0].get("texteAssocie")), lignes))
+    moc = {}
+    for s in scrutins:
+        if s["type_vote"] == "MOC":
+            moc.setdefault(s["legislature"], []).append(s)
+    rang: dict[tuple, str] = {}
+    for leg, lignes in par_leg.items():
+        ss = sorted(moc.get(leg, []), key=lambda s: s["numero"])
+        paires = list(zip(sorted(lignes), ss))
+        # apparié seulement si les comptes concordent et que les voteRefs connus confirment l'ordre
+        if len(ss) == len(lignes) and all(r is None or r == s["id"] for (_, _, r), s in paires):
+            rang.update({m: s["id"] for m, s in paires})
+    out: dict[tuple[str, str], list[str]] = {}
+    for date, projet, lignes in engagements:
+        ids = [r or rang.get((d, n, r)) for d, n, r in lignes]
+        out[(date, projet)] = [i for i in ids if i]
+    return out
 
 
 def enfants(acte: dict) -> list[dict]:

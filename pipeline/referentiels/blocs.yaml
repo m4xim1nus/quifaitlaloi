@@ -20,11 +20,32 @@ blocs:
 # législature (dates : début de législature AN). En XVIe, LR est dans
 # l'opposition ; en XVIIe, le « socle commun » réunit centre et droite.
 socle:
+  15: {debut: "2017-06-27", blocs: [centre]}   # À VALIDER (Max) : majorité absolue LREM + MoDem (+ Agir)
   16: {debut: "2022-06-28", blocs: [centre]}
   17: {debut: "2024-07-18", blocs: [centre, droite]}
 
 # Assemblée nationale : clé = organeRef (AMO), par législature.
 assemblee:
+  # XVe : PROPOSITION À VALIDER PAR MAX (cycle Baselines). Pas de groupe RN
+  # (8 députés RN siègent parmi les non-inscrits, bloc « autres »).
+  15:
+    PO730958: {sigle: FI, bloc: gauche}
+    PO730940: {sigle: GDR, bloc: gauche}
+    PO730946: {sigle: NG, bloc: gauche}         # Nouvelle Gauche, jusqu'au 01/08/2018
+    PO758835: {sigle: SOC, bloc: gauche}        # Socialistes et apparentés, à partir du 12/09/2018
+    PO771789: {sigle: EDS, bloc: gauche}        # Écologie Démocratie Solidarité (ex-LREM), 05/2020 → 10/2020
+    PO730964: {sigle: LREM, bloc: centre}
+    PO730970: {sigle: MODEM, bloc: centre}      # jusqu'au 23/09/2020
+    PO774834: {sigle: DEM, bloc: centre}        # successeur, depuis le 28/09/2020
+    PO771923: {sigle: AGIR-E, bloc: centre}     # Agir ensemble, depuis le 27/05/2020
+    PO730934: {sigle: LR, bloc: droite}
+    PO730952: {sigle: LC, bloc: autres}         # Les Constructifs, 07/2017 → 11/2017
+    PO744425: {sigle: UAI, bloc: autres}        # UDI, Agir et Indépendants, 11/2017 → 06/2019
+    PO765636: {sigle: UDI-I, bloc: autres}      # UDI et Indépendants, 06/2019 → 09/2019
+    PO767217: {sigle: UDI-AI, bloc: autres}     # UDI, Agir et Indépendants, 10/2019 → 05/2020
+    PO771889: {sigle: UDI-I, bloc: autres}      # UDI et Indépendants, depuis le 27/05/2020
+    PO759900: {sigle: LT, bloc: autres}         # Libertés et Territoires, depuis le 18/10/2018
+    PO723569: {sigle: NI, bloc: autres}
   16:
     PO800490: {sigle: LFI-NUPES, bloc: gauche}
     PO800496: {sigle: SOC, bloc: gauche}       # jusqu'au 18/10/2023
@@ -65,6 +86,7 @@ senat:
   UC: {sigle: UC, nom: "Union Centriste", bloc: centre}
   RTLI: {sigle: LIRT, nom: "Les Indépendants – République et Territoires", bloc: centre}
   UMP: {sigle: LR, nom: "Les Républicains", bloc: droite}
+  ECO: {sigle: ECO, nom: "Écologiste", bloc: gauche}   # jusqu'en 2017 ; À VALIDER (Max)
   UNT: {sigle: UNT, nom: "Union Nationale pour les Territoires", bloc: rn}   # depuis le 05/10/2026
   RDSE: {sigle: RDSE, nom: "Rassemblement Démocratique et Social Européen", bloc: autres}
   NI: {sigle: NI, nom: "Non-inscrits", bloc: autres}

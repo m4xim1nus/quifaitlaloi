@@ -18,21 +18,29 @@ def norm(t: str | None) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]", " ", t)).strip()
 
 
-def cle_titre(titre: str | None, n: int = 40) -> str:
-    """Début normalisé d'un titre de texte, sans « projet/proposition de loi (organique) »."""
-    t = norm(titre)
-    t = re.sub(r"^(le |la )?(projet|proposition) de loi (organique |constitutionnelle )?", "", t)
-    return t[:n]
-
-
 VIDES = set("avec dans pour sans sous vers entre contre leurs relative relatif visant portant "
              "projet proposition texte lecture premiere deuxieme nouvelle definitive commission mixte paritaire "
-             "ensemble article unique loi les des aux par sur une son ses est qui que".split())
+             "ensemble article unique loi organique les des aux par sur une son ses est qui que "
+             # formule commune aux conventions (« autorisant l'approbation de l'accord entre le
+             # Gouvernement de la République française et le Gouvernement de… ») : seul le reste distingue
+             "autorisant approbation ratification adhesion accord accords convention protocole avenant "
+             "gouvernement republique francaise".split())
+
+
+def mots_ordonnes(t: str | None) -> list[str]:
+    """Mots significatifs d'un intitulé, dans l'ordre (trois lettres ou plus, hors mots-outils,
+    mots de procédure et formule des conventions)."""
+    return [m for m in norm(t).split() if len(m) > 2 and m not in VIDES]
 
 
 def mots(t: str | None) -> set[str]:
-    """Mots significatifs d'un intitulé (trois lettres ou plus, hors mots-outils et de procédure)."""
-    return {m for m in norm(t).split() if len(m) > 2 and m not in VIDES}
+    return set(mots_ordonnes(t))
+
+
+def cle_titre(titre: str | None, n: int = 40) -> str:
+    """Début d'un titre réduit à ses mots significatifs (comparé à `mots_ordonnes` d'un intitulé de
+    scrutin) : un début de titre commun (« autorisant l'approbation de l'accord… ») ne suffit pas."""
+    return " ".join(mots_ordonnes(titre))[:n]
 
 
 def similarite(a: str | None, b: str | None) -> float:

@@ -17,7 +17,7 @@ export const FICHIERS: Fichier[] = [
     colonnes: [
       ['id', 'numéro de la loi (année-numéro), ou identifiant provisoire si non promulguée'],
       ['titre, titre_court', 'titre officiel, titre d’affichage'],
-      ['type', 'ordinaire, organique, finances, financement_ss, convention'],
+      ['type', 'ordinaire, organique, constitutionnelle, finances, financement_ss, convention'],
       ['initiative', 'projet (gouvernement) ou proposition (parlementaires)'],
       ['date_adoption, date_promulgation', 'adoption définitive, promulgation'],
       ['parcours', 'suite des lectures (AN1 → SN1 → CMP-AN…)'],

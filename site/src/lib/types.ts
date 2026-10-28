@@ -1,7 +1,7 @@
 // Types des fichiers de data/export/ (pipeline qfl, docs/METHODO.md). Identifiants métier en français.
 
 export type Chambre = 'AN' | 'SN';
-export type TypeLoi = 'ordinaire' | 'organique' | 'finances' | 'financement_ss' | 'convention';
+export type TypeLoi = 'ordinaire' | 'organique' | 'constitutionnelle' | 'finances' | 'financement_ss' | 'convention';
 export type ModeAdoption =
   | 'SCRUTIN_SOLENNEL'
   | 'SCRUTIN_ORDINAIRE'

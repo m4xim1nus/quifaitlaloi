@@ -22,11 +22,12 @@ AN = "https://data.assemblee-nationale.fr/static/openData/repository"
 SOURCES: dict[str, dict] = {
     "an_scrutins_17": {"url": f"{AN}/17/loi/scrutins/Scrutins.json.zip"},
     "an_dossiers_17": {"url": f"{AN}/17/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip"},
-    # XVIe : scrutins des lectures tenues avant la dissolution. Les dossiers
-    # XVIe ne servent qu'aux baselines : le dump XVIIe reprend, au moins
-    # aussi complets, les dossiers ouverts sous la XVIe.
+    # XVIe et XVe : baselines, et lectures antérieures des lois de la XVIIe. Un
+    # dossier présent dans plusieurs dumps est pris dans le plus récent.
     "an_scrutins_16": {"url": f"{AN}/16/loi/scrutins/Scrutins.json.zip"},
     "an_dossiers_16": {"url": f"{AN}/16/loi/dossiers_legislatifs/Dossiers_Legislatifs.json.zip"},
+    "an_scrutins_15": {"url": f"{AN}/15/loi/scrutins/Scrutins_XV.json.zip"},
+    "an_dossiers_15": {"url": f"{AN}/15/loi/dossiers_legislatifs/Dossiers_Legislatifs_XV.json.zip"},
     "an_amo": {"url": f"{AN}/17/amo/tous_acteurs_mandats_organes_xi_legislature/"
                       "AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip"},
     "senat_dosleg": {"url": "https://data.senat.fr/data/dosleg/dosleg.zip"},
