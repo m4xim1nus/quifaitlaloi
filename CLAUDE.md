@@ -72,17 +72,27 @@ d'écart, ce fichier prime.
 
 ```
 data/raw/            dumps téléchargés (cache local, non versionné)
-data/qfl.sqlite      base de sortie (versionnée)        ← étape 2
-data/export/         JSON + CSV pour le site et le téléchargement ← étape 2
+data/qfl.sqlite      base de sortie (versionnée)
+data/export/         JSON + CSV pour le site et le téléchargement (versionnés)
 docs/source/         brief initial (non versionné)
-docs/SOURCES.md      fiche des sources                  ← étape 1
-docs/METHODO.md      méthodologie v0, base de la page méthodo
+docs/SOURCES.md      fiche des sources
+docs/METHODO.md      méthodologie, base de la page Méthodologie
+docs/CONCEPTION.md   conception du site : récit, pages, direction visuelle, arbitrages
 pipeline/qfl/        package Python (CLI download / build / check)
-pipeline/explo/      scripts jetables du spike           ← étape 1
-pipeline/referentiels/  YAML maintenus à la main (codes_actes, blocs)
+pipeline/explo/      scripts jetables (spike, graphiques de relecture)
+pipeline/referentiels/  YAML maintenus à la main (codes_actes, blocs, flags, périodes, titres courts)
 pipeline/tests/      pytest, dont les textes témoins
-site/                SvelteKit                           ← étape 3
+site/                SvelteKit adapter-static + d3 : lit data/export/ au prérendu
+build.sh             build Cloudflare Pages (site seulement, aucun téléchargement)
 ```
+
+Site (`site/src/`) : `lib/server/` lit les CSV de `data/export/` au
+prérendu (rien n'est envoyé au navigateur hors ce que chaque `load`
+extrait) ; fonctions pures testées dans `lib/*.ts` (libellés et
+définitions, récit, agrégats, frise, hémicycle, majorité, filtres) ;
+composants dans `lib/components/`. Routes : `/`, `/lois`, `/lois/[id]`,
+`/methodologie`, `/donnees`, toutes prérendues. `scripts/donnees.mjs`
+copie l'instantané dans `static/donnees/` pour le téléchargement.
 
 ## Suivi
 
@@ -102,4 +112,16 @@ cd pipeline && uv run qfl build     # → data/qfl.sqlite + data/export/ (≈ 10
 cd pipeline && uv run qfl check     # invariants, textes témoins, flags à arbitrer
 cd pipeline && uv run pytest        # tests (les tests `donnees` exigent la base et les dumps)
 cd pipeline && uv run python explo/graphiques.py   # graphiques bruts de relecture
+
+cd site && npm install              # Node 22, versions épinglées
+cd site && npm run dev              # serveur de dev (copie d'abord les données)
+cd site && npm run check            # svelte-check
+cd site && npm test                 # vitest (dont contrôle croisé avec metriques.json)
+cd site && npm run build            # → site/build/, puis npm run preview
+cd site && npm run format           # prettier (format:check exigé par la CI)
+bash build.sh                       # ce que fait Cloudflare Pages
 ```
+
+Après un `qfl build`, relancer `npm run build` : le site se reconstruit
+depuis `data/export/`. Toute colonne ajoutée à l'export se déclare dans
+`site/src/lib/server/donnees.ts` et `site/src/lib/types.ts`.

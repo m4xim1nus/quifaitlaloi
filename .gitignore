@@ -23,3 +23,6 @@ docs/source/
 
 # Obsidian
 .obsidian/
+
+# Copie de data/export/ servie par le site (site/scripts/donnees.mjs)
+site/static/donnees/

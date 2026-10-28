@@ -9,7 +9,19 @@ QuiFaitLaLoi classe chaque loi adoptée selon son **mode d'adoption** et la
 le texte tombait), puis compare les législatures. Restitution en site web
 statique, méthodologie et données téléchargeables.
 
-**État** : en construction, voir [`ROADMAP.md`](ROADMAP.md).
+**État** : site v1 construit, mise en ligne en cours, voir
+[`ROADMAP.md`](ROADMAP.md). Méthodologie : [`docs/METHODO.md`](docs/METHODO.md) ;
+conception du site : [`docs/CONCEPTION.md`](docs/CONCEPTION.md).
+
+## Construire
+
+```bash
+cd pipeline && uv sync && uv run qfl download && uv run qfl build   # données → data/
+bash build.sh                                                        # site → site/build/
+```
+
+Les données (`data/qfl.sqlite`, `data/export/`) sont versionnées : le site
+se construit sans télécharger les sources (Node 22 suffit).
 
 ## Sources
 

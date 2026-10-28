@@ -268,3 +268,22 @@ suivante avec les baselines XVIe et XVe.
 - Positions stockées seulement pour les scrutins utiles (décisifs, motions
   de censure) : 298 scrutins. La cohésion (métrique 4) est calculée sur tous
   les scrutins publics, mais exportée agrégée seulement.
+
+## 14. Affichage sur le site
+
+Le site (`site/`, étape 3) reprend cette méthode sans la modifier. Ses
+choix propres sont décrits dans `docs/CONCEPTION.md` :
+
+- **Vocabulaire public** : `REJET_INVERSE` s'affiche « rejet par ses
+  partisans » (dit « rejet inversé »), `MAIN_LEVEE` « sans vote nominatif »,
+  `consensus` « aucun bloc contre », `socle_seul` « socle, sans gauche ni
+  RN », le pivot « groupe décisif ». Libellés et définitions :
+  `site/src/lib/libelles.ts`.
+- **Chemin d'une loi** : une seule catégorie par loi, le 49.3 puis le rejet
+  par les partisans l'emportant sur le mode de la dernière lecture AN.
+- **Titre court** (`lois.titre_court`) : le titre officiel de la loi sans
+  « Loi visant à… », coupé de préférence à une virgule, sans paraphrase
+  (`qfl/texte.py:titre_court`). Exceptions (budgets, nom d'usage en second,
+  comme « (loi Duplomb) ») : `referentiels/titres_courts.yaml`.
+- **Couleur des groupes** (`groupes.couleur`) : celle publiée par l'AN
+  (`couleurAssociee` du référentiel AMO). Le Sénat n'en publie pas.

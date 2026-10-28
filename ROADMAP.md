@@ -26,27 +26,30 @@ scrutins décisifs avec positions de groupe, coalitions et pivots, dans
 sur 16 comptes rendus, textes témoins dans `qfl check`. Premier constat :
 5 lois sur 148 passent par un contournement.
 
-## Étape 3 : site v1 ← *prochaine*
+## Étape 3 : site v1 ← *en cours*
 
 But : mise en ligne publique.
 
-C'est ici que commence le vrai front. La page de relecture de l'étape 2
-(`pipeline/explo/relecture.py`) était jetable et n'en est pas la base.
-
-- **Ambition** : un site beau et didactique, dans l'esprit de
-  [leurs-votes.fr](https://www.leurs-votes.fr/) (sans le copier : l'objet
-  diffère), qui reste data-driven et rigoureux. Chaque chiffre renvoie à sa
-  méthode et à ses sources, et un non-spécialiste comprend chaque graphique
-  sans légende externe.
-- **D'abord une passe de conception, validée par Max avant le code** :
-  étude de leurs-votes.fr et du prior art, récit et parcours de lecture,
-  maquettes des pages clés, direction visuelle.
-- SvelteKit (adapter-static) + d3. Pages : accueil (chiffres clés et frise
-  des lois par mode d'adoption), explorateur, fiche par loi, méthodologie,
-  données.
-- `build.sh`, dépôt public `m4xim1nus/quifaitlaloi`, Cloudflare Pages relié
-  au dépôt, `quifaitlaloi.technoperchoir.fr`.
-- **Livrable** : site en ligne, tag `v1.0.0`, `CHANGELOG.md` créé.
+- [x] **Passe de conception** (28/10/2026, `docs/CONCEPTION.md`) : étude
+  du prior art (leurs-votes.fr, datan.fr, La Fabrique de la loi, AN),
+  récit en trois questions, principe « un carré = une loi », direction
+  visuelle (Newsreader + Atkinson Hyperlegible Next, palettes non
+  partisanes validées). Arbitrages délégués par Max à un relecteur
+  indépendant, tous appliqués.
+- [x] **Site** SvelteKit adapter-static + d3, lu depuis `data/export/` au
+  prérendu : accueil (frise, chemins, coalitions par période, groupes
+  décisifs, limites), explorateur `/lois`, 148 fiches, méthodologie,
+  données. Clair et sombre, mobile, sans traceur ni ressource tierce.
+- [x] Pipeline : titre court par loi (titre officiel, `titres_courts.yaml`),
+  couleur officielle des groupes AN.
+- [x] `build.sh`, CI GitHub Actions (pytest, svelte-check, vitest,
+  prettier, build).
+- [ ] **Mise en ligne** : pousser `main` sur `m4xim1nus/quifaitlaloi`,
+  projet Cloudflare Pages relié au dépôt (commande `bash build.sh`, sortie
+  `site/build`, `NODE_VERSION=22`), domaine
+  `quifaitlaloi.technoperchoir.fr`.
+- [ ] **Recette de Max** sur téléphone, puis tag `v1.0.0` et
+  `CHANGELOG.md`.
 
 ## Après la v1
 
