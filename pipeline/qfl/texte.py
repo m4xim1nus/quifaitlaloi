@@ -48,6 +48,8 @@ OBJETS = [
     ("ensemble", r"(le projet|la proposition) de loi"),  # texte à article unique voté d'un bloc
     ("article_unique", r"l article unique"),
     ("partie", r"la (premiere|deuxieme|troisieme|quatrieme) partie"),
+    # amendement(s) de suppression de l'article unique : s'il est adopté, le texte est rejeté
+    ("suppression_article_unique", r"(l |les )?amendements? .{0,200}de suppression de l article unique"),
     ("amendement", r"(l |le |les )?(sous )?amendements?"),
     ("article", r"(l |les )?articles?"),
     ("resolution", r"la proposition de resolution"),

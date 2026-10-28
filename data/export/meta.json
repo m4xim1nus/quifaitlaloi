@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-28T09:32:49+00:00",
+ "genere_le": "2026-10-28T09:49:30+00:00",
  "sources": {
   "an_scrutins_17": {
    "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip",
@@ -54,9 +54,9 @@
  "comptes": {
   "lois": 148,
   "lectures": 431,
-  "scrutins": 298,
-  "positions_groupes": 3245,
-  "signatures": 298,
+  "scrutins": 299,
+  "positions_groupes": 3257,
+  "signatures": 299,
   "groupes": 36,
   "evenements": 494
  },

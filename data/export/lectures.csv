@@ -1,5 +1,5 @@
 id,loi_id,dossier,etape,chambre,type_lecture,date,statut_code,statut,issue,decision_deduite,art_49_3,mode_adoption,scrutin_id,rattachement,vote_bloque,candidat_rejet_inverse,score_rejet_inverse
-DLR5L15N43846-AN1,2025-444,DLR5L15N43846,AN1,AN,premiere,2022-02-03,TSORTF01,adopté,adopte,false,false,MAIN_LEVEE,,aucun,false,false,
+DLR5L15N43846-AN1,2025-444,DLR5L15N43846,AN1,AN,premiere,2022-02-03,TSORTF01,adopté,adopte,false,false,NON_RENSEIGNE,,scrutins_non_ingeres,false,false,
 DLR5L15N43846-SN1,2025-444,DLR5L15N43846,SN1,SN,premiere,2025-03-11,TSORTF05,modifié,adopte,false,false,SCRUTIN_PUBLIC,SN2024-225,dosleg,false,false,
 DLR5L15N43846-AN2,2025-444,DLR5L15N43846,AN2,AN,deuxieme,2025-04-07,TSORTF03,adopté sans modification,adopte,false,false,SCRUTIN_SOLENNEL,VTANR5L17V1303,voteRefs,false,false,
 DLR5L15N49541-SN1,2025-273,DLR5L15N49541,SN1,SN,premiere,2024-04-03,TSORTF01,adopté,adopte,false,false,MAIN_LEVEE,,aucun,false,false,
@@ -411,7 +411,7 @@ DLR5L17N53980-AN1,2026-798,DLR5L17N53980,AN1,AN,premiere,2026-07-15,TSORTF05,mod
 DLR5L17N53980-CMP-SN,2026-798,DLR5L17N53980,CMP,SN,cmp,2026-07-21,TSORTF18,"adopté (texte de CMP, art. 45, al. 3)",adopte,false,false,SCRUTIN_PUBLIC,SN2025-338,dosleg,false,false,
 DLR5L17N53980-CMP-AN,2026-798,DLR5L17N53980,CMP,AN,cmp,2026-07-21,TSORTF18,"adopté (texte de CMP, art. 45, al. 3)",adopte,false,false,SCRUTIN_SOLENNEL,VTANR5L17V8433,voteRefs,false,false,
 DLR5L17N53981-SN1,2026-470,DLR5L17N53981,SN1,SN,premiere,2026-04-01,TSORTF01,adopté,adopte,false,false,SCRUTIN_PUBLIC,SN2025-221,dosleg,false,false,
-DLR5L17N53981-AN1,2026-470,DLR5L17N53981,AN1,AN,premiere,2026-04-16,TSORTF07,rejeté,rejete,false,false,MAIN_LEVEE,,aucun,false,false,
+DLR5L17N53981-AN1,2026-470,DLR5L17N53981,AN1,AN,premiere,2026-04-16,TSORTF07,rejeté,rejete,false,false,SCRUTIN_ORDINAIRE,VTANR5L17V6283,seance,false,false,
 DLR5L17N53981-SN2,2026-470,DLR5L17N53981,SN2,SN,deuxieme,2026-05-18,TSORTF02,adopté avec modifications,adopte,false,false,SCRUTIN_PUBLIC,SN2025-270,dosleg,false,false,
 DLR5L17N53981-AN2,2026-470,DLR5L17N53981,AN2,AN,deuxieme,2026-06-02,TSORTF03,adopté sans modification,adopte,false,false,SCRUTIN_SOLENNEL,VTANR5L17V7260,voteRefs,false,false,
 DLR5L17N54006-AN1,2026-797,DLR5L17N54006,AN1,AN,premiere,2026-05-13,TSORTF01,adopté,adopte,false,false,SCRUTIN_ORDINAIRE,VTANR5L17V6645,voteRefs,false,false,

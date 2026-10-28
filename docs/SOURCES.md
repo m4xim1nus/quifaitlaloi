@@ -283,3 +283,7 @@ et §7.
     `PROM-PUB`). Le dump XVIe ne sert qu'aux baselines.
 18. **Scrutin du Congrès** (`VTCGR5L16V1`, 04/03/2024) dans le dump XVIe :
     groupes du Sénat, exclu.
+19. **Décision AN sans séance ni `voteRefs`** (DLR5L17N53981) : le scrutin
+    décisif se cherche parmi les scrutins du jour de la décision. Ici, il
+    s'agit des amendements de suppression de l'article unique, adoptés : le
+    texte est rejeté sans vote sur l'ensemble.

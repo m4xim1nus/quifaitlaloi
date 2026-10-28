@@ -19339,7 +19339,7 @@
    "grain": "trimestre",
    "cle": "2022-T1",
    "chambre": "AN",
-   "mode_adoption": "MAIN_LEVEE",
+   "mode_adoption": "NON_RENSEIGNE",
    "lectures": 1
   },
   {
@@ -19790,7 +19790,7 @@
    "cle": "2026-T2",
    "chambre": "AN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 5
+   "lectures": 4
   },
   {
    "portee": "toutes",
@@ -19799,7 +19799,7 @@
    "cle": "2026-T2",
    "chambre": "AN",
    "mode_adoption": "SCRUTIN_ORDINAIRE",
-   "lectures": 14
+   "lectures": 15
   },
   {
    "portee": "toutes",
@@ -19906,7 +19906,7 @@
    "grain": "periode",
    "cle": null,
    "chambre": "AN",
-   "mode_adoption": "MAIN_LEVEE",
+   "mode_adoption": "NON_RENSEIGNE",
    "lectures": 1
   },
   {
@@ -19934,7 +19934,7 @@
    "cle": "accords_ps",
    "chambre": "AN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 15
+   "lectures": 14
   },
   {
    "portee": "toutes",
@@ -19952,7 +19952,7 @@
    "cle": "accords_ps",
    "chambre": "AN",
    "mode_adoption": "SCRUTIN_ORDINAIRE",
-   "lectures": 41
+   "lectures": 42
   },
   {
    "portee": "toutes",
@@ -20158,7 +20158,7 @@
    "grain": "trimestre",
    "cle": "2022-T1",
    "chambre": "AN",
-   "mode_adoption": "MAIN_LEVEE",
+   "mode_adoption": "NON_RENSEIGNE",
    "lectures": 1
   },
   {
@@ -20573,7 +20573,7 @@
    "cle": "2026-T2",
    "chambre": "AN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 2
+   "lectures": 1
   },
   {
    "portee": "toutes",
@@ -20582,7 +20582,7 @@
    "cle": "2026-T2",
    "chambre": "AN",
    "mode_adoption": "SCRUTIN_ORDINAIRE",
-   "lectures": 13
+   "lectures": 14
   },
   {
    "portee": "toutes",
@@ -20671,7 +20671,7 @@
    "grain": "periode",
    "cle": null,
    "chambre": "AN",
-   "mode_adoption": "MAIN_LEVEE",
+   "mode_adoption": "NON_RENSEIGNE",
    "lectures": 1
   },
   {
@@ -20699,7 +20699,7 @@
    "cle": "accords_ps",
    "chambre": "AN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 2
+   "lectures": 1
   },
   {
    "portee": "toutes",
@@ -20717,7 +20717,7 @@
    "cle": "accords_ps",
    "chambre": "AN",
    "mode_adoption": "SCRUTIN_ORDINAIRE",
-   "lectures": 37
+   "lectures": 38
   },
   {
    "portee": "toutes",

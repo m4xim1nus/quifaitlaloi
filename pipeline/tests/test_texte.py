@@ -24,3 +24,9 @@ def test_similarite_titre_change_en_navette():
     scrutin = "l'ensemble de la proposition de loi relative à la sûreté dans les transports (première lecture)."
     assert similarite(scrutin, "relative au renforcement de la sûreté dans les transports") >= 0.6
     assert similarite(scrutin, "portant création d'un statut de l'élu local") == 0
+
+
+def test_suppression_article_unique():
+    t = ("l'amendement n° 1 de M. Monnet et les amendements identiques suivants de suppression de l'article unique "
+         "du projet de loi portant transposition de l'avenant n° 3 (première lecture).")
+    assert objet_scrutin(t) == "suppression_article_unique"

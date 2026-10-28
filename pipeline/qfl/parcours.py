@@ -14,7 +14,8 @@ from . import an, referentiels
 from .texte import cle_titre, norm, similarite
 
 DEBUT = "2024-07-18"  # début de la XVIIe législature
-DECISIFS = {"ensemble", "article_unique", "partie", "motion_rejet"}
+DECISIFS = {"ensemble", "article_unique", "partie", "motion_rejet", "suppression_article_unique"}
+DEBUT_SCRUTINS_AN = "2022-06-28"  # scrutins AN ingérés : XVIe et XVIIe
 URL_AN = "https://www.assemblee-nationale.fr/dyn/{leg}/dossiers/{chemin}"
 URL_SENAT = "https://www.senat.fr/dossier-legislatif/{signet}.html"
 
@@ -165,7 +166,7 @@ def _evenements(code: str, sous: list[dict]) -> list[dict]:
 def _choisir(cands: list[dict], issue: str, titres: list[str]) -> dict | None:
     """Scrutin décisif parmi des candidats, compte tenu de l'issue de la lecture."""
     if issue == "rejete":
-        ok = [s for s in cands if s["objet"] == "motion_rejet" and s["sort"] == "adopte"] or \
+        ok = [s for s in cands if s["objet"] in ("motion_rejet", "suppression_article_unique") and s["sort"] == "adopte"] or \
              [s for s in cands if s["objet"] in ("ensemble", "article_unique", "partie") and s["sort"] == "rejete"]
     elif issue == "adopte":
         ok = [s for s in cands if s["objet"] in ("ensemble", "article_unique") and s["sort"] == "adopte"]
@@ -198,9 +199,11 @@ class Index:
     def __init__(self, scr_an: list[dict], scr_sn: list[dict]):
         self.an = {s["id"]: s for s in scr_an}
         self.par_seance: dict[str, list[dict]] = defaultdict(list)
+        self.par_date: dict[str, list[dict]] = defaultdict(list)
         for s in scr_an:
             if s["objet"] in DECISIFS:
                 self.par_seance[s["seance"]].append(s)
+                self.par_date[s["date"]].append(s)
         self.sn: dict[tuple, list[dict]] = defaultdict(list)
         for s in scr_sn:
             if s["objet"] in DECISIFS and s["loicod"]:
@@ -214,6 +217,9 @@ def _scrutin_an(l: dict, idx: Index, titres: list[str], issue: str) -> tuple[dic
     seances = {l["dec"].get("reunionRef")} | l["seances"]
     cles = [cle_titre(t) for t in titres if t]
     cands = [s for se in seances if se for s in idx.par_seance.get(se, []) if _meme_texte(s, cles, titres)]
+    if not any(seances):
+        # décision sans séance renseignée (vu sur DLR5L17N53981) : scrutins du jour de la décision
+        cands = [s for s in idx.par_date.get(l["date"], []) if _meme_texte(s, cles, titres)]
     s = _choisir(cands, issue, titres)
     if s is None and l["dec"].get("reunionRef"):
         # Second passage, limité à la séance de la décision : seuil plus bas, mais
@@ -259,13 +265,16 @@ def qualifier(l: dict, idx: Index, loicod: str | None, titres: list[str], type_l
         miroir = max(refs, key=lambda s: s["pour"], default=None)
         return {**out, "scrutin_id": miroir["id"] if miroir else None,
                 "rattachement": "motion_censure" if miroir else "aucun", "mode_adoption": "ART_49_3"}
+    if l["chambre"] == "AN" and l["date"] < DEBUT_SCRUTINS_AN:
+        # lecture tenue sous la XVe : ses scrutins ne sont pas ingérés (cycle Baselines)
+        return {**out, "scrutin_id": None, "rattachement": "scrutins_non_ingeres", "mode_adoption": "NON_RENSEIGNE"}
     if l["chambre"] == "AN":
         s, how = _scrutin_an(l, idx, titres, st["issue"])
     else:
         s, how = _scrutin_sn(l, idx, loicod, st["issue"], titres)
     if s is None:
         mode = "MAIN_LEVEE"
-    elif s["objet"] == "motion_rejet" and s["sort"] == "adopte":
+    elif s["objet"] == "motion_rejet" and s["sort"] == "adopte":  # suppression de l'article unique : mode du scrutin
         mode = "MOTION_REJET"  # requalifié en REJET_INVERSE par la règle de build._rejet_inverse
     elif l["chambre"] == "AN":
         mode = {"SPS": "SCRUTIN_SOLENNEL", "SPO": "SCRUTIN_ORDINAIRE"}[s["type_vote"]]

@@ -71,16 +71,33 @@ son article unique), ou motion de rejet adoptée si le texte est rejeté.
   type de lecture dans l'intitulé (« première lecture », etc.).
 - **Sénat** : les scrutins de la même loi et du même type de lecture dans
   Dosleg.
+- **Rejet par suppression de l'article unique** : quand l'AN adopte les
+  amendements de suppression de l'article unique, le texte est rejeté sans
+  vote sur l'ensemble. Ce scrutin est alors le scrutin décisif (loi
+  2026-470). Si la décision n'a pas de séance renseignée, on cherche parmi
+  les scrutins du jour de la décision.
+- **Lecture AN sous la XVe** (avant le 28/06/2022) : ses scrutins ne sont
+  pas ingérés, le mode est `NON_RENSEIGNE` (1 cas, loi 2025-444). Ces
+  scrutins viendront avec le cycle Baselines.
 - **Sans scrutin trouvé** : la lecture est classée `MAIN_LEVEE`.
 
 > `MAIN_LEVEE` veut dire qu'**aucun scrutin public n'a eu lieu** : on ne
 > connaît pas le vote de chaque groupe. Cela ne veut pas dire que le texte
 > fait consensus, et cette catégorie n'est jamais agrégée avec « adopté
-> largement ». La confirmation sur un échantillon de comptes rendus reste à
-> faire (BACKLOG).
+> largement ».
 
-Rattachements actuels : 152 lectures AN par `voteRefs`, 31 par séance, 31
-sans scrutin ; 104 lectures Sénat par Dosleg, 106 sans scrutin.
+**Vérification sur les comptes rendus** (28/10/2026, 16 lectures tirées
+parmi les `MAIN_LEVEE`, 8 AN et 8 Sénat). 14 sont confirmées : adoption à
+main levée, ou procédure d'examen simplifiée pour les 5 conventions de
+l'échantillon. Les 2 infirmées ont conduit aux deux règles ci-dessus : une
+lecture tenue sous la XVe, et un rejet par suppression de l'article unique.
+Une lecture sans scrutin sur l'ensemble peut compter des scrutins sur des
+amendements, d'où l'exigence d'un scrutin portant sur l'ensemble. Au Sénat,
+« adopté à l'unanimité des présents » reste un vote à main levée.
+
+Rattachements actuels : 152 lectures AN par `voteRefs`, 32 par séance ou
+par date, 29 sans scrutin public, 1 non renseignée ; 104 lectures Sénat par
+Dosleg, 106 sans scrutin public.
 
 ## 5. Modes d'adoption
 
@@ -101,6 +118,7 @@ texte de CMP peut passer par scrutin, sans scrutin public ou au 49.3.
 | `REJET_INVERSE` | motion de rejet votée par les partisans du texte pour aller en CMP sur la version du Sénat | motion de rejet AN adoptée + règle ci-dessous |
 | `DELAI_EXPIRE` | lecture close sans décision : loi de finances ou de financement transmise à l'expiration des délais (art. 47 et 47-1) | aucune décision dans l'étape (1re lecture AN des PLFSS 2025 et 2026) |
 | `SANS_DECISION` | idem, hors texte financier | — (aucun cas) |
+| `NON_RENSEIGNE` | lecture AN tenue sous la XVe, scrutins non ingérés | date < 28/06/2022 |
 
 Le **vote bloqué** (art. 44, al. 3) est un attribut (`vote_bloque`) posé à
 la main dans `flags.yaml` : aucun intitulé de scrutin AN ne le mentionne.
@@ -239,7 +257,9 @@ suivante avec les baselines XVIe et XVe.
 ## 13. Limites connues
 
 - Le solennel n'est pas distingué de l'ordinaire au Sénat.
-- `MAIN_LEVEE` n'est pas encore confirmé sur des comptes rendus.
+- `MAIN_LEVEE` n'est confirmé que sur un échantillon de 16 lectures (§4).
+  Les conventions passent en procédure d'examen simplifiée, sans vote
+  nominatif : ce sous-type n'est pas encore distingué.
 - Vote bloqué : repérage manuel seulement.
 - Textes adoptés non promulgués : détection par saisine du Conseil
   constitutionnel, structure du dossier AN et texte « adopté

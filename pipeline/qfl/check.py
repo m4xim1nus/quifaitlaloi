@@ -39,6 +39,11 @@ TEMOINS = [
     ("Nouvelle-Calédonie (2025-1055) : rejet inversé (66 %), contournement",
      "select l.mode_adoption || ' ' || o.contournement from lectures l join lois o on o.id=l.loi_id "
      "where l.id='DLR5L17N52655-AN1'", "REJET_INVERSE 1"),
+    ("Assurance chômage (2026-470) : 1re lecture AN rejetée par suppression de l'article unique (V6283)",
+     "select issue || ' ' || mode_adoption || ' ' || scrutin_id from lectures where id='DLR5L17N53981-AN1'",
+     "rejete SCRUTIN_ORDINAIRE VTANR5L17V6283"),
+    ("Parité municipale (2025-444) : 1re lecture AN sous la XVe, scrutins non ingérés",
+     "select mode_adoption from lectures where id='DLR5L15N43846-AN1'", "NON_RENSEIGNE"),
     ("PLF 2026 : 1re lecture AN rejetée (V4241)",
      "select issue || ' ' || scrutin_id from lectures where id='DLR5L17N52428-AN1'", "rejete VTANR5L17V4241"),
     ("PLF 2026 : 49.3 en nouvelle lecture et en lecture définitive",
@@ -88,7 +93,8 @@ def verifier(chemin: Path) -> tuple[bool, list[str]]:
     incoh = _q(con, "select l.id from lectures l join scrutins s on s.id=l.scrutin_id "
                     "where l.mode_adoption not in ('ART_49_3') and ("
                     "(l.issue='adopte' and (s.sort!='adopte' or s.objet not in ('ensemble','article_unique'))) or "
-                    "(l.issue='rejete' and not ((s.objet='motion_rejet' and s.sort='adopte') or s.sort='rejete')))")
+                    "(l.issue='rejete' and not ((s.objet in ('motion_rejet','suppression_article_unique') and s.sort='adopte') "
+                    "or s.sort='rejete')))")
     controle("issue de la lecture cohérente avec son scrutin décisif", not incoh, ", ".join(r[0] for r in incoh))
     ecarts = _q(con, "select s.id, s.pour, sum(p.pour) from scrutins s join positions_groupes p on p.scrutin_id=s.id "
                      "where s.chambre='AN' group by s.id having s.pour != sum(p.pour)")

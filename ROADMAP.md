@@ -17,7 +17,7 @@ témoins reconstruits (Duplomb, PLF 2026, casseurs-payeurs), liste des lois
 promulguées identique côté AN et côté Sénat (148 lois). Détail, trous et
 limites : `docs/SOURCES.md`.
 
-## Étape 2 : pipeline XVIIe ← *en cours, livrable en relecture*
+## Étape 2 : pipeline XVIIe ✅ (2026-10-28)
 
 But : une base SQLite fiable sur la XVIIe et les premiers chiffres.
 
@@ -34,12 +34,24 @@ But : une base SQLite fiable sur la XVIIe et les premiers chiffres.
   casseurs-payeurs au Sénat), contrôle croisé datan.fr sur V2957 et V4758.
 - [x] Relecture avec Max (28/10/2026) : graphiques bruts, `docs/METHODO.md`
   v0 validé, règle fixe du rejet inversé, date des « accords PS ».
-- [ ] Échantillon de comptes rendus pour confirmer `MAIN_LEVEE` (BACKLOG).
+- [x] Échantillon de comptes rendus : `MAIN_LEVEE` confirmé sur 14 lectures sur 16,
+  les 2 écarts corrigés (`docs/METHODO.md` §4).
 
-## Étape 3 : site v1
+## Étape 3 : site v1 ← *prochaine*
 
 But : mise en ligne publique.
 
+C'est ici que commence le vrai front. La page de relecture de l'étape 2
+(`pipeline/explo/relecture.py`) était jetable et n'en est pas la base.
+
+- **Ambition** : un site beau et didactique, dans l'esprit de
+  [leurs-votes.fr](https://www.leurs-votes.fr/) (sans le copier : l'objet
+  diffère), qui reste data-driven et rigoureux. Chaque chiffre renvoie à sa
+  méthode et à ses sources, et un non-spécialiste comprend chaque graphique
+  sans légende externe.
+- **D'abord une passe de conception, validée par Max avant le code** :
+  étude de leurs-votes.fr et du prior art, récit et parcours de lecture,
+  maquettes des pages clés, direction visuelle.
 - SvelteKit (adapter-static) + d3. Pages : accueil (chiffres clés et frise
   des lois par mode d'adoption), explorateur, fiche par loi, méthodologie,
   données.
