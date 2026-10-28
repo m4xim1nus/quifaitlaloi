@@ -1,0 +1,27 @@
+[project]
+name = "qfl"
+version = "0.0.0"
+description = "Pipeline QuiFaitLaLoi : open data AN/Sénat → SQLite + JSON du site"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "httpx>=0.28",
+    "polars>=1.0",
+    "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["qfl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
