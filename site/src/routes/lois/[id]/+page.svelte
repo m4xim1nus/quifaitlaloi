@@ -91,6 +91,12 @@
           <dd>{dateLongue(loi.date_promulgation)}</dd>
         </div>
       {/if}
+      {#if loi.themes.length}
+        <div>
+          <dt>Thèmes (Sénat)</dt>
+          <dd>{loi.themes.join(', ')}</dd>
+        </div>
+      {/if}
       <div>
         <dt>Procédure accélérée</dt>
         <dd>{loi.procedure_acceleree ? 'oui (une lecture par chambre avant la CMP)' : 'non'}</dd>

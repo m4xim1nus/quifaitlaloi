@@ -33,7 +33,14 @@ export const FICHIERS: Fichier[] = [
       ],
       ['a_49_3, a_rejet_inverse, a_vote_bloque', 'composantes du contournement'],
       ['contournement', 'vrai si l’une des trois composantes est vraie'],
-      ['a_delai_expire', 'lecture close à l’expiration des délais budgétaires (hors contournement)']
+      [
+        'a_delai_expire',
+        'lecture close à l’expiration des délais budgétaires (hors contournement)'
+      ],
+      [
+        'themes',
+        'thèmes du Sénat (base Dosleg), du plus spécifique au plus général, séparés par « ; »'
+      ]
     ]
   },
   {

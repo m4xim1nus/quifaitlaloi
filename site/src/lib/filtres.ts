@@ -10,6 +10,7 @@ export interface Filtres {
   periode: string;
   type: TypeLoi | '';
   decisif: string;
+  theme: string;
   conventions: boolean;
 }
 
@@ -20,6 +21,7 @@ export const VIDES: Filtres = {
   periode: '',
   type: '',
   decisif: '',
+  theme: '',
   conventions: false
 };
 
@@ -31,6 +33,7 @@ export function lireFiltres(p: URLSearchParams): Filtres {
     periode: p.get('periode') ?? '',
     type: (p.get('type') ?? '') as Filtres['type'],
     decisif: p.get('decisif') ?? '',
+    theme: p.get('theme') ?? '',
     conventions: p.get('conventions') === '1' || p.get('type') === 'convention'
   };
 }
@@ -43,6 +46,7 @@ export function ecrireFiltres(f: Filtres): string {
   if (f.periode) p.set('periode', f.periode);
   if (f.type) p.set('type', f.type);
   if (f.decisif) p.set('decisif', f.decisif);
+  if (f.theme) p.set('theme', f.theme);
   if (f.conventions) p.set('conventions', '1');
   const s = p.toString();
   return s ? `?${s}` : '';
@@ -58,6 +62,7 @@ export interface Filtrable {
   chemin: Chemin;
   classe_an: Classe | null;
   pivots: string[];
+  themes?: string[];
 }
 
 export function appliquer<T extends Filtrable>(
@@ -74,6 +79,7 @@ export function appliquer<T extends Filtrable>(
       (!f.periode || periodeDe(l.date_adoption, periodes) === f.periode) &&
       (!f.type || l.type === f.type) &&
       (!f.decisif || l.pivots.includes(f.decisif)) &&
+      (!f.theme || (l.themes ?? []).includes(f.theme)) &&
       mots.every((m) => plier(`${l.titre_court} ${l.id}`).includes(m))
   );
 }

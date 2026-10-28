@@ -4,10 +4,9 @@
   import Reglages from '$lib/components/Reglages.svelte';
   import Composition from '$lib/components/Composition.svelte';
   import VotesGroupes from '$lib/components/VotesGroupes.svelte';
-  import Periodes from '$lib/components/Periodes.svelte';
   import Decisifs from '$lib/components/Decisifs.svelte';
   import Comment from '$lib/components/Comment.svelte';
-  import { filtrer, parChemin, periodeDe, pivots } from '$lib/agregats';
+  import { filtrer, parChemin, pivots } from '$lib/agregats';
   import {
     CHEMINS,
     DEFINITION_CHEMIN,
@@ -72,9 +71,6 @@
     cmp: compte((l) => l.fin_navette === 'cmp'),
     definitive: compte((l) => l.fin_navette === 'definitive')
   });
-  const plusieursPeriodes = $derived(
-    new Set(lois.map((l) => periodeDe(l.date_adoption, data.periodes))).size > 1
-  );
   const titres = (ls: { titre_court: string }[]) => enumeration(ls.map((l) => l.titre_court));
   const pluriel = (k: number, mot: string) => `${mot}${k > 1 ? 's' : ''}`;
 </script>
@@ -192,10 +188,6 @@
   </p>
   <VotesGroupes {lois} groupes={data.groupes} />
 
-  {#if plusieursPeriodes}
-    <h3>D’une période à l’autre</h3>
-    <Periodes {lois} periodes={data.periodes} />
-  {/if}
   <p class="petit secondaire colonne">
     « {LIBELLE_CLASSE.socle_rn} » veut dire qu’au moins un groupe du bloc RN a voté avec le socle, pas
     qu’il pouvait faire tomber le texte&#8239;: c’est la question suivante.

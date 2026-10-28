@@ -17,6 +17,8 @@ TABLES = {
     "loi": ["loicod", "typloicod", "signet", "date_loi", "loinumjo", "loititjo", "url_an"],
     "texte": ["texcod", "oritxtcod", "lecassidt"],
     "oritxt": ["oritxtcod", "oritxtlib", "oritxtado"],
+    "the": ["thecle", "thelib"],
+    "loithe": ["loicod", "thecle"],
 }
 ESC = {"t": "\t", "n": "\n", "r": "\r", "\\": "\\"}
 POSITIONS = {"1": "pour", "2": "contre", "3": "abstention", "4": "non_votant"}
@@ -133,3 +135,18 @@ def ventilation(tables: dict[str, pl.DataFrame], scr: pl.DataFrame, groupes: pl.
                .with_columns(pl.col("membres").cast(pl.Int64),
                              *[pl.col(c).cast(pl.Int64) for c in ("pour", "contre", "abstention", "non_votants")])
                .sort("scrutin_id", "groupe_id"))
+
+
+def themes(tables: dict[str, pl.DataFrame]) -> dict[str, list[str]]:
+    """Thèmes du Sénat de chaque loi (loicod → libellés), du plus spécifique au plus général :
+    rangés par fréquence croissante sur l'ensemble de Dosleg, « Société » (fourre-tout) en dernier."""
+    lib = dict(zip(tables["the"]["thecle"], tables["the"]["thelib"]))
+    freq: dict[str, int] = {}
+    par_loi: dict[str, list[str]] = {}
+    for loicod, cle in zip(tables["loithe"]["loicod"], tables["loithe"]["thecle"]):
+        t = lib.get(cle)
+        if not t:
+            continue
+        freq[t] = freq.get(t, 0) + 1
+        par_loi.setdefault(loicod.strip(), []).append(t)
+    return {k: sorted(set(v), key=lambda t: (t == "Société", freq[t], t)) for k, v in par_loi.items()}

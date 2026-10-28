@@ -99,6 +99,11 @@
       à l’Assemblée (au Sénat, pour la partie Sénat de la fiche).
     </p>
     <p>
+      Les <strong>thèmes</strong> affichés sur chaque loi (« Justice », « Transports »…) sont ceux du
+      Sénat, tirés de sa base Dosleg (une à quatre par loi, sur une liste de trente) ; « Société », très
+      large, est toujours placé en dernier.
+    </p>
+    <p>
       Le dossier de l’Assemblée contient des erreurs de codage (décisions du Sénat mal étiquetées,
       lectures de CMP sans chambre…). Elles sont corrigées par des règles explicites, détaillées
       dans la version technique.

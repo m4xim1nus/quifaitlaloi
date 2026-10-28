@@ -27,6 +27,7 @@ export interface LoiResume {
   procedure_acceleree: boolean;
   n_lectures: number;
   fin_navette: FinNavette;
+  themes: string[];
 }
 
 export function resumes(): LoiResume[] {
@@ -57,7 +58,8 @@ export function resumes(): LoiResume[] {
         delai_expire: l.a_delai_expire,
         procedure_acceleree: l.procedure_acceleree,
         n_lectures: l.n_lectures,
-        fin_navette: finNavette(l.id)
+        fin_navette: finNavette(l.id),
+        themes: l.themes
       };
     })
     .sort((a, b) => a.date_adoption.localeCompare(b.date_adoption) || a.id.localeCompare(b.id));

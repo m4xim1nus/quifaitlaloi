@@ -198,6 +198,9 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     utiles &= set(tous)
     sig = {sid: votes.signature(tous[sid], pos[sid], sigle_de) for sid in sorted(utiles) if sid in pos}
     lois_res = [_resume_loi(loi, par_loi.get(loi["id"], []), sig) for loi in rows_lois]
+    themes = senat.themes(tables)
+    for loi in lois_res:
+        loi["themes"] = ";".join(themes.get((loi["loicod_senat"] or "").strip(), []))
     _log(f"   {len(lois_res)} lois ({sum(l['statut'] == 'adoptee' for l in lois_res)} en attente de promulgation), "
          f"{len(rows_lect)} lectures, {len(utiles)} scrutins utiles")
 

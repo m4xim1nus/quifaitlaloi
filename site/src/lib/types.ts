@@ -58,6 +58,8 @@ export interface Loi {
   a_vote_bloque: boolean;
   a_delai_expire: boolean;
   contournement: boolean;
+  /** Thèmes du Sénat (Dosleg), du plus spécifique au plus général. */
+  themes: string[];
 }
 
 export interface Lecture {

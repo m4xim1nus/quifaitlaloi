@@ -317,3 +317,20 @@ par scrutin) ; Max a retenu le basculement seul. Effet : 33 lois, RN 22,
 SOC 9. Sur une censure, la règle (tous les membres votent la censure)
 reste inchangée ; elle va dans le même sens (le groupe pouvait renverser
 l'issue).
+
+## 11. Groupes décisifs en rangées, thèmes du Sénat (troisième retour de Max)
+
+- **« Quels groupes ont été décisifs ? »** reprend la grammaire du bloc des
+  coalitions : une rangée par groupe (de la gauche à la droite, couleur AN,
+  groupes d'une lecture tenue sous la XVIe en gris), un carré par loi
+  (plein : décisif par son vote ; contour : par son abstention), effectif.
+  Au clic, les lois du groupe, avec leur chemin, leurs thèmes et les autres
+  groupes décisifs sur la même loi. Le tableau croisé lois × groupes reste
+  accessible dans un volet repliable.
+- **« D'une période à l'autre »** retiré : la chronologie sera traitée dans
+  un cycle dédié, et ce graphique apportait peu.
+- **Thèmes** : classement du Sénat (Dosleg, tables `the` et `loithe`),
+  1 à 4 thèmes par loi sur 30, les 148 lois couvertes. Exportés dans
+  `lois.themes`, du plus spécifique au plus général (fréquence croissante,
+  « Société », fourre-tout, en dernier). Affichés en étiquettes dans les
+  listes (deux au plus), sur la fiche (tous) et en filtre de l'explorateur.

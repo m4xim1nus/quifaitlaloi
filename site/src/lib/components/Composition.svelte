@@ -3,6 +3,7 @@
   // fixe. La définition se lit dans la grille de présence (quels blocs sont dans le camp
   // gagnant), l'effectif dans la rangée de carrés (un carré = une loi, une seule échelle). Les
   // lois s'affichent en dépliant la rangée.
+  import Themes from './Themes.svelte';
   import { comptesCoalitions } from '$lib/agregats';
   import { CLASSES, LIBELLE_CHEMIN, LIBELLE_CLASSE } from '$lib/libelles';
   import { dateCourte } from '$lib/format';
@@ -126,7 +127,9 @@
             <ul class="lois">
               {#each ls.slice(0, MAX) as l (l.id)}
                 <li>
-                  <a href="/lois/{l.id}">{l.titre_court}</a>
+                  <span
+                    ><a href="/lois/{l.id}">{l.titre_court}</a> <Themes themes={l.themes} /></span
+                  >
                   <span class="date petit chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
                 </li>
               {/each}

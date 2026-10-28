@@ -5,6 +5,7 @@
   import { page } from '$app/state';
   import Interrupteur from '$lib/components/Interrupteur.svelte';
   import Comment from '$lib/components/Comment.svelte';
+  import Themes from '$lib/components/Themes.svelte';
   import { appliquer, ecrireFiltres, lireFiltres, VIDES, type Filtres } from '$lib/filtres';
   import { pivots } from '$lib/agregats';
   import {
@@ -34,9 +35,12 @@
   const visibles = $derived(appliquer(data.lois, f, data.periodes));
   const base = $derived(data.lois.filter((l) => f.conventions || l.type !== 'convention'));
   const groupesDecisifs = $derived(pivots(data.lois).map((p) => p.groupe));
+  const THEMES = $derived(
+    [...new Set(data.lois.flatMap((l) => l.themes))].sort((a, b) => a.localeCompare(b, 'fr'))
+  );
   const TYPES: TypeLoi[] = ['ordinaire', 'organique', 'finances', 'financement_ss', 'convention'];
   const actifs = $derived(
-    !!(f.texte || f.chemin || f.coalition || f.periode || f.type || f.decisif)
+    !!(f.texte || f.chemin || f.coalition || f.periode || f.type || f.decisif || f.theme)
   );
 </script>
 
@@ -92,6 +96,13 @@
       </select>
     </label>
     <label class="champ">
+      <span>Thème (Sénat)</span>
+      <select bind:value={f.theme}>
+        <option value="">Tous</option>
+        {#each THEMES as t (t)}<option value={t}>{t}</option>{/each}
+      </select>
+    </label>
+    <label class="champ">
       <span>Type</span>
       <select bind:value={f.type}>
         <option value="">Tous</option>
@@ -130,7 +141,9 @@
             <td class="date chiffres">{dateCourte(l.date_adoption)}</td>
             <td class="titre">
               <a href="/lois/{l.id}">{l.titre_court}</a>
-              <span class="petit secondaire">{LIBELLE_TYPE[l.type]} · n° {l.id}</span>
+              <span class="petit secondaire"
+                >{LIBELLE_TYPE[l.type]} · n° {l.id} <Themes themes={l.themes} max={3} /></span
+              >
             </td>
             <td>
               <span class="pastille ch-{l.chemin}" class:vide={l.chemin === 'sans_scrutin'}></span>

@@ -57,7 +57,8 @@ function loi(r: Ligne): Loi {
     a_rejet_inverse: bool(r.a_rejet_inverse),
     a_vote_bloque: bool(r.a_vote_bloque),
     a_delai_expire: bool(r.a_delai_expire),
-    contournement: bool(r.contournement)
+    contournement: bool(r.contournement),
+    themes: r.themes ? r.themes.split(';') : []
   };
 }
 

@@ -306,3 +306,6 @@ choix propres sont décrits dans `docs/CONCEPTION.md` :
   comme « (loi Duplomb) ») : `referentiels/titres_courts.yaml`.
 - **Couleur des groupes** (`groupes.couleur`) : celle publiée par l'AN
   (`couleurAssociee` du référentiel AMO). Le Sénat n'en publie pas.
+- **Thèmes** (`lois.themes`) : classement du Sénat (Dosleg, tables `the` et
+  `loithe`), 1 à 4 par loi ; rangés du plus spécifique au plus général
+  (fréquence croissante dans Dosleg, « Société » en dernier).
