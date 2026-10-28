@@ -349,8 +349,8 @@
     <p>
       Le calcul se fait groupe par groupe. Sur le budget 2025 (motion de censure de février
       2025&#8239;: 128 voix pour 289 requises), ni le RN ni le PS n’étaient décisifs seuls&#8239;:
-      la censure n’aurait abouti qu’avec les deux. Ce cas de « décisif à deux » n’est pas encore
-      compté.
+      il fallait plusieurs groupes en plus des censeurs (le RN, l’UDR et LIOT auraient suffi). Ce
+      cas de « décisif à plusieurs » n’est pas encore compté.
     </p>
   </section>
 

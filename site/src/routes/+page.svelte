@@ -64,7 +64,7 @@
   {#snippet noteDecisifs()}
     <p class="petit secondaire colonne">
       Le calcul se fait groupe par groupe. Sur le budget 2025, ni le RN ni le PS n’étaient décisifs
-      seuls&#8239;: la censure n’aurait abouti qu’avec les deux.
+      seuls&#8239;: aucun des deux ne suffisait à faire passer la censure.
     </p>
   {/snippet}
 </Legislature>

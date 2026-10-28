@@ -287,8 +287,9 @@ gauche ».
 
 Le pivot est individuel. Sur le budget 2025 (49.3, février 2025, motion
 V693 : 128 voix pour 289 requises), ni le RN (124 membres) ni le PS (60
-non-censeurs) n'étaient pivots **seuls** : la censure n'aurait abouti
-qu'avec les deux.
+non-censeurs) n'étaient pivots **seuls**. Il fallait plusieurs groupes en
+plus des censeurs : le RN avec l'UDR et LIOT aurait suffi (291 voix), sans
+le PS.
 
 ## 11. Périodes
 
