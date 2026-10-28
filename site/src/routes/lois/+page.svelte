@@ -23,11 +23,14 @@
   let { data } = $props();
 
   let f = $state<Filtres>({ ...VIDES });
+  // Sur téléphone, les menus de filtre se replient ; ouverts d'office si l'URL en porte un.
+  let criteres = $state(false);
   let pret = false;
   // Le routeur n'est prêt qu'après la première navigation : avant, réécrire l'URL casse la page.
   afterNavigate(() => {
     if (pret) return;
     f = lireFiltres(page.url.searchParams);
+    criteres = nCriteres > 0;
     pret = true;
   });
   $effect(() => {
@@ -55,18 +58,11 @@
     'financement_ss',
     'convention'
   ];
-  const actifs = $derived(
-    !!(
-      f.texte ||
-      f.legislature ||
-      f.chemin ||
-      f.coalition ||
-      f.periode ||
-      f.type ||
-      f.decisif ||
-      f.theme
-    )
+  const nCriteres = $derived(
+    [f.legislature, f.chemin, f.coalition, f.periode, f.type, f.decisif, f.theme].filter(Boolean)
+      .length
   );
+  const actifs = $derived(!!f.texte || nCriteres > 0);
 </script>
 
 <svelte:head>
@@ -90,62 +86,72 @@
       <span>Rechercher</span>
       <input type="search" bind:value={f.texte} placeholder="Un mot du titre, un numéro de loi" />
     </label>
-    <label class="champ">
-      <span>Législature</span>
-      <select bind:value={f.legislature}>
-        <option value="">Toutes</option>
-        {#each LEGISLATURES as l (l.num)}
-          <option value={String(l.num)}>{l.romain} ({l.annees})</option>
-        {/each}
-      </select>
-    </label>
-    <label class="champ">
-      <span>Chemin à l’Assemblée</span>
-      <select bind:value={f.chemin}>
-        <option value="">Tous</option>
-        {#each CHEMINS as c (c)}<option value={c}>{LIBELLE_CHEMIN[c]}</option>{/each}
-      </select>
-    </label>
-    <label class="champ">
-      <span>Coalition</span>
-      <select bind:value={f.coalition}>
-        <option value="">Toutes</option>
-        {#each CLASSES as c (c)}<option value={c}>{LIBELLE_CLASSE[c]}</option>{/each}
-        <option value="aucune">Sans vote nominatif</option>
-      </select>
-    </label>
-    <label class="champ">
-      <span>Groupe décisif</span>
-      <select bind:value={f.decisif}>
-        <option value="">Tous</option>
-        {#each groupesDecisifs as g (g)}<option value={g}>{g}</option>{/each}
-      </select>
-    </label>
-    {#if !f.legislature || f.legislature === '17'}
+    <button
+      type="button"
+      class="deplier"
+      aria-expanded={criteres}
+      aria-controls="criteres"
+      onclick={() => (criteres = !criteres)}
+      >Filtrer{#if nCriteres}<span class="chiffres">({nCriteres})</span>{/if}</button
+    >
+    <div class="criteres" class:replie={!criteres} id="criteres">
       <label class="champ">
-        <span>Période (XVIIe)</span>
-        <select bind:value={f.periode}>
+        <span>Législature</span>
+        <select bind:value={f.legislature}>
           <option value="">Toutes</option>
-          {#each data.periodes.filter((p) => NOM_PERIODE[p.code]) as p (p.code)}
-            <option value={p.code}>{NOM_PERIODE[p.code]}</option>
+          {#each LEGISLATURES as l (l.num)}
+            <option value={String(l.num)}>{l.romain} ({l.annees})</option>
           {/each}
         </select>
       </label>
-    {/if}
-    <label class="champ">
-      <span>Thème (Sénat)</span>
-      <select bind:value={f.theme}>
-        <option value="">Tous</option>
-        {#each THEMES as t (t)}<option value={t}>{t}</option>{/each}
-      </select>
-    </label>
-    <label class="champ">
-      <span>Type</span>
-      <select bind:value={f.type}>
-        <option value="">Tous</option>
-        {#each TYPES as t (t)}<option value={t}>{LIBELLE_TYPE[t]}</option>{/each}
-      </select>
-    </label>
+      <label class="champ">
+        <span>Chemin à l’Assemblée</span>
+        <select bind:value={f.chemin}>
+          <option value="">Tous</option>
+          {#each CHEMINS as c (c)}<option value={c}>{LIBELLE_CHEMIN[c]}</option>{/each}
+        </select>
+      </label>
+      <label class="champ">
+        <span>Coalition</span>
+        <select bind:value={f.coalition}>
+          <option value="">Toutes</option>
+          {#each CLASSES as c (c)}<option value={c}>{LIBELLE_CLASSE[c]}</option>{/each}
+          <option value="aucune">Sans vote nominatif</option>
+        </select>
+      </label>
+      <label class="champ">
+        <span>Groupe décisif</span>
+        <select bind:value={f.decisif}>
+          <option value="">Tous</option>
+          {#each groupesDecisifs as g (g)}<option value={g}>{g}</option>{/each}
+        </select>
+      </label>
+      {#if !f.legislature || f.legislature === '17'}
+        <label class="champ">
+          <span>Période (XVIIe)</span>
+          <select bind:value={f.periode}>
+            <option value="">Toutes</option>
+            {#each data.periodes.filter((p) => NOM_PERIODE[p.code]) as p (p.code)}
+              <option value={p.code}>{NOM_PERIODE[p.code]}</option>
+            {/each}
+          </select>
+        </label>
+      {/if}
+      <label class="champ">
+        <span>Thème (Sénat)</span>
+        <select bind:value={f.theme}>
+          <option value="">Tous</option>
+          {#each THEMES as t (t)}<option value={t}>{t}</option>{/each}
+        </select>
+      </label>
+      <label class="champ">
+        <span>Type</span>
+        <select bind:value={f.type}>
+          <option value="">Tous</option>
+          {#each TYPES as t (t)}<option value={t}>{LIBELLE_TYPE[t]}</option>{/each}
+        </select>
+      </label>
+    </div>
   </form>
 
   <div class="barre-resultats">
@@ -228,6 +234,12 @@
   }
   .champ.texte {
     grid-column: span 2;
+  }
+  .criteres {
+    display: contents;
+  }
+  .deplier {
+    display: none;
   }
   input,
   select {
@@ -314,6 +326,44 @@
     }
     .champ.texte {
       grid-column: 1 / -1;
+    }
+    .deplier {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-self: start;
+      min-height: 44px;
+      padding: 0 14px;
+      font: inherit;
+      font-size: 0.9375rem;
+      color: var(--encre);
+      background: none;
+      border: 1px solid var(--filet);
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .deplier::after {
+      content: '';
+      width: 0.45em;
+      height: 0.45em;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: translateY(-25%) rotate(45deg);
+    }
+    .deplier[aria-expanded='true'] {
+      border-color: var(--encre);
+    }
+    .deplier[aria-expanded='true']::after {
+      transform: translateY(25%) rotate(-135deg);
+    }
+    .criteres {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .criteres.replie {
+      display: none;
     }
     thead {
       display: none;

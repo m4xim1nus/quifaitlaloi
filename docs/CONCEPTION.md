@@ -80,7 +80,8 @@ Règles transverses :
 ### Accueil `/`
 
 1. **En-tête** : « Qui fait la loi depuis 2024 ? », phrase de cadrage,
-   interrupteur des accords internationaux.
+   sommaire des trois questions (l'interrupteur des accords est passé dans
+   la section 1, §20).
 2. **La frise** (l'élément marquant du site) : une colonne par mois, un
    carré par loi, coloré par chemin, contournements empilés en haut et
    nommés. Dates charnières en filets (dissolution, nouvelle Assemblée,
@@ -379,7 +380,8 @@ groupes décisifs, avec un « avec … » peu lisible. Elle est remplacée par :
   (chemins, coalitions, groupes décisifs) pour une législature. L'accueil
   reste la XVIIe (l'actualité) ; la XVe et la XVIe ont `/legislature/15` et
   `/legislature/16`. Un sélecteur en pastilles (XVe · XVIe · XVIIe ·
-  Comparer) sous le chapô relie les quatre pages ; « Comparer » entre dans
+  Comparer) sous le chapô relie les quatre pages (en bas de page sur
+  l'accueil, §20) ; « Comparer » entre dans
   la navigation principale.
 - **Le socle se nomme par législature** (`site/src/lib/legislatures.ts`) :
   « majorité présidentielle » sous les XVe et XVIe, « socle commun » sous la
@@ -524,7 +526,7 @@ section « Cycle Textes en cours »).
   Fiches ; à factoriser après fusion).
 - **Textes générés** : chapô et états viennent des données
   (`chapoEnCours`, `libelleAttente`), aucune phrase figée à relire.
-- **Accueil** : un encart sous les réglages (« N textes en cours : déjà
+- **Accueil** : un encart après les trois questions (§20) (« N textes en cours : déjà
   votés…, pas encore des lois », hors accords) et un lien dans « Ce que ces
   chiffres ne disent pas ». Navigation : « Textes en cours » après « Les
   lois ». Méthodologie : section `#en-cours`. Données : les trois fichiers.
@@ -544,3 +546,34 @@ vote quand le titre le donne. Non retenu : titres courts commençant par
 
 **Reste à décider par Max** : seuil d'inactivité (12 mois) ; affichage des
 coalitions du Sénat ; nom d'usage « casseurs-payeurs » dans le titre court.
+
+## 20. Navigation et haut de page (retour de Max, passe mobile)
+
+Retour de Max : en première découverte sur téléphone, le haut de l'accueil
+partait dans tous les sens (sept liens sur trois lignes, pastilles de
+législature, interrupteur, encart des textes en cours, sommaire) ; le premier
+graphique arrivait après deux écrans. Contenu inchangé, seulement déplacé.
+
+- **En-tête** : sous 54rem, la marque et un bouton « Menu » (`<details>`,
+  sans JS, refermé à chaque navigation) ; le panneau pousse le contenu et
+  range les liens en trois groupes (Comparer, Coalitions, Récits / Les lois,
+  Textes en cours / Méthodologie, Données), cibles de 44 px. Au-delà, nav en
+  ligne, Méthodologie et Données repoussées à droite en plus petit. Une seule
+  nav visible à la fois.
+- **Accueil** : h1, chapô, sommaire des trois questions, rien d'autre. Les
+  pastilles de législature descendent en bas de page, à côté des liens
+  finaux ; « la compare aux deux législatures précédentes » du chapô pointe
+  vers `/comparer`. L'encart des textes en cours vient après la section 3.
+- **Interrupteur des accords** : dans la section 1 (composant `Legislature`,
+  en `bind`), après le message et avant la frise, là où se lit le
+  dénominateur. Il pilote toujours les trois sections. Idem sur
+  `/legislature/15-16`, où les pastilles restent sous le chapô.
+- **`/lois` sur téléphone** : recherche, compteur et interrupteur visibles ;
+  les sept menus se replient derrière « Filtrer (n) », ouverts d'office
+  quand l'URL porte un filtre.
+
+**Arbitrage** (relecteur indépendant, sous-agent, 28/10/2026), tous
+appliqués. Non retenus : nav en rangée défilante (entrées cachées sans
+affordance), en-tête collant (un niveau de plus), alignement de `/comparer`
+et `/coalitions` (une ligne de réglage sur une page d'analyse ne gêne pas),
+suppression du h1 qui reprend la marque (nom contre question datée).

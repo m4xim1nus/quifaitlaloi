@@ -1,9 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
-  import Interrupteur from '$lib/components/Interrupteur.svelte';
   import Legislature from '$lib/components/Legislature.svelte';
   import ChoixLegislature from '$lib/components/ChoixLegislature.svelte';
-  import Comment from '$lib/components/Comment.svelte';
   import { legislature } from '$lib/legislatures';
   import { lireConventions, ecrireConventions } from '$lib/conventions.svelte';
 
@@ -22,8 +20,6 @@
   $effect(() => {
     if (pret) ecrireConventions(conventions);
   });
-
-  const nConventions = $derived(toutes.filter((l) => l.type === 'convention').length);
 </script>
 
 <svelte:head>
@@ -38,15 +34,6 @@
   <h1>Qui faisait la loi de {leg.annees.replace('-', ' à ')}&#8239;?</h1>
   <p class="chapo colonne">{leg.contexte} {leg.chapo}</p>
   <ChoixLegislature courant={leg.num} />
-  <div class="reglage">
-    <Interrupteur bind:valeur={conventions}>
-      Inclure les {nConventions} accords internationaux
-    </Interrupteur>
-    <span class="petit secondaire">
-      Lois qui autorisent un traité ; presque toutes passent sans vote nominatif.
-      <Comment ancre="accords" />
-    </span>
-  </div>
 </section>
 
 <Legislature
@@ -54,7 +41,7 @@
   {toutes}
   groupes={data.groupes}
   periodes={data.periodes}
-  {conventions}
+  bind:conventions
   zooms={data.zooms}
 />
 
@@ -93,13 +80,6 @@
   }
   .ouverture {
     padding-top: 48px;
-  }
-  .reglage {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 16px;
-    margin-top: 8px;
   }
   h1 {
     max-width: 22ch;

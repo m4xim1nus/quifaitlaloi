@@ -1,9 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
-  import Interrupteur from '$lib/components/Interrupteur.svelte';
   import Legislature from '$lib/components/Legislature.svelte';
   import ChoixLegislature from '$lib/components/ChoixLegislature.svelte';
-  import Comment from '$lib/components/Comment.svelte';
   import { legislature } from '$lib/legislatures';
   import { lireConventions, ecrireConventions } from '$lib/conventions.svelte';
 
@@ -23,8 +21,6 @@
   $effect(() => {
     if (pret) ecrireConventions(conventions);
   });
-
-  const nConventions = $derived(toutes.filter((l) => l.type === 'convention').length);
 </script>
 
 <svelte:head>
@@ -39,24 +35,8 @@
   <h1>Qui fait la loi depuis 2024&#8239;?</h1>
   <p class="chapo colonne">
     {leg.chapo} Ce site reprend chacune d’elles, à partir des seules données publiques de l’Assemblée
-    et du Sénat, et la compare aux deux législatures précédentes.
+    et du Sénat, et <a href="/comparer">la compare aux deux législatures précédentes</a>.
   </p>
-  <ChoixLegislature courant={17} />
-  <div class="reglage">
-    <Interrupteur bind:valeur={conventions}>
-      Inclure les {nConventions} accords internationaux
-    </Interrupteur>
-    <span class="petit secondaire">
-      Lois qui autorisent un traité ; presque toutes passent sans vote nominatif.
-      <Comment ancre="accords" />
-    </span>
-  </div>
-  {#if data.enCours}
-    <p class="actu">
-      <a href="/en-cours">{data.enCours} textes en cours</a>&#8239;: déjà votés par l’Assemblée ou
-      le Sénat, pas encore des lois.
-    </p>
-  {/if}
 </section>
 
 <Legislature
@@ -64,7 +44,7 @@
   {toutes}
   groupes={data.groupes}
   periodes={data.periodes}
-  {conventions}
+  bind:conventions
   zooms={data.zooms}
 >
   {#snippet noteDecisifs()}
@@ -74,6 +54,13 @@
     </p>
   {/snippet}
 </Legislature>
+
+{#if data.enCours}
+  <p class="actu colonne">
+    <a href="/en-cours">{data.enCours} textes en cours</a>&#8239;: déjà votés par l’Assemblée ou le
+    Sénat, pas encore des lois.
+  </p>
+{/if}
 
 <section id="limites">
   <h2>Ce que ces chiffres ne disent pas</h2>
@@ -100,6 +87,7 @@
     <a href="/methodologie">Lire la méthodologie</a> ou
     <a href="/lois?legislature=17">parcourir les {toutes.length} lois</a>.
   </p>
+  <ChoixLegislature courant={17} />
 </section>
 
 <style>
@@ -112,19 +100,12 @@
     padding-top: 48px;
   }
   .actu {
-    margin: 0;
+    margin: 64px 0 0;
     padding-left: 12px;
     border-left: 3px solid var(--encre);
   }
   .actu a {
     font-weight: 700;
-  }
-  .reglage {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 16px;
-    margin-top: 8px;
   }
   h1 {
     max-width: 18ch;

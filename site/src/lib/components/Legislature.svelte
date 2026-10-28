@@ -8,6 +8,7 @@
   import Decisifs from './Decisifs.svelte';
   import Comment from './Comment.svelte';
   import Zoom from './Zoom.svelte';
+  import Interrupteur from './Interrupteur.svelte';
   import { filtrer, parChemin } from '$lib/agregats';
   import { CHEMINS, LIBELLE_CHEMIN } from '$lib/libelles';
   import { dateLongue } from '$lib/format';
@@ -21,18 +22,28 @@
     toutes: LoiResume[];
     groupes: GroupeAffiche[];
     periodes: Periode[];
+    /** Avec ou sans les accords internationaux : l'interrupteur est dans la section 1. */
     conventions: boolean;
     /** Note sous les groupes décisifs (un cas d'école propre à la législature). */
     noteDecisifs?: Snippet;
     /** Récits insérés dans le fil, chacun à sa question. */
     zooms?: ZoomT[];
   }
-  let { leg, toutes, groupes, periodes, conventions, noteDecisifs, zooms = [] }: Props = $props();
+  let {
+    leg,
+    toutes,
+    groupes,
+    periodes,
+    conventions = $bindable(),
+    noteDecisifs,
+    zooms = []
+  }: Props = $props();
   const zoomsDe = (section: ZoomT['section']) => zooms.filter((z) => z.section === section);
 
   const debut = $derived(leg.debut);
   const fin = $derived(leg.fin ?? toutes.at(-1)!.date_adoption);
 
+  const nConventions = $derived(toutes.filter((l) => l.type === 'convention').length);
   const lois = $derived(filtrer(toutes, conventions));
   const chemins = $derived(parChemin(lois));
   const contournements = $derived(
@@ -58,6 +69,16 @@
 <section id="chemins">
   <h2>Comment les lois passent-elles à l’Assemblée&#8239;?</h2>
   <p class="message colonne">{leg.messages.chemins} <Comment ancre="chemins" /></p>
+
+  <div class="reglage">
+    <Interrupteur bind:valeur={conventions}>
+      Inclure les {nConventions} accords internationaux
+    </Interrupteur>
+    <span class="petit secondaire">
+      Lois qui autorisent un traité ; presque toutes passent sans vote nominatif.
+      <Comment ancre="accords" />
+    </span>
+  </div>
 
   <a class="evitement-frise petit" href="#cartes-chemins">Passer la frise</a>
   <Frise {lois} {debut} {fin} jalons={periodes} />
@@ -178,6 +199,12 @@
     place-items: center;
     font-size: 0.8125rem;
     font-family: var(--sans, inherit);
+  }
+  .reglage {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
   }
   .evitement-frise {
     position: absolute;

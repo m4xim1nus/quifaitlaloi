@@ -45,4 +45,3 @@ File d'attente brute, non ordonnée. Une ligne par item :
 - [ ] Titres courts : élision « Accord avec d'Antigua-et-Barbuda », 14 titres courts de textes en cours commencent par « Proposition de loi… » (claude, 2026-10-28)
 - [ ] Textes en cours : 4 motions de rejet adoptées (1er mai V6133, Nouvelle-Calédonie V6022, comptes 2025 V7350 et V7351), rejet inversé à qualifier au vote final (claude, 2026-10-28)
 - [ ] Textes en cours : dater davantage de séances à venir (ordre du jour de l'AN en open data ?) (claude, 2026-10-28)
-- [ ] Navigation : 7 entrées depuis Coalitions et Textes en cours, vérifier la tenue sur téléphone (claude, 2026-10-28)
