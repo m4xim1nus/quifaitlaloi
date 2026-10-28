@@ -322,3 +322,7 @@ et §7.
     « sur les articles 9 à 20 et sur l'ensemble du texte… » ; reconnu comme
     vote sur l'ensemble. Le flag `vote_bloque` correspondant attend la
     validation de Max.
+28. **`titreLoi` de l'acte de promulgation (AN)** : « organique » ou
+    « constitutionnelle » absents (une vingtaine de lois, surtout XVe), mots
+    collés (« accompagnerles », « Protégerle »), titre resté celui du dépôt.
+    Le titre retenu est celui du JO publié par le Sénat (`loi.loititjo`).

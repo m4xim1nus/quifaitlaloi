@@ -11,6 +11,16 @@ def nettoyer(t: str | None) -> str | None:
     return re.sub(r"\s+", " ", t.replace("\u0092", "’")).strip()
 
 
+def typographie(t: str | None) -> str | None:
+    """Titre d'affichage : espaces normalisés, apostrophe typographique, « œ » (le Sénat écrit
+    « oeuvre », « coeur »…)."""
+    if t is None:
+        return t
+    t = nettoyer(t).replace("\u00a0", " ").replace("'", "’")
+    return re.sub(r"\b(c|m|s|v|man|)(o)e(?=u)", lambda m: m.group(1) + ("Œ" if m.group(2) == "O" else "œ"),
+                  t, flags=re.I)
+
+
 def norm(t: str | None) -> str:
     """Minuscules sans accents ni ponctuation, pour comparer des intitulés."""
     t = re.sub(r"[’'`\u0092]", " ", t or "")

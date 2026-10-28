@@ -59,3 +59,10 @@ def test_titre_court():
         "Convention d’extradition avec le Royaume du Cambodge")
     assert titre_court("Loi relative à l'organisation, à la gestion et au financement du sport professionnel") == (
         "Organisation, la gestion et le financement du sport professionnel")
+
+
+def test_typographie():
+    from qfl.texte import typographie
+    assert typographie("relative à la mise en oeuvre d'un coeur") == "relative à la mise en œuvre d’un cœur"
+    assert typographie("Oeuvres et voeux, manoeuvre") == "Œuvres et vœux, manœuvre"
+    assert typographie("poème et oenologie") == "poème et oenologie"

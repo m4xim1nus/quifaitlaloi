@@ -345,6 +345,10 @@ choix propres sont décrits dans `docs/CONCEPTION.md` :
   nominatif ».
 - **Fin de navette** : lecture définitive s'il y en a une, sinon texte de
   CMP s'il y en a un, sinon vote conforme.
+- **Titre officiel** (`lois.titre`) : celui du JO tel que le publie le Sénat
+  (Dosleg `loi.loititjo`), avec apostrophes et « œ » typographiques ; à
+  défaut, l'acte de promulgation de l'AN, qui perd parfois « organique » et
+  colle des mots (`docs/SOURCES.md`, anomalie 28).
 - **Titre court** (`lois.titre_court`) : le titre officiel de la loi sans
   « Loi visant à… », jamais coupé (le site passe à la ligne), sans paraphrase
   (`qfl/texte.py:titre_court`). Exceptions (budgets, nom d'usage en second,

@@ -11,7 +11,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 from . import an, referentiels
-from .texte import cle_titre, mots_ordonnes, norm, similarite, titre_court
+from .texte import cle_titre, mots_ordonnes, norm, similarite, titre_court, typographie
 
 # Début de chaque législature (première séance de l'AN). Périmètre : les lois
 # adoptées définitivement depuis le début de la XVe ; chacune est rattachée à la
@@ -411,7 +411,10 @@ def lois(dossiers: dict[str, dict], titres_textes: dict[str, set[str]], idx: Ind
             if _date(prom) < DEBUT:
                 continue
             statut, loi_id = "promulguee", prom["codeLoi"]
-            titre = "Loi " + titre_loi(prom.get("titreLoi") or d["titreDossier"]["titre"])
+            # titre du JO tel que le publie le Sénat (Dosleg) : l'acte de promulgation de l'AN
+            # perd parfois « organique » et colle des mots (« accompagnerles »)
+            titre = "Loi " + titre_loi(typographie((sn or {}).get("titre") or prom.get("titreLoi")
+                                                   or d["titreDossier"]["titre"]))
         else:
             # adopté non promulgué : seulement pour la législature en cours (un texte
             # ancien sans promulgation a été censuré en entier ou abandonné)
