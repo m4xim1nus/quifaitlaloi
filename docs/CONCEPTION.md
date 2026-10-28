@@ -435,3 +435,64 @@ comme des zooms qui s'insèrent au bon moment du fil.
   « Récits » dans la navigation.
 - Les faits des récits viennent des données (votes, dates) ou du contexte
   public bien établi ; chaque chiffre se vérifie dans la base.
+
+## Cycle Coalitions : la page « Les coalitions dans le temps »
+
+Le brief demandait une page Coalitions : séries temporelles des signatures,
+fréquence des pivots RN / PS / LR, Sankey blocs → adoptions. Proposition de
+l'auteur, puis relecture par un sous-agent arbitre indépendant. Les choix
+ci-dessous sont tranchés ; la méthode est dans `docs/METHODO.md` (section
+« Cycle Coalitions »).
+
+- **Une page, `/coalitions`**, entrée « Coalitions » de la navigation, après
+  « Comparer ». Elle porte l'interrupteur des accords internationaux. Chapô,
+  puis deux questions et des tableaux.
+- **« Avec qui le socle l'emporte-t-il, d'un trimestre à l'autre ? »**
+  (`ChronoCoalitions`). Un carré = une loi, une colonne par trimestre
+  d'adoption, de 2017 à aujourd'hui. Le trimestre plutôt que le mois : au
+  mois, 112 colonnes trop fines. L'empilement se fait de part et d'autre d'un
+  axe. Au-dessus, les textes disputés, de bas en haut : socle sans gauche ni
+  RN, socle + LR, socle + gauche, socle + gauche + RN, socle + RN, sans le
+  socle. La hauteur au-dessus de l'axe est donc le dénominateur des messages.
+  « Socle + gauche + RN » est placé entre la gauche et le RN, pour garder
+  côte à côte tout ce qui inclut l'un ou l'autre. En dessous de l'axe :
+  aucun bloc contre, puis les lois sans vote nominatif (carré vide), qui
+  commencent toujours une nouvelle rangée. La légende-filtre est en deux
+  rangées (« au-dessus de l'axe » / « en dessous ») et masque les catégories
+  vides. Filets aux dates charnières : majorité relative, « Nouvelle
+  Assemblée, LR dans le socle », censure Barnier, suspension des retraites
+  annoncée. Un point blanc marque une loi dont le vote décisif a eu lieu sous
+  la législature précédente. L'infobulle rappelle, sur un 49.3, que ne pas
+  censurer n'est pas soutenir. Sur téléphone, le graphique pivote : un
+  trimestre par ligne, les textes disputés à droite d'un axe vertical.
+- **« Quels groupes ont été décisifs, et quand ? »** (`ChronoDecisifs`). Le
+  graphique suit le même axe des trimestres, colonne pour colonne, juste
+  sous le précédent. Une rangée par groupe hors socle décisif au moins une
+  fois, de la gauche à la droite, en couleur AN. Carré plein : décisif par
+  son vote. Contour : par son abstention. Contour pointillé : par la
+  non-censure d'un 49.3 (même grammaire que la fiche). La XVe, sans groupe
+  décisif, est une bande grisée qui porte les noms des rangées et leur
+  effectif. La rangée LR est hachurée à partir de juillet 2024 (« DR, dans le
+  socle ») : on ne date pas sa sortie, choix réservé à Max. Sous l'axe, une
+  ligne de petits chiffres donne le nombre de lois votées nominativement par
+  trimestre (le dénominateur). Sur téléphone, l'axe commence en juin 2022 et
+  les noms passent à gauche.
+- **« D'une période à l'autre »** : deux tableaux, coalitions par période
+  (comptes) et groupes décisifs par période, en « x sur n ». La part n'est
+  donnée qu'à partir de 20 lois, avec un seul dénominateur : les lois votées
+  nominativement. Ce sont aussi les versions accessibles des deux graphiques.
+- **Messages** (proposés par l'arbitre, vérifiés contre la base et testés
+  dans `coalitions.test.ts`) : la majorité gagnait seule la moitié des votes
+  disputés jusqu'en 2022, presque plus ensuite. Le RN est le plus souvent
+  dans le camp gagnant, souvent avec la gauche. Depuis la censure, un groupe
+  extérieur décide de près d'une loi sur trois, le RN le plus souvent, et
+  l'annonce de la suspension des retraites n'y change rien. On ne confond
+  pas « dans le camp gagnant » et « décisif » : chaque question a son
+  graphique.
+- **Écartés** : le Sankey (pas de flux conservé, voir METHODO), le
+  dédoublement de la colonne 2024-T4 autour de la censure (un seul cas, le
+  filet tombe à sa date dans la colonne), le pas mensuel, et les groupes du
+  socle dans le second graphique (mécaniquement décisifs sur les censures,
+  ils noieraient la question des appuis).
+- La méthodologie gagne l'ancre `#chronologie` (date d'adoption ou date du
+  vote, borne des périodes, socle à la date du vote).
