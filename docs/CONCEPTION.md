@@ -357,3 +357,17 @@ la comparaison côte à côte, pas la sélection. Prévu : une page par
 législature sur le gabarit de l'accueil, et une page « Comparer » en petits
 multiples (part de contournement, de « socle seul », de vote nominatif,
 groupes décisifs). La chronologie fine relève du cycle Coalitions.
+
+## 14. Groupes décisifs : filtre par groupe, une ligne par loi (cinquième retour de Max)
+
+La version en rangées dépliables (§11) répétait une loi sous chacun de ses
+groupes décisifs, avec un « avec … » peu lisible. Elle est remplacée par :
+
+- en haut, les rangées de carrés par groupe (aperçu des effectifs), qui
+  servent de **filtre** : un clic ne garde que les lois du groupe, les
+  autres rangées s'estompent ;
+- en dessous, le **tableau lois × groupes** (une ligne par loi, un disque
+  par groupe décisif, un cercle par abstention décisive), avec date,
+  chemin et thèmes ; la colonne du groupe choisi est surlignée. Sans
+  filtre, les dix lois les plus récentes, puis « Voir les N lois ». Sur
+  téléphone, une liste par loi avec les groupes en pastilles.

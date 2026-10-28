@@ -1,7 +1,7 @@
 <script lang="ts">
-  // Groupes décisifs hors socle (docs/CONCEPTION.md §11) : une rangée par groupe, de la gauche à
-  // la droite, un carré par loi (plein : décisif par son vote ; contour : par son abstention).
-  // Les lois s'affichent en dépliant la rangée ; le tableau lois × groupes reste disponible.
+  // Groupes décisifs hors socle (docs/CONCEPTION.md §14). En haut, une rangée par groupe (un
+  // carré par loi) qui sert de filtre ; en dessous, une ligne par loi, une colonne par groupe :
+  // chaque loi n'apparaît qu'une fois, avec tous ses groupes décisifs.
   import Themes from './Themes.svelte';
   import { dateCourte } from '$lib/format';
   import { LIBELLE_CHEMIN } from '$lib/libelles';
@@ -13,10 +13,17 @@
   }
   let { lois, groupes }: Props = $props();
 
-  const lignes = $derived(lois.filter((l) => l.pivots.length || l.pivots_abst_hors_socle.length));
+  const APERCU = 10;
   const estVote = (l: LoiResume, g: string) => l.pivots.includes(g);
   const estAbst = (l: LoiResume, g: string) =>
     !estVote(l, g) && l.pivots_abst_hors_socle.includes(g);
+  const decisif = (l: LoiResume, g: string) => estVote(l, g) || estAbst(l, g);
+
+  const lignes = $derived(
+    lois
+      .filter((l) => l.pivots.length || l.pivots_abst_hors_socle.length)
+      .sort((a, b) => b.date_adoption.localeCompare(a.date_adoption))
+  );
   // Groupes de la XVIIe, puis ceux d'une lecture tenue sous la XVIe (LR, par exemple), en gris.
   const tous = $derived.by((): GroupeAffiche[] => {
     const connus = new Set(groupes.map((g) => g.sigle));
@@ -37,12 +44,8 @@
     tous
       .map((g) => {
         const ls = lignes
-          .filter((l) => estVote(l, g.sigle) || estAbst(l, g.sigle))
-          .sort(
-            (a, b) =>
-              Number(estAbst(a, g.sigle)) - Number(estAbst(b, g.sigle)) ||
-              b.date_adoption.localeCompare(a.date_adoption)
-          );
+          .filter((l) => decisif(l, g.sigle))
+          .sort((a, b) => Number(estAbst(a, g.sigle)) - Number(estAbst(b, g.sigle)));
         return {
           ...g,
           lois: ls,
@@ -52,138 +55,145 @@
       })
       .filter((g) => g.lois.length > 0)
   );
-  const couleurDe = $derived(
-    Object.fromEntries(groupes.map((g) => [g.sigle, g.couleur ?? 'var(--encre)']))
-  );
-  /** Les autres groupes décisifs sur la même loi. */
-  const avec = (l: LoiResume, sigle: string) =>
-    [...l.pivots, ...l.pivots_abst_hors_socle.filter((g) => !l.pivots.includes(g))].filter(
-      (g) => g !== sigle
-    );
 
-  let ouverts = $state<Record<string, boolean>>({});
+  let choix = $state<string | null>(null);
+  let tout = $state(false);
+  const choisi = $derived(colonnes.find((g) => g.sigle === choix) ?? null);
+  const filtrees = $derived(choisi ? lignes.filter((l) => decisif(l, choisi.sigle)) : lignes);
+  const visibles = $derived(choisi || tout ? filtrees : filtrees.slice(0, APERCU));
+  const couleur = (g: GroupeAffiche) => g.couleur ?? 'var(--gris)';
 </script>
 
 {#if lignes.length}
-  <ul class="groupes">
+  <ul class="groupes" aria-label="Filtrer par groupe">
     {#each colonnes as g (g.sigle)}
-      {@const ouvert = !!ouverts[g.sigle]}
       <li>
         <button
           type="button"
           class="rangee"
-          aria-expanded={ouvert}
-          aria-controls="decisif-{g.sigle}"
+          class:eteint={choix !== null && choix !== g.sigle}
+          aria-pressed={choix === g.sigle}
           aria-label="{g.sigle} ({g.nom}) : décisif pour {g.vote} loi{g.vote > 1 ? 's' : ''}{g.abst
             ? `, et ${g.abst} par son abstention`
-            : ''}"
-          onclick={() => (ouverts = { ...ouverts, [g.sigle]: !ouvert })}
+            : ''}. Afficher ses lois"
+          onclick={() => (choix = choix === g.sigle ? null : g.sigle)}
         >
-          <span class="chevron" aria-hidden="true">{ouvert ? '▾' : '▸'}</span>
-          <span class="puce" style:background={g.couleur ?? 'var(--gris)'}></span>
-          <span class="sigle">{g.sigle}</span>
-        </button>
-        <span class="carres" aria-hidden="true">
-          {#each g.lois as l (l.id)}
-            <a
-              href="/lois/{l.id}"
-              tabindex="-1"
-              class="carre"
-              class:abst={estAbst(l, g.sigle)}
-              style:--c={g.couleur ?? 'var(--gris)'}
-              title="{l.titre_court} · {dateCourte(l.date_adoption).slice(3)}{estAbst(l, g.sigle)
-                ? ' · par son abstention'
-                : ''}"
-            ></a>
-          {/each}
-        </span>
-        <span class="effectif">
-          <span class="nombre">{g.vote}</span>
-          {#if g.abst}<span class="petit secondaire">+{g.abst} abst.</span>{/if}
-        </span>
-
-        {#if ouvert}
-          <ul class="lois" id="decisif-{g.sigle}">
+          <span class="groupe">
+            <span class="puce" style:background={couleur(g)}></span>
+            <span class="sigle">{g.sigle}</span>
+          </span>
+          <span class="carres" aria-hidden="true">
             {#each g.lois as l (l.id)}
-              <li>
-                <span class="marque" aria-hidden="true">
-                  {#if estAbst(l, g.sigle)}
-                    <span class="cercle" style:border-color={g.couleur ?? 'var(--encre)'}></span>
-                  {:else}
-                    <span class="disque" style:background={g.couleur ?? 'var(--encre)'}></span>
-                  {/if}
-                </span>
-                <span class="texte">
-                  <a class="borne" href="/lois/{l.id}" title={l.titre_court}>{l.titre_court}</a>
-                  <span class="meta petit">
-                    <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
-                    <span
-                      ><span class="pastille ch-{l.chemin}"></span> {LIBELLE_CHEMIN[l.chemin]}</span
-                    >
-                    {#if estAbst(l, g.sigle)}<span>par son abstention</span>{/if}
-                    {#if avec(l, g.sigle).length}
-                      <span class="avec"
-                        >avec
-                        {#each avec(l, g.sigle) as a (a)}<span class="co"
-                            ><span class="disque mini" style:background={couleurDe[a]}
-                            ></span>{a}</span
-                          >{/each}</span
-                      >
-                    {/if}
-                    <Themes themes={l.themes} />
-                  </span>
-                </span>
-              </li>
+              <span
+                class="carre"
+                class:abst={estAbst(l, g.sigle)}
+                style:--c={couleur(g)}
+                title="{l.titre_court}{estAbst(l, g.sigle) ? ' (par son abstention)' : ''}"
+              ></span>
             {/each}
-          </ul>
-        {/if}
+          </span>
+          <span class="effectif">
+            <span class="nombre">{g.vote}</span>
+            {#if g.abst}<span class="petit secondaire">+{g.abst} abst.</span>{/if}
+          </span>
+        </button>
       </li>
     {/each}
   </ul>
   <p class="legende petit secondaire">
     Carré plein&#8239;: décisif par son vote. Carré vide&#8239;: décisif par son abstention (s’il
-    avait voté contre, le texte tombait). Une loi peut avoir plusieurs groupes décisifs. Cliquer un
-    groupe pour voir ses lois.
+    avait voté contre, le texte tombait). Cliquer un groupe pour ne garder que ses lois.
   </p>
 
-  <details class="tableau">
-    <summary>Voir les {lignes.length} lois dans un tableau croisé</summary>
-    <div class="defile">
-      <table>
-        <thead>
+  <div class="titre-liste">
+    <h3>
+      {#if choisi}
+        Les {filtrees.length} lois où {choisi.sigle} a été décisif
+      {:else}
+        Les {lignes.length} lois avec au moins un groupe décisif hors socle
+      {/if}
+    </h3>
+    {#if choisi}
+      <button type="button" class="lien petit" onclick={() => (choix = null)}
+        >Revenir à tous les groupes</button
+      >
+    {/if}
+  </div>
+
+  <div class="defile grand">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" class="loi">Loi</th>
+          {#each colonnes as g (g.sigle)}
+            <th scope="col" class="col" class:actif={choix === g.sigle} title={g.nom}>{g.sigle}</th>
+          {/each}
+        </tr>
+      </thead>
+      <tbody>
+        {#each visibles as l (l.id)}
           <tr>
-            <th scope="col" class="loi">Loi</th>
+            <th scope="row" class="loi">
+              <span class="cellule-loi">
+                <span class="pastille ch-{l.chemin}" title={LIBELLE_CHEMIN[l.chemin]}></span>
+                <span class="texte">
+                  <a href="/lois/{l.id}">{l.titre_court}</a>
+                  <span class="meta petit">
+                    <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
+                    <Themes themes={l.themes} />
+                  </span>
+                </span>
+              </span>
+            </th>
             {#each colonnes as g (g.sigle)}
-              <th scope="col" class="col" title={g.nom}>{g.sigle}</th>
+              <td class="col" class:actif={choix === g.sigle}>
+                {#if estVote(l, g.sigle)}
+                  <span class="disque" style:background={couleur(g)}
+                    ><span class="visuellement-cache">{g.sigle} décisif par son vote</span></span
+                  >
+                {:else if estAbst(l, g.sigle)}
+                  <span class="cercle" style:border-color={couleur(g)}
+                    ><span class="visuellement-cache">{g.sigle} décisif par son abstention</span
+                    ></span
+                  >
+                {/if}
+              </td>
             {/each}
           </tr>
-        </thead>
-        <tbody>
-          {#each lignes as l (l.id)}
-            <tr>
-              <th scope="row" class="loi">
-                <a href="/lois/{l.id}">{l.titre_court}</a>
-                <span class="petit secondaire chiffres">{dateCourte(l.date_adoption)}</span>
-              </th>
-              {#each colonnes as g (g.sigle)}
-                <td class="col">
-                  {#if estVote(l, g.sigle)}
-                    <span class="disque" style:background={g.couleur ?? 'var(--encre)'}
-                      ><span class="visuellement-cache">décisif par son vote</span></span
-                    >
-                  {:else if estAbst(l, g.sigle)}
-                    <span class="cercle" style:border-color={g.couleur ?? 'var(--encre)'}
-                      ><span class="visuellement-cache">décisif par son abstention</span></span
-                    >
-                  {/if}
-                </td>
-              {/each}
-            </tr>
-          {/each}
-        </tbody>
-      </table>
-    </div>
-  </details>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="mobile">
+    {#each visibles as l (l.id)}
+      <li>
+        <span class="pastille ch-{l.chemin}" title={LIBELLE_CHEMIN[l.chemin]}></span>
+        <span class="texte">
+          <a href="/lois/{l.id}">{l.titre_court}</a>
+          <span class="meta petit">
+            <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
+            {#each colonnes.filter((g) => decisif(l, g.sigle)) as g (g.sigle)}
+              <span class="badge">
+                {#if estVote(l, g.sigle)}
+                  <span class="disque mini" style:background={couleur(g)}></span>
+                {:else}
+                  <span class="cercle mini" style:border-color={couleur(g)}></span>
+                {/if}
+                {g.sigle}
+              </span>
+            {/each}
+          </span>
+        </span>
+      </li>
+    {/each}
+  </ul>
+
+  {#if !choisi && filtrees.length > APERCU}
+    <button type="button" class="lien plus" onclick={() => (tout = !tout)}>
+      {tout ? 'Afficher seulement les plus récentes' : `Voir les ${filtrees.length} lois`}
+    </button>
+  {/if}
 {:else}
   <p class="secondaire">Aucun groupe hors socle n’a été décisif sur cette période.</p>
 {/if}
@@ -194,31 +204,33 @@
     padding: 0;
     margin: 0;
   }
-  .groupes > li {
-    display: grid;
-    grid-template-columns: 8rem 1fr 5.5rem;
-    gap: 4px 12px;
-    align-items: center;
-    padding: 6px 0;
+  .groupes li {
     border-top: 1px solid var(--filet);
   }
   .rangee {
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 7rem 1fr 5.5rem;
+    gap: 12px;
     align-items: center;
-    gap: 8px;
     background: none;
     border: none;
-    padding: 4px 0;
+    padding: 7px 0;
     cursor: pointer;
-    font-weight: 700;
     text-align: left;
   }
-  .rangee:hover .sigle {
+  .rangee:hover .sigle,
+  .rangee[aria-pressed='true'] .sigle {
     text-decoration: underline;
   }
-  .chevron {
-    color: var(--ardoise);
-    width: 1rem;
+  .rangee.eteint {
+    opacity: 0.4;
+  }
+  .groupe {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
   }
   .puce {
     width: 10px;
@@ -243,10 +255,6 @@
     background: var(--papier);
     box-shadow: inset 0 0 0 2px var(--c);
   }
-  .carre:hover {
-    outline: 2px solid var(--encre);
-    outline-offset: 1px;
-  }
   .effectif {
     text-align: right;
     display: grid;
@@ -255,18 +263,58 @@
   .effectif .nombre {
     font-size: 1.5rem;
   }
-  .lois {
-    grid-column: 1 / -1;
-    list-style: none;
-    padding: 4px 0 10px 1.6rem;
-    margin: 0;
-    display: grid;
-    gap: 8px;
-    max-width: 52rem;
+  .legende {
+    margin-top: 8px;
+    max-width: var(--colonne);
   }
-  .lois li {
+  .titre-liste {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 16px;
+    margin-top: 20px;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  .lien {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--lien);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .plus {
+    margin-top: 10px;
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    font-size: 0.9375rem;
+    margin-top: 8px;
+  }
+  th,
+  td {
+    padding: 7px 8px;
+    border-bottom: 1px solid var(--filet);
+    font-weight: 400;
+  }
+  thead th {
+    border-bottom: 1px solid var(--encre);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    vertical-align: bottom;
+  }
+  .loi {
+    text-align: left;
+    padding-left: 0;
+  }
+  .cellule-loi,
+  .mobile li {
     display: grid;
-    grid-template-columns: 1.2rem 1fr;
+    grid-template-columns: auto 1fr;
+    gap: 0 8px;
     align-items: baseline;
   }
   .texte {
@@ -283,26 +331,22 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 2px 12px;
+    gap: 2px 10px;
     color: var(--ardoise);
   }
-  .avec {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  .col {
+    text-align: center;
+    width: 3.6rem;
+    white-space: nowrap;
   }
-  .co {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    font-weight: 700;
-    color: var(--encre);
+  .col.actif {
+    background: var(--plan);
   }
   .disque,
   .cercle {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     vertical-align: middle;
   }
@@ -310,51 +354,35 @@
     box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2);
   }
   .cercle {
-    border: 2px solid;
+    border: 2.5px solid;
   }
-  .disque.mini {
-    width: 9px;
-    height: 9px;
+  .disque.mini,
+  .cercle.mini {
+    width: 10px;
+    height: 10px;
   }
-  .legende {
-    margin-top: 8px;
-    max-width: var(--colonne);
+  .cercle.mini {
+    border-width: 2px;
   }
-  .tableau summary {
-    cursor: pointer;
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-weight: 700;
-    color: var(--lien);
-    margin-top: 8px;
+    color: var(--encre);
   }
-  table {
-    width: 100%;
-    font-size: 0.9375rem;
-    margin-top: 12px;
+  .mobile {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
   }
-  th,
-  td {
-    padding: 6px 8px;
+  .mobile li {
+    padding: 8px 0;
     border-bottom: 1px solid var(--filet);
-    font-weight: 400;
-  }
-  thead th {
-    border-bottom: 1px solid var(--encre);
-    font-size: 0.8125rem;
-    font-weight: 700;
-  }
-  .loi {
-    text-align: left;
-    padding-left: 0;
-  }
-  tbody .loi a {
-    margin-right: 8px;
-  }
-  .col {
-    text-align: center;
-    width: 3.4rem;
   }
   @media (max-width: 640px) {
-    .groupes > li {
+    .rangee {
       grid-template-columns: 1fr auto;
     }
     .carres {
@@ -368,15 +396,11 @@
       align-items: baseline;
       gap: 6px;
     }
-    .lois {
-      padding-left: 0;
+    .grand {
+      display: none;
     }
-  }
-  .borne {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    overflow: hidden;
+    .mobile {
+      display: block;
+    }
   }
 </style>
