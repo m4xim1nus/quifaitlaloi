@@ -317,3 +317,8 @@ et §7.
     distingue « loi organique » (`docs/METHODO.md` §4).
 26. **Congrès** : la révision constitutionnelle de 2024 (IVG) a une étape
     `CG22` (vote du Congrès), ignorée comme lecture. Type `constitutionnelle`.
+27. **Vote unique au Sénat (art. 44, al. 3)** : l'intitulé du scrutin
+    décisif de la réforme des retraites (SN2022-249, 11/03/2023) commence par
+    « sur les articles 9 à 20 et sur l'ensemble du texte… » ; reconnu comme
+    vote sur l'ensemble. Le flag `vote_bloque` correspondant attend la
+    validation de Max.

@@ -11,9 +11,10 @@
 # Vote bloqué (art. 44, al. 3). Aucune trace dans les titres de scrutins AN :
 # repérage partiel. Clé : identifiant de lecture (`lectures.id`) ou de scrutin.
 vote_bloque:
-  # Réforme des retraites 2023 : le Gouvernement demande au Sénat un vote unique
-  # (art. 44, al. 3) sur l'ensemble du texte, le 10/03/2023. Repéré au cycle
-  # Baselines, à confirmer au compte rendu et à valider par Max.
+  # Réforme des retraites 2023 : vote unique au Sénat (art. 44, al. 3), scrutin
+  # SN2022-249 du 11/03/2023 « sur les articles 9 à 20 et sur l'ensemble du texte,
+  # en ne retenant que les amendements proposés ou acceptés par le Gouvernement en
+  # application de l'article 44, alinéa 3 ». Repéré au cycle Baselines, à valider par Max.
   DLR5L16N47066-SN1: {statut: a_valider, note: "vote bloqué au Sénat, 10/03/2023 (retraites)"}
 
 # Absence de scrutin public confirmée au compte rendu (échantillon de

@@ -73,6 +73,8 @@ TEMOINS = [
      "where l.id='DLR5L16N47066-CMP-AN'", "ART_49_3 VTANR5L16V1240 278"),
     ("Retraites 2023 : LR pivot de non-censure (19 censeurs sur 61)",
      "select pivots_hors_socle_an from lois where id='2023-270'", "LR"),
+    ("Retraites 2023 : vote unique au Sénat (SN2022-249, 195-112) retrouvé malgré son intitulé",
+     "select scrutin_id from lectures where id='DLR5L16N47066-SN1'", "SN2022-249"),
     ("PLF 2023 : 1re partie au 49.3, motion NUPES miroir (V358, 239 voix)",
      "select scrutin_id from lectures where id='DLR5L16N45988-AN1'", "VTANR5L16V358"),
     ("Immigration (2024-42) : motion de rejet adoptée (V3203, 270-265), non requalifiée (48 %)",

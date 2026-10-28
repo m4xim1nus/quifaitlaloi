@@ -16,6 +16,8 @@ def test_objet_senat():
     assert objet_scrutin("sur la motion n° 2 tendant au renvoi en commission") == "motion_renvoi"
     assert objet_scrutin("sur les conclusions de la commission mixte paritaire sur le projet de loi") == "ensemble"
     assert objet_scrutin("sur le texte élaboré par la commission mixte paritaire sur le projet") == "ensemble"
+    assert objet_scrutin("sur les articles 9 à 20 et sur l'ensemble du texte, en ne retenant que les "
+                         "amendements proposés ou acceptés par le Gouvernement") == "ensemble"
 
 
 def test_nettoyer_apostrophe_cp1252():
