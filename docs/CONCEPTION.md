@@ -275,3 +275,29 @@ divergent.
   07/07/2026, en attente au Sénat) sont hors périmètre : la première
   avant juillet 2024 (baselines), la seconde pas encore promulguée
   (cycle « Textes en cours »).
+
+## 9. Bloc « Les coalitions » (deuxième retour de Max)
+
+Max trouvait encore le bloc difficile à lire (cartes de même poids,
+définitions répétées, mur de liens). Trois propositions d'un sous-agent
+designer, recommandation retenue avec deux corrections :
+
+- **Une rangée par coalition**, dans un ordre fixe qui ne bouge pas avec
+  les filtres : chevron, libellé, **grille de présence** (Gauche / Socle /
+  RN : ● au moins un groupe vote pour, · absent du camp gagnant, ? pas de
+  vote nominatif), une **rangée de carrés** (un carré = une loi, une seule
+  échelle, survol : titre, mois, chemin) et l'effectif.
+- **Les lois au clic** : la rangée se déplie (définition courte, huit lois
+  au plus, lien vers l'explorateur filtré). Les carrés sont hors de
+  l'ordre de tabulation ; au clavier, le bouton de la rangée donne le même
+  accès, avec un nom accessible complet.
+- Une **note unique** sous le graphique (glyphes, socle commun, règle du
+  49.3) au lieu de la phrase répétée dans chaque définition.
+- Rangées vides affichées estompées (« 0 », une absence est une
+  information) ; « Centre + LR (XVIe) », « Sans le socle » et « Sans vote
+  nominatif » masquées quand elles sont vides.
+- Corrections à la proposition : « Aucun bloc contre » montre ○ (« pour ou
+  abstention, mais pas contre ») pour la gauche et le RN, et non ●, qui
+  aurait affirmé un vote pour ; le libellé reste « Socle, sans gauche ni
+  RN » (« Socle seul » est faux quand LIOT ou des non-inscrits l'appuient,
+  §7).
