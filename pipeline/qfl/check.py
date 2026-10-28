@@ -88,6 +88,9 @@ TEMOINS = [
      "select count(distinct scrutin_id) from lectures where id in ('DLR5L15N36468-AN1','DLR5L15N36488-AN1')", 2),
     ("Services aériens Tchad-Angola (2020-86) : pas de scrutin public (celui du jour porte sur l'Éthiopie)",
      "select mode_adoption from lectures where id='DLR5L15N37132-AN1'", "MAIN_LEVEE"),
+    ("Dialogue social (2017-1340) : CMP adoptée au Sénat par scrutin public (SN2016-142, 225-109, compte rendu)",
+     "select s.pour || '-' || s.contre from lectures l join scrutins s on s.id=l.scrutin_id "
+     "where l.id='DLR5L15N35836-CMP-SN'", "225-109"),
     ("ESSOC (2018-727) : nouvelle lecture retrouvée sous le titre du dépôt (V995)",
      "select scrutin_id from lectures where id='DLR5L15N36159-ANNLEC'", "VTANR5L15V995"),
 ]

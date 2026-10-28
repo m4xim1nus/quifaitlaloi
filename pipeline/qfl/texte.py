@@ -55,6 +55,8 @@ OBJETS = [
     ("ensemble", r"l ensemble"),
     ("ensemble", r"(le projet|la proposition) de loi"),  # texte à article unique voté d'un bloc
     ("article_unique", r"l article unique"),
+    # Sénat, jusqu'en 2019 : « sur les conclusions de la CMP… », « sur le texte élaboré par la CMP… »
+    ("ensemble", r"(les conclusions de|le texte elabore par) la commission mixte paritaire"),
     ("partie", r"la (premiere|deuxieme|troisieme|quatrieme) partie"),
     # amendement(s) de suppression de l'article unique : s'il est adopté, le texte est rejeté
     ("suppression_article_unique", r"(l |les )?amendements? .{0,200}de suppression de l article unique"),

@@ -36,14 +36,28 @@ chemins, coalitions, groupes décisifs, limites), explorateur `/lois`,
 (Cloudflare Pages relié au dépôt, `bash build.sh` → `site/build`), recette
 sur téléphone faite.
 
-## Après la v1
+## Cycle Baselines ← *en cours*
+
+But : comparer la XVIIe aux XVIe et XVe (2017-2024), sur les mêmes règles.
+
+- [x] **Pipeline** sur trois législatures : 606 lois (XVe 318, XVIe 141,
+  XVIIe 147), XVIIe inchangée. Rapprochement des scrutins durci (conventions,
+  lois organiques, titres en navette), motions de censure de la XVIe
+  retrouvées par les dossiers d'engagement, textes témoins XVe/XVIe.
+- [ ] Main levée XVe/XVIe vérifiée sur un échantillon de comptes rendus.
+- [ ] **Site** : une page par législature sur le gabarit de l'accueil
+  (l'accueil reste la XVIIe), page « Comparer » en petits multiples,
+  législature dans `/lois` et sur les fiches.
+- [ ] Méthodo, sources et page données à jour.
+- [ ] **Arbitrages de Max** : blocs et socle de la XVe, groupes du Sénat.
+- [ ] Polish issu de la recette v1 (frise mobile, accès aux chapitres,
+  textes d'intro) : voir `BACKLOG.md`.
+- [ ] Recette de Max, puis tag `v1.1.0`.
+
+## Ensuite
 
 Un cycle à la fois, nommé au moment de l'ouvrir :
 
-- **Baselines** : XVIe puis XVe, et comparaison des législatures (l'argument
-  visuel le plus fort). Une page par législature sur le gabarit de
-  l'accueil, et une page « Comparer » en petits multiples
-  (`docs/CONCEPTION.md` §13) ; pas de filtre de dates global.
 - **Coalitions** : séries temporelles des signatures, fréquence pivot
   RN / PS / LR, Sankey blocs → adoptions.
 - **Fiches** : une dizaine de textes emblématiques en récit chronologique

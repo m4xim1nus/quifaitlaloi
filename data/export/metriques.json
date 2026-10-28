@@ -4195,7 +4195,7 @@
    "vue": "toutes",
    "grain": "trimestre",
    "cle": "2017-T3",
-   "classe": "main_levee",
+   "classe": "socle_droite",
    "lois": 1
   },
   {
@@ -4268,7 +4268,7 @@
    "grain": "trimestre",
    "cle": "2018-T2",
    "classe": "main_levee",
-   "lois": 3
+   "lois": 2
   },
   {
    "chambre": "SN",
@@ -4284,7 +4284,7 @@
    "grain": "trimestre",
    "cle": "2018-T2",
    "classe": "socle_gauche",
-   "lois": 1
+   "lois": 2
   },
   {
    "chambre": "SN",
@@ -4388,7 +4388,7 @@
    "grain": "trimestre",
    "cle": "2019-T3",
    "classe": "consensus",
-   "lois": 1
+   "lois": 3
   },
   {
    "chambre": "SN",
@@ -4404,7 +4404,7 @@
    "grain": "trimestre",
    "cle": "2019-T3",
    "classe": "main_levee",
-   "lois": 20
+   "lois": 18
   },
   {
    "chambre": "SN",
@@ -5260,7 +5260,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "consensus",
-   "lois": 26
+   "lois": 28
   },
   {
    "chambre": "SN",
@@ -5276,7 +5276,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "main_levee",
-   "lois": 223
+   "lois": 219
   },
   {
    "chambre": "SN",
@@ -5284,7 +5284,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "socle_droite",
-   "lois": 43
+   "lois": 44
   },
   {
    "chambre": "SN",
@@ -5292,7 +5292,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "socle_gauche",
-   "lois": 20
+   "lois": 21
   },
   {
    "chambre": "SN",
@@ -5347,7 +5347,7 @@
    "vue": "hors_conventions",
    "grain": "trimestre",
    "cle": "2017-T3",
-   "classe": "main_levee",
+   "classe": "socle_droite",
    "lois": 1
   },
   {
@@ -5419,14 +5419,6 @@
    "vue": "hors_conventions",
    "grain": "trimestre",
    "cle": "2018-T2",
-   "classe": "main_levee",
-   "lois": 1
-  },
-  {
-   "chambre": "SN",
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2018-T2",
    "classe": "socle_droite",
    "lois": 2
   },
@@ -5436,7 +5428,7 @@
    "grain": "trimestre",
    "cle": "2018-T2",
    "classe": "socle_gauche",
-   "lois": 1
+   "lois": 2
   },
   {
    "chambre": "SN",
@@ -5540,7 +5532,7 @@
    "grain": "trimestre",
    "cle": "2019-T3",
    "classe": "consensus",
-   "lois": 1
+   "lois": 3
   },
   {
    "chambre": "SN",
@@ -5556,7 +5548,7 @@
    "grain": "trimestre",
    "cle": "2019-T3",
    "classe": "main_levee",
-   "lois": 17
+   "lois": 15
   },
   {
    "chambre": "SN",
@@ -6388,7 +6380,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "consensus",
-   "lois": 26
+   "lois": 28
   },
   {
    "chambre": "SN",
@@ -6404,7 +6396,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "main_levee",
-   "lois": 146
+   "lois": 142
   },
   {
    "chambre": "SN",
@@ -6412,7 +6404,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "socle_droite",
-   "lois": 42
+   "lois": 43
   },
   {
    "chambre": "SN",
@@ -6420,7 +6412,7 @@
    "grain": "periode",
    "cle": "xv",
    "classe": "socle_gauche",
-   "lois": 18
+   "lois": 19
   },
   {
    "chambre": "SN",
@@ -6551,7 +6543,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -6562,8 +6554,8 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 3,
-   "pivot": 0,
+   "scrutins": 4,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -6573,7 +6565,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -6584,7 +6576,7 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -6595,7 +6587,7 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -6606,7 +6598,7 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 1,
    "pivot_abstention": 0
   },
@@ -6617,7 +6609,7 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -7079,7 +7071,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -7090,7 +7082,7 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -7101,7 +7093,7 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 2,
    "pivot_abstention": 0
   },
@@ -7112,7 +7104,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -7123,8 +7115,8 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7134,8 +7126,8 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7145,8 +7137,8 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -7156,8 +7148,8 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -8036,7 +8028,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -8047,7 +8039,7 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -8058,7 +8050,7 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 2,
    "pivot_abstention": 0
   },
@@ -8069,7 +8061,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -8080,7 +8072,7 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -8091,7 +8083,7 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -8102,7 +8094,7 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 1,
    "pivot_abstention": 0
   },
@@ -8113,7 +8105,7 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -15582,7 +15574,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 95,
+   "scrutins": 99,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -15604,7 +15596,7 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 92,
+   "scrutins": 95,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -15615,8 +15607,8 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 95,
-   "pivot": 64,
+   "scrutins": 99,
+   "pivot": 65,
    "pivot_abstention": 2
   },
   {
@@ -15626,7 +15618,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 95,
+   "scrutins": 99,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -15637,8 +15629,8 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 95,
-   "pivot": 1,
+   "scrutins": 99,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -15648,8 +15640,8 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 95,
-   "pivot": 1,
+   "scrutins": 99,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -15659,8 +15651,8 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 95,
-   "pivot": 2,
+   "scrutins": 99,
+   "pivot": 3,
    "pivot_abstention": 1
   },
   {
@@ -15670,8 +15662,8 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 95,
-   "pivot": 11,
+   "scrutins": 99,
+   "pivot": 12,
    "pivot_abstention": 1
   },
   {
@@ -16055,7 +16047,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16066,8 +16058,8 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 3,
-   "pivot": 0,
+   "scrutins": 4,
+   "pivot": 1,
    "pivot_abstention": 1
   },
   {
@@ -16077,7 +16069,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16088,7 +16080,7 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16099,7 +16091,7 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16110,7 +16102,7 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 1,
    "pivot_abstention": 0
   },
@@ -16121,7 +16113,7 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 4,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16583,7 +16575,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16594,7 +16586,7 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16605,7 +16597,7 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 2,
    "pivot_abstention": 0
   },
@@ -16616,7 +16608,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 4,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -16627,8 +16619,8 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -16638,8 +16630,8 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -16649,8 +16641,8 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -16660,8 +16652,8 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 4,
-   "pivot": 0,
+   "scrutins": 5,
+   "pivot": 1,
    "pivot_abstention": 0
   },
   {
@@ -17518,7 +17510,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -17529,7 +17521,7 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -17540,7 +17532,7 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 2,
    "pivot_abstention": 0
   },
@@ -17551,7 +17543,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -17562,7 +17554,7 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -17573,7 +17565,7 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -17584,7 +17576,7 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 1,
    "pivot_abstention": 0
   },
@@ -17595,7 +17587,7 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 3,
+   "scrutins": 5,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -24976,7 +24968,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 92,
+   "scrutins": 96,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -24998,7 +24990,7 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 89,
+   "scrutins": 92,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -25009,8 +25001,8 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 92,
-   "pivot": 63,
+   "scrutins": 96,
+   "pivot": 64,
    "pivot_abstention": 2
   },
   {
@@ -25020,7 +25012,7 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 92,
+   "scrutins": 96,
    "pivot": 0,
    "pivot_abstention": 0
   },
@@ -25031,8 +25023,8 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 92,
-   "pivot": 1,
+   "scrutins": 96,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -25042,8 +25034,8 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 92,
-   "pivot": 1,
+   "scrutins": 96,
+   "pivot": 2,
    "pivot_abstention": 0
   },
   {
@@ -25053,8 +25045,8 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 92,
-   "pivot": 2,
+   "scrutins": 96,
+   "pivot": 3,
    "pivot_abstention": 1
   },
   {
@@ -25064,8 +25056,8 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 92,
-   "pivot": 11,
+   "scrutins": 96,
+   "pivot": 12,
    "pivot_abstention": 1
   },
   {
@@ -35059,7 +35051,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 8,
+   "scrutins": 9,
    "rice": 1.0,
    "cohesion": 1.0,
    "participation": 1.0
@@ -35071,10 +35063,10 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 8,
+   "scrutins": 9,
    "rice": 1.0,
    "cohesion": 0.998,
-   "participation": 0.989
+   "participation": 0.99
   },
   {
    "portee": "ensemble",
@@ -35083,10 +35075,10 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 8,
-   "rice": 0.543,
-   "cohesion": 0.584,
-   "participation": 0.467
+   "scrutins": 9,
+   "rice": 0.482,
+   "cohesion": 0.575,
+   "participation": 0.478
   },
   {
    "portee": "ensemble",
@@ -35095,10 +35087,10 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 8,
+   "scrutins": 9,
    "rice": 1.0,
    "cohesion": 0.996,
-   "participation": 0.974
+   "participation": 0.977
   },
   {
    "portee": "ensemble",
@@ -35107,10 +35099,10 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 8,
-   "rice": 0.645,
-   "cohesion": 0.774,
-   "participation": 0.95
+   "scrutins": 9,
+   "rice": 0.644,
+   "cohesion": 0.755,
+   "participation": 0.956
   },
   {
    "portee": "ensemble",
@@ -35119,10 +35111,10 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 8,
+   "scrutins": 9,
    "rice": 1.0,
    "cohesion": 0.996,
-   "participation": 0.99
+   "participation": 0.991
   },
   {
    "portee": "ensemble",
@@ -35131,10 +35123,10 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 8,
-   "rice": 0.963,
-   "cohesion": 0.979,
-   "participation": 0.974
+   "scrutins": 9,
+   "rice": 0.967,
+   "cohesion": 0.981,
+   "participation": 0.977
   },
   {
    "portee": "ensemble",
@@ -35635,9 +35627,9 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 17,
-   "rice": 0.991,
-   "cohesion": 0.984,
+   "scrutins": 18,
+   "rice": 0.992,
+   "cohesion": 0.985,
    "participation": 1.0
   },
   {
@@ -35647,10 +35639,10 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 17,
-   "rice": 0.977,
-   "cohesion": 0.973,
-   "participation": 0.995
+   "scrutins": 18,
+   "rice": 0.966,
+   "cohesion": 0.964,
+   "participation": 0.99
   },
   {
    "portee": "ensemble",
@@ -35659,10 +35651,10 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 17,
-   "rice": 0.98,
-   "cohesion": 0.971,
-   "participation": 0.991
+   "scrutins": 18,
+   "rice": 0.97,
+   "cohesion": 0.965,
+   "participation": 0.99
   },
   {
    "portee": "ensemble",
@@ -35671,10 +35663,10 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 17,
-   "rice": 0.82,
-   "cohesion": 0.792,
-   "participation": 0.79
+   "scrutins": 18,
+   "rice": 0.793,
+   "cohesion": 0.77,
+   "participation": 0.786
   },
   {
    "portee": "ensemble",
@@ -35683,10 +35675,10 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 17,
-   "rice": 0.982,
-   "cohesion": 0.968,
-   "participation": 0.986
+   "scrutins": 18,
+   "rice": 0.983,
+   "cohesion": 0.97,
+   "participation": 0.987
   },
   {
    "portee": "ensemble",
@@ -35695,10 +35687,10 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 17,
-   "rice": 0.956,
-   "cohesion": 0.884,
-   "participation": 0.994
+   "scrutins": 18,
+   "rice": 0.953,
+   "cohesion": 0.885,
+   "participation": 0.995
   },
   {
    "portee": "ensemble",
@@ -35707,10 +35699,10 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 17,
-   "rice": 0.992,
-   "cohesion": 0.981,
-   "participation": 1.0
+   "scrutins": 18,
+   "rice": 0.993,
+   "cohesion": 0.982,
+   "participation": 0.997
   },
   {
    "portee": "ensemble",
@@ -35719,10 +35711,10 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 17,
-   "rice": 0.954,
-   "cohesion": 0.926,
-   "participation": 0.981
+   "scrutins": 18,
+   "rice": 0.948,
+   "cohesion": 0.925,
+   "participation": 0.982
   },
   {
    "portee": "ensemble",
@@ -36463,10 +36455,10 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 11,
+   "scrutins": 12,
    "rice": 1.0,
    "cohesion": 1.0,
-   "participation": 0.994
+   "participation": 0.995
   },
   {
    "portee": "ensemble",
@@ -36475,10 +36467,10 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 11,
+   "scrutins": 12,
    "rice": 1.0,
    "cohesion": 1.0,
-   "participation": 0.818
+   "participation": 0.833
   },
   {
    "portee": "ensemble",
@@ -36487,9 +36479,9 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 11,
-   "rice": 0.934,
-   "cohesion": 0.976,
+   "scrutins": 12,
+   "rice": 0.94,
+   "cohesion": 0.978,
    "participation": 0.989
   },
   {
@@ -36499,10 +36491,10 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 11,
-   "rice": 0.864,
-   "cohesion": 0.782,
-   "participation": 0.494
+   "scrutins": 12,
+   "rice": 0.875,
+   "cohesion": 0.8,
+   "participation": 0.473
   },
   {
    "portee": "ensemble",
@@ -36511,10 +36503,10 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 11,
+   "scrutins": 12,
    "rice": 1.0,
-   "cohesion": 0.988,
-   "participation": 0.988
+   "cohesion": 0.989,
+   "participation": 0.989
   },
   {
    "portee": "ensemble",
@@ -36523,10 +36515,10 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 11,
-   "rice": 0.864,
-   "cohesion": 0.881,
-   "participation": 0.992
+   "scrutins": 12,
+   "rice": 0.875,
+   "cohesion": 0.89,
+   "participation": 0.988
   },
   {
    "portee": "ensemble",
@@ -36535,7 +36527,7 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 11,
+   "scrutins": 12,
    "rice": 1.0,
    "cohesion": 0.995,
    "participation": 0.994
@@ -36547,9 +36539,9 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 11,
-   "rice": 0.989,
-   "cohesion": 0.969,
+   "scrutins": 12,
+   "rice": 0.99,
+   "cohesion": 0.972,
    "participation": 0.993
   },
   {
@@ -36667,7 +36659,7 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 7,
+   "scrutins": 8,
    "rice": 1.0,
    "cohesion": 1.0,
    "participation": 1.0
@@ -36679,9 +36671,9 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 7,
-   "rice": 0.978,
-   "cohesion": 0.989,
+   "scrutins": 8,
+   "rice": 0.981,
+   "cohesion": 0.99,
    "participation": 1.0
   },
   {
@@ -36691,9 +36683,9 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 7,
-   "rice": 0.973,
-   "cohesion": 0.954,
+   "scrutins": 8,
+   "rice": 0.976,
+   "cohesion": 0.96,
    "participation": 0.991
   },
   {
@@ -36703,10 +36695,10 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 7,
-   "rice": 0.762,
-   "cohesion": 0.881,
-   "participation": 0.355
+   "scrutins": 8,
+   "rice": 0.792,
+   "cohesion": 0.854,
+   "participation": 0.364
   },
   {
    "portee": "ensemble",
@@ -36715,10 +36707,10 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 7,
+   "scrutins": 8,
    "rice": 1.0,
    "cohesion": 1.0,
-   "participation": 0.994
+   "participation": 0.995
   },
   {
    "portee": "ensemble",
@@ -36727,10 +36719,10 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 7,
+   "scrutins": 8,
    "rice": 1.0,
-   "cohesion": 0.909,
-   "participation": 1.0
+   "cohesion": 0.915,
+   "participation": 0.994
   },
   {
    "portee": "ensemble",
@@ -36739,10 +36731,10 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 7,
+   "scrutins": 8,
    "rice": 1.0,
-   "cohesion": 0.996,
-   "participation": 0.996
+   "cohesion": 0.997,
+   "participation": 0.997
   },
   {
    "portee": "ensemble",
@@ -36751,10 +36743,10 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 7,
-   "rice": 0.977,
+   "scrutins": 8,
+   "rice": 0.98,
    "cohesion": 0.94,
-   "participation": 0.997
+   "participation": 0.998
   },
   {
    "portee": "ensemble",
@@ -44179,10 +44171,10 @@
    "chambre": "SN",
    "groupe": "CRCE-K",
    "bloc": "gauche",
-   "scrutins": 228,
+   "scrutins": 232,
    "rice": 0.997,
    "cohesion": 0.993,
-   "participation": 0.989
+   "participation": 0.99
   },
   {
    "portee": "ensemble",
@@ -44203,9 +44195,9 @@
    "chambre": "SN",
    "groupe": "LIRT",
    "bloc": "centre",
-   "scrutins": 220,
-   "rice": 0.983,
-   "cohesion": 0.971,
+   "scrutins": 223,
+   "rice": 0.982,
+   "cohesion": 0.97,
    "participation": 0.952
   },
   {
@@ -44215,9 +44207,9 @@
    "chambre": "SN",
    "groupe": "LR",
    "bloc": "droite",
-   "scrutins": 228,
-   "rice": 0.976,
-   "cohesion": 0.977,
+   "scrutins": 232,
+   "rice": 0.975,
+   "cohesion": 0.976,
    "participation": 0.99
   },
   {
@@ -44227,10 +44219,10 @@
    "chambre": "SN",
    "groupe": "NI",
    "bloc": "autres",
-   "scrutins": 228,
-   "rice": 0.839,
-   "cohesion": 0.838,
-   "participation": 0.375
+   "scrutins": 232,
+   "rice": 0.832,
+   "cohesion": 0.834,
+   "participation": 0.377
   },
   {
    "portee": "ensemble",
@@ -44239,7 +44231,7 @@
    "chambre": "SN",
    "groupe": "RDPI",
    "bloc": "centre",
-   "scrutins": 228,
+   "scrutins": 232,
    "rice": 0.989,
    "cohesion": 0.984,
    "participation": 0.977
@@ -44251,9 +44243,9 @@
    "chambre": "SN",
    "groupe": "RDSE",
    "bloc": "autres",
-   "scrutins": 228,
-   "rice": 0.905,
-   "cohesion": 0.883,
+   "scrutins": 232,
+   "rice": 0.904,
+   "cohesion": 0.882,
    "participation": 0.979
   },
   {
@@ -44263,7 +44255,7 @@
    "chambre": "SN",
    "groupe": "SER",
    "bloc": "gauche",
-   "scrutins": 228,
+   "scrutins": 232,
    "rice": 0.998,
    "cohesion": 0.994,
    "participation": 0.982
@@ -44275,10 +44267,10 @@
    "chambre": "SN",
    "groupe": "UC",
    "bloc": "centre",
-   "scrutins": 228,
+   "scrutins": 232,
    "rice": 0.952,
    "cohesion": 0.953,
-   "participation": 0.98
+   "participation": 0.981
   },
   {
    "portee": "ensemble",
@@ -44555,17 +44547,8 @@
    "grain": "trimestre",
    "cle": "2017-T3",
    "chambre": "SN",
-   "mode_adoption": "MAIN_LEVEE",
-   "lectures": 1
-  },
-  {
-   "portee": "toutes",
-   "vue": "toutes",
-   "grain": "trimestre",
-   "cle": "2017-T3",
-   "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 6
+   "lectures": 7
   },
   {
    "portee": "toutes",
@@ -44700,7 +44683,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 9
+   "lectures": 8
   },
   {
    "portee": "toutes",
@@ -44709,7 +44692,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 10
+   "lectures": 11
   },
   {
    "portee": "toutes",
@@ -44898,7 +44881,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 16
+   "lectures": 15
   },
   {
    "portee": "toutes",
@@ -44916,7 +44899,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 9
+   "lectures": 10
   },
   {
    "portee": "toutes",
@@ -44952,7 +44935,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 18
+   "lectures": 17
   },
   {
    "portee": "toutes",
@@ -44961,7 +44944,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 7
+   "lectures": 8
   },
   {
    "portee": "toutes",
@@ -46617,7 +46600,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 314
+   "lectures": 310
   },
   {
    "portee": "toutes",
@@ -46635,7 +46618,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 162
+   "lectures": 166
   },
   {
    "portee": "toutes",
@@ -46751,17 +46734,8 @@
    "grain": "trimestre",
    "cle": "2017-T3",
    "chambre": "SN",
-   "mode_adoption": "MAIN_LEVEE",
-   "lectures": 1
-  },
-  {
-   "portee": "toutes",
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2017-T3",
-   "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 6
+   "lectures": 7
   },
   {
    "portee": "toutes",
@@ -46896,7 +46870,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 5
+   "lectures": 4
   },
   {
    "portee": "toutes",
@@ -46905,7 +46879,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 10
+   "lectures": 11
   },
   {
    "portee": "toutes",
@@ -47094,7 +47068,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 12
+   "lectures": 11
   },
   {
    "portee": "toutes",
@@ -47112,7 +47086,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 9
+   "lectures": 10
   },
   {
    "portee": "toutes",
@@ -47148,7 +47122,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 18
+   "lectures": 17
   },
   {
    "portee": "toutes",
@@ -47157,7 +47131,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 6
+   "lectures": 7
   },
   {
    "portee": "toutes",
@@ -48723,7 +48697,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 234
+   "lectures": 230
   },
   {
    "portee": "toutes",
@@ -48741,7 +48715,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 159
+   "lectures": 163
   },
   {
    "portee": "toutes",
@@ -48857,17 +48831,8 @@
    "grain": "trimestre",
    "cle": "2017-T3",
    "chambre": "SN",
-   "mode_adoption": "MAIN_LEVEE",
-   "lectures": 1
-  },
-  {
-   "portee": "derniere_par_chambre",
-   "vue": "toutes",
-   "grain": "trimestre",
-   "cle": "2017-T3",
-   "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 3
+   "lectures": 4
   },
   {
    "portee": "derniere_par_chambre",
@@ -48993,7 +48958,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 6
+   "lectures": 5
   },
   {
    "portee": "derniere_par_chambre",
@@ -49002,7 +48967,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 4
+   "lectures": 5
   },
   {
    "portee": "derniere_par_chambre",
@@ -49173,7 +49138,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 10
+   "lectures": 9
   },
   {
    "portee": "derniere_par_chambre",
@@ -49191,7 +49156,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 1
+   "lectures": 2
   },
   {
    "portee": "derniere_par_chambre",
@@ -49227,7 +49192,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 15
+   "lectures": 14
   },
   {
    "portee": "derniere_par_chambre",
@@ -49236,7 +49201,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 4
+   "lectures": 5
   },
   {
    "portee": "derniere_par_chambre",
@@ -50712,7 +50677,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 226
+   "lectures": 222
   },
   {
    "portee": "derniere_par_chambre",
@@ -50730,7 +50695,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 67
+   "lectures": 71
   },
   {
    "portee": "derniere_par_chambre",
@@ -50828,17 +50793,8 @@
    "grain": "trimestre",
    "cle": "2017-T3",
    "chambre": "SN",
-   "mode_adoption": "MAIN_LEVEE",
-   "lectures": 1
-  },
-  {
-   "portee": "derniere_par_chambre",
-   "vue": "hors_conventions",
-   "grain": "trimestre",
-   "cle": "2017-T3",
-   "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 3
+   "lectures": 4
   },
   {
    "portee": "derniere_par_chambre",
@@ -50964,7 +50920,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 2
+   "lectures": 1
   },
   {
    "portee": "derniere_par_chambre",
@@ -50973,7 +50929,7 @@
    "cle": "2018-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 4
+   "lectures": 5
   },
   {
    "portee": "derniere_par_chambre",
@@ -51144,7 +51100,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 6
+   "lectures": 5
   },
   {
    "portee": "derniere_par_chambre",
@@ -51162,7 +51118,7 @@
    "cle": "2019-T2",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 1
+   "lectures": 2
   },
   {
    "portee": "derniere_par_chambre",
@@ -51198,7 +51154,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 15
+   "lectures": 14
   },
   {
    "portee": "derniere_par_chambre",
@@ -51207,7 +51163,7 @@
    "cle": "2019-T3",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 3
+   "lectures": 4
   },
   {
    "portee": "derniere_par_chambre",
@@ -52557,7 +52513,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "MAIN_LEVEE",
-   "lectures": 146
+   "lectures": 142
   },
   {
    "portee": "derniere_par_chambre",
@@ -52575,7 +52531,7 @@
    "cle": "xv",
    "chambre": "SN",
    "mode_adoption": "SCRUTIN_PUBLIC",
-   "lectures": 64
+   "lectures": 68
   },
   {
    "portee": "derniere_par_chambre",
