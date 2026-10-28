@@ -7,10 +7,9 @@
   import VotesGroupes from './VotesGroupes.svelte';
   import Decisifs from './Decisifs.svelte';
   import Comment from './Comment.svelte';
-  import { filtrer, parChemin, pivots } from '$lib/agregats';
+  import { filtrer, parChemin } from '$lib/agregats';
   import { CHEMINS, DEFINITION_CHEMIN, LIBELLE_CHEMIN, LIBELLE_CLASSE } from '$lib/libelles';
   import { dateLongue } from '$lib/format';
-  import { enumeration } from '$lib/recit';
   import type { Legislature } from '$lib/legislatures';
   import type { GroupeAffiche, LoiResume, Periode } from '$lib/server/vues';
 
@@ -39,60 +38,30 @@
   );
   const solennels = $derived(chemins.nominatif.filter((l) => l.solennel).length);
   const compte = (pred: (l: LoiResume) => boolean) => lois.filter(pred).length;
-  const consensus = $derived(compte((l) => l.classe_an === 'consensus'));
-  const socleGauche = $derived(compte((l) => l.classe_an === 'socle_gauche'));
   const socleRn = $derived(compte((l) => l.classe_an === 'socle_rn'));
-  const socleDroite = $derived(compte((l) => l.classe_an === 'socle_droite'));
   const transpartisan = $derived(compte((l) => l.classe_an === 'transpartisan'));
-  const socleSeul = $derived(compte((l) => l.classe_an === 'socle_seul'));
-  const lignesPivots = $derived(pivots(lois));
-  const loisAvecPivot = $derived(compte((l) => l.pivots.length > 0));
-  const abstSeules = $derived(
-    compte((l) => !l.pivots.length && l.pivots_abst_hors_socle.length > 0)
-  );
   const navette = $derived({
     conforme: compte((l) => l.fin_navette === 'conforme'),
     cmp: compte((l) => l.fin_navette === 'cmp'),
     definitive: compte((l) => l.fin_navette === 'definitive')
   });
-  const titres = (ls: { titre_court: string }[]) => enumeration(ls.map((l) => l.titre_court));
   const pluriel = (k: number, mot: string) => `${mot}${k > 1 ? 's' : ''}`;
-  const appoints = $derived(
-    [
-      socleGauche && `de la gauche (${socleGauche})`,
-      socleRn && `du RN (${socleRn})`,
-      transpartisan && `des deux (${transpartisan})`,
-      socleDroite && `de LR (${socleDroite})`
-    ].filter((x): x is string => !!x)
-  );
+  const SOMMAIRE = [
+    { id: 'chemins', titre: 'Comment les lois passent-elles à l’Assemblée ?' },
+    { id: 'coalitions', titre: 'Avec quelles voix ?' },
+    { id: 'pivots', titre: 'Quels groupes ont été décisifs ?' }
+  ];
 </script>
+
+<nav class="sommaire" aria-label="Sur cette page">
+  {#each SOMMAIRE as q, i (q.id)}
+    <a href="#{q.id}"><span class="num chiffres">{i + 1}</span>{q.titre}</a>
+  {/each}
+</nav>
 
 <section id="chemins">
   <h2>Comment les lois passent-elles à l’Assemblée&#8239;?</h2>
-  <p class="reponse colonne">
-    {#if contournements.length}
-      <span class="nombre">{contournements.length}</span>
-      {pluriel(contournements.length, 'loi')} sur {n}
-      {contournements.length > 1 ? 'ont' : 'a'} contourné à une étape le vote de l’Assemblée sur le texte{#if chemins.art_49_3.length}&#8239;:
-        {chemins.art_49_3.length} au 49.3 ({titres(
-          chemins.art_49_3
-        )}){/if}{#if chemins.rejet_inverse.length}{chemins.art_49_3.length ? ' et ' : ' : '}{chemins
-          .rejet_inverse.length}
-        {pluriel(chemins.rejet_inverse.length, 'rejetée')} d’emblée par {chemins.rejet_inverse
-          .length > 1
-          ? 'leurs'
-          : 'ses'} partisans pour aller en commission mixte paritaire ({titres(
-          chemins.rejet_inverse
-        )}){/if}. Les {n - contournements.length} autres ont été votées, dont {chemins.nominatif
-        .length} par vote nominatif.
-    {:else}
-      <span class="nombre">0</span>
-      loi sur {n} n’a contourné le vote de l’Assemblée sur le texte&#8239;: ni 49.3, ni rejet par ses
-      partisans. {chemins.nominatif.length} ont été adoptées par vote nominatif, {chemins
-        .sans_scrutin.length} sans vote nominatif.
-    {/if}
-    <Comment ancre="chemins" />
-  </p>
+  <p class="message colonne">{leg.messages.chemins} <Comment ancre="chemins" /></p>
 
   <a class="evitement-frise petit" href="#cartes-chemins">Passer la frise</a>
   <Frise {lois} {debut} {fin} jalons={periodes} />
@@ -149,15 +118,7 @@
 
 <section id="coalitions">
   <h2>Avec quelles voix&#8239;?</h2>
-  <p class="reponse colonne">
-    <span class="nombre">{consensus}</span>
-    {pluriel(consensus, 'loi')} sur {n}
-    {consensus > 1 ? 'sont adoptées' : 'est adoptée'} sans qu’aucun bloc s’y oppose, au vote décisif (sur
-    un 49.3, la motion de censure). Les autres passent avec le {leg.socleDeveloppe}{#if appoints.length}{' '}et
-      l’appoint
-      {enumeration(appoints)}{/if}. Le socle sans gauche ni RN&#8239;: {socleSeul} fois.
-    <Comment ancre="coalitions" />
-  </p>
+  <p class="message colonne">{leg.messages.coalitions} <Comment ancre="coalitions" /></p>
 
   <h3>Les coalitions</h3>
   <Composition {lois} {conventions} legislature={leg.num} />
@@ -180,16 +141,11 @@
 
 <section id="pivots">
   <h2>Quels groupes ont été décisifs&#8239;?</h2>
-  <p class="reponse colonne">
-    <span class="nombre">{loisAvecPivot}</span>
-    {pluriel(loisAvecPivot, 'loi')} sur {n}&#8239;: un groupe extérieur au socle a été décisif. S’il
-    avait voté contre, le texte tombait ; sur un 49.3, la censure passait s’il l’avait votée.
-    {#if abstSeules}Pour {abstSeules} autre{abstSeules > 1 ? 's' : ''}, c’est l’abstention d’un
-      groupe qui a permis l’adoption.{/if}
-    {#if lignesPivots.length}{enumeration(
-        lignesPivots.map((p, i) => `${p.groupe} ${p.lois.length}${i === 0 ? ' fois' : ''}`)
-      )}.{/if}
-    <Comment ancre="decisif" />
+  <p class="message colonne">{leg.messages.decisifs}</p>
+  <p class="petit secondaire colonne">
+    Un groupe extérieur au socle est décisif si, en votant à l’inverse, il renversait le
+    résultat&#8239;: s’il avait voté contre, le texte tombait&#8239;; sur un 49.3, la censure
+    passait s’il l’avait votée. <Comment ancre="decisif" />
   </p>
   <Decisifs {lois} {groupes} />
   {@render noteDecisifs?.()}
@@ -204,14 +160,45 @@
   h3 {
     margin-top: 20px;
   }
-  .reponse {
-    font-size: 1.125rem;
-    line-height: 1.5;
+  section {
+    scroll-margin-top: 8px;
   }
-  .reponse .nombre {
-    font-size: 2.5rem;
-    line-height: 1;
-    margin-right: 4px;
+  .message {
+    font-family: var(--serif);
+    font-size: 1.375rem;
+    line-height: 1.4;
+  }
+  .sommaire {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 8px 24px;
+  }
+  .sommaire a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid var(--filet);
+    color: var(--encre);
+    text-decoration: none;
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+  .sommaire a:hover {
+    text-decoration: underline;
+  }
+  .sommaire .num {
+    flex: none;
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 50%;
+    border: 1.5px solid var(--encre);
+    display: inline-grid;
+    place-items: center;
+    font-size: 0.8125rem;
+    font-family: var(--sans, inherit);
   }
   .evitement-frise {
     position: absolute;

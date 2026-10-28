@@ -44,14 +44,17 @@ But : comparer la XVIIe aux XVIe et XVe (2017-2024), sur les mêmes règles.
   XVIIe 147), XVIIe inchangée. Rapprochement des scrutins durci (conventions,
   lois organiques, titres en navette), motions de censure de la XVIe
   retrouvées par les dossiers d'engagement, textes témoins XVe/XVIe.
-- [ ] Main levée XVe/XVIe vérifiée sur un échantillon de comptes rendus.
-- [ ] **Site** : une page par législature sur le gabarit de l'accueil
-  (l'accueil reste la XVIIe), page « Comparer » en petits multiples,
-  législature dans `/lois` et sur les fiches.
-- [ ] Méthodo, sources et page données à jour.
+- [x] Main levée XVe/XVIe vérifiée sur 16 comptes rendus : 15 confirmées,
+  l'erreur corrigée par une règle (intitulés « conclusions de la CMP »).
+- [x] **Site** : une page par législature sur le gabarit de l'accueil
+  (l'accueil reste la XVIIe), page « Comparer » en petits multiples
+  (gaufres à même échelle), législature dans `/lois` et sur les fiches
+  (`docs/CONCEPTION.md` §15).
+- [x] Méthodo (v1.1, §15 chiffres comparés), sources et page données à jour.
 - [ ] **Arbitrages de Max** : blocs et socle de la XVe, groupes du Sénat.
-- [ ] Polish issu de la recette v1 (frise mobile, accès aux chapitres,
-  textes d'intro) : voir `BACKLOG.md`.
+- [x] Polish issu de la recette v1 : dates clés dans la frise mobile,
+  sommaire à ancres en tête de page, messages courts en tête de section
+  (les chiffres restent dans les graphiques).
 - [ ] Recette de Max, puis tag `v1.1.0`.
 
 ## Ensuite

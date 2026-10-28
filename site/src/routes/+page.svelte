@@ -4,7 +4,6 @@
   import Legislature from '$lib/components/Legislature.svelte';
   import ChoixLegislature from '$lib/components/ChoixLegislature.svelte';
   import Comment from '$lib/components/Comment.svelte';
-  import { entier } from '$lib/format';
   import { legislature } from '$lib/legislatures';
   import { lireConventions, ecrireConventions } from '$lib/conventions.svelte';
 
@@ -39,9 +38,10 @@
 <section class="ouverture">
   <h1>Qui fait la loi depuis 2024&#8239;?</h1>
   <p class="chapo colonne">
-    {entier(toutes.length)} lois ont été adoptées depuis le 18 juillet 2024. Pour chacune, ce site retrace
-    comment l’Assemblée nationale l’a adoptée, et avec les voix de quels groupes, à partir des seules
-    données publiques de l’Assemblée et du Sénat.
+    Depuis la dissolution de 2024, aucun bloc n’a la majorité à l’Assemblée. Les lois passent
+    pourtant&#8239;: par quel chemin, et avec les voix de qui&#8239;? Ce site reprend chacune
+    d’elles, à partir des seules données publiques de l’Assemblée et du Sénat, et les compare aux
+    deux législatures précédentes.
   </p>
   <ChoixLegislature courant={17} />
   <div class="reglage">

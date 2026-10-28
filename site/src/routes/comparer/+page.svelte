@@ -92,12 +92,6 @@
     })
   );
   const part = (k: number, n: number) => (n ? pourcent(k / n) : '–');
-  const contourne = (c: (typeof cols)[number]) =>
-    c.comptesChemins.filter((x) => x.k === 'art_49_3' || x.k === 'rejet_inverse');
-  const nContourne = (c: (typeof cols)[number]) => contourne(c).reduce((s, x) => s + x.n, 0);
-  const nDecisif = (c: (typeof cols)[number]) => c.comptesPoids.find((x) => x.k === 'vote')!.n;
-  const nSansVote = (c: (typeof cols)[number]) =>
-    c.comptesChemins.find((x) => x.k === 'sans_scrutin')!.n;
 </script>
 
 <svelte:head>
@@ -123,6 +117,9 @@
 
 <section aria-labelledby="t-rythme">
   <h2 id="t-rythme">Combien de lois&#8239;?</h2>
+  <p class="message colonne">
+    Le rythme ne change pas&#8239;: une cinquantaine de lois par an, majorité absolue ou non.
+  </p>
   <div class="trois">
     {#each cols as c (c.leg.num)}
       <div class="col">
@@ -137,14 +134,9 @@
 
 <section aria-labelledby="t-chemins">
   <h2 id="t-chemins">Par quel chemin&#8239;?</h2>
-  <p class="reponse colonne">
-    Le vote de l’Assemblée contourné (49.3 ou rejet par ses partisans)&#8239;: {#each cols as c, i (c.leg.num)}{i
-        ? i === cols.length - 1
-          ? ' et '
-          : ', '
-        : ''}<strong>{nContourne(c)}</strong> sous la {c.leg.romain}{/each}. Sans vote
-    nominatif&#8239;:
-    {#each cols as c, i (c.leg.num)}{i ? ', ' : ''}{part(nSansVote(c), c.n)}{/each}.
+  <p class="message colonne">
+    Le contournement naît avec la majorité relative, en 2022, et reste rare. Au même moment, le vote
+    sans scrutin public disparaît presque&#8239;: chaque loi est désormais votée nom par nom.
     <Comment ancre="chemins" />
   </p>
   <div class="trois">
@@ -183,6 +175,10 @@
 
 <section aria-labelledby="t-coalitions">
   <h2 id="t-coalitions">Avec quelles voix&#8239;?</h2>
+  <p class="message colonne">
+    Ce qui change d’une Assemblée à l’autre, c’est qui vote avec le socle&#8239;: LR ou une partie
+    de la gauche sous la XVe, le RN de plus en plus souvent depuis 2022.
+  </p>
   <p class="colonne petit secondaire">
     Le socle n’est pas le même d’une législature à l’autre&#8239;: {#each cols as c, i (c.leg.num)}{i
         ? ' ; '
@@ -226,12 +222,10 @@
 
 <section aria-labelledby="t-decisifs">
   <h2 id="t-decisifs">Quels groupes ont été décisifs&#8239;?</h2>
-  <p class="reponse colonne">
-    Lois où un groupe extérieur au socle a fait la différence par son vote&#8239;: {#each cols as c, i (c.leg.num)}{i
-        ? i === cols.length - 1
-          ? ' et '
-          : ', '
-        : ''}<strong>{nDecisif(c)}</strong> sous la {c.leg.romain}{/each}.
+  <p class="message colonne">
+    Avec la majorité absolue, aucun groupe extérieur ne décide. Avec la majorité relative de 2022,
+    presque aucun&#8239;: la majorité présidentielle gagne encore seule au décompte des votants.
+    Depuis 2024, le sort d’une loi sur trois tient à un groupe hors du socle, le RN le plus souvent.
     <Comment ancre="decisif" />
   </p>
   <div class="trois">
@@ -327,9 +321,10 @@
     align-items: center;
     gap: 6px 16px;
   }
-  .reponse {
-    font-size: 1.125rem;
-    line-height: 1.5;
+  .message {
+    font-family: var(--serif);
+    font-size: 1.375rem;
+    line-height: 1.4;
   }
   .trois {
     display: grid;

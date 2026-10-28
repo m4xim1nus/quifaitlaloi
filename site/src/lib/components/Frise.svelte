@@ -51,15 +51,6 @@
     return { x: x0 + (rang % 2) * pas, y: base - (Math.floor(rang / 2) + 1) * pas };
   }
 
-  // --- Géométrie verticale ----------------------------------------------------------------
-  const GAUCHE = 64;
-  const carreV = 14;
-  const pasV = 17;
-  const hauteurV = $derived(mois.length * pasV + 8);
-  function xyV(colonne: number, rang: number) {
-    return { x: GAUCHE + rang * pasV, y: 4 + colonne * pasV };
-  }
-
   const jalonsVus = $derived.by(() => {
     const vus = jalons.filter(
       (j) => j.debut >= debut.slice(0, 7) && j.debut <= fin && JALON[j.code]
@@ -70,6 +61,21 @@
     );
     return vus.map((j, i) => ({ ...j, x: xs[i], ligne: lignes[i] }));
   });
+
+  // --- Géométrie verticale ----------------------------------------------------------------
+  const GAUCHE = 64;
+  const carreV = 14;
+  const pasV = 17;
+  // Une date clé ouvre un bandeau étiqueté juste avant son mois : on la lit à sa place.
+  const BANDE = 24;
+  const moisJalons = $derived(
+    jalonsVus.map((j) => mois.find((m) => m.cle === j.debut.slice(0, 7))?.index ?? 0)
+  );
+  const yMois = (i: number) => 4 + i * pasV + BANDE * moisJalons.filter((k) => k <= i).length;
+  const hauteurV = $derived(mois.length * pasV + 8 + BANDE * jalonsVus.length);
+  function xyV(colonne: number, rang: number) {
+    return { x: GAUCHE + rang * pasV, y: yMois(colonne) };
+  }
 
   const hauteur = $derived(base + 48 + Math.max(0, ...jalonsVus.map((j) => j.ligne)) * 15);
 
@@ -182,13 +188,16 @@
       >
 
       {#each mois as m (m.cle)}
-        <text class="mois-v" x={GAUCHE - 8} y={4 + m.index * pasV + carreV - 3}
+        <text class="mois-v" x={GAUCHE - 8} y={yMois(m.index) + carreV - 3}
           >{libelleMois(m.cle)}</text
         >
       {/each}
-      {#each jalonsVus as j (j.code)}
-        {@const y = 4 + positionDate(j.debut, mois) * pasV - 1.5}
-        <line class="jalon" x1={GAUCHE - 4} x2={largeur} y1={y} y2={y} />
+      {#each jalonsVus as j, i (j.code)}
+        {@const y = yMois(moisJalons[i]) - 5}
+        <line class="jalon" x1={0} x2={largeur} y1={y} y2={y} />
+        <text class="jalon-v" x={0} y={y - 6}
+          >{ajuster(`${JALON[j.code]} (${moisAnnee(j.debut)})`, largeur * 0.9)}</text
+        >
       {/each}
       {#each marques as m (m.loi.id)}
         {@const p = xyV(m.colonne, m.rang)}
@@ -220,11 +229,6 @@
         {/if}
       {/each}
     </svg>
-    <ul class="jalons-v petit secondaire">
-      {#each jalonsVus as j (j.code)}
-        <li>— {dateLongue(j.debut)} : {JALON[j.code]}</li>
-      {/each}
-    </ul>
   {/if}
 
   {#if survol && !vertical}
@@ -350,10 +354,10 @@
   .renvoi {
     stroke: var(--gris);
   }
-  .jalons-v {
-    list-style: none;
-    padding: 0;
-    margin: 8px 0 0;
+  .jalon-v {
+    font-size: 11.5px;
+    font-weight: 600;
+    fill: var(--encre);
   }
   .bulle {
     position: absolute;
