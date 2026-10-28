@@ -341,3 +341,19 @@ retirées : la barre de majorité cercle **tous** les groupes décisifs, socle
 compris, et le tableau des groupes garde l'étiquette « décisif ». Sur une
 censure, les membres d'un groupe décisif hors socle qui ne l'ont pas votée
 restent figurés en pointillé au bout de la barre.
+
+## 13. Période globale retirée ; la profondeur viendra par législature
+
+Max n'utilisait pas la barre de période : depuis juillet 2024, les
+comportements bougent peu, et un filtre global qui ne change presque rien
+coûte de la place et du code. Retirée (préréglages, curseur, atténuation de
+la frise) ; l'interrupteur des accords internationaux reste, au-dessus de la
+frise. Le code est dans l'historique git (commit cd4de8f).
+
+Pour le cycle Baselines, la profondeur ne passera pas par un filtre de
+dates : les législatures ne se lisent pas avec les mêmes catégories (socle
+différent, majorité absolue sous la XVe, autres groupes), et l'argument est
+la comparaison côte à côte, pas la sélection. Prévu : une page par
+législature sur le gabarit de l'accueil, et une page « Comparer » en petits
+multiples (part de contournement, de « socle seul », de vote nominatif,
+groupes décisifs). La chronologie fine relève du cycle Coalitions.

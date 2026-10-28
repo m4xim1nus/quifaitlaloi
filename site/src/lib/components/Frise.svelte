@@ -4,7 +4,6 @@
   import { CHEMINS, CONTOURNEMENTS, JALON, LIBELLE_CHEMIN, type Chemin } from '$lib/libelles';
   import { dateLongue, moisAnnee } from '$lib/format';
   import { empiler, lignesEtiquettes, moisEntre, positionDate } from '$lib/frise';
-  import { dansPlage, type Plage } from '$lib/plage';
   import type { LoiResume } from '$lib/server/vues';
 
   interface Props {
@@ -12,11 +11,8 @@
     debut: string;
     fin: string;
     jalons: { code: string; debut: string }[];
-    /** Période retenue : les lois hors plage sont atténuées. */
-    plage?: Plage;
   }
-  let { lois, debut, fin, jalons, plage }: Props = $props();
-  const horsPlage = (date: string) => !!plage && !dansPlage(date, plage);
+  let { lois, debut, fin, jalons }: Props = $props();
 
   let largeur = $state(1100);
   let survol = $state<{ loi: LoiResume; x: number; y: number } | null>(null);
@@ -26,12 +22,7 @@
   const marques = $derived(empiler(lois, mois));
   const parMois = $derived(mois.map((m) => marques.filter((x) => x.colonne === m.index).length));
   const comptes = $derived(
-    Object.fromEntries(
-      CHEMINS.map((c) => [
-        c,
-        lois.filter((l) => l.chemin === c && !horsPlage(l.date_adoption)).length
-      ])
-    )
+    Object.fromEntries(CHEMINS.map((c) => [c, lois.filter((l) => l.chemin === c).length]))
   );
   const vertical = $derived(largeur < 640);
 
@@ -135,16 +126,14 @@
           x2={p.x + carre / 2}
           y1={yt + 4}
           y2={p.y - 1}
-          class:eteint={(focus !== null && focus !== e.m.loi.chemin) ||
-            horsPlage(e.m.loi.date_adoption)}
+          class:eteint={focus !== null && focus !== e.m.loi.chemin}
         />
         <a href="/lois/{e.m.loi.id}">
           <text
             class="etiquette"
             x={p.x + carre / 2 - 3}
             y={yt}
-            class:eteint={(focus !== null && focus !== e.m.loi.chemin) ||
-              horsPlage(e.m.loi.date_adoption)}>{e.m.loi.titre_court}</text
+            class:eteint={focus !== null && focus !== e.m.loi.chemin}>{e.m.loi.titre_court}</text
           >
         </a>
       {/each}
@@ -163,8 +152,7 @@
         >
           <rect
             class="carre {m.loi.chemin}"
-            class:eteint={(focus !== null && focus !== m.loi.chemin) ||
-              horsPlage(m.loi.date_adoption)}
+            class:eteint={focus !== null && focus !== m.loi.chemin}
             class:actif={survol?.loi.id === m.loi.id}
             x={p.x}
             y={p.y}
@@ -210,8 +198,7 @@
         >
           <rect
             class="carre {m.loi.chemin}"
-            class:eteint={(focus !== null && focus !== m.loi.chemin) ||
-              horsPlage(m.loi.date_adoption)}
+            class:eteint={focus !== null && focus !== m.loi.chemin}
             x={p.x}
             y={p.y}
             width={carreV}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
   import Frise from '$lib/components/Frise.svelte';
-  import Reglages from '$lib/components/Reglages.svelte';
+  import Interrupteur from '$lib/components/Interrupteur.svelte';
   import Composition from '$lib/components/Composition.svelte';
   import VotesGroupes from '$lib/components/VotesGroupes.svelte';
   import Decisifs from '$lib/components/Decisifs.svelte';
@@ -15,9 +15,7 @@
     SOCLE_COMMUN
   } from '$lib/libelles';
   import { dateLongue, entier } from '$lib/format';
-  import { lireReglages, ecrireReglages } from '$lib/conventions.svelte';
-  import { dansPlage, prereglages, type Plage } from '$lib/plage';
-  import { moisEntre } from '$lib/frise';
+  import { lireConventions, ecrireConventions } from '$lib/conventions.svelte';
   import { enumeration } from '$lib/recit';
 
   let { data } = $props();
@@ -25,30 +23,21 @@
   const toutes = $derived(data.lois);
   const debut = $derived(toutes[0].date_adoption);
   const fin = $derived(toutes.at(-1)!.date_adoption);
-  const complete = $derived<Plage>({ du: debut, au: fin });
-  const presets = $derived(prereglages(data.periodes, debut, fin));
-  const mois = $derived(moisEntre(debut, fin).map((m) => m.cle));
 
   let conventions = $state(false);
-  // svelte-ignore state_referenced_locally
-  let plage = $state<Plage>({
-    du: data.lois[0].date_adoption,
-    au: data.lois.at(-1)!.date_adoption
-  });
   let pret = $state(false);
   // Le routeur n'est prêt qu'après la première navigation : avant, réécrire l'URL casse la page.
   afterNavigate(() => {
     if (pret) return;
-    ({ conventions, plage } = lireReglages(complete));
+    conventions = lireConventions();
     pret = true;
   });
   $effect(() => {
-    if (pret) ecrireReglages(conventions, plage, complete);
+    if (pret) ecrireConventions(conventions);
   });
 
   const nConventions = $derived(toutes.filter((l) => l.type === 'convention').length);
-  const pourFrise = $derived(filtrer(toutes, conventions));
-  const lois = $derived(pourFrise.filter((l) => dansPlage(l.date_adoption, plage)));
+  const lois = $derived(filtrer(toutes, conventions));
   const n = $derived(lois.length);
   const chemins = $derived(parChemin(lois));
   const contournements = $derived(
@@ -92,9 +81,16 @@
     retrace comment l’Assemblée nationale l’a adoptée, et avec les voix de quels groupes, à partir des
     seules données publiques de l’Assemblée et du Sénat.
   </p>
+  <div class="reglage">
+    <Interrupteur bind:valeur={conventions}>
+      Inclure les {nConventions} accords internationaux
+    </Interrupteur>
+    <span class="petit secondaire">
+      Lois qui autorisent un traité ; presque toutes passent sans vote nominatif.
+      <Comment ancre="accords" />
+    </span>
+  </div>
 </section>
-
-<Reglages bind:plage bind:conventions prereglages={presets} {mois} {nConventions} nLois={n} />
 
 <section id="chemins">
   <h2>Comment les lois passent-elles à l’Assemblée&#8239;?</h2>
@@ -117,10 +113,12 @@
   </p>
 
   <a class="evitement-frise petit" href="#cartes-chemins">Passer la frise</a>
-  <Frise lois={pourFrise} {debut} {fin} jalons={data.periodes} {plage} />
+  <Frise {lois} {debut} {fin} jalons={data.periodes} />
   <p class="petit secondaire colonne">
     Chaque carré est une loi, placée au mois de son adoption définitive et colorée selon la façon
-    dont l’Assemblée l’a adoptée. Les lois hors de la période choisie sont estompées. La
+    dont l’Assemblée l’a adoptée. {n} lois{conventions
+      ? ', accords internationaux compris'
+      : `, hors ${nConventions} accords internationaux`}. La
     <a href="/lois">liste des lois</a> donne les mêmes informations sous forme de tableau.
   </p>
 
@@ -260,7 +258,13 @@
   }
   .ouverture {
     padding-top: 48px;
-    padding-bottom: 24px;
+  }
+  .reglage {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
+    margin-top: 8px;
   }
   h1 {
     max-width: 18ch;

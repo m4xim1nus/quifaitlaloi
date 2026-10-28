@@ -56,7 +56,9 @@ But : mise en ligne publique.
 Un cycle à la fois, nommé au moment de l'ouvrir :
 
 - **Baselines** : XVIe puis XVe, et comparaison des législatures (l'argument
-  visuel le plus fort).
+  visuel le plus fort). Une page par législature sur le gabarit de
+  l'accueil, et une page « Comparer » en petits multiples
+  (`docs/CONCEPTION.md` §13) ; pas de filtre de dates global.
 - **Coalitions** : séries temporelles des signatures, fréquence pivot
   RN / PS / LR, Sankey blocs → adoptions.
 - **Fiches** : une dizaine de textes emblématiques en récit chronologique
