@@ -392,3 +392,24 @@ groupes décisifs, avec un « avec … » peu lisible. Elle est remplacée par :
   comptes et de parts (la version accessible). Pas de filtre de dates.
 - **`/lois`** gagne un filtre « Législature » ; les liens des pages de
   législature le pré-remplissent.
+
+## 16. Passe éditoriale (retour de Max, cycle Baselines)
+
+Les textes doivent porter un message ; la donnée se lit dans les graphiques,
+la méthode dans la méthodologie.
+
+- **Un récit par législature** (`site/src/lib/legislatures.ts`) : chapô et
+  message de chaque question, écrits d'après les données. Pour la XVIIe :
+  l'Assemblée qu'on disait ingouvernable adopte autant de lois que ses
+  devancières ; presque toujours par un vote, avec des majorités faites
+  texte par texte ; quelques contournements marquants ; des alliances larges,
+  avec la gauche sur quelques textes clés, plus souvent avec le RN.
+- **Coalitions dépliées** : une phrase qui dit quelles lois la coalition
+  recouvre, puis les lois en étiquettes, en grand les textes marquants (vote
+  solennel, 49.3, rejet par les partisans), les contournements d'abord ; le
+  lien vers l'explorateur reste. Plus de liste chronologique ni de définition.
+- **Méthode retirée des pages** : définitions des chemins sur les cartes et
+  sur les fiches (gardées en infobulle), encadré « Et la navette ? », notes de
+  lecture répétées. Chaque section garde un lien « Comment c'est compté ».
+- Ces textes datent des données du 28/10/2026 : à relire à chaque mise à
+  jour (`BACKLOG.md`).

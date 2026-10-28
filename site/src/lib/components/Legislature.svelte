@@ -8,7 +8,7 @@
   import Decisifs from './Decisifs.svelte';
   import Comment from './Comment.svelte';
   import { filtrer, parChemin } from '$lib/agregats';
-  import { CHEMINS, DEFINITION_CHEMIN, LIBELLE_CHEMIN, LIBELLE_CLASSE } from '$lib/libelles';
+  import { CHEMINS, LIBELLE_CHEMIN } from '$lib/libelles';
   import { dateLongue } from '$lib/format';
   import type { Legislature } from '$lib/legislatures';
   import type { GroupeAffiche, LoiResume, Periode } from '$lib/server/vues';
@@ -29,7 +29,6 @@
   const fin = $derived(leg.fin ?? toutes.at(-1)!.date_adoption);
 
   const lois = $derived(filtrer(toutes, conventions));
-  const n = $derived(lois.length);
   const chemins = $derived(parChemin(lois));
   const contournements = $derived(
     [...chemins.art_49_3, ...chemins.rejet_inverse].sort((a, b) =>
@@ -37,14 +36,6 @@
     )
   );
   const solennels = $derived(chemins.nominatif.filter((l) => l.solennel).length);
-  const compte = (pred: (l: LoiResume) => boolean) => lois.filter(pred).length;
-  const socleRn = $derived(compte((l) => l.classe_an === 'socle_rn'));
-  const transpartisan = $derived(compte((l) => l.classe_an === 'transpartisan'));
-  const navette = $derived({
-    conforme: compte((l) => l.fin_navette === 'conforme'),
-    cmp: compte((l) => l.fin_navette === 'cmp'),
-    definitive: compte((l) => l.fin_navette === 'definitive')
-  });
   const pluriel = (k: number, mot: string) => `${mot}${k > 1 ? 's' : ''}`;
   const SOMMAIRE = [
     { id: 'chemins', titre: 'Comment les lois passent-elles à l’Assemblée ?' },
@@ -66,12 +57,9 @@
   <a class="evitement-frise petit" href="#cartes-chemins">Passer la frise</a>
   <Frise {lois} {debut} {fin} jalons={periodes} />
   <p class="petit secondaire colonne">
-    Chaque carré est une loi, placée au mois de son adoption définitive et colorée selon la façon
-    dont l’Assemblée l’a adoptée. {n} lois{conventions
+    Un carré = une loi, au mois de son adoption définitive{conventions
       ? ', accords internationaux compris'
-      : `, hors ${toutes.length - n} accords internationaux`}. La
-    <a href="/lois?legislature={leg.num}">liste des lois</a> donne les mêmes informations sous forme de
-    tableau.
+      : ''}. Le détail est dans la <a href="/lois?legislature={leg.num}">liste des lois</a>.
   </p>
 
   <ul class="chemins" id="cartes-chemins">
@@ -87,12 +75,12 @@
             >dont {solennels} {pluriel(solennels, 'vote')} {pluriel(solennels, 'solennel')}</span
           >
         {/if}
-        <span class="petit secondaire">{DEFINITION_CHEMIN[c]}</span>
       </li>
     {/each}
   </ul>
 
   {#if contournements.length}
+    <h3>Les contournements</h3>
     <ul class="liste-lois">
       {#each contournements as l (l.id)}
         <li>
@@ -105,15 +93,6 @@
       {/each}
     </ul>
   {/if}
-
-  <p class="colonne navette">
-    <strong>Et la navette&#8239;?</strong> Avant ce dernier vote, les deux chambres se sont mises
-    d’accord de trois façons&#8239;: {navette.conforme}
-    {pluriel(navette.conforme, 'loi')} adoptée{navette.conforme > 1 ? 's' : ''} dans les mêmes termes
-    par l’une puis l’autre, {navette.cmp} sur le texte d’une commission mixte paritaire (sept députés
-    et sept sénateurs), {navette.definitive} en lecture définitive, l’Assemblée ayant le dernier mot.
-    <Comment ancre="lectures" />
-  </p>
 </section>
 
 <section id="coalitions">
@@ -121,31 +100,22 @@
   <p class="message colonne">{leg.messages.coalitions} <Comment ancre="coalitions" /></p>
 
   <h3>Les coalitions</h3>
-  <Composition {lois} {conventions} legislature={leg.num} />
+  <Composition {lois} {conventions} legislature={leg.num} resumes={leg.coalitions} />
 
   <h3>Comment chaque groupe a voté</h3>
   <p class="colonne petit secondaire">
-    Position majoritaire de chaque groupe au vote décisif de chaque loi (sur un 49.3, la motion de
-    censure). Le chiffre&#8239;: nombre de lois que le groupe a votées ou laissé passer, sur celles
-    où il a pris position. <Comment ancre="position" />
+    Position de chaque groupe au vote décisif de chaque loi. <Comment ancre="position" />
   </p>
   <VotesGroupes {lois} {groupes} legislature={leg.num} />
-
-  {#if socleRn || transpartisan}
-    <p class="petit secondaire colonne">
-      « {LIBELLE_CLASSE.socle_rn} » veut dire qu’au moins un groupe du bloc RN a voté avec le socle, pas
-      qu’il pouvait faire tomber le texte&#8239;: c’est la question suivante.
-    </p>
-  {/if}
 </section>
 
 <section id="pivots">
   <h2>Quels groupes ont été décisifs&#8239;?</h2>
   <p class="message colonne">{leg.messages.decisifs}</p>
   <p class="petit secondaire colonne">
-    Un groupe extérieur au socle est décisif si, en votant à l’inverse, il renversait le
-    résultat&#8239;: s’il avait voté contre, le texte tombait&#8239;; sur un 49.3, la censure
-    passait s’il l’avait votée. <Comment ancre="decisif" />
+    Décisif&#8239;: en votant à l’inverse, le groupe renversait le résultat. <Comment
+      ancre="decisif"
+    />
   </p>
   <Decisifs {lois} {groupes} />
   {@render noteDecisifs?.()}
@@ -244,9 +214,5 @@
     flex-wrap: wrap;
     align-items: baseline;
     gap: 4px 10px;
-  }
-  .navette {
-    border-left: 3px solid var(--filet);
-    padding-left: 14px;
   }
 </style>

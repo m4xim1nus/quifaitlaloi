@@ -3,7 +3,6 @@
   // fixe. La définition se lit dans la grille de présence (quels blocs sont dans le camp
   // gagnant), l'effectif dans la rangée de carrés (un carré = une loi, une seule échelle). Les
   // lois s'affichent en dépliant la rangée.
-  import Themes from './Themes.svelte';
   import { comptesCoalitions } from '$lib/agregats';
   import { CLASSES, LIBELLE_CHEMIN, LIBELLE_CLASSE } from '$lib/libelles';
   import { dateCourte } from '$lib/format';
@@ -15,8 +14,10 @@
     lois: LoiResume[];
     conventions: boolean;
     legislature: number;
+    /** Ce que recouvre chaque coalition, en une phrase (legislatures.ts). */
+    resumes?: Partial<Record<Classe | 'aucune', string>>;
   }
-  let { lois, conventions, legislature: numLeg }: Props = $props();
+  let { lois, conventions, legislature: numLeg, resumes = {} }: Props = $props();
 
   type Ligne = Classe | 'aucune';
   type Presence = 'oui' | 'non' | 'pas_contre' | 'inconnu';
@@ -41,23 +42,21 @@
     inconnu: 'inconnu'
   };
 
-  const DEFINITION: Record<Ligne, string> = {
-    consensus:
-      'Aucun groupe de gauche, du socle ou du RN ne vote majoritairement contre. Des abstentions sont possibles, ainsi que des votes contre de petits groupes ou de non-inscrits.',
-    transpartisan:
-      'Le socle, au moins un groupe de gauche et au moins un groupe du bloc RN votent pour ; d’autres groupes votent contre.',
-    socle_gauche: 'Le socle et au moins un groupe de gauche votent pour ; aucun groupe du bloc RN.',
-    socle_rn: 'Le socle et au moins un groupe du bloc RN votent pour ; aucun groupe de gauche.',
-    socle_seul:
-      'Le socle vote pour sans la gauche ni le RN (de petits groupes ou des non-inscrits peuvent l’appuyer).',
-    socle_droite:
-      'Le socle et LR votent pour, sans la gauche ni le RN (XVe et XVIe législatures, où LR n’est pas dans le socle).',
-    hors_socle: 'Le résultat est obtenu sans les voix du socle.',
-    aucune:
-      'Pas de vote nominatif au dernier passage à l’Assemblée : on ne sait pas qui a voté quoi. Ce n’est pas un consensus.'
-  };
-
-  const MAX = 8;
+  const MAX = 10;
+  /** Texte marquant : voté en scrutin solennel (choisi par la Conférence des présidents pour les
+   * textes importants), ou passé au 49.3 ou par le rejet de ses partisans. */
+  const marquante = (l: LoiResume) =>
+    l.solennel || l.chemin === 'art_49_3' || l.chemin === 'rejet_inverse';
+  /** À défaut de résumé écrit : les thèmes du Sénat les plus fréquents de la coalition. */
+  function themesDe(ls: LoiResume[]): string[] {
+    const n = new Map<string, number>();
+    for (const l of ls)
+      for (const t of l.themes) if (t !== 'Société') n.set(t, (n.get(t) ?? 0) + 1);
+    return [...n]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([t]) => t.toLowerCase());
+  }
   const c = $derived(comptesCoalitions(lois));
   const loisDe = (k: Ligne) =>
     [...(k === 'aucune' ? c.sans : c.parClasse.get(k)!)].sort((a, b) =>
@@ -125,22 +124,33 @@
         <span class="nombre effectif">{n}</span>
 
         {#if ouverte}
+          {@const fortes = ls.filter(marquante)}
+          {@const montrees = [
+            ...fortes.filter((l) => l.chemin !== 'nominatif'),
+            ...fortes.filter((l) => l.chemin === 'nominatif'),
+            ...ls.filter((l) => !marquante(l))
+          ].slice(0, MAX)}
           <div class="detail" id="coalition-{k}">
-            <p class="petit secondaire">{DEFINITION[k]}</p>
-            <ul class="lois">
-              {#each ls.slice(0, MAX) as l (l.id)}
+            {#if resumes[k]}
+              <p class="resume">{resumes[k]}</p>
+            {:else if themesDe(ls).length}
+              <p class="resume">Surtout&#8239;: {themesDe(ls).join(', ')}.</p>
+            {/if}
+            <ul class="etiquettes-lois">
+              {#each montrees as l (l.id)}
                 <li>
-                  <span
-                    ><a class="borne" href="/lois/{l.id}" title={l.titre_court}>{l.titre_court}</a>
-                    <Themes themes={l.themes} /></span
+                  <a class="etiquette-loi" class:forte={marquante(l)} href="/lois/{l.id}"
+                    >{l.titre_court}<span class="annee chiffres">{l.date_adoption.slice(0, 4)}</span
+                    ></a
                   >
-                  <span class="date petit chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
                 </li>
               {/each}
             </ul>
-            {#if n > MAX}
-              <a class="petit tout" href={lien(k)}>Voir les {n} lois dans l’explorateur</a>
-            {/if}
+            <p class="petit">
+              {#if fortes.length}<span class="secondaire"
+                  >En grand&#8239;: vote solennel ou 49.3.
+                </span>{/if}<a class="tout" href={lien(k)}>Voir les {n} lois dans l’explorateur</a>
+            </p>
           </div>
         {/if}
       </li>
@@ -148,9 +158,7 @@
   </ul>
 
   <p class="note petit secondaire">
-    ● au moins un groupe du bloc vote pour · ○ pour ou abstention, mais pas contre. Socle&#8239;:
-    {legislature(numLeg).socleDeveloppe}. Sur un 49.3, le camp gagnant est formé des groupes qui ne
-    votent pas la censure. Cliquer une coalition pour voir ses lois.
+    ● vote pour · ○ ne vote pas contre. Socle&#8239;: {legislature(numLeg).socleDeveloppe}.
   </p>
 </div>
 
@@ -256,27 +264,48 @@
     gap: 8px;
     max-width: 52rem;
   }
-  .lois {
-    display: grid;
-    gap: 4px;
+  .resume {
+    margin: 0;
+    max-width: 62ch;
   }
-  .lois li {
+  .etiquettes-lois {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .etiquettes-lois li {
+    display: block;
     padding: 0;
     border: none;
+  }
+  .etiquette-loi {
+    display: inline-flex;
     align-items: baseline;
-  }
-  .lois a {
+    gap: 8px;
+    padding: 4px 10px;
+    border: 1px solid var(--filet);
+    border-radius: var(--rayon);
+    color: var(--encre);
     text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.35;
   }
-  .lois a:hover {
+  .etiquette-loi.forte {
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    border-color: var(--ardoise);
+  }
+  .etiquette-loi:hover {
+    border-color: var(--encre);
     text-decoration: underline;
   }
-  .date {
+  .etiquette-loi .annee {
+    font-family: var(--sans);
+    font-size: 0.75rem;
     color: var(--ardoise);
-    white-space: nowrap;
   }
   .tout {
     font-weight: 700;
@@ -327,12 +356,5 @@
     .detail {
       padding-left: 0;
     }
-  }
-  .borne {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    overflow: hidden;
   }
 </style>

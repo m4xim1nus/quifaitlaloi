@@ -38,10 +38,8 @@
 <section class="ouverture">
   <h1>Qui fait la loi depuis 2024&#8239;?</h1>
   <p class="chapo colonne">
-    Depuis la dissolution de 2024, aucun bloc n’a la majorité à l’Assemblée. Les lois passent
-    pourtant&#8239;: par quel chemin, et avec les voix de qui&#8239;? Ce site reprend chacune
-    d’elles, à partir des seules données publiques de l’Assemblée et du Sénat, et les compare aux
-    deux législatures précédentes.
+    {leg.chapo} Ce site reprend chacune d’elles, à partir des seules données publiques de l’Assemblée
+    et du Sénat, et la compare aux deux législatures précédentes.
   </p>
   <ChoixLegislature courant={17} />
   <div class="reglage">
@@ -72,27 +70,15 @@
       un carré.
     </li>
     <li>
-      <strong>Les textes rejetés, abandonnés ou en cours.</strong> Seules les lois promulguées sont comptées&#8239;:
-      un texte encore en navette (adopté par une seule chambre) ou retiré faute de majorité n’apparaît
-      pas.
+      <strong>Les textes rejetés, abandonnés ou en cours.</strong> Seules les lois adoptées sont comptées.
     </li>
     <li>
-      <strong>Les lois sans vote nominatif.</strong> On ne sait pas qui a voté quoi&#8239;: elles ne sont
-      rangées dans aucune coalition.
+      <strong>Le Sénat.</strong> Les coalitions sont celles de l’Assemblée&#8239;; le vote du Sénat est
+      sur la fiche de chaque loi.
     </li>
     <li>
-      <strong>Le Sénat.</strong> Les coalitions ci-dessus sont celles de l’Assemblée. Les votes du Sénat
-      figurent sur la fiche de chaque loi.
-    </li>
-    <li>
-      <strong>Les changements de majorité en cours de route.</strong> Le socle commun compte la Droite
-      républicaine sur toute la législature, y compris après son refus de participer au gouvernement Lecornu
-      II.
-    </li>
-    <li>
-      <strong>Avant juillet 2024.</strong> Les lois adoptées sous les législatures précédentes, dont
-      la réforme des retraites de 2023, ont leur page&#8239;: <a href="/legislature/16">XVIe</a>,
-      <a href="/legislature/15">XVe</a>, et se <a href="/comparer">comparent</a> à celles-ci.
+      <strong>La sortie de LR du gouvernement.</strong> La Droite républicaine est comptée dans le socle
+      sur toute la législature, y compris après son refus de participer au gouvernement Lecornu II.
     </li>
   </ul>
   <p class="colonne">

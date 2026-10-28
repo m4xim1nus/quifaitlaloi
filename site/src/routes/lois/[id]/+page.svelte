@@ -110,12 +110,12 @@
 
   <section class="resume">
     <div class="etiquettes">
-      <span class="etiquette">
+      <span class="etiquette" title={DEFINITION_CHEMIN[data.chemin]}>
         <span class="pastille ch-{data.chemin}" class:vide={data.chemin === 'sans_scrutin'}></span>
         {LIBELLE_CHEMIN[data.chemin]}
       </span>
       {#if loi.classe_an}
-        <span class="etiquette">
+        <span class="etiquette" title={DEFINITION_CLASSE[loi.classe_an]}>
           <span class="pastille" style:background="var(--co-{loi.classe_an})"></span>
           {LIBELLE_CLASSE[loi.classe_an]}
         </span>
@@ -125,14 +125,6 @@
     <div class="phrases colonne">
       {#each resume as p (p)}<p>{p}</p>{/each}
     </div>
-    <p class="definitions petit secondaire colonne">
-      <strong>{LIBELLE_CHEMIN[data.chemin]}</strong>&#8239;: {DEFINITION_CHEMIN[data.chemin]}
-      {#if loi.classe_an}
-        <br /><strong>{LIBELLE_CLASSE[loi.classe_an]}</strong>&#8239;: {DEFINITION_CLASSE[
-          loi.classe_an
-        ]}
-      {/if}
-    </p>
   </section>
 
   <section>
@@ -303,10 +295,6 @@
     display: grid;
     gap: 8px;
     font-size: 1.125rem;
-  }
-  .definitions {
-    border-left: 2px solid var(--filet);
-    padding-left: 12px;
   }
   .vote {
     border-top: 1px solid var(--filet);

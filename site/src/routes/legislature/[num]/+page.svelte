@@ -4,7 +4,6 @@
   import Legislature from '$lib/components/Legislature.svelte';
   import ChoixLegislature from '$lib/components/ChoixLegislature.svelte';
   import Comment from '$lib/components/Comment.svelte';
-  import { entier } from '$lib/format';
   import { legislature } from '$lib/legislatures';
   import { lireConventions, ecrireConventions } from '$lib/conventions.svelte';
 
@@ -37,11 +36,7 @@
 
 <section class="ouverture">
   <h1>Qui faisait la loi de {leg.annees.replace('-', ' à ')}&#8239;?</h1>
-  <p class="chapo colonne">
-    {leg.contexte}
-    {entier(toutes.length)} lois ont été adoptées sous cette {leg.romain} législature. Elles sont lues
-    ici avec les mêmes règles que celles d’aujourd’hui.
-  </p>
+  <p class="chapo colonne">{leg.contexte} {leg.chapo}</p>
   <ChoixLegislature courant={leg.num} />
   <div class="reglage">
     <Interrupteur bind:valeur={conventions}>
@@ -67,30 +62,14 @@
       <strong>Les textes rejetés, abandonnés ou en cours.</strong> Seules les lois adoptées sont
       comptées.
       {#if leg.num === 15}La réforme des retraites de 2020, adoptée au 49.3 en première lecture puis
-        suspendue pendant la crise sanitaire, n’a jamais été promulguée&#8239;: elle n’apparaît pas.{/if}
-    </li>
-    <li>
-      <strong>Les lois sans vote nominatif.</strong> On ne sait pas qui a voté quoi&#8239;: elles ne sont
-      rangées dans aucune coalition.
+        abandonnée pendant la crise sanitaire, n’apparaît pas.{/if}
     </li>
     {#if leg.num === 15}
       <li>
-        <strong>Pas de groupe RN.</strong> Les députés du Rassemblement national, trop peu nombreux pour
-        former un groupe (quinze membres requis), siègent parmi les non-inscrits&#8239;: la coalition
-        « socle + RN » ne peut pas apparaître.
+        <strong>Pas de groupe RN.</strong> Ses huit députés, trop peu nombreux pour former un groupe,
+        siègent parmi les non-inscrits.
       </li>
     {/if}
-    <li>
-      <strong>Les groupes changent.</strong> Les groupes se recomposent en cours de législature
-      {leg.num === 15
-        ? '(Nouvelle Gauche devenue Socialistes, MoDem, UDI et Agir)'
-        : '(groupe socialiste renommé en 2023)'}&#8239;: chaque vote est lu avec les groupes du
-      jour.
-    </li>
-    <li>
-      <strong>Les lectures plus anciennes.</strong> Une loi adoptée sous cette législature a pu connaître
-      une première lecture sous la précédente&#8239;: elle compte ici, à la date de son adoption définitive.
-    </li>
   </ul>
   <p class="colonne">
     <a href="/comparer">Comparer les trois législatures</a>,
