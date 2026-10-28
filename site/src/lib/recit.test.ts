@@ -21,6 +21,7 @@ const pos = (sigle: string, position: PositionGroupe['position']): PositionGroup
 const base: Omit<ScrutinDetaille, 'positions' | 'signature' | 'objet' | 'sort'> = {
   id: 'V1',
   chambre: 'AN',
+  legislature: 17,
   numero: 1,
   date: '2025-07-08',
   type_vote: 'SPS',

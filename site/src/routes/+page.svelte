@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Frise from '$lib/components/Frise.svelte';
-  import Coalitions from '$lib/components/Coalitions.svelte';
-  import Pivots from '$lib/components/Pivots.svelte';
-  import Interrupteur from '$lib/components/Interrupteur.svelte';
+  import Reglages from '$lib/components/Reglages.svelte';
+  import Composition from '$lib/components/Composition.svelte';
+  import VotesGroupes from '$lib/components/VotesGroupes.svelte';
+  import Periodes from '$lib/components/Periodes.svelte';
+  import Decisifs from '$lib/components/Decisifs.svelte';
   import Comment from '$lib/components/Comment.svelte';
-  import { filtrer, parChemin, pivots } from '$lib/agregats';
+  import { filtrer, parChemin, periodeDe, pivots } from '$lib/agregats';
   import {
     CHEMINS,
     DEFINITION_CHEMIN,
@@ -14,52 +16,67 @@
     SOCLE_COMMUN
   } from '$lib/libelles';
   import { dateLongue, entier } from '$lib/format';
-  import { lireConventions, ecrireConventions } from '$lib/conventions.svelte';
+  import { lireReglages, ecrireReglages } from '$lib/conventions.svelte';
+  import { dansPlage, prereglages, type Plage } from '$lib/plage';
+  import { moisEntre } from '$lib/frise';
   import { enumeration } from '$lib/recit';
 
   let { data } = $props();
 
+  const toutes = $derived(data.lois);
+  const debut = $derived(toutes[0].date_adoption);
+  const fin = $derived(toutes.at(-1)!.date_adoption);
+  const complete = $derived<Plage>({ du: debut, au: fin });
+  const presets = $derived(prereglages(data.periodes, debut, fin));
+  const mois = $derived(moisEntre(debut, fin).map((m) => m.cle));
+
   let conventions = $state(false);
+  // svelte-ignore state_referenced_locally
+  let plage = $state<Plage>({
+    du: data.lois[0].date_adoption,
+    au: data.lois.at(-1)!.date_adoption
+  });
   let pret = $state(false);
   onMount(() => {
-    conventions = lireConventions();
+    ({ conventions, plage } = lireReglages(complete));
     pret = true;
   });
   $effect(() => {
-    if (pret) ecrireConventions(conventions);
+    if (pret) ecrireReglages(conventions, plage, complete);
   });
 
-  const toutes = $derived(data.lois);
   const nConventions = $derived(toutes.filter((l) => l.type === 'convention').length);
-  const lois = $derived(filtrer(toutes, conventions));
-  const horsConv = $derived(filtrer(toutes, false));
+  const pourFrise = $derived(filtrer(toutes, conventions));
+  const lois = $derived(pourFrise.filter((l) => dansPlage(l.date_adoption, plage)));
+  const n = $derived(lois.length);
   const chemins = $derived(parChemin(lois));
   const contournements = $derived(
     [...chemins.art_49_3, ...chemins.rejet_inverse].sort((a, b) =>
       a.date_adoption.localeCompare(b.date_adoption)
     )
   );
-  const budgets = $derived(chemins.art_49_3.length);
-  const votees = $derived(lois.length - contournements.length);
-  const consensus = $derived(lois.filter((l) => l.classe_an === 'consensus').length);
+  const solennels = $derived(chemins.nominatif.filter((l) => l.solennel).length);
+  const compte = (pred: (l: (typeof lois)[number]) => boolean) => lois.filter(pred).length;
+  const consensus = $derived(compte((l) => l.classe_an === 'consensus'));
+  const socleGauche = $derived(compte((l) => l.classe_an === 'socle_gauche'));
+  const socleRn = $derived(compte((l) => l.classe_an === 'socle_rn'));
+  const transpartisan = $derived(compte((l) => l.classe_an === 'transpartisan'));
+  const socleSeul = $derived(compte((l) => l.classe_an === 'socle_seul'));
   const lignesPivots = $derived(pivots(lois));
-  const loisAvecPivot = $derived(lois.filter((l) => l.pivots.length).length);
-  const socleRn = $derived(lois.filter((l) => l.classe_an === 'socle_rn').length);
-  const socleGauche = $derived(lois.filter((l) => l.classe_an === 'socle_gauche').length);
-  const transpartisan = $derived(lois.filter((l) => l.classe_an === 'transpartisan').length);
-  const socleSeul = $derived(lois.filter((l) => l.classe_an === 'socle_seul').length);
-  const sansScrutin = $derived(chemins.sans_scrutin.length);
-  const nominatives = $derived(chemins.solennel.length + chemins.ordinaire.length);
-  const avecAppoint = $derived(socleGauche + socleRn + transpartisan);
-  const titres = (ls: { titre_court: string }[]) => enumeration(ls.map((l) => l.titre_court));
-
-  const debut = $derived(toutes[0].date_adoption);
-  const fin = $derived(toutes.at(-1)!.date_adoption);
-  const perimetre = $derived(
-    conventions
-      ? `${entier(lois.length)} lois, accords internationaux compris`
-      : `${entier(lois.length)} lois, hors ${nConventions} accords internationaux`
+  const loisAvecPivot = $derived(compte((l) => l.pivots.length > 0));
+  const abstSeules = $derived(
+    compte((l) => !l.pivots.length && l.pivots_abst_hors_socle.length > 0)
   );
+  const navette = $derived({
+    conforme: compte((l) => l.fin_navette === 'conforme'),
+    cmp: compte((l) => l.fin_navette === 'cmp'),
+    definitive: compte((l) => l.fin_navette === 'definitive')
+  });
+  const plusieursPeriodes = $derived(
+    new Set(lois.map((l) => periodeDe(l.date_adoption, data.periodes))).size > 1
+  );
+  const titres = (ls: { titre_court: string }[]) => enumeration(ls.map((l) => l.titre_court));
+  const pluriel = (k: number, mot: string) => `${mot}${k > 1 ? 's' : ''}`;
 </script>
 
 <svelte:head>
@@ -77,124 +94,128 @@
     retrace comment l’Assemblée nationale l’a adoptée, et avec les voix de quels groupes, à partir des
     seules données publiques de l’Assemblée et du Sénat.
   </p>
-
-  <div class="reglage">
-    <Interrupteur bind:valeur={conventions}>
-      Inclure les {nConventions} accords internationaux
-    </Interrupteur>
-    <span class="petit secondaire">
-      Lois qui autorisent un traité ; presque toutes passent sans vote nominatif.
-      <Comment ancre="accords" />
-    </span>
-  </div>
-
-  <a class="evitement-frise petit" href="#reponses">Passer la frise</a>
-  <Frise {lois} {debut} {fin} jalons={data.periodes} />
-
-  <p class="petit secondaire legende-frise">
-    Chaque carré est une loi, placée au mois de son adoption définitive, colorée selon la façon dont
-    l’Assemblée l’a adoptée. {perimetre}. La <a href="/lois">liste des lois</a> donne les mêmes informations
-    sous forme de tableau.
-  </p>
-
-  <ul class="reponses colonne" id="reponses">
-    <li>
-      <span class="nombre">{contournements.length}</span>
-      lois sur {lois.length} ont contourné à une étape le vote de l’Assemblée sur le texte&#8239;:
-      {budgets} budgets adoptés au 49.3 ({titres(chemins.art_49_3)}) et {chemins.rejet_inverse
-        .length} textes rejetés d’emblée par leurs partisans pour aller en commission mixte paritaire
-      ({titres(chemins.rejet_inverse)}). Les {votees} autres ont été votées, dont {nominatives} par vote
-      nominatif.
-    </li>
-    <li>
-      <span class="nombre">{consensus}</span>
-      lois sur {lois.length} sont adoptées sans qu’aucun bloc s’y oppose, au vote décisif (sur un 49.3,
-      la motion de censure). {avecAppoint} passent avec le socle commun et l’appoint de la gauche ({socleGauche}),
-      du RN ({socleRn}) ou des deux ({transpartisan}). Le socle sans gauche ni RN&#8239;:
-      {socleSeul} fois.
-    </li>
-    <li>
-      <span class="nombre">{loisAvecPivot}</span>
-      lois sur {lois.length}&#8239;: un groupe extérieur au socle a été décisif. {enumeration(
-        lignesPivots.map(
-          (p, i) => `${p.groupe}${i === 0 ? ` ${p.lois.length} fois` : ` ${p.lois.length}`}`
-        )
-      )} (une loi peut en compter plusieurs).
-    </li>
-  </ul>
 </section>
+
+<Reglages bind:plage bind:conventions prereglages={presets} {mois} {nConventions} nLois={n} />
 
 <section id="chemins">
   <h2>Comment les lois passent-elles à l’Assemblée&#8239;?</h2>
-  <p class="colonne">
-    Une loi est adoptée quand les deux chambres se sont mises d’accord sur le même texte. À
-    l’Assemblée, cela passe normalement par un vote, nominatif ou à main levée. Deux procédures
-    permettent de s’en passer à une étape&#8239;: le 49.3, et le rejet du texte par ses propres
-    partisans.
+  <p class="reponse colonne">
+    <span class="nombre">{contournements.length}</span>
+    {pluriel(contournements.length, 'loi')} sur {n}
+    {contournements.length > 1 ? 'ont' : 'a'} contourné à une étape le vote de l’Assemblée sur le texte{#if chemins.art_49_3.length}&#8239;:
+      {chemins.art_49_3.length} au 49.3 ({titres(
+        chemins.art_49_3
+      )}){/if}{#if chemins.rejet_inverse.length}{chemins.art_49_3.length ? ' et ' : ' : '}{chemins
+        .rejet_inverse.length}
+      {pluriel(chemins.rejet_inverse.length, 'rejetée')} d’emblée par {chemins.rejet_inverse
+        .length > 1
+        ? 'leurs'
+        : 'ses'} partisans pour aller en commission mixte paritaire ({titres(
+        chemins.rejet_inverse
+      )}){/if}. Les {n - contournements.length} autres ont été votées, dont {chemins.nominatif
+      .length} par vote nominatif.
     <Comment ancre="chemins" />
   </p>
 
-  <ol class="chemins">
+  <a class="evitement-frise petit" href="#cartes-chemins">Passer la frise</a>
+  <Frise lois={pourFrise} {debut} {fin} jalons={data.periodes} {plage} />
+  <p class="petit secondaire colonne">
+    Chaque carré est une loi, placée au mois de son adoption définitive et colorée selon la façon
+    dont l’Assemblée l’a adoptée. Les lois hors de la période choisie sont estompées. La
+    <a href="/lois">liste des lois</a> donne les mêmes informations sous forme de tableau.
+  </p>
+
+  <ul class="chemins" id="cartes-chemins">
     {#each CHEMINS as c (c)}
       <li class="chemin">
-        <span class="pastille {c}" class:vide={c === 'sans_scrutin'}></span>
         <span class="tete">
+          <span class="pastille ch-{c}"></span>
           <strong>{LIBELLE_CHEMIN[c]}</strong>
           <span class="nombre compte-chemin">{chemins[c].length}</span>
         </span>
+        {#if c === 'nominatif' && chemins.nominatif.length}
+          <span class="petit"
+            >dont {solennels} {pluriel(solennels, 'vote')} {pluriel(solennels, 'solennel')}</span
+          >
+        {/if}
         <span class="petit secondaire">{DEFINITION_CHEMIN[c]}</span>
       </li>
     {/each}
-  </ol>
-
-  <h3 class="sous-titre">Les {contournements.length} lois passées par un contournement</h3>
-  <ul class="liste-lois">
-    {#each contournements as l (l.id)}
-      <li>
-        <span class="pastille {l.chemin}"></span>
-        <a href="/lois/{l.id}">{l.titre_court}</a>
-        <span class="secondaire petit"
-          >{LIBELLE_CHEMIN[l.chemin]}, adoptée le {dateLongue(l.date_adoption)}</span
-        >
-      </li>
-    {/each}
   </ul>
-  {#if sansScrutin}
-    <p class="colonne petit secondaire">
-      {sansScrutin} loi{sansScrutin > 1 ? 's ont' : ' a'} été adoptée{sansScrutin > 1 ? 's' : ''}
-      sans vote nominatif au dernier passage à l’Assemblée&#8239;: on ne sait pas comment chaque groupe
-      a voté. Ce n’est pas un contournement, ni la preuve d’un consensus.
-    </p>
+
+  {#if contournements.length}
+    <ul class="liste-lois">
+      {#each contournements as l (l.id)}
+        <li>
+          <span class="pastille ch-{l.chemin}"></span>
+          <a href="/lois/{l.id}">{l.titre_court}</a>
+          <span class="secondaire petit"
+            >{LIBELLE_CHEMIN[l.chemin]}, adoptée le {dateLongue(l.date_adoption)}</span
+          >
+        </li>
+      {/each}
+    </ul>
   {/if}
+
+  <p class="colonne navette">
+    <strong>Et la navette&#8239;?</strong> Avant ce dernier vote, les deux chambres se sont mises
+    d’accord de trois façons&#8239;: {navette.conforme}
+    {pluriel(navette.conforme, 'loi')} adoptée{navette.conforme > 1 ? 's' : ''} dans les mêmes termes
+    par l’une puis l’autre, {navette.cmp} sur le texte d’une commission mixte paritaire (sept députés
+    et sept sénateurs), {navette.definitive} en lecture définitive, l’Assemblée ayant le dernier mot.
+    <Comment ancre="lectures" />
+  </p>
 </section>
 
 <section id="coalitions">
   <h2>Avec quelles voix&#8239;?</h2>
-  <p class="colonne">
-    Pour chaque loi, on prend le dernier vote de l’Assemblée sur le texte, et on regarde quels
-    groupes étaient dans le camp gagnant. Le {SOCLE_COMMUN} l’emporte presque toujours avec d’autres&#8239;:
-    sans gauche ni RN, {socleSeul} fois sur {lois.length}.
+  <p class="reponse colonne">
+    <span class="nombre">{consensus}</span>
+    {pluriel(consensus, 'loi')} sur {n}
+    {consensus > 1 ? 'sont adoptées' : 'est adoptée'} sans qu’aucun bloc s’y oppose, au vote décisif (sur
+    un 49.3, la motion de censure). Les autres passent avec le {SOCLE_COMMUN} et l’appoint de la gauche
+    ({socleGauche}), du RN ({socleRn}) ou des deux ({transpartisan}). Le socle sans gauche ni
+    RN&#8239;:
+    {socleSeul} fois.
     <Comment ancre="coalitions" />
   </p>
-  <Coalitions {lois} periodes={data.periodes} />
+
+  <h3>Les coalitions</h3>
+  <Composition {lois} {conventions} />
+
+  <h3>Comment chaque groupe a voté</h3>
+  <p class="colonne petit secondaire">
+    Position majoritaire de chaque groupe au vote décisif de chaque loi (sur un 49.3, la motion de
+    censure). Le chiffre&#8239;: nombre de lois que le groupe a votées ou laissé passer, sur celles
+    où il a pris position. <Comment ancre="position" />
+  </p>
+  <VotesGroupes {lois} groupes={data.groupes} />
+
+  {#if plusieursPeriodes}
+    <h3>D’une période à l’autre</h3>
+    <Periodes {lois} periodes={data.periodes} />
+  {/if}
   <p class="petit secondaire colonne">
-    Sur un 49.3, le camp gagnant est celui des groupes qui ne votent pas la censure. « {LIBELLE_CLASSE.socle_rn}
-    » veut dire qu’au moins un groupe du bloc RN a voté avec le socle, pas que ses voix étaient nécessaires&#8239;:
-    c’est la question suivante.
+    « {LIBELLE_CLASSE.socle_rn} » veut dire qu’au moins un groupe du bloc RN a voté avec le socle, pas
+    que ses voix étaient nécessaires&#8239;: c’est la question suivante.
   </p>
 </section>
 
 <section id="pivots">
   <h2>Quels groupes ont été décisifs&#8239;?</h2>
-  <p class="colonne">
-    Un groupe est décisif quand, sans ses voix, le résultat s’inversait&#8239;: le texte tombait,
-    ou, sur un 49.3, la censure passait s’il l’avait votée. Hors du socle commun, c’est arrivé pour
-    {loisAvecPivot} lois sur {lois.length}.
+  <p class="reponse colonne">
+    <span class="nombre">{loisAvecPivot}</span>
+    {pluriel(loisAvecPivot, 'loi')} sur {n}&#8239;: un groupe extérieur au socle a été décisif. Sans
+    ses voix, le texte tombait, ou, sur un 49.3, la censure passait s’il l’avait votée.
+    {#if abstSeules}Pour {abstSeules} autre{abstSeules > 1 ? 's' : ''}, c’est l’abstention d’un
+      groupe qui a permis l’adoption.{/if}
+    {#if lignesPivots.length}{enumeration(
+        lignesPivots.map((p, i) => `${p.groupe} ${p.lois.length}${i === 0 ? ' fois' : ''}`)
+      )}.{/if}
     <Comment ancre="decisif" />
   </p>
-  {#if lignesPivots.length}
-    <Pivots {lois} couleurs={data.couleurs} />
-  {/if}
+  <Decisifs {lois} groupes={data.groupes} />
   <p class="petit secondaire colonne">
     Le calcul se fait groupe par groupe. Sur le budget 2025, ni le RN ni le PS n’étaient décisifs
     seuls&#8239;: la censure n’aurait abouti qu’avec les deux.
@@ -209,14 +230,13 @@
       un carré.
     </li>
     <li>
-      <strong>Les textes rejetés ou abandonnés.</strong> Seules les lois promulguées sont comptées&#8239;:
-      un texte retiré faute de majorité n’apparaît pas.
+      <strong>Les textes rejetés, abandonnés ou en cours.</strong> Seules les lois promulguées sont comptées&#8239;:
+      un texte encore en navette (adopté par une seule chambre) ou retiré faute de majorité n’apparaît
+      pas.
     </li>
     <li>
-      <strong>Le vote sans vote nominatif.</strong>
-      {sansScrutin} loi{sansScrutin > 1 ? 's' : ''} sur
-      {lois.length} n’{sansScrutin > 1 ? 'ont' : 'a'} pas de vote nominatif au dernier passage à l’Assemblée&#8239;:
-      on ne sait pas qui a voté quoi.
+      <strong>Les lois sans vote nominatif.</strong> On ne sait pas qui a voté quoi&#8239;: elles ne sont
+      rangées dans aucune coalition.
     </li>
     <li>
       <strong>Le Sénat.</strong> Les coalitions ci-dessus sont celles de l’Assemblée. Les votes du Sénat
@@ -227,6 +247,10 @@
       républicaine sur toute la législature, y compris après son refus de participer au gouvernement Lecornu
       II.
     </li>
+    <li>
+      <strong>Avant juillet 2024.</strong> Les lois des législatures précédentes, dont la réforme des
+      retraites de 2023, viendront en comparaison.
+    </li>
   </ul>
   <p class="colonne">
     <a href="/methodologie">Lire la méthodologie</a> ou
@@ -236,25 +260,31 @@
 
 <style>
   section {
-    padding-top: 72px;
+    padding-top: 64px;
     display: grid;
     gap: 20px;
   }
   .ouverture {
     padding-top: 48px;
+    padding-bottom: 24px;
   }
   h1 {
     max-width: 18ch;
   }
+  h3 {
+    margin-top: 20px;
+  }
   .chapo {
     font-size: 1.1875rem;
   }
-  .reglage {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 16px;
-    margin-top: 12px;
+  .reponse {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+  .reponse .nombre {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-right: 4px;
   }
   .evitement-frise {
     position: absolute;
@@ -263,37 +293,13 @@
   .evitement-frise:focus {
     position: static;
   }
-  .legende-frise {
-    max-width: var(--colonne);
-  }
-  .reponses {
-    list-style: none;
-    padding: 0;
-    margin: 12px 0 0;
-    display: grid;
-    gap: 14px;
-  }
-  .reponses li {
-    font-size: 1.125rem;
-    line-height: 1.45;
-  }
-  .reponses .nombre {
-    font-size: 2.25rem;
-    line-height: 1;
-    margin-right: 4px;
-  }
   .chemins {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
     gap: 24px;
-  }
-  @media (min-width: 1100px) {
-    .chemins {
-      grid-template-columns: repeat(5, 1fr);
-    }
   }
   .chemin {
     display: grid;
@@ -304,35 +310,13 @@
   }
   .tete {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     gap: 8px;
   }
   .compte-chemin {
+    margin-left: auto;
     font-size: 2rem;
     line-height: 1;
-  }
-  .pastille {
-    width: 14px;
-    height: 14px;
-    border-radius: 2px;
-    display: inline-block;
-    flex: none;
-  }
-  .pastille.solennel {
-    background: var(--ch-solennel);
-  }
-  .pastille.ordinaire {
-    background: var(--ch-ordinaire);
-  }
-  .pastille.rejet_inverse {
-    background: var(--ch-rejet_inverse);
-  }
-  .pastille.art_49_3 {
-    background: var(--ch-art_49_3);
-  }
-  .sous-titre {
-    margin-top: 8px;
   }
   .liste-lois {
     list-style: none;
@@ -346,6 +330,10 @@
     flex-wrap: wrap;
     align-items: baseline;
     gap: 4px 10px;
+  }
+  .navette {
+    border-left: 3px solid var(--filet);
+    padding-left: 14px;
   }
   .limites {
     padding-left: 1.1em;

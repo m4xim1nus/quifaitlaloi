@@ -240,26 +240,6 @@
   td:nth-child(4) {
     white-space: nowrap;
   }
-  .pastille {
-    width: 11px;
-    height: 11px;
-    border-radius: 2px;
-    display: inline-block;
-    margin-right: 5px;
-    vertical-align: -1px;
-  }
-  .ch-solennel {
-    background: var(--ch-solennel);
-  }
-  .ch-ordinaire {
-    background: var(--ch-ordinaire);
-  }
-  .ch-rejet_inverse {
-    background: var(--ch-rejet_inverse);
-  }
-  .ch-art_49_3 {
-    background: var(--ch-art_49_3);
-  }
   .groupe {
     display: inline-flex;
     align-items: center;

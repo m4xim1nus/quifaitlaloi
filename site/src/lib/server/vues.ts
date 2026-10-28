@@ -1,7 +1,7 @@
 // Extraits de la base pour chaque page : ce que le navigateur reçoit, et rien de plus.
 import { base, scrutinDetaille } from './donnees';
 import { chemin, type Chemin } from '$lib/libelles';
-import type { Classe, Loi, TypeLoi } from '$lib/types';
+import type { Bloc, Classe, Loi, Position, TypeLoi } from '$lib/types';
 
 /** Ligne de la frise et de l'explorateur. */
 export interface LoiResume {
@@ -11,33 +11,86 @@ export interface LoiResume {
   initiative: Loi['initiative'];
   date_adoption: string;
   chemin: Chemin;
+  /** Dernier vote nominatif de l'AN en vote solennel. */
+  solennel: boolean;
   classe_an: Classe | null;
+  /** Position de chaque groupe au vote décisif de l'AN (sur un 49.3 : la censure). */
+  votes: Record<string, Position>;
+  /** Législature de ce vote décisif (16 pour une lecture tenue avant la dissolution). */
+  leg_an: number | null;
+  /** Groupes hors socle décisifs par leur abstention. */
+  pivots_abst_hors_socle: string[];
   pivots: string[];
   pivots_abstention: string[];
   contournement: boolean;
   delai_expire: boolean;
   procedure_acceleree: boolean;
   n_lectures: number;
+  fin_navette: FinNavette;
 }
 
 export function resumes(): LoiResume[] {
-  return base()
-    .lois.map((l) => ({
-      id: l.id,
-      titre_court: l.titre_court,
-      type: l.type,
-      initiative: l.initiative,
-      date_adoption: l.date_adoption,
-      chemin: chemin(l),
-      classe_an: l.classe_an,
-      pivots: l.pivots_hors_socle_an,
-      pivots_abstention: l.pivots_abstention_an,
-      contournement: l.contournement,
-      delai_expire: l.a_delai_expire,
-      procedure_acceleree: l.procedure_acceleree,
-      n_lectures: l.n_lectures
-    }))
+  const b = base();
+  const socle = (leg: number) => b.meta.referentiels.blocs.socle[String(leg)]?.blocs ?? [];
+  return b.lois
+    .map((l) => {
+      const positions = (l.scrutin_an && b.positions.get(l.scrutin_an)) || [];
+      const blocDe = new Map(positions.map((p) => [p.sigle, p.bloc]));
+      const leg = (l.scrutin_an && b.scrutins.get(l.scrutin_an)?.legislature) || null;
+      return {
+        id: l.id,
+        titre_court: l.titre_court,
+        type: l.type,
+        initiative: l.initiative,
+        date_adoption: l.date_adoption,
+        chemin: chemin(l),
+        solennel: l.mode_an === 'SCRUTIN_SOLENNEL',
+        classe_an: l.classe_an,
+        votes: Object.fromEntries(positions.map((p) => [p.sigle, p.position])),
+        leg_an: leg,
+        pivots_abst_hors_socle: l.pivots_abstention_an.filter(
+          (g) => !socle(leg ?? l.legislature).includes(blocDe.get(g) as Bloc)
+        ),
+        pivots: l.pivots_hors_socle_an,
+        pivots_abstention: l.pivots_abstention_an,
+        contournement: l.contournement,
+        delai_expire: l.a_delai_expire,
+        procedure_acceleree: l.procedure_acceleree,
+        n_lectures: l.n_lectures,
+        fin_navette: finNavette(l.id)
+      };
+    })
     .sort((a, b) => a.date_adoption.localeCompare(b.date_adoption) || a.id.localeCompare(b.id));
+}
+
+/** Comment la navette s'est conclue : lecture définitive à l'AN, texte de CMP, ou vote conforme. */
+export type FinNavette = 'definitive' | 'cmp' | 'conforme';
+
+function finNavette(id: string): FinNavette {
+  const types = new Set(
+    base()
+      .lectures.filter((l) => l.loi_id === id)
+      .map((l) => l.type_lecture)
+  );
+  return types.has('definitive') ? 'definitive' : types.has('cmp') ? 'cmp' : 'conforme';
+}
+
+export interface GroupeAffiche {
+  sigle: string;
+  nom: string;
+  bloc: Bloc;
+  couleur: string | null;
+}
+
+/** Groupes de l'AN sous la XVIIe, de la gauche vers la droite (ordre des blocs, puis blocs.yaml). */
+export function groupesXVII(): GroupeAffiche[] {
+  const b = base();
+  const ordre = b.meta.referentiels.blocs.blocs;
+  return [...b.groupes.values()]
+    .filter((g) => g.chambre === 'AN' && g.legislature === 17)
+    .map((g, i) => ({ g, i }))
+    .sort((x, y) => ordre[x.g.bloc].ordre - ordre[y.g.bloc].ordre || x.i - y.i)
+    .map(({ g }) => ({ sigle: g.sigle, nom: g.nom, bloc: g.bloc, couleur: g.couleur }));
 }
 
 export interface Periode {

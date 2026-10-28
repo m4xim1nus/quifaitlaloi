@@ -59,8 +59,7 @@
   --focus: #1c5cab;
 
   /* Chemins */
-  --ch-solennel: #1c5cab;
-  --ch-ordinaire: #6da7ec;
+  --ch-nominatif: #1c5cab;
   --ch-sans_scrutin: #b4b2aa;
   --ch-rejet_inverse: #c2417c;
   --ch-art_49_3: #eb6834;
@@ -99,8 +98,7 @@
     --lien: #86b6ef;
     --focus: #86b6ef;
 
-    --ch-solennel: #3987e5;
-    --ch-ordinaire: #1c5cab;
+    --ch-nominatif: #3987e5;
     --ch-sans_scrutin: #5c5f63;
     --ch-rejet_inverse: #c85aa8;
     --ch-art_49_3: #d95926;
@@ -204,6 +202,7 @@ table {
 .defile {
   overflow-x: auto;
   min-width: 0;
+  position: relative;
 }
 .visuellement-cache {
   position: absolute;
@@ -212,6 +211,29 @@ table {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* Pastilles de catégorie (légendes, étiquettes, tableaux). */
+.pastille {
+  display: inline-block;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+.ch-nominatif {
+  background: var(--ch-nominatif);
+}
+.ch-rejet_inverse {
+  background: var(--ch-rejet_inverse);
+}
+.ch-art_49_3 {
+  background: var(--ch-art_49_3);
+}
+.ch-sans_scrutin {
+  background: var(--papier);
+  box-shadow: inset 0 0 0 1.5px var(--ardoise);
 }
 
 /* « Sans vote nominatif » : absence d'information, un carré vide, jamais un aplat. */

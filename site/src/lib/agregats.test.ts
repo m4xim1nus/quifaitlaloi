@@ -8,6 +8,7 @@ import {
   filtrer,
   parChemin,
   periodeDe,
+  votesParGroupe,
   type LoiAgregeable
 } from './agregats';
 import { chemin } from './libelles';
@@ -52,6 +53,9 @@ describe('agrégats (données réelles)', () => {
       expect(c.art_49_3.length).toBe(somme('art_49_3'));
       expect(c.rejet_inverse.length).toBe(somme('rejet_inverse'));
       expect(c.art_49_3.length + c.rejet_inverse.length).toBe(somme('contournement'));
+      expect(c.nominatif.length + c.sans_scrutin.length + somme('contournement')).toBe(
+        somme('lois')
+      );
       expect(filtrer(lois, conv).length).toBe(somme('lois'));
     }
   });
@@ -67,5 +71,22 @@ describe('agrégats (données réelles)', () => {
       const n = r.classe === 'main_levee' ? p.sansScrutin : p.comptes[r.classe as Classe];
       expect(n, `${r.cle} ${r.classe}`).toBe(r.lois);
     }
+  });
+});
+
+describe('votes par groupe', () => {
+  it('compte les positions, hors votes de la XVIe', () => {
+    const r = votesParGroupe(
+      [
+        { votes: { RN: 'pour', SOC: 'contre' }, leg_an: 17 },
+        { votes: { RN: 'pas_censure', SOC: 'pas_censure' }, leg_an: 17 },
+        { votes: { SOC: 'pour' }, leg_an: 16 }
+      ],
+      ['SOC', 'RN', 'UDR']
+    );
+    expect(r.map((g) => [g.sigle, g.n, g.comptes.pour, g.comptes.pas_censure])).toEqual([
+      ['SOC', 2, 0, 1],
+      ['RN', 2, 1, 1]
+    ]);
   });
 });

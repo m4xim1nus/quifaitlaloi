@@ -281,6 +281,10 @@ choix propres sont décrits dans `docs/CONCEPTION.md` :
   `site/src/lib/libelles.ts`.
 - **Chemin d'une loi** : une seule catégorie par loi, le 49.3 puis le rejet
   par les partisans l'emportant sur le mode de la dernière lecture AN.
+  `SCRUTIN_SOLENNEL` et `SCRUTIN_ORDINAIRE` y sont réunis en « vote
+  nominatif ».
+- **Fin de navette** : lecture définitive s'il y en a une, sinon texte de
+  CMP s'il y en a un, sinon vote conforme.
 - **Titre court** (`lois.titre_court`) : le titre officiel de la loi sans
   « Loi visant à… », coupé de préférence à une virgule, sans paraphrase
   (`qfl/texte.py:titre_court`). Exceptions (budgets, nom d'usage en second,

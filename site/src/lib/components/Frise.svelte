@@ -4,6 +4,7 @@
   import { CHEMINS, CONTOURNEMENTS, JALON, LIBELLE_CHEMIN, type Chemin } from '$lib/libelles';
   import { dateLongue, moisAnnee } from '$lib/format';
   import { empiler, lignesEtiquettes, moisEntre, positionDate } from '$lib/frise';
+  import { dansPlage, type Plage } from '$lib/plage';
   import type { LoiResume } from '$lib/server/vues';
 
   interface Props {
@@ -11,8 +12,11 @@
     debut: string;
     fin: string;
     jalons: { code: string; debut: string }[];
+    /** Période retenue : les lois hors plage sont atténuées. */
+    plage?: Plage;
   }
-  let { lois, debut, fin, jalons }: Props = $props();
+  let { lois, debut, fin, jalons, plage }: Props = $props();
+  const horsPlage = (date: string) => !!plage && !dansPlage(date, plage);
 
   let largeur = $state(1100);
   let survol = $state<{ loi: LoiResume; x: number; y: number } | null>(null);
@@ -22,7 +26,12 @@
   const marques = $derived(empiler(lois, mois));
   const parMois = $derived(mois.map((m) => marques.filter((x) => x.colonne === m.index).length));
   const comptes = $derived(
-    Object.fromEntries(CHEMINS.map((c) => [c, lois.filter((l) => l.chemin === c).length]))
+    Object.fromEntries(
+      CHEMINS.map((c) => [
+        c,
+        lois.filter((l) => l.chemin === c && !horsPlage(l.date_adoption)).length
+      ])
+    )
   );
   const vertical = $derived(largeur < 640);
 
@@ -87,7 +96,7 @@
           class:eteint={focus !== null && focus !== c}
           onclick={() => (focus = focus === c ? null : c)}
         >
-          <span class="pastille {c}" class:vide={c === 'sans_scrutin'}></span>
+          <span class="pastille ch-{c}"></span>
           {LIBELLE_CHEMIN[c]}
           <span class="nombre-legende chiffres">{comptes[c]}</span>
         </button>
@@ -120,14 +129,16 @@
           x2={p.x + carre / 2}
           y1={yt + 4}
           y2={p.y - 1}
-          class:eteint={focus !== null && focus !== e.m.loi.chemin}
+          class:eteint={(focus !== null && focus !== e.m.loi.chemin) ||
+            horsPlage(e.m.loi.date_adoption)}
         />
         <a href="/lois/{e.m.loi.id}">
           <text
             class="etiquette"
             x={p.x + carre / 2 - 3}
             y={yt}
-            class:eteint={focus !== null && focus !== e.m.loi.chemin}>{e.m.loi.titre_court}</text
+            class:eteint={(focus !== null && focus !== e.m.loi.chemin) ||
+              horsPlage(e.m.loi.date_adoption)}>{e.m.loi.titre_court}</text
           >
         </a>
       {/each}
@@ -146,7 +157,8 @@
         >
           <rect
             class="carre {m.loi.chemin}"
-            class:eteint={focus !== null && focus !== m.loi.chemin}
+            class:eteint={(focus !== null && focus !== m.loi.chemin) ||
+              horsPlage(m.loi.date_adoption)}
             class:actif={survol?.loi.id === m.loi.id}
             x={p.x}
             y={p.y}
@@ -192,7 +204,8 @@
         >
           <rect
             class="carre {m.loi.chemin}"
-            class:eteint={focus !== null && focus !== m.loi.chemin}
+            class:eteint={(focus !== null && focus !== m.loi.chemin) ||
+              horsPlage(m.loi.date_adoption)}
             x={p.x}
             y={p.y}
             width={carreV}
@@ -269,42 +282,19 @@
   .nombre-legende {
     color: var(--ardoise);
   }
-  .pastille {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    display: inline-block;
+  .carre.nominatif {
+    fill: var(--ch-nominatif);
   }
-  .pastille.solennel,
-  .carre.solennel {
-    background: var(--ch-solennel);
-    fill: var(--ch-solennel);
-  }
-  .pastille.ordinaire,
-  .carre.ordinaire {
-    background: var(--ch-ordinaire);
-    fill: var(--ch-ordinaire);
-  }
-  .pastille.rejet_inverse,
   .carre.rejet_inverse {
-    background: var(--ch-rejet_inverse);
     fill: var(--ch-rejet_inverse);
   }
-  .pastille.art_49_3,
   .carre.art_49_3 {
-    background: var(--ch-art_49_3);
     fill: var(--ch-art_49_3);
   }
   .carre.sans_scrutin {
     fill: var(--papier);
     stroke: var(--ardoise);
     stroke-width: 1.5;
-  }
-  /* Contour des teintes claires, sous 3:1 sur le papier (WCAG 1.4.11). */
-  .carre.ordinaire {
-    stroke: var(--ch-solennel);
-    stroke-width: 1;
-    stroke-opacity: 0.5;
   }
   .carre {
     transition: opacity 0.15s;

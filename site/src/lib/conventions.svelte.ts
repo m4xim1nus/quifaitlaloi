@@ -1,18 +1,22 @@
-// Interrupteur global « avec ou sans conventions » (docs/CONCEPTION.md §3), porté par l'URL
-// (?conventions=1). Lu seulement dans le navigateur : l'URL n'existe pas au prérendu.
+// Réglages de l'accueil portés par l'URL : ?conventions=1 (accords internationaux) et
+// ?du=…&au=… (période). Lus seulement dans le navigateur : l'URL n'existe pas au prérendu.
 import { browser } from '$app/environment';
 import { replaceState } from '$app/navigation';
 import { page } from '$app/state';
+import { ecrirePlage, lirePlage, type Plage } from './plage';
 
-export function lireConventions(): boolean {
-  return browser && page.url.searchParams.get('conventions') === '1';
+export function lireReglages(complete: Plage): { conventions: boolean; plage: Plage } {
+  if (!browser) return { conventions: false, plage: complete };
+  const p = page.url.searchParams;
+  return { conventions: p.get('conventions') === '1', plage: lirePlage(p, complete) };
 }
 
 /** Met l'URL à jour si besoin. À n'appeler qu'après l'hydratation (le routeur doit être prêt). */
-export function ecrireConventions(valeur: boolean) {
-  if (!browser || valeur === lireConventions()) return;
+export function ecrireReglages(conventions: boolean, plage: Plage, complete: Plage) {
+  if (!browser) return;
   const url = new URL(page.url);
-  if (valeur) url.searchParams.set('conventions', '1');
+  if (conventions) url.searchParams.set('conventions', '1');
   else url.searchParams.delete('conventions');
-  replaceState(url, page.state);
+  ecrirePlage(url.searchParams, plage, complete);
+  if (url.search !== page.url.search) replaceState(url, page.state);
 }

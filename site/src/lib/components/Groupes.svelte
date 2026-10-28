@@ -121,6 +121,11 @@
     width: 32%;
     min-width: 120px;
   }
+  @media (max-width: 640px) {
+    .barre-col {
+      display: none;
+    }
+  }
   .barre {
     display: flex;
     height: 10px;

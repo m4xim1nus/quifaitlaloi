@@ -33,3 +33,6 @@ File d'attente brute, non ordonnée. Une ligne par item :
 - [ ] Poids des fiches : ≈ 150 ko de HTML (deux hémicycles en SVG inline, 25 ko gzip) ; à surveiller avec les baselines (claude, 2026-10-28)
 - [ ] Fiche : proposer un repli de l'hémicycle en barre sur petit écran si la recette le demande (claude, 2026-10-28)
 - [ ] Méthodo : compter le « décisif à deux » (RN + PS sur le budget 2025) une fois la définition tranchée, cf. item [creuser] ci-dessus (claude, 2026-10-28)
+- [→Textes en cours] Présomption de légitime défense des forces de l'ordre : adoptée à l'AN le 07/07/2026, en attente au Sénat ; question de Max à la lecture du site (user:moi, 2026-10-28)
+- [→Baselines] Préréglages de période par législature (XVe, XVIe, XVIIe) dans les réglages de l'accueil, et frise allongée (user:moi, 2026-10-28)
+- [ ] Explorateur : période libre (du/au) comme sur l'accueil, à la place du menu des trois périodes (claude, 2026-10-28)

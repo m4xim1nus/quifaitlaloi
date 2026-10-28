@@ -11,8 +11,8 @@ describe('frise', () => {
     const e = empiler(
       [
         { id: 'a', date_adoption: '2025-02-14', chemin: 'art_49_3' as const },
-        { id: 'b', date_adoption: '2025-02-20', chemin: 'solennel' as const },
-        { id: 'c', date_adoption: '2025-02-02', chemin: 'ordinaire' as const }
+        { id: 'b', date_adoption: '2025-02-20', chemin: 'nominatif' as const },
+        { id: 'c', date_adoption: '2025-02-02', chemin: 'sans_scrutin' as const }
       ],
       m
     );

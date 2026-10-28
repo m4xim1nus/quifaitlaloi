@@ -232,3 +232,46 @@ Relecteur indépendant (sous-agent), 28/10/2026. Tous appliqués :
 **Reste à décider par Max** (choix politiques, CLAUDE.md) : dater la
 sortie de LR du socle (refus de participer au gouvernement Lecornu II,
 octobre 2025) ; la page Méthodologie l'affiche comme limite en attendant.
+
+## 8. Retours de Max (28/10/2026, première lecture)
+
+Tous appliqués ; ils priment sur les sections ci-dessus quand elles
+divergent.
+
+- **Chemins** : « vote solennel » et « scrutin ordinaire » sont réunis en
+  **vote nominatif** (le solennel est un vote nominatif ; la distinction
+  troublait plus qu'elle n'éclairait). Quatre chemins : vote nominatif,
+  sans vote nominatif, rejet par ses partisans, 49.3. La carte « vote
+  nominatif » donne le nombre de votes solennels ; les fiches gardent
+  « vote nominatif solennel » / « ordinaire ».
+- **Frise et chemins dans un même bloc** (« Comment les lois passent-elles
+  à l'Assemblée ? »), avec la phrase-réponse au-dessus. Les phrases sur
+  les coalitions et les groupes décisifs ouvrent leur propre section, à
+  côté du graphique qui les montre.
+- **Navette** : décompte des lois conclues par un vote conforme, un texte
+  de CMP ou une lecture définitive (62 / 48 / 4 hors accords), pour qu'on
+  ne croie pas que la CMP n'existe qu'avec le rejet par les partisans.
+- **Période globale** (`Reglages`, `lib/plage.ts`) : préréglages (toute la
+  période, les trois périodes charnières) et curseur à deux poignées au
+  mois, collés en haut de l'écran ; tout l'accueil suit, état dans l'URL
+  (`?du=…&au=…`). La frise estompe les lois hors période. Prévu pour les
+  baselines : chaque législature deviendra un préréglage et la frise
+  s'allongera, sans autre changement d'interface.
+- **« Avec quelles voix ? »** en trois vues au lieu d'une matrice
+  période × coalition :
+  1. *Les coalitions* : une barre de proportions, puis une carte par
+     coalition avec ses lois les plus récentes et un lien vers
+     l'explorateur filtré ;
+  2. *Comment chaque groupe a voté* : une barre par groupe (de la gauche à
+     la droite), découpée selon sa position au vote décisif de chaque loi ;
+  3. *D'une période à l'autre* : une barre à 100 % par période, effectif
+     affiché (affichée si la période choisie en couvre plusieurs).
+- **Groupes décisifs** : matrice lois × groupes (disque : décisif par son
+  vote ; cercle : par son abstention), qui montre les cumuls (SOC et
+  LFI-NFP sur les municipales, SOC et LIOT sur la Sécurité sociale 2026).
+  Sur téléphone, une liste par loi.
+- Questions factuelles : la réforme des retraites (2023) et la présomption
+  de légitime défense des forces de l'ordre (adoptée à l'AN le
+  07/07/2026, en attente au Sénat) sont hors périmètre : la première
+  avant juillet 2024 (baselines), la seconde pas encore promulguée
+  (cycle « Textes en cours »).

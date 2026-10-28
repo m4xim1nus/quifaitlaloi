@@ -58,3 +58,50 @@ export function pivots<T extends Pick<LoiAgregeable, 'pivots'>>(
     .map(([groupe, ls]) => ({ groupe, lois: ls }))
     .sort((a, b) => b.lois.length - a.lois.length || a.groupe.localeCompare(b.groupe));
 }
+
+/** Comptes par coalition (classes dans l'ordre d'affichage), plus les lois sans vote nominatif. */
+export function comptesCoalitions<T extends Pick<LoiAgregeable, 'classe_an'>>(lois: T[]) {
+  const parClasse = new Map<Classe, T[]>(CLASSES.map((c) => [c, []]));
+  const sans: T[] = [];
+  for (const l of lois) {
+    if (l.classe_an) parClasse.get(l.classe_an)!.push(l);
+    else sans.push(l);
+  }
+  return { parClasse, sans };
+}
+
+export type Vote =
+  'pour' | 'abstention' | 'contre' | 'partage' | 'absent' | 'pas_censure' | 'censure';
+export const VOTES: Vote[] = [
+  'pour',
+  'pas_censure',
+  'abstention',
+  'partage',
+  'contre',
+  'censure',
+  'absent'
+];
+
+/**
+ * Votes de chaque groupe sur les votes décisifs de la XVIIe : pour chaque sigle, le nombre de
+ * lois par position. Les votes décisifs tenus sous la XVIe sont écartés (autres groupes).
+ */
+export function votesParGroupe(
+  lois: { votes: Record<string, string>; leg_an: number | null }[],
+  sigles: string[]
+) {
+  return sigles
+    .map((sigle) => {
+      const comptes = Object.fromEntries(VOTES.map((v) => [v, 0])) as Record<Vote, number>;
+      let n = 0;
+      for (const l of lois) {
+        if (l.leg_an !== 17) continue;
+        const v = l.votes[sigle] as Vote | undefined;
+        if (!v) continue;
+        comptes[v]++;
+        n++;
+      }
+      return { sigle, comptes, n };
+    })
+    .filter((g) => g.n > 0);
+}

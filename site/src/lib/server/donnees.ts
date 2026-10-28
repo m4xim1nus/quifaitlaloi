@@ -83,6 +83,7 @@ function scrutin(r: Ligne): Scrutin {
   return {
     id: r.id!,
     chambre: r.chambre as Scrutin['chambre'],
+    legislature: num(r.legislature),
     numero: Number(r.numero),
     date: r.date!,
     type_vote: r.type_vote as Scrutin['type_vote'],

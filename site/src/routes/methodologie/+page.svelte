@@ -404,25 +404,6 @@
     margin: 0 0 0 20px;
     color: var(--ardoise);
   }
-  .pastille {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    display: inline-block;
-    flex: none;
-  }
-  .ch-solennel {
-    background: var(--ch-solennel);
-  }
-  .ch-ordinaire {
-    background: var(--ch-ordinaire);
-  }
-  .ch-rejet_inverse {
-    background: var(--ch-rejet_inverse);
-  }
-  .ch-art_49_3 {
-    background: var(--ch-art_49_3);
-  }
   .encadre {
     border-left: 3px solid var(--encre);
     padding: 4px 0 4px 14px;

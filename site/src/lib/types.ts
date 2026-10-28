@@ -79,6 +79,8 @@ export interface Lecture {
 export interface Scrutin {
   id: string;
   chambre: Chambre;
+  /** AN seulement (16 ou 17) ; null au Sénat. */
+  legislature: number | null;
   numero: number;
   date: string;
   type_vote: 'SPS' | 'SPO' | 'SCR' | 'MOC';

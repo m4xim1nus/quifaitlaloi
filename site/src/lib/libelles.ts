@@ -4,39 +4,36 @@ import type { Bloc, Classe, Loi, ModeAdoption, Position, TypeLecture, TypeLoi } 
 
 /**
  * Chemin d'une loi à l'Assemblée, une seule catégorie par loi : un contournement l'emporte sur
- * le mode de la dernière lecture AN (le 49.3 d'abord, puis le rejet inversé).
+ * le mode de la dernière lecture AN (le 49.3 d'abord, puis le rejet par les partisans). Vote
+ * solennel et scrutin ordinaire sont réunis en « vote nominatif » ; la distinction reste sur
+ * les fiches (LIBELLE_MODE).
  */
-export type Chemin = 'solennel' | 'ordinaire' | 'sans_scrutin' | 'rejet_inverse' | 'art_49_3';
+export type Chemin = 'nominatif' | 'sans_scrutin' | 'rejet_inverse' | 'art_49_3';
 
-export const CHEMINS: Chemin[] = [
-  'solennel',
-  'ordinaire',
-  'sans_scrutin',
-  'rejet_inverse',
-  'art_49_3'
-];
+export const CHEMINS: Chemin[] = ['nominatif', 'sans_scrutin', 'rejet_inverse', 'art_49_3'];
 
 export function chemin(loi: Pick<Loi, 'a_49_3' | 'a_rejet_inverse' | 'mode_an'>): Chemin {
   if (loi.a_49_3) return 'art_49_3';
   if (loi.a_rejet_inverse) return 'rejet_inverse';
-  if (loi.mode_an === 'SCRUTIN_SOLENNEL') return 'solennel';
-  if (loi.mode_an === 'SCRUTIN_ORDINAIRE' || loi.mode_an === 'SCRUTIN_PUBLIC') return 'ordinaire';
+  if (
+    loi.mode_an === 'SCRUTIN_SOLENNEL' ||
+    loi.mode_an === 'SCRUTIN_ORDINAIRE' ||
+    loi.mode_an === 'SCRUTIN_PUBLIC'
+  )
+    return 'nominatif';
   return 'sans_scrutin';
 }
 
 export const LIBELLE_CHEMIN: Record<Chemin, string> = {
-  solennel: 'Vote solennel',
-  ordinaire: 'Vote nominatif',
+  nominatif: 'Vote nominatif',
   sans_scrutin: 'Sans vote nominatif',
   rejet_inverse: 'Rejet par ses partisans',
   art_49_3: '49.3'
 };
 
 export const DEFINITION_CHEMIN: Record<Chemin, string> = {
-  solennel:
-    'Vote nominatif fixé à l’avance par la Conférence des présidents, en général le mardi après les questions au Gouvernement. Tous les députés sont appelés à voter (en personne ou par délégation) ; le résultat est publié nom par nom.',
-  ordinaire:
-    'Vote nominatif demandé en séance par le Gouvernement, la commission ou un président de groupe. Votent les députés présents ou ayant délégué leur vote ; le résultat est publié nom par nom.',
+  nominatif:
+    'Le vote de chaque député est publié, nom par nom. C’est soit un vote solennel, fixé à l’avance par la Conférence des présidents (en général le mardi après les questions au Gouvernement, tous les députés étant appelés à voter), soit un scrutin public ordinaire, demandé en séance par le Gouvernement, la commission ou un président de groupe.',
   sans_scrutin:
     'Vote à main levée (ou par assis et levé) : aucun décompte, ni nominatif ni chiffré, n’est publié. Cela ne veut pas dire que tout le monde était d’accord.',
   rejet_inverse:
@@ -49,8 +46,8 @@ export const DEFINITION_CHEMIN: Record<Chemin, string> = {
 export const CONTOURNEMENTS: Chemin[] = ['rejet_inverse', 'art_49_3'];
 
 export const LIBELLE_MODE: Record<ModeAdoption, string> = {
-  SCRUTIN_SOLENNEL: 'vote solennel',
-  SCRUTIN_ORDINAIRE: 'vote nominatif',
+  SCRUTIN_SOLENNEL: 'vote nominatif solennel',
+  SCRUTIN_ORDINAIRE: 'vote nominatif ordinaire',
   SCRUTIN_PUBLIC: 'vote nominatif',
   MAIN_LEVEE: 'sans vote nominatif',
   ART_49_3: '49.3',

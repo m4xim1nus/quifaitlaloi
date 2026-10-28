@@ -289,24 +289,6 @@
     font-weight: 700;
     font-size: 0.9375rem;
   }
-  .pastille {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    display: inline-block;
-  }
-  .ch-solennel {
-    background: var(--ch-solennel);
-  }
-  .ch-ordinaire {
-    background: var(--ch-ordinaire);
-  }
-  .ch-rejet_inverse {
-    background: var(--ch-rejet_inverse);
-  }
-  .ch-art_49_3 {
-    background: var(--ch-art_49_3);
-  }
   .phrases {
     display: grid;
     gap: 8px;
