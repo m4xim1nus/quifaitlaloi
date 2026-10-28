@@ -3,6 +3,38 @@
 Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 Les tags `v*` du dépôt suivent ces versions.
 
+## [1.2.0] — 2026-10-28
+
+Trois cycles menés en parallèle : **Coalitions**, **Fiches**, **Textes en
+cours**.
+
+### Ajouté
+
+- Page `/coalitions` : chronologie trimestrielle depuis 2017, avec qui le
+  socle l'emporte (un carré par loi, dates charnières) et quels groupes
+  hors socle ont été décisifs ; tableaux par période.
+- Page `/en-cours` et 126 fiches `/en-cours/[id]` : les textes de la XVIIe
+  votés au moins une fois en séance sans être promulgués, rangés par ce
+  qu'ils attendent, avec les votes de chaque lecture (coalitions du Sénat
+  comprises). Règle de périmètre fixe : retirés, rejetés, caducs et textes
+  inactifs depuis 12 mois écartés. Trois fichiers d'export (`en_cours*.csv`)
+  ; les chiffres des lois promulguées ne changent pas.
+- Six récits : budget 2025, narcotrafic, aide à mourir, report des
+  élections en Nouvelle-Calédonie, pouvoir d'achat 2022, passe vaccinal
+  (dix au total, tous relus).
+
+### Modifié
+
+- LR reste dans le socle sous toute la XVIIe, après Lecornu II comme avant :
+  ses votes suivent ceux d'Ensemble pour la République aussi souvent que
+  ceux d'Horizons. Une loi se lit avec le socle de la date de son vote.
+- Le groupe décisif reste individuel : pas de « décisif à plusieurs ».
+
+### Corrigé
+
+- Censure du budget 2025 : elle n'exigeait pas le RN **et** le PS ; le RN,
+  l'UDR et LIOT auraient suffi.
+
 ## [1.1.0] — 2026-10-28
 
 Cycle **Baselines** : les XVe et XVIe législatures, avec les mêmes règles,

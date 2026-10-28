@@ -45,7 +45,7 @@ législature, amorce des récits (zooms). Chiffres comparés :
 Arbitrages (blocs et socle de la XVe, Sénat, vote bloqué, récits) tranchés
 sur délégation de Max.
 
-## Cycles Coalitions, Fiches, Textes en cours (2026-10-28) — menés en parallèle
+## Cycles Coalitions, Fiches, Textes en cours ✅ (2026-10-28) — `v1.2.0`
 
 - **Coalitions** : page `/coalitions`, chronologie trimestrielle des
   coalitions et des groupes décisifs depuis 2017 (METHODO §16). Pas de
@@ -57,8 +57,7 @@ sur délégation de Max.
 - **Textes en cours** : page `/en-cours` et 126 fiches, textes votés au
   moins une fois sans être promulgués, règle de périmètre fixe (METHODO §17).
 
-Reste : relecture de Max, réponses aux questions de périmètre des textes
-en cours, puis tag `v1.2.0`.
+Menés en parallèle, relus par Max ; périmètre des textes en cours validé.
 
 ## Ensuite
 
