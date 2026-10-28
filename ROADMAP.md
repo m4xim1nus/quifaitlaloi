@@ -44,7 +44,13 @@ But : mise en ligne publique.
   couleur officielle des groupes AN.
 - [x] `build.sh`, CI GitHub Actions (pytest, svelte-check, vitest,
   prettier, build).
-- [ ] **Mise en ligne** : pousser `main` sur `m4xim1nus/quifaitlaloi`,
+- [x] **Relecture de Max en local** (28/10/2026), retours appliqués
+  (`docs/CONCEPTION.md` §8 à §14) : chemins réunis en « vote nominatif »,
+  bloc coalitions en rangées avec grille de présence, groupes décisifs en
+  rangées-filtres et tableau à points, thèmes du Sénat, barre de période
+  retirée, fiches allégées. Règle du groupe décisif changée par Max : le
+  basculement (`docs/METHODO.md` §10).
+- [ ] **Mise en ligne** (feu vert de Max le 28/10/2026) : pousser `main` sur `m4xim1nus/quifaitlaloi`,
   projet Cloudflare Pages relié au dépôt (commande `bash build.sh`, sortie
   `site/build`, `NODE_VERSION=22`), domaine
   `quifaitlaloi.technoperchoir.fr`.
