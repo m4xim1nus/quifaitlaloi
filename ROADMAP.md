@@ -50,10 +50,11 @@ But : mise en ligne publique.
   rangées-filtres et tableau à points, thèmes du Sénat, barre de période
   retirée, fiches allégées. Règle du groupe décisif changée par Max : le
   basculement (`docs/METHODO.md` §10).
-- [ ] **Mise en ligne** (feu vert de Max le 28/10/2026) : pousser `main` sur `m4xim1nus/quifaitlaloi`,
+- [x] **Mise en ligne** (28/10/2026) : `main` poussé sur `m4xim1nus/quifaitlaloi`,
   projet Cloudflare Pages relié au dépôt (commande `bash build.sh`, sortie
-  `site/build`, `NODE_VERSION=22`), domaine
-  `quifaitlaloi.technoperchoir.fr`.
+  `site/build`, `NODE_VERSION=22`), sur `quifaitlaloi.technoperchoir.fr`.
+  Attention : le dashboard propose d'abord un Worker, il faut passer par le
+  lien « Looking to deploy Pages? ».
 - [ ] **Recette de Max** sur téléphone, puis tag `v1.0.0` et
   `CHANGELOG.md`.
 
