@@ -368,6 +368,7 @@ groupes décisifs, avec un « avec … » peu lisible. Elle est remplacée par :
   autres rangées s'estompent ;
 - en dessous, le **tableau lois × groupes** (une ligne par loi, un disque
   par groupe décisif, un cercle par abstention décisive), avec date,
-  chemin et thèmes ; la colonne du groupe choisi est surlignée. Sans
-  filtre, les dix lois les plus récentes, puis « Voir les N lois ». Sur
-  téléphone, une liste par loi avec les groupes en pastilles.
+  chemin et thèmes ; la colonne du groupe choisi est surlignée. **Sans
+  groupe choisi, pas de liste** (une liste chronologique de 35 lois était
+  illisible) : une invitation à choisir un groupe, ou à afficher toutes
+  les lois. Sur téléphone, une liste par loi avec les groupes en pastilles.

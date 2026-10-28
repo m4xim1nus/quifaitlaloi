@@ -13,7 +13,6 @@
   }
   let { lois, groupes }: Props = $props();
 
-  const APERCU = 10;
   const estVote = (l: LoiResume, g: string) => l.pivots.includes(g);
   const estAbst = (l: LoiResume, g: string) =>
     !estVote(l, g) && l.pivots_abst_hors_socle.includes(g);
@@ -60,7 +59,8 @@
   let tout = $state(false);
   const choisi = $derived(colonnes.find((g) => g.sigle === choix) ?? null);
   const filtrees = $derived(choisi ? lignes.filter((l) => decisif(l, choisi.sigle)) : lignes);
-  const visibles = $derived(choisi || tout ? filtrees : filtrees.slice(0, APERCU));
+  // Sans groupe choisi, pas de liste par défaut : on la demande explicitement.
+  const montrer = $derived(choisi !== null || tout);
   const couleur = (g: GroupeAffiche) => g.couleur ?? 'var(--gris)';
 </script>
 
@@ -102,97 +102,105 @@
   </ul>
   <p class="legende petit secondaire">
     Carré plein&#8239;: décisif par son vote. Carré vide&#8239;: décisif par son abstention (s’il
-    avait voté contre, le texte tombait). Cliquer un groupe pour ne garder que ses lois.
+    avait voté contre, le texte tombait).
   </p>
 
-  <div class="titre-liste">
-    <h3>
-      {#if choisi}
-        Les {filtrees.length} lois où {choisi.sigle} a été décisif
-      {:else}
-        Les {lignes.length} lois avec au moins un groupe décisif hors socle
-      {/if}
-    </h3>
-    {#if choisi}
-      <button type="button" class="lien petit" onclick={() => (choix = null)}
-        >Revenir à tous les groupes</button
+  {#if !montrer}
+    <p class="invite">
+      Choisissez un groupe pour voir les lois où il a été décisif, ou
+      <button type="button" class="lien" onclick={() => (tout = true)}
+        >afficher les {lignes.length} lois</button
+      >.
+    </p>
+  {:else}
+    <div class="titre-liste">
+      <h3>
+        {#if choisi}
+          Les {filtrees.length} lois où {choisi.sigle} a été décisif
+        {:else}
+          Les {lignes.length} lois avec au moins un groupe décisif hors socle
+        {/if}
+      </h3>
+      <button
+        type="button"
+        class="lien petit"
+        onclick={() => {
+          choix = null;
+          tout = false;
+        }}>Fermer la liste</button
       >
-    {/if}
-  </div>
+    </div>
 
-  <div class="defile grand">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col" class="loi">Loi</th>
-          {#each colonnes as g (g.sigle)}
-            <th scope="col" class="col" class:actif={choix === g.sigle} title={g.nom}>{g.sigle}</th>
-          {/each}
-        </tr>
-      </thead>
-      <tbody>
-        {#each visibles as l (l.id)}
+    <div class="defile grand">
+      <table>
+        <thead>
           <tr>
-            <th scope="row" class="loi">
-              <span class="cellule-loi">
-                <span class="pastille ch-{l.chemin}" title={LIBELLE_CHEMIN[l.chemin]}></span>
-                <span class="texte">
-                  <a href="/lois/{l.id}">{l.titre_court}</a>
-                  <span class="meta petit">
-                    <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
-                    <Themes themes={l.themes} />
-                  </span>
-                </span>
-              </span>
-            </th>
+            <th scope="col" class="loi">Loi</th>
             {#each colonnes as g (g.sigle)}
-              <td class="col" class:actif={choix === g.sigle}>
-                {#if estVote(l, g.sigle)}
-                  <span class="disque" style:background={couleur(g)}
-                    ><span class="visuellement-cache">{g.sigle} décisif par son vote</span></span
-                  >
-                {:else if estAbst(l, g.sigle)}
-                  <span class="cercle" style:border-color={couleur(g)}
-                    ><span class="visuellement-cache">{g.sigle} décisif par son abstention</span
-                    ></span
-                  >
-                {/if}
-              </td>
+              <th scope="col" class="col" class:actif={choix === g.sigle} title={g.nom}
+                >{g.sigle}</th
+              >
             {/each}
           </tr>
-        {/each}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          {#each filtrees as l (l.id)}
+            <tr>
+              <th scope="row" class="loi">
+                <span class="cellule-loi">
+                  <span class="pastille ch-{l.chemin}" title={LIBELLE_CHEMIN[l.chemin]}></span>
+                  <span class="texte">
+                    <a href="/lois/{l.id}">{l.titre_court}</a>
+                    <span class="meta petit">
+                      <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
+                      <Themes themes={l.themes} />
+                    </span>
+                  </span>
+                </span>
+              </th>
+              {#each colonnes as g (g.sigle)}
+                <td class="col" class:actif={choix === g.sigle}>
+                  {#if estVote(l, g.sigle)}
+                    <span class="disque" style:background={couleur(g)}
+                      ><span class="visuellement-cache">{g.sigle} décisif par son vote</span></span
+                    >
+                  {:else if estAbst(l, g.sigle)}
+                    <span class="cercle" style:border-color={couleur(g)}
+                      ><span class="visuellement-cache">{g.sigle} décisif par son abstention</span
+                      ></span
+                    >
+                  {/if}
+                </td>
+              {/each}
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
 
-  <ul class="mobile">
-    {#each visibles as l (l.id)}
-      <li>
-        <span class="pastille ch-{l.chemin}" title={LIBELLE_CHEMIN[l.chemin]}></span>
-        <span class="texte">
-          <a href="/lois/{l.id}">{l.titre_court}</a>
-          <span class="meta petit">
-            <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
-            {#each colonnes.filter((g) => decisif(l, g.sigle)) as g (g.sigle)}
-              <span class="badge">
-                {#if estVote(l, g.sigle)}
-                  <span class="disque mini" style:background={couleur(g)}></span>
-                {:else}
-                  <span class="cercle mini" style:border-color={couleur(g)}></span>
-                {/if}
-                {g.sigle}
-              </span>
-            {/each}
+    <ul class="mobile">
+      {#each filtrees as l (l.id)}
+        <li>
+          <span class="pastille ch-{l.chemin}" title={LIBELLE_CHEMIN[l.chemin]}></span>
+          <span class="texte">
+            <a href="/lois/{l.id}">{l.titre_court}</a>
+            <span class="meta petit">
+              <span class="chiffres">{dateCourte(l.date_adoption).slice(3)}</span>
+              {#each colonnes.filter((g) => decisif(l, g.sigle)) as g (g.sigle)}
+                <span class="badge">
+                  {#if estVote(l, g.sigle)}
+                    <span class="disque mini" style:background={couleur(g)}></span>
+                  {:else}
+                    <span class="cercle mini" style:border-color={couleur(g)}></span>
+                  {/if}
+                  {g.sigle}
+                </span>
+              {/each}
+            </span>
           </span>
-        </span>
-      </li>
-    {/each}
-  </ul>
-
-  {#if !choisi && filtrees.length > APERCU}
-    <button type="button" class="lien plus" onclick={() => (tout = !tout)}>
-      {tout ? 'Afficher seulement les plus récentes' : `Voir les ${filtrees.length} lois`}
-    </button>
+        </li>
+      {/each}
+    </ul>
   {/if}
 {:else}
   <p class="secondaire">Aucun groupe hors socle n’a été décisif sur cette période.</p>
@@ -285,9 +293,9 @@
     text-decoration: underline;
     cursor: pointer;
   }
-  .plus {
-    margin-top: 10px;
-    font-weight: 700;
+  .invite {
+    margin-top: 16px;
+    color: var(--ardoise);
   }
   table {
     width: 100%;
