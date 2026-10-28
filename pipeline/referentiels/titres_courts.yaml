@@ -1,0 +1,19 @@
+# Titres courts d'affichage qui remplacent la règle automatique (qfl/texte.py:titre_court,
+# appliquée au titre officiel de la loi) : budgets, et noms d'usage courants, toujours après la
+# description tirée du titre officiel. Le titre officiel reste affiché sur la fiche de chaque
+# loi. Clé : identifiant de loi.
+
+"2025-127": "Budget de l’État pour 2025"
+"2026-103": "Budget de l’État pour 2026"
+"2025-199": "Budget de la Sécurité sociale pour 2025"
+"2025-1403": "Budget de la Sécurité sociale pour 2026"
+"2024-1167": "Loi de finances de fin de gestion pour 2024"
+"2025-1173": "Loi de finances de fin de gestion pour 2025"
+"2024-1188": "Loi spéciale de décembre 2024 (budget de l’État)"
+"2025-1316": "Loi spéciale de décembre 2025 (budget de l’État)"
+"2025-794": "Lever les contraintes à l’exercice du métier d’agriculteur (loi Duplomb)"
+"2024-1026": "Report des élections provinciales en Nouvelle-Calédonie (2024)"
+"2025-1055": "Report des élections provinciales en Nouvelle-Calédonie (2025)"
+"2026-410": "Corps électoral des élections provinciales en Nouvelle-Calédonie"
+"2025-443": "Harmoniser le mode de scrutin aux élections municipales (loi organique)"
+"2025-444": "Harmoniser le mode de scrutin aux élections municipales"

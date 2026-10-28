@@ -30,3 +30,29 @@ def test_suppression_article_unique():
     t = ("l'amendement n° 1 de M. Monnet et les amendements identiques suivants de suppression de l'article unique "
          "du projet de loi portant transposition de l'avenant n° 3 (première lecture).")
     assert objet_scrutin(t) == "suppression_article_unique"
+
+
+def test_titre_court():
+    from qfl.texte import titre_court
+    assert titre_court("Loi visant à sortir la France du piège du narcotrafic") == (
+        "Sortir la France du piège du narcotrafic")
+    assert titre_court("Loi relative au renforcement de la sûreté dans les transports") == (
+        "Renforcement de la sûreté dans les transports")
+    assert titre_court("Loi organique portant réforme du financement de l'audiovisuel public") == (
+        "Réforme du financement de l’audiovisuel public")
+    assert titre_court("Loi visant à endiguer la prolifération du frelon asiatique et à préserver la filière") == (
+        "Endiguer la prolifération du frelon asiatique et préserver la filière")
+    assert titre_court("Loi de simplification de la vie économique") == "Loi de simplification de la vie économique"
+    assert titre_court("Loi créant l’homicide routier") == "Loi créant l’homicide routier"
+    long = titre_court("Loi visant à harmoniser le mode de scrutin aux élections municipales afin de garantir "
+                       "la vitalité démocratique, la cohésion municipale et la parité")
+    assert long == ("Harmoniser le mode de scrutin aux élections municipales afin de garantir la vitalité "
+                    "démocratique…")
+    assert titre_court("Loi autorisant l’approbation de l’accord entre le Gouvernement de la République "
+                       "française et le Gouvernement de la République d’Indonésie relatif à la défense") == (
+        "Accord avec la République d’Indonésie relatif à la défense")
+    assert titre_court("Loi autorisant l’approbation de la convention d’extradition entre le Gouvernement "
+                       "de la République française et le Gouvernement du Royaume du Cambodge") == (
+        "Convention d’extradition avec le Royaume du Cambodge")
+    assert titre_court("Loi relative à l'organisation, à la gestion et au financement du sport professionnel") == (
+        "Organisation, la gestion et le financement du sport professionnel")

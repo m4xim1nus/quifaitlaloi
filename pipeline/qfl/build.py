@@ -29,10 +29,11 @@ def groupes(raw: Path) -> list[dict]:
             o = json.loads((extraits(raw, "an_amo") / f"json/organe/{ref}.json").read_text())["organe"]
             v = o.get("viMoDe") or {}
             out.append({"id": ref, "chambre": "AN", "legislature": leg, "sigle": g["sigle"], "nom": o.get("libelle"),
-                        "bloc": g["bloc"], "date_debut": v.get("dateDebut"), "date_fin": v.get("dateFin")})
+                        "bloc": g["bloc"], "date_debut": v.get("dateDebut"), "date_fin": v.get("dateFin"),
+                        "couleur": o.get("couleurAssociee")})  # couleur officielle AN (affichage)
     for code, g in b["senat"].items():
         out.append({"id": f"SN-{code}", "chambre": "SN", "legislature": None, "sigle": g["sigle"], "nom": g["nom"],
-                    "bloc": g["bloc"], "date_debut": None, "date_fin": None})
+                    "bloc": g["bloc"], "date_debut": None, "date_fin": None, "couleur": None})
     return out
 
 
@@ -195,7 +196,7 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     utiles = {l["scrutin_id"] for l in rows_lect if l["scrutin_id"]}
     utiles |= {e["scrutin_id"] for e in rows_evt if e["scrutin_id"]}
     utiles &= set(tous)
-    sig = {sid: votes.signature(tous[sid], pos[sid], sigle_de) for sid in utiles if sid in pos}
+    sig = {sid: votes.signature(tous[sid], pos[sid], sigle_de) for sid in sorted(utiles) if sid in pos}
     lois_res = [_resume_loi(loi, par_loi.get(loi["id"], []), sig) for loi in rows_lois]
     _log(f"   {len(lois_res)} lois ({sum(l['statut'] == 'adoptee' for l in lois_res)} en attente de promulgation), "
          f"{len(rows_lect)} lectures, {len(utiles)} scrutins utiles")

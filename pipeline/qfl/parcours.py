@@ -11,7 +11,7 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 from . import an, referentiels
-from .texte import cle_titre, norm, similarite
+from .texte import cle_titre, norm, similarite, titre_court
 
 DEBUT = "2024-07-18"  # début de la XVIIe législature
 DECISIFS = {"ensemble", "article_unique", "partie", "motion_rejet", "suppression_article_unique"}
@@ -384,6 +384,7 @@ def lois(dossiers: dict[str, dict], idx: Index, dosleg_lois: dict) -> tuple[list
             "statut": statut,
             "titre": titre,
             "titre_dossier": d["titreDossier"]["titre"],
+            "titre_court": referentiels.charger("titres_courts").get(loi_id) or titre_court(titre),
             "type": typ,
             "sous_type": sous_type,
             "initiative": _initiative(d),
