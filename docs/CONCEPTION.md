@@ -413,3 +413,23 @@ la méthode dans la méthodologie.
   lecture répétées. Chaque section garde un lien « Comment c'est compté ».
 - Ces textes datent des données du 28/10/2026 : à relire à chaque mise à
   jour (`BACKLOG.md`).
+
+## 17. Récits et zooms (amorce du cycle Fiches)
+
+Retour de Max : les fiches narratives doivent suivre l'écriture éditoriale,
+comme des zooms qui s'insèrent au bon moment du fil.
+
+- **Source** : un fichier `recits/<loi>.md` par texte, écrit à la main,
+  versionné. Frontmatter : `loi`, `titre`, `statut` (`brouillon` tant que
+  Max n'a pas relu, affiché « en cours de relecture »), `section`
+  (chemins | coalitions | decisifs), `accroche`, `chapo` ; puis une section
+  `## AAAA-MM-JJ` par étape. Markdown minimal (gras, italique, liens),
+  échappé avant mise en forme (`site/src/lib/markdown.ts`).
+- **Zoom** : sur la page de sa législature, le récit apparaît en encart
+  (titre, accroche, « Lire le récit ») dans la question `section`.
+- **Fiche** : le chapô remplace le résumé automatique ; les étapes du récit
+  s'intercalent à leur date dans le parcours, qui devient « Le récit ».
+- **`/recits`** : la liste, de la plus récente à la plus ancienne ; entrée
+  « Récits » dans la navigation.
+- Les faits des récits viennent des données (votes, dates) ou du contexte
+  public bien établi ; chaque chiffre se vérifie dans la base.

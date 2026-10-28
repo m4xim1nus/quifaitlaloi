@@ -7,11 +7,13 @@
   import VotesGroupes from './VotesGroupes.svelte';
   import Decisifs from './Decisifs.svelte';
   import Comment from './Comment.svelte';
+  import Zoom from './Zoom.svelte';
   import { filtrer, parChemin } from '$lib/agregats';
   import { CHEMINS, LIBELLE_CHEMIN } from '$lib/libelles';
   import { dateLongue } from '$lib/format';
   import type { Legislature } from '$lib/legislatures';
   import type { GroupeAffiche, LoiResume, Periode } from '$lib/server/vues';
+  import type { Zoom as ZoomT } from '$lib/server/recits';
 
   interface Props {
     leg: Legislature;
@@ -22,8 +24,11 @@
     conventions: boolean;
     /** Note sous les groupes décisifs (un cas d'école propre à la législature). */
     noteDecisifs?: Snippet;
+    /** Récits insérés dans le fil, chacun à sa question. */
+    zooms?: ZoomT[];
   }
-  let { leg, toutes, groupes, periodes, conventions, noteDecisifs }: Props = $props();
+  let { leg, toutes, groupes, periodes, conventions, noteDecisifs, zooms = [] }: Props = $props();
+  const zoomsDe = (section: ZoomT['section']) => zooms.filter((z) => z.section === section);
 
   const debut = $derived(leg.debut);
   const fin = $derived(leg.fin ?? toutes.at(-1)!.date_adoption);
@@ -93,6 +98,7 @@
       {/each}
     </ul>
   {/if}
+  {#each zoomsDe('chemins') as z (z.loi)}<Zoom zoom={z} />{/each}
 </section>
 
 <section id="coalitions">
@@ -101,6 +107,8 @@
 
   <h3>Les coalitions</h3>
   <Composition {lois} {conventions} legislature={leg.num} resumes={leg.coalitions} />
+
+  {#each zoomsDe('coalitions') as z (z.loi)}<Zoom zoom={z} />{/each}
 
   <h3>Comment chaque groupe a voté</h3>
   <p class="colonne petit secondaire">
@@ -119,6 +127,7 @@
   </p>
   <Decisifs {lois} {groupes} />
   {@render noteDecisifs?.()}
+  {#each zoomsDe('decisifs') as z (z.loi)}<Zoom zoom={z} />{/each}
 </section>
 
 <style>

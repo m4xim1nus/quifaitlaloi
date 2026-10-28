@@ -68,6 +68,15 @@
   <header class="tete">
     <h1>{loi.titre_court}</h1>
     {#if loi.titre_court !== loi.titre}<p class="officiel secondaire">{loi.titre}</p>{/if}
+    {#if data.recit}
+      <div class="chapo-recit">
+        {#if data.recit.statut === 'brouillon'}<span class="brouillon petit"
+            >Récit en cours de relecture</span
+          >{/if}
+        <!-- texte échappé par lib/markdown avant mise en forme -->
+        {@html data.recit.chapo}
+      </div>
+    {/if}
     <dl class="faits petit">
       <div>
         <dt>Type</dt>
@@ -122,14 +131,20 @@
       {/if}
       <Comment ancre="chemins" />
     </div>
-    <div class="phrases colonne">
-      {#each resume as p (p)}<p>{p}</p>{/each}
-    </div>
+    {#if !data.recit}
+      <div class="phrases colonne">
+        {#each resume as p (p)}<p>{p}</p>{/each}
+      </div>
+    {/if}
   </section>
 
   <section>
-    <h2>Le parcours</h2>
-    <Parcours lectures={data.lectures} evenements={data.evenements} />
+    <h2>{data.recit ? 'Le récit' : 'Le parcours'}</h2>
+    <Parcours
+      lectures={data.lectures}
+      evenements={data.evenements}
+      recit={data.recit?.etapes ?? []}
+    />
   </section>
 
   {#each votes as v (v.s.id)}
@@ -252,6 +267,23 @@
   h1 {
     font-size: clamp(2rem, 5vw, 3.25rem);
     max-width: 22ch;
+  }
+  .chapo-recit {
+    font-family: var(--serif);
+    font-size: 1.1875rem;
+    line-height: 1.5;
+    max-width: 62ch;
+  }
+  .chapo-recit :global(p) {
+    margin: 8px 0 0;
+  }
+  .brouillon {
+    font-family: var(--sans);
+    display: inline-block;
+    padding: 1px 8px;
+    border: 1px dashed var(--ardoise);
+    border-radius: var(--rayon);
+    color: var(--ardoise);
   }
   .officiel {
     max-width: var(--colonne);

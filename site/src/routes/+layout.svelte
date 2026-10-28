@@ -8,6 +8,7 @@
 
   const LIENS = [
     { href: '/comparer', libelle: 'Comparer' },
+    { href: '/recits', libelle: 'Récits' },
     { href: '/lois', libelle: 'Les lois' },
     { href: '/methodologie', libelle: 'Méthodologie' },
     { href: '/donnees', libelle: 'Données' }

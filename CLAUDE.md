@@ -82,6 +82,7 @@ pipeline/qfl/        package Python (CLI download / build / check)
 pipeline/explo/      scripts jetables (spike, graphiques de relecture)
 pipeline/referentiels/  YAML maintenus à la main (codes_actes, blocs, flags, périodes, titres courts)
 pipeline/tests/      pytest, dont les textes témoins
+recits/              récits des textes emblématiques (Markdown, un par loi), zooms du site
 site/                SvelteKit adapter-static + d3 : lit data/export/ au prérendu
 build.sh             build Cloudflare Pages (site seulement, aucun téléchargement)
 ```
@@ -90,8 +91,9 @@ Site (`site/src/`) : `lib/server/` lit les CSV de `data/export/` au
 prérendu (rien n'est envoyé au navigateur hors ce que chaque `load`
 extrait) ; fonctions pures testées dans `lib/*.ts` (libellés et
 définitions, récit, agrégats, frise, hémicycle, majorité, filtres) ;
-composants dans `lib/components/`. Routes : `/`, `/lois`, `/lois/[id]`,
-`/methodologie`, `/donnees`, toutes prérendues. `scripts/donnees.mjs`
+composants dans `lib/components/`. Routes : `/` (XVIIe), `/legislature/[num]` (XVe, XVIe),
+`/comparer`, `/recits`, `/lois`, `/lois/[id]`, `/methodologie`, `/donnees`,
+toutes prérendues. Textes éditoriaux par législature : `lib/legislatures.ts`. `scripts/donnees.mjs`
 copie l'instantané dans `static/donnees/` pour le téléchargement.
 
 ## Suivi

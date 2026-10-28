@@ -53,7 +53,14 @@
   </div>
 </section>
 
-<Legislature {leg} {toutes} groupes={data.groupes} periodes={data.periodes} {conventions}>
+<Legislature
+  {leg}
+  {toutes}
+  groupes={data.groupes}
+  periodes={data.periodes}
+  {conventions}
+  zooms={data.zooms}
+>
   {#snippet noteDecisifs()}
     <p class="petit secondaire colonne">
       Le calcul se fait groupe par groupe. Sur le budget 2025, ni le RN ni le PS n’étaient décisifs

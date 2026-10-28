@@ -47,10 +47,10 @@ export const LEGISLATURES: Legislature[] = [
     contexte:
       'Élue en juin 2017 après la victoire d’Emmanuel Macron, l’Assemblée donne à La République en marche seule la majorité absolue, élargie au MoDem.',
     chapo:
-      'Elle adopte une cinquantaine de lois par an sans jamais forcer le vote. La majorité présidentielle n’a besoin de personne : elle s’allie quand elle le veut, et vote seule ses textes les plus contestés.',
+      'Elle adopte une cinquantaine de lois par an sans jamais forcer le vote. La majorité présidentielle n’a besoin de personne : elle s’allie quand elle le veut, et vote seule les textes que toutes les oppositions rejettent.',
     messages: {
       chemins:
-        'Toutes les lois sont votées ; un tiers à main levée, faute de demande de scrutin public quand l’issue ne fait pas de doute. Le seul 49.3 de la législature, sur la réforme des retraites de 2020, porte sur un texte abandonné ensuite.',
+        'Toutes les lois sont votées ; un tiers à main levée, sans scrutin public, y compris quelques textes disputés. Le seul 49.3 de la législature, sur la réforme des retraites de 2020, porte sur un texte abandonné ensuite.',
       coalitions:
         'Plus d’un quart des lois ne rencontre l’opposition d’aucun bloc. Pour le reste, la majorité choisit ses appuis : LR sur l’ordre public, la crise sanitaire ou la réforme ferroviaire, une partie de la gauche sur la vie politique ; elle vote seule la lutte contre les fausses nouvelles ou contre la haine en ligne.',
       decisifs:
@@ -62,7 +62,7 @@ export const LEGISLATURES: Legislature[] = [
       socle_droite:
         'L’ordre et l’urgence : ordonnances sur le droit du travail, nouveau pacte ferroviaire, maintien de l’ordre dans les manifestations, état d’urgence sanitaire, justice pénale des mineurs.',
       socle_gauche:
-        'Moins souvent : la confiance dans la vie politique, la réforme du Conseil économique, social et environnemental, un budget rectificatif de crise en 2020.',
+        'Presque aussi souvent : la confiance dans la vie politique, la réforme du Conseil économique, social et environnemental, un budget rectificatif de crise en 2020.',
       socle_seul:
         'Les textes que la majorité porte seule : manipulation de l’information, contenus haineux en ligne, dette sociale, plusieurs budgets de la Sécurité sociale, prorogations de l’état d’urgence sanitaire.',
       aucune:
@@ -85,11 +85,11 @@ export const LEGISLATURES: Legislature[] = [
       'Elle continue pourtant d’adopter une cinquantaine de lois par an, presque toutes par un vote nominatif, et réserve le 49.3 aux budgets et aux retraites.',
     messages: {
       chemins:
-        'Sans majorité absolue, chaque vote compte et se fait nom par nom. Les contournements se concentrent sur les textes financiers : les quatre budgets annuels, la programmation des finances publiques et la réforme des retraites passent au 49.3.',
+        'Sans majorité absolue, chaque vote compte et se fait presque toujours nom par nom. Les contournements se concentrent sur les textes financiers : les quatre budgets annuels, la programmation des finances publiques et la réforme des retraites passent au 49.3.',
       coalitions:
-        'Près d’une loi sur deux ne rencontre l’opposition d’aucun bloc, jusqu’à l’inscription de l’IVG dans la Constitution. Sur les textes disputés, la majorité présidentielle trouve des voix au RN plus souvent qu’à gauche : pouvoir d’achat, sécurité intérieure, logements squattés, immigration.',
+        'Près d’une loi sur deux ne rencontre l’opposition d’aucun bloc, jusqu’à l’inscription de l’IVG dans la Constitution. Sur les textes disputés, la majorité présidentielle trouve des voix au RN plus souvent qu’à gauche : pouvoir d’achat, sécurité intérieure, occupation illicite des logements, immigration.',
       decisifs:
-        'Ces appoints décident pourtant rarement : au décompte des votants, la majorité présidentielle l’emporte presque toujours seule. Les exceptions comptent la réforme des retraites, sauvée par LR qui ne vote pas la censure, et la loi immigration, adoptée grâce au RN.'
+        'Ces appoints décident pourtant rarement : au décompte des votants, la majorité présidentielle l’emporte presque toujours seule. Les exceptions comptent la réforme des retraites, maintenue parce que la majorité du groupe LR ne vote pas la censure, et la loi immigration, adoptée grâce au RN.'
     },
     coalitions: {
       consensus:
@@ -101,7 +101,7 @@ export const LEGISLATURES: Legislature[] = [
       socle_gauche:
         'Énergies renouvelables, sortie des régimes d’exception de l’épidémie, dérives sectaires, reconstruction après les émeutes de 2023.',
       socle_droite:
-        'La réforme des retraites, que LR laisse passer en ne votant pas la censure, et un budget rectificatif.',
+        'La réforme des retraites, que la majorité du groupe LR laisse passer en ne votant pas la censure, la loi sur le plein emploi et un budget rectificatif.',
       socle_seul:
         'Quelques textes d’urgence économique : inflation, budgets de fin d’année, restauration des étudiants.'
     }
@@ -123,19 +123,19 @@ export const LEGISLATURES: Legislature[] = [
       'Sans majorité, coupée en trois blocs, l’Assemblée élue en 2024 passait pour ingouvernable. Elle adopte pourtant autant de lois que ses devancières, une cinquantaine par an, presque toujours par un vote. Ses majorités se font texte par texte.',
     messages: {
       chemins:
-        'Presque toutes les lois sont votées, nom par nom. Les contournements restent rares mais marquants : le 49.3 sur trois budgets, et deux textes rejetés d’emblée par leurs propres partisans pour reprendre la version du Sénat, la loi Duplomb sur l’agriculture et le report des élections en Nouvelle-Calédonie.',
+        'Presque toutes les lois sont votées, nom par nom. Les contournements restent rares : le 49.3 sur trois budgets, et deux textes rejetés d’emblée par leurs propres partisans pour reprendre la version du Sénat, la loi Duplomb sur l’agriculture et le report des élections en Nouvelle-Calédonie.',
       coalitions:
-        'Près d’une loi sur deux ne rencontre l’opposition d’aucun bloc. Pour les autres, le socle commun cherche ses voix : à gauche pour quelques textes clés, les budgets de 2026, l’aide à mourir ou la parité aux municipales ; plus souvent au RN, pour la sécurité, la justice pénale ou l’agriculture. La défense, le narcotrafic et la Nouvelle-Calédonie rassemblent les deux.',
+        'Près d’une loi sur deux ne rencontre l’opposition d’aucun bloc. Pour les autres, le socle commun cherche ses voix : à gauche pour une dizaine de textes, dont les budgets de 2026, l’aide à mourir ou la parité aux municipales ; plus souvent au RN, pour la sécurité, la justice pénale ou l’agriculture. La défense, le narcotrafic et la Nouvelle-Calédonie rassemblent les deux.',
       decisifs:
-        'Voter avec le socle ne veut pas dire peser. Pour près d’une loi sur trois, pourtant, un groupe extérieur pouvait faire tomber le texte : deux fois sur trois le RN, sinon la gauche, le PS en tête, dont il a permis les budgets adoptés depuis l’automne 2025.'
+        'Voter avec le socle ne veut pas dire peser. Pour près d’une loi sur trois, pourtant, un groupe extérieur pouvait faire tomber le texte : deux fois sur trois le RN, sinon la gauche, le PS en tête : c’est lui qui a permis les deux budgets de 2026.'
     },
     coalitions: {
       consensus:
         'Urgences et textes sans clivage : Mayotte après le cyclone, soins palliatifs, sport professionnel, lois spéciales qui assurent la continuité du budget.',
       transpartisan:
-        'Souveraineté et sécurité : programmation militaire, narcotrafic, Nouvelle-Calédonie, Jeux olympiques de 2030, réseaux sociaux des mineurs ; et les budgets 2025, passés au 49.3 sans que la gauche ni le RN votent la censure.',
+        'Souveraineté et sécurité : programmation militaire, narcotrafic, Nouvelle-Calédonie, Jeux olympiques de 2030, réseaux sociaux des mineurs ; et les budgets 2025, passés au 49.3 sans que le PS ni le RN votent la censure.',
       socle_gauche:
-        'Peu de textes, mais des textes clés : les budgets de 2026, l’aide à mourir, la parité aux élections municipales.',
+        'Moins de textes qu’avec le RN, dont les budgets de 2026, l’aide à mourir et la parité aux élections municipales.',
       socle_rn:
         'Le régalien et l’agriculture : sûreté dans les transports, justice des mineurs, rétention, lutte contre la fraude, loi Duplomb, souveraineté agricole, assurance chômage.',
       socle_seul:

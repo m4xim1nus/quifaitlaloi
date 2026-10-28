@@ -10,13 +10,16 @@
   interface Props {
     lectures: (Lecture & { scrutin: ScrutinDetaille | null })[];
     evenements: Evenement[];
+    /** Étapes du récit (recits/*.md), intercalées à leur date. */
+    recit?: { date: string; html: string }[];
   }
-  let { lectures, evenements }: Props = $props();
+  let { lectures, evenements, recit = [] }: Props = $props();
 
   const CONTOURNEMENT = new Set(['ART_49_3', 'REJET_INVERSE']);
   type Etape =
     | { genre: 'lecture'; date: string; lecture: Props['lectures'][number] }
-    | { genre: 'evenement'; date: string; texte: string; lien?: string };
+    | { genre: 'evenement'; date: string; texte: string; lien?: string }
+    | { genre: 'recit'; date: string; html: string };
 
   function texteEvenement(e: Evenement): { texte: string; lien?: string } | null {
     switch (e.type) {
@@ -56,11 +59,11 @@
       vus.add(cle);
       out.push({ genre: 'evenement', date: e.date, ...t });
     }
-    // À date égale, l'événement (engagement du 49.3, accord en CMP) précède la décision.
-    return out.sort(
-      (a, b) =>
-        a.date.localeCompare(b.date) || (a.genre === b.genre ? 0 : a.genre === 'evenement' ? -1 : 1)
-    );
+    for (const r of recit) out.push({ genre: 'recit', ...r });
+    // À date égale : le récit (le contexte), puis l'événement (engagement du 49.3, accord en
+    // CMP), puis la décision.
+    const RANG = { recit: 0, evenement: 1, lecture: 2 };
+    return out.sort((a, b) => a.date.localeCompare(b.date) || RANG[a.genre] - RANG[b.genre]);
   });
 
   function issue(l: Props['lectures'][number]): string {
@@ -103,6 +106,13 @@
           </span>
         </span>
       </li>
+    {:else if e.genre === 'recit'}
+      <li class="recit">
+        <span class="date petit">{dateLongue(e.date)}</span>
+        <span class="point" aria-hidden="true"></span>
+        <!-- texte échappé par lib/markdown avant mise en forme -->
+        <span class="corps">{@html e.html}</span>
+      </li>
     {:else}
       <li class="evenement">
         <span class="date petit">{dateLongue(e.date)}</span>
@@ -129,6 +139,25 @@
     align-items: baseline;
     padding: 8px 0;
     border-top: 1px solid var(--filet);
+  }
+  .recit {
+    padding: 10px 0;
+    border-top: none;
+  }
+  .recit .corps {
+    grid-column: 3;
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    border-left: 3px solid var(--encre);
+    padding-left: 12px;
+  }
+  .recit .corps :global(p) {
+    margin: 0 0 6px;
+    max-width: 62ch;
+  }
+  .recit .corps :global(p:last-child) {
+    margin-bottom: 0;
   }
   .evenement {
     padding: 4px 0;
@@ -187,7 +216,8 @@
     .point {
       display: none;
     }
-    .evenement .corps {
+    .evenement .corps,
+    .recit .corps {
       grid-column: 1 / -1;
     }
   }

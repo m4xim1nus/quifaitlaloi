@@ -49,7 +49,14 @@
   </div>
 </section>
 
-<Legislature {leg} {toutes} groupes={data.groupes} periodes={data.periodes} {conventions} />
+<Legislature
+  {leg}
+  {toutes}
+  groupes={data.groupes}
+  periodes={data.periodes}
+  {conventions}
+  zooms={data.zooms}
+/>
 
 <section id="limites">
   <h2>Ce que ces chiffres ne disent pas</h2>
