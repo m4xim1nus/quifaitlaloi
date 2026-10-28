@@ -15,10 +15,12 @@
   import { dateLongue } from '$lib/format';
   import { phrasesChemin, phrasesScrutin } from '$lib/recit';
   import { lienScrutin, numeroScrutin } from '$lib/liens';
+  import { legislature } from '$lib/legislatures';
   import type { ScrutinDetaille } from '$lib/types';
 
   let { data } = $props();
   const loi = $derived(data.loi);
+  const leg = $derived(legislature(loi.legislature));
 
   const resume = $derived(
     phrasesChemin(
@@ -83,7 +85,9 @@
       </div>
       <div>
         <dt>Adoption définitive</dt>
-        <dd>{dateLongue(loi.date_adoption)}</dd>
+        <dd>
+          {dateLongue(loi.date_adoption)}, <a href={leg.url}>{leg.romain} législature</a>
+        </dd>
       </div>
       {#if loi.date_promulgation}
         <div>

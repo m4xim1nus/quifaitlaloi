@@ -5,6 +5,7 @@ import type { Classe, TypeLoi } from './types';
 
 export interface Filtres {
   texte: string;
+  legislature: string;
   chemin: Chemin | '';
   coalition: Classe | 'aucune' | '';
   periode: string;
@@ -16,6 +17,7 @@ export interface Filtres {
 
 export const VIDES: Filtres = {
   texte: '',
+  legislature: '',
   chemin: '',
   coalition: '',
   periode: '',
@@ -28,6 +30,7 @@ export const VIDES: Filtres = {
 export function lireFiltres(p: URLSearchParams): Filtres {
   return {
     texte: p.get('q') ?? '',
+    legislature: p.get('legislature') ?? '',
     chemin: (p.get('chemin') ?? '') as Filtres['chemin'],
     coalition: (p.get('coalition') ?? '') as Filtres['coalition'],
     periode: p.get('periode') ?? '',
@@ -41,6 +44,7 @@ export function lireFiltres(p: URLSearchParams): Filtres {
 export function ecrireFiltres(f: Filtres): string {
   const p = new URLSearchParams();
   if (f.texte) p.set('q', f.texte);
+  if (f.legislature) p.set('legislature', f.legislature);
   if (f.chemin) p.set('chemin', f.chemin);
   if (f.coalition) p.set('coalition', f.coalition);
   if (f.periode) p.set('periode', f.periode);
@@ -56,6 +60,7 @@ const plier = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerC
 
 export interface Filtrable {
   id: string;
+  legislature?: number;
   titre_court: string;
   type: TypeLoi;
   date_adoption: string;
@@ -74,6 +79,7 @@ export function appliquer<T extends Filtrable>(
   return lois.filter(
     (l) =>
       (f.conventions || l.type !== 'convention') &&
+      (!f.legislature || String(l.legislature) === f.legislature) &&
       (!f.chemin || l.chemin === f.chemin) &&
       (!f.coalition || (l.classe_an ?? 'aucune') === f.coalition) &&
       (!f.periode || periodeDe(l.date_adoption, periodes) === f.periode) &&

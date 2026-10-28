@@ -1,7 +1,7 @@
-import { groupesXVII, periodes, resumes } from '$lib/server/vues';
+import { groupesAN, periodes, resumes } from '$lib/server/vues';
 
 export const load = () => ({
-  lois: resumes(),
+  lois: resumes().filter((l) => l.legislature === 17),
   periodes: periodes(),
-  groupes: groupesXVII()
+  groupes: groupesAN(17)
 });

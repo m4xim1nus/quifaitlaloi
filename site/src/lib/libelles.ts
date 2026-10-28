@@ -93,7 +93,7 @@ export const LIBELLE_CLASSE: Record<Classe, string> = {
   transpartisan: 'Socle + gauche + RN',
   socle_gauche: 'Socle + gauche',
   socle_rn: 'Socle + RN',
-  socle_droite: 'Centre + LR (XVIe)',
+  socle_droite: 'Socle + LR',
   socle_seul: 'Socle, sans gauche ni RN',
   hors_socle: 'Sans le socle'
 };
@@ -102,22 +102,23 @@ const SUR_493 = ' Sur un 49.3 : les groupes qui ne votent pas la censure.';
 
 export const DEFINITION_CLASSE: Record<Classe, string> = {
   consensus:
-    'Aucun groupe de gauche, du centre, de droite ou du bloc RN ne vote majoritairement contre. Des abstentions sont possibles, ainsi que des votes contre de LIOT ou de non-inscrits.',
+    'Aucun groupe de gauche, du centre, de droite ou du bloc RN ne vote majoritairement contre. Des abstentions sont possibles, ainsi que des votes contre de petits groupes (LIOT, UDI…) ou de non-inscrits.',
   transpartisan:
-    'Le texte passe avec les voix du socle commun et d’au moins un groupe de gauche et un groupe du bloc RN.' +
+    'Le texte passe avec les voix du socle et d’au moins un groupe de gauche et un groupe du bloc RN.' +
     SUR_493,
   socle_gauche:
-    'Le texte passe avec les voix du socle commun et d’au moins un groupe de gauche, sans le bloc RN.' +
+    'Le texte passe avec les voix du socle et d’au moins un groupe de gauche, sans le bloc RN.' +
     SUR_493,
   socle_rn:
-    'Le texte passe avec les voix du socle commun et d’au moins un groupe du bloc RN, sans la gauche.' +
+    'Le texte passe avec les voix du socle et d’au moins un groupe du bloc RN, sans la gauche.' +
     SUR_493,
   socle_droite:
-    'Lecture tenue sous la XVIe législature, avant la dissolution : le texte passe avec les voix du centre et de LR, sans la gauche ni le RN.',
-  socle_seul:
-    'Le texte passe avec les voix du socle commun, sans aucun groupe de gauche ni du bloc RN (LIOT ou des non-inscrits peuvent l’appuyer).' +
+    'Le texte passe avec les voix du socle et de LR, sans la gauche ni le RN. Seulement sous les XVe et XVIe législatures, où LR n’est pas dans le socle.' +
     SUR_493,
-  hors_socle: 'Le résultat est obtenu sans les voix du socle commun.'
+  socle_seul:
+    'Le texte passe avec les voix du socle, sans aucun groupe de gauche, de droite hors socle ni du bloc RN (de petits groupes ou des non-inscrits peuvent l’appuyer).' +
+    SUR_493,
+  hors_socle: 'Le résultat est obtenu sans les voix du socle.'
 };
 
 /** Le socle commun, développé à la première occurrence de chaque page. */

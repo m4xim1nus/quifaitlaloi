@@ -17,6 +17,7 @@
     NOM_PERIODE
   } from '$lib/libelles';
   import { dateCourte, entier } from '$lib/format';
+  import { LEGISLATURES } from '$lib/legislatures';
   import type { TypeLoi } from '$lib/types';
 
   let { data } = $props();
@@ -40,9 +41,25 @@
   const THEMES = $derived(
     [...new Set(data.lois.flatMap((l) => l.themes))].sort((a, b) => a.localeCompare(b, 'fr'))
   );
-  const TYPES: TypeLoi[] = ['ordinaire', 'organique', 'constitutionnelle', 'finances', 'financement_ss', 'convention'];
+  const TYPES: TypeLoi[] = [
+    'ordinaire',
+    'organique',
+    'constitutionnelle',
+    'finances',
+    'financement_ss',
+    'convention'
+  ];
   const actifs = $derived(
-    !!(f.texte || f.chemin || f.coalition || f.periode || f.type || f.decisif || f.theme)
+    !!(
+      f.texte ||
+      f.legislature ||
+      f.chemin ||
+      f.coalition ||
+      f.periode ||
+      f.type ||
+      f.decisif ||
+      f.theme
+    )
   );
 </script>
 
@@ -50,21 +67,31 @@
   <title>Les lois · Qui fait la loi ?</title>
   <meta
     name="description"
-    content="Toutes les lois promulguées depuis juillet 2024 : date, chemin d’adoption à l’Assemblée, coalition du vote décisif et groupes décisifs."
+    content="Toutes les lois adoptées depuis 2017 (XVe, XVIe et XVIIe législatures) : date, chemin d’adoption à l’Assemblée, coalition du vote décisif et groupes décisifs."
   />
 </svelte:head>
 
 <section class="explorateur">
   <h1>Les lois</h1>
   <p class="colonne">
-    Chaque loi promulguée depuis juillet 2024, avec la façon dont l’Assemblée l’a adoptée et les
-    groupes qui l’ont votée. Choisissez une loi pour voir son parcours et le détail des votes.
+    Chaque loi adoptée depuis juin 2017, sous les trois dernières législatures, avec la façon dont
+    l’Assemblée l’a adoptée et les groupes qui l’ont votée. Choisissez une loi pour voir son
+    parcours et le détail des votes.
   </p>
 
   <form class="filtres" onsubmit={(e) => e.preventDefault()} role="search">
     <label class="champ texte">
       <span>Rechercher</span>
       <input type="search" bind:value={f.texte} placeholder="Un mot du titre, un numéro de loi" />
+    </label>
+    <label class="champ">
+      <span>Législature</span>
+      <select bind:value={f.legislature}>
+        <option value="">Toutes</option>
+        {#each LEGISLATURES as l (l.num)}
+          <option value={String(l.num)}>{l.romain} ({l.annees})</option>
+        {/each}
+      </select>
     </label>
     <label class="champ">
       <span>Chemin à l’Assemblée</span>

@@ -6,6 +6,8 @@ import type { Bloc, Classe, Loi, Position, TypeLoi } from '$lib/types';
 /** Ligne de la frise et de l'explorateur. */
 export interface LoiResume {
   id: string;
+  /** Législature de l'adoption définitive. */
+  legislature: number;
   titre_court: string;
   type: TypeLoi;
   initiative: Loi['initiative'];
@@ -40,6 +42,7 @@ export function resumes(): LoiResume[] {
       const leg = (l.scrutin_an && b.scrutins.get(l.scrutin_an)?.legislature) || null;
       return {
         id: l.id,
+        legislature: l.legislature,
         titre_court: l.titre_court,
         type: l.type,
         initiative: l.initiative,
@@ -84,12 +87,15 @@ export interface GroupeAffiche {
   couleur: string | null;
 }
 
-/** Groupes de l'AN sous la XVIIe, de la gauche vers la droite (ordre des blocs, puis blocs.yaml). */
-export function groupesXVII(): GroupeAffiche[] {
+/** Groupes de l'AN d'une législature, de la gauche vers la droite (ordre des blocs, puis blocs.yaml).
+ * Un groupe renommé (MODEM puis DEM, NG puis SOC) garde deux entrées, une par sigle. */
+export function groupesAN(legislature: number): GroupeAffiche[] {
   const b = base();
   const ordre = b.meta.referentiels.blocs.blocs;
+  const vus = new Set<string>();
   return [...b.groupes.values()]
-    .filter((g) => g.chambre === 'AN' && g.legislature === 17)
+    .filter((g) => g.chambre === 'AN' && g.legislature === legislature)
+    .filter((g) => !vus.has(g.sigle) && !!vus.add(g.sigle))
     .map((g, i) => ({ g, i }))
     .sort((x, y) => ordre[x.g.bloc].ordre - ordre[y.g.bloc].ordre || x.i - y.i)
     .map(({ g }) => ({ sigle: g.sigle, nom: g.nom, bloc: g.bloc, couleur: g.couleur }));
@@ -101,7 +107,8 @@ export interface Periode {
   libelle: string;
 }
 
-/** Périodes charnières de la XVIIe (les deux premières, XVIe et dissolution, sont hors frise). */
+/** Périodes charnières (pipeline/referentiels/periodes.yaml) ; seules celles nommées dans JALON
+ * sont tracées sur les frises. */
 export function periodes(): Periode[] {
   return base().meta.referentiels.periodes.periodes;
 }
@@ -117,10 +124,17 @@ export function fiche(id: string) {
   if (!loi) return null;
   const lectures = b.lectures.filter((l) => l.loi_id === id);
   const evenements = b.evenements.filter((e) => e.loi_id === id);
-  const censures = evenements
-    .filter((e) => e.type === 'motion_censure' && e.scrutin_id)
-    .map((e) => scrutinDetaille(e.scrutin_id))
-    .filter((s) => s !== null);
+  // motions de censure du parcours ; sous la XVIe, seul le scrutin miroir de chaque 49.3 est
+  // rattaché (par la lecture, faute de voteRefs sur les motions du dossier)
+  const ids = new Set(
+    evenements.filter((e) => e.type === 'motion_censure' && e.scrutin_id).map((e) => e.scrutin_id!)
+  );
+  for (const l of lectures)
+    if (l.mode_adoption === 'ART_49_3' && l.scrutin_id) ids.add(l.scrutin_id);
+  const censures = [...ids]
+    .map((id) => scrutinDetaille(id))
+    .filter((s) => s !== null)
+    .sort((a, b) => a.date.localeCompare(b.date) || a.numero - b.numero);
   return {
     loi,
     chemin: chemin(loi),
@@ -134,10 +148,17 @@ export function fiche(id: string) {
 
 export type Fiche = NonNullable<ReturnType<typeof fiche>>;
 
-/** Couleur officielle des groupes AN (référentiel AMO), par sigle ; le Sénat n'en publie pas. */
-export function couleursGroupes(): Record<string, string> {
+/** Couleur officielle des groupes AN (référentiel AMO), par sigle ; le Sénat n'en publie pas.
+ * Un sigle repris d'une législature à l'autre (SOC, RN…) prend la couleur de `legislature`
+ * (par défaut, la plus récente). */
+export function couleursGroupes(legislature?: number): Record<string, string> {
   const out: Record<string, string> = {};
-  for (const g of base().groupes.values())
-    if (g.couleur && g.chambre === 'AN') out[g.sigle] = g.couleur;
+  const gs = [...base().groupes.values()].filter((g) => g.couleur && g.chambre === 'AN');
+  gs.sort(
+    (a, b) =>
+      Number(a.legislature === legislature) - Number(b.legislature === legislature) ||
+      (a.legislature ?? 0) - (b.legislature ?? 0)
+  );
+  for (const g of gs) out[g.sigle] = g.couleur!;
   return out;
 }

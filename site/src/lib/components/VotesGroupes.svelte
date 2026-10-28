@@ -7,15 +7,17 @@
   interface Props {
     lois: LoiResume[];
     groupes: GroupeAffiche[];
+    legislature: number;
   }
-  let { lois, groupes }: Props = $props();
+  let { lois, groupes, legislature }: Props = $props();
 
   const couleurs = $derived(Object.fromEntries(groupes.map((g) => [g.sigle, g.couleur])));
   const noms = $derived(Object.fromEntries(groupes.map((g) => [g.sigle, g.nom])));
   const lignes = $derived(
     votesParGroupe(
       lois,
-      groupes.map((g) => g.sigle)
+      groupes.map((g) => g.sigle),
+      legislature
     )
   );
   const ORDRE: { v: Vote; libelle: string }[] = [

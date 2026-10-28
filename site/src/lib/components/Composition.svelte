@@ -8,13 +8,15 @@
   import { CLASSES, LIBELLE_CHEMIN, LIBELLE_CLASSE } from '$lib/libelles';
   import { dateCourte } from '$lib/format';
   import type { LoiResume } from '$lib/server/vues';
+  import { legislature } from '$lib/legislatures';
   import type { Classe } from '$lib/types';
 
   interface Props {
     lois: LoiResume[];
     conventions: boolean;
+    legislature: number;
   }
-  let { lois, conventions }: Props = $props();
+  let { lois, conventions, legislature: numLeg }: Props = $props();
 
   type Ligne = Classe | 'aucune';
   type Presence = 'oui' | 'non' | 'pas_contre' | 'inconnu';
@@ -41,16 +43,16 @@
 
   const DEFINITION: Record<Ligne, string> = {
     consensus:
-      'Aucun groupe de gauche, du socle ou du RN ne vote majoritairement contre. Des abstentions sont possibles, ainsi que des votes contre de LIOT ou de non-inscrits.',
+      'Aucun groupe de gauche, du socle ou du RN ne vote majoritairement contre. Des abstentions sont possibles, ainsi que des votes contre de petits groupes ou de non-inscrits.',
     transpartisan:
       'Le socle, au moins un groupe de gauche et au moins un groupe du bloc RN votent pour ; d’autres groupes votent contre.',
     socle_gauche: 'Le socle et au moins un groupe de gauche votent pour ; aucun groupe du bloc RN.',
     socle_rn: 'Le socle et au moins un groupe du bloc RN votent pour ; aucun groupe de gauche.',
     socle_seul:
-      'Le socle vote pour sans la gauche ni le RN (LIOT ou des non-inscrits peuvent l’appuyer).',
+      'Le socle vote pour sans la gauche ni le RN (de petits groupes ou des non-inscrits peuvent l’appuyer).',
     socle_droite:
-      'Lecture tenue avant la dissolution de juin 2024 : le centre et LR votent pour, sans la gauche ni le RN.',
-    hors_socle: 'Le résultat est obtenu sans les voix du socle commun.',
+      'Le socle et LR votent pour, sans la gauche ni le RN (XVe et XVIe législatures, où LR n’est pas dans le socle).',
+    hors_socle: 'Le résultat est obtenu sans les voix du socle.',
     aucune:
       'Pas de vote nominatif au dernier passage à l’Assemblée : on ne sait pas qui a voté quoi. Ce n’est pas un consensus.'
   };
@@ -69,7 +71,8 @@
   );
 
   let ouvertes = $state<Record<string, boolean>>({});
-  const lien = (k: Ligne) => `/lois?coalition=${k}${conventions ? '&conventions=1' : ''}`;
+  const lien = (k: Ligne) =>
+    `/lois?legislature=${numLeg}&coalition=${k}${conventions ? '&conventions=1' : ''}`;
   const libelle = (k: Ligne) => (k === 'aucune' ? 'Sans vote nominatif' : LIBELLE_CLASSE[k]);
   const nomAccessible = (k: Ligne, n: number) =>
     `${libelle(k)}, ${n} loi${n > 1 ? 's' : ''}. ` +
@@ -145,10 +148,9 @@
   </ul>
 
   <p class="note petit secondaire">
-    ● au moins un groupe du bloc vote pour · ○ pour ou abstention, mais pas contre. Socle
-    commun&#8239;: le centre (EPR, Les Démocrates, Horizons) et la Droite républicaine. Sur un 49.3,
-    le camp gagnant est formé des groupes qui ne votent pas la censure. Cliquer une coalition pour
-    voir ses lois.
+    ● au moins un groupe du bloc vote pour · ○ pour ou abstention, mais pas contre. Socle&#8239;:
+    {legislature(numLeg).socleDeveloppe}. Sur un 49.3, le camp gagnant est formé des groupes qui ne
+    votent pas la censure. Cliquer une coalition pour voir ses lois.
   </p>
 </div>
 

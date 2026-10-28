@@ -61,7 +61,9 @@
   }
 
   const jalonsVus = $derived.by(() => {
-    const vus = jalons.filter((j) => j.debut >= debut.slice(0, 7) && JALON[j.code]);
+    const vus = jalons.filter(
+      (j) => j.debut >= debut.slice(0, 7) && j.debut <= fin && JALON[j.code]
+    );
     const xs = vus.map((j) => MG + positionDate(j.debut, mois) * colW);
     const lignes = lignesEtiquettes(
       xs.map((x, i) => ({ x, largeur: JALON[vus[i].code].length * 6.4 + 6 }))

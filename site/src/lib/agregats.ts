@@ -83,19 +83,21 @@ export const VOTES: Vote[] = [
 ];
 
 /**
- * Votes de chaque groupe sur les votes décisifs de la XVIIe : pour chaque sigle, le nombre de
- * lois par position. Les votes décisifs tenus sous la XVIe sont écartés (autres groupes).
+ * Votes de chaque groupe sur les votes décisifs d'une législature : pour chaque sigle, le nombre
+ * de lois par position. Les votes décisifs tenus sous une autre législature sont écartés (autres
+ * groupes : une loi de la XVIIe votée à l'AN avant la dissolution).
  */
 export function votesParGroupe(
   lois: { votes: Record<string, string>; leg_an: number | null }[],
-  sigles: string[]
+  sigles: string[],
+  legislature: number
 ) {
   return sigles
     .map((sigle) => {
       const comptes = Object.fromEntries(VOTES.map((v) => [v, 0])) as Record<Vote, number>;
       let n = 0;
       for (const l of lois) {
-        if (l.leg_an !== 17) continue;
+        if (l.leg_an !== legislature) continue;
         const v = l.votes[sigle] as Vote | undefined;
         if (!v) continue;
         comptes[v]++;

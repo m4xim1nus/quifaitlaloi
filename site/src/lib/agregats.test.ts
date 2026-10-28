@@ -75,14 +75,15 @@ describe('agrégats (données réelles)', () => {
 });
 
 describe('votes par groupe', () => {
-  it('compte les positions, hors votes de la XVIe', () => {
+  it('compte les positions de la législature, hors votes de la précédente', () => {
     const r = votesParGroupe(
       [
         { votes: { RN: 'pour', SOC: 'contre' }, leg_an: 17 },
         { votes: { RN: 'pas_censure', SOC: 'pas_censure' }, leg_an: 17 },
         { votes: { SOC: 'pour' }, leg_an: 16 }
       ],
-      ['SOC', 'RN', 'UDR']
+      ['SOC', 'RN', 'UDR'],
+      17
     );
     expect(r.map((g) => [g.sigle, g.n, g.comptes.pour, g.comptes.pas_censure])).toEqual([
       ['SOC', 2, 0, 1],

@@ -23,7 +23,8 @@
       .filter((l) => l.pivots.length || l.pivots_abst_hors_socle.length)
       .sort((a, b) => b.date_adoption.localeCompare(a.date_adoption))
   );
-  // Groupes de la XVIIe, puis ceux d'une lecture tenue sous la XVIe (LR, par exemple), en gris.
+  // Groupes de la législature, puis ceux d'une lecture tenue sous la précédente (LR, par
+  // exemple, pour une loi de la XVIIe votée avant la dissolution), en gris.
   const tous = $derived.by((): GroupeAffiche[] => {
     const connus = new Set(groupes.map((g) => g.sigle));
     const autres = [
@@ -33,7 +34,7 @@
       ...groupes,
       ...autres.map((sigle) => ({
         sigle,
-        nom: `${sigle} (XVIe législature)`,
+        nom: `${sigle} (législature précédente)`,
         bloc: 'autres' as const,
         couleur: null
       }))

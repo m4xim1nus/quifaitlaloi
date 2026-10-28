@@ -7,6 +7,7 @@
   let { data, children } = $props();
 
   const LIENS = [
+    { href: '/comparer', libelle: 'Comparer' },
     { href: '/lois', libelle: 'Les lois' },
     { href: '/methodologie', libelle: 'Méthodologie' },
     { href: '/donnees', libelle: 'Données' }
