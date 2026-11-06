@@ -41,6 +41,13 @@ et pour la XVe, avec un suffixe : `…/15/loi/scrutins/Scrutins_XV.json.zip`,
 Pas de Postgres nécessaire : les blocs `COPY` du dump Dosleg se lisent
 directement en Python (`explo/senat_dosleg.py`, quelques secondes).
 
+**Renvoi, pas une source** : `qfl download` récupère aussi
+`lvnd.technoperchoir.fr/donnees/editorial.json`, la liste des textes
+qualifiés par Leurs voix, nos droits. Le build n'en tire qu'une colonne,
+`url_lvnd` (lois et textes en cours, jointure par `dossier_an`), qui
+alimente le lien des fiches. Son empreinte est rangée sous `renvois` dans
+`meta.json`, hors de `sources`.
+
 ## Clés de jointure
 
 **AN**

@@ -42,6 +42,8 @@ export interface Loi {
   url_an: string | null;
   url_senat: string | null;
   url_legifrance: string | null;
+  /** Page du texte sur Leurs voix, nos droits, s'il y est qualifié. */
+  url_lvnd: string | null;
   procedure_acceleree: boolean;
   n_lectures: number;
   chambre_finale: Chambre | null;
@@ -185,6 +187,8 @@ export interface TexteEnCours {
   legislature: number;
   url_an: string | null;
   url_senat: string | null;
+  /** Page du texte sur Leurs voix, nos droits, s'il y est qualifié. */
+  url_lvnd: string | null;
   procedure_acceleree: boolean;
   n_lectures: number;
   chambre_finale: Chambre | null;

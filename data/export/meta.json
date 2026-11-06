@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-28T14:39:13+00:00",
+ "genere_le": "2026-11-06T21:51:54+00:00",
  "sources": {
   "an_scrutins_17": {
    "url": "https://data.assemblee-nationale.fr/static/openData/repository/17/loi/scrutins/Scrutins.json.zip",
@@ -63,6 +63,15 @@
    "taille": 15220496,
    "sha256": "e27391e756be58fa43cc133d6eb28be4c2464986caa9b6f84d069d8781917858",
    "telecharge_le": "2026-10-28T12:57:41+00:00"
+  }
+ },
+ "renvois": {
+  "lvnd_editorial": {
+   "url": "https://lvnd.technoperchoir.fr/donnees/editorial.json",
+   "last_modified": null,
+   "taille": 1815148,
+   "sha256": "cf65acc6b6a544b109d95d9f1b49e70b9756323a57a07842762bcaa3ad144ab4",
+   "telecharge_le": "2026-11-06T21:51:14+00:00"
   }
  },
  "comptes": {

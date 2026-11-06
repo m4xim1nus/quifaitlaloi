@@ -82,6 +82,14 @@
     />
   {/each}
 
+  {#if t.url_lvnd}
+    <aside class="renvoi colonne">
+      Ce texte touche aux droits et libertés&#8239;: <a href={t.url_lvnd} rel="external"
+        >Leurs voix, nos droits</a
+      > détaille ce qu’il change et qui l’a voté.
+    </aside>
+  {/if}
+
   <section>
     <h2>Sources</h2>
     <ul class="sources">
@@ -100,6 +108,11 @@
 </article>
 
 <style>
+  .renvoi {
+    margin-top: 48px;
+    padding: 4px 0 4px 16px;
+    border-left: 3px solid var(--filet);
+  }
   article {
     display: grid;
   }

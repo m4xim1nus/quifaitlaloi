@@ -10,7 +10,7 @@ from pathlib import Path
 import polars as pl
 
 from . import an, encours, metriques, parcours, referentiels, senat, votes
-from .sources import extraits, lire_manifeste
+from .sources import LVND, extraits, lire_manifeste
 
 LEGISLATURES_AN = (15, 16, 17)
 
@@ -41,6 +41,17 @@ def groupes(raw: Path) -> list[dict]:
         out.append({"id": f"SN-{code}", "chambre": "SN", "legislature": None, "sigle": g["sigle"], "nom": g["nom"],
                     "bloc": g["bloc"], "date_debut": None, "date_fin": None, "couleur": None})
     return out
+
+
+# --- Renvoi vers Leurs voix, nos droits ------------------------------------------
+
+RENVOIS = ("lvnd_editorial",)  # téléchargés pour les liens seulement : hors des sources de données
+
+
+def pages_lvnd(raw: Path) -> dict[str, str]:
+    """Dossier AN → page du texte sur Leurs voix, nos droits, pour les textes que ce site a qualifiés."""
+    textes = json.loads(extraits(raw, "lvnd_editorial").read_text())["textes"]
+    return {t["dossier_an"]: f"{LVND}/textes/{t['id']}" for t in textes if t.get("dossier_an")}
 
 
 # --- Lois : drapeaux dérivés des lectures ---------------------------------------
@@ -227,6 +238,9 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     for loi in lois_res:
         loi["themes"] = ";".join(themes.get((loi["loicod_senat"] or "").strip(), []))
     en_cours = [_resume_loi(t, par_loi.get(t["id"], []), sig) for t in rows_ec]
+    lvnd = pages_lvnd(raw)
+    for t in lois_res + en_cours:
+        t["url_lvnd"] = lvnd.get(t["dossier_an"])
     _log(f"   {len(lois_res)} lois ({sum(l['statut'] == 'adoptee' for l in lois_res)} en attente de promulgation), "
          f"{len(rows_lect)} lectures, {len(utiles)} scrutins utiles")
     _log(f"   {sum(t['motif_ecart'] is None for t in en_cours)} textes en cours au {date_ref} "
@@ -279,7 +293,8 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     (export / "metriques.json").write_text(json.dumps(met, ensure_ascii=False, indent=1) + "\n")
     meta = {
         "genere_le": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "sources": lire_manifeste(raw),
+        "sources": {k: v for k, v in lire_manifeste(raw).items() if k not in RENVOIS},
+        "renvois": {k: v for k, v in lire_manifeste(raw).items() if k in RENVOIS},
         "comptes": {k: v.height for k, v in dfs.items()},
         "referentiels": {n: referentiels.charger(n) for n in ("blocs", "flags", "periodes")},
         "en_cours": {"date_reference": date_ref, "inactivite_mois": encours.INACTIVITE_MOIS,

@@ -18,6 +18,7 @@ from pathlib import Path
 import httpx
 
 AN = "https://data.assemblee-nationale.fr/static/openData/repository"
+LVND = "https://lvnd.technoperchoir.fr"
 
 SOURCES: dict[str, dict] = {
     "an_scrutins_17": {"url": f"{AN}/17/loi/scrutins/Scrutins.json.zip"},
@@ -32,6 +33,9 @@ SOURCES: dict[str, dict] = {
                       "AMO30_tous_acteurs_tous_mandats_tous_organes_historique.json.zip"},
     "senat_dosleg": {"url": "https://data.senat.fr/data/dosleg/dosleg.zip"},
     "senat_senateurs": {"url": "https://data.senat.fr/data/senateurs/ODSEN_HISTOGROUPES.csv", "zip": False},
+    # Pas une source de données : la liste des textes qualifiés par Leurs voix, nos droits, pour renvoyer
+    # chaque fiche vers sa page (`url_lvnd`).
+    "lvnd_editorial": {"url": f"{LVND}/donnees/editorial.json", "zip": False},
 }
 
 MANIFESTE = "manifeste.json"
